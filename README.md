@@ -1,10 +1,11 @@
 # kubernetes-cookbook
 
-Google™ Kubernetes installer for deb-based distros with docker
+Google Kubernetes installer for deb-based distros with docker
 
 ## Supported Platforms
 
-- Debian/Ubuntu
+- Debian
+- Ubuntu
 
 ### Attributes ###
 
@@ -57,8 +58,8 @@ Google™ Kubernetes installer for deb-based distros with docker
 
 ### Discovery url
 
-Be sure to get new discovery url for every cluster from http://discovery.etcd.io/new (by default cluster size equal to 3)
-and set in to `node['kubernetes']['etcd']['discovery_url']`
+Be sure to get new discovery url for every new cluster from http://discovery.etcd.io/new?size=XXX (by default cluster size is equal to 3)
+and set it to `node['kubernetes']['etcd']['discovery_url']`
 
 ### kubernetes::master
 
@@ -73,7 +74,7 @@ Include `kubernetes::master` in your master node's `run_list`:
 ```
 
 And add master node to role `kube_master`.
-This is obligatory in multinode configuration - minions uses role to find master.
+This is **obligatory** in multinode configuration - minions uses role to find master.
 
 ### kubernetes::node
 
