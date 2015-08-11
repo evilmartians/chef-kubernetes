@@ -1,0 +1,12 @@
+name             'kubernetes'
+maintainer       'Maxim Filatov'
+maintainer_email 'bregor@evilmartians.com'
+license          'MIT'
+description      'Installs/Configures google kubernetes'
+long_description 'Installs/Configures google kubernetes'
+version          '0.0.1'
+
+depends 'apt'
+depends 'docker'
+depends 'runit'
+depends 'network_interfaces'

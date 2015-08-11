@@ -1,0 +1,15 @@
+*~
+*#
+.#*
+\#*#
+.*.sw[a-z]
+*.un~
+pkg/
+
+# Berkshelf
+.vagrant
+/cookbooks
+
+# Bundler
+bin/*
+.bundle/*

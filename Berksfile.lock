@@ -1,0 +1,29 @@
+DEPENDENCIES
+  apt
+  docker
+    git: git://github.com/bflad/chef-docker.git
+    revision: f1bb3a6402126fd3dadcf864f08b34ae09e4bc5e
+  kubernetes
+    path: .
+    metadata: true
+  network_interfaces
+    git: git://github.com/redguide/network_interfaces.git
+    revision: c1263c017d2168c94d28526c6849208ff80b19a4
+  runit
+    git: git://github.com/opscode-cookbooks/runit.git
+    revision: f9362e4b8b2c021e02dc750f7e9a0d6e65e1b3f7
+
+GRAPH
+  apt (2.7.0)
+  docker (0.43.0)
+  kubernetes (0.0.0)
+    apt (>= 0.0.0)
+    docker (>= 0.0.0)
+    network_interfaces (>= 0.0.0)
+    runit (>= 0.0.0)
+  modules (0.2.0)
+  network_interfaces (1.0.1)
+    modules (>= 0.1.2)
+  packagecloud (0.0.19)
+  runit (1.7.2)
+    packagecloud (>= 0.0.0)
