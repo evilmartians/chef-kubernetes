@@ -7,6 +7,5 @@ long_description 'Installs/Configures google kubernetes'
 version          '0.0.1'
 
 depends 'apt'
-depends 'docker'
 depends 'runit'
 depends 'network_interfaces'

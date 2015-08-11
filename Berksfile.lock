@@ -1,8 +1,5 @@
 DEPENDENCIES
   apt
-  docker
-    git: git://github.com/bflad/chef-docker.git
-    revision: f1bb3a6402126fd3dadcf864f08b34ae09e4bc5e
   kubernetes
     path: .
     metadata: true
@@ -15,10 +12,8 @@ DEPENDENCIES
 
 GRAPH
   apt (2.7.0)
-  docker (0.43.0)
-  kubernetes (0.0.0)
+  kubernetes (0.0.1)
     apt (>= 0.0.0)
-    docker (>= 0.0.0)
     network_interfaces (>= 0.0.0)
     runit (>= 0.0.0)
   modules (0.2.0)
