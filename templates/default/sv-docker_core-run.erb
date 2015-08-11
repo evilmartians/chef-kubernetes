@@ -1,0 +1,14 @@
+#!/bin/sh
+set -e
+
+exec 2>&1
+
+OPENED_FILES_LIMIT=<%= @options.fetch('open_files_limit', '1024') %>
+
+ulimit -n $OPENED_FILES_LIMIT
+
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+export LC_CTYPE="UTF-8"
+
+exec /usr/bin/docker <%= @options.fetch(:args, '--daemon --host=unix:///var/run/docker_core.sock --bridge=none --iptables=false --ip-masq=false --graph=/var/lib/docker_core --pidfile=/var/run/docker_core.pid')%>

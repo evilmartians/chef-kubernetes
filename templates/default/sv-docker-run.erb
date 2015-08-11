@@ -1,0 +1,14 @@
+#!/bin/sh
+set -e
+
+exec 2>&1
+
+OPENED_FILES_LIMIT=<%= @options.fetch('open_files_limit', '1024') %>
+
+ulimit -n $OPENED_FILES_LIMIT
+
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+export LC_CTYPE="UTF-8"
+
+exec /usr/bin/docker <%= @options.fetch(:docker_args, '') %> run <%= @options.fetch(:run_args, '-i --rm')%> <%= @options[:image]%> <%= @options.fetch(:command, '') %>
