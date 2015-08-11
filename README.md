@@ -31,7 +31,7 @@ Google™ Kubernetes installer for deb-based distros with docker
     <td><tt>['kubernetes']['etcd']['discovery_url']</tt></td>
     <td>String</td>
     <td>Cluster discovery URL</td>
-    <td><tt>should not be default but for now is 'http://discovery.etcd.io/80d5aed7fbcfeabf02020cce1c606b17'</tt></td>
+    <td><tt>''</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['etcd']['version']</tt></td>
