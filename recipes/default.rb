@@ -60,7 +60,7 @@ if File.exists? '/run/flannel/subnet.env'
     default_logger true
     template_name 'docker_core'
     options(
-      args: "--daemon --bridge=kube0 --mtu=#{flannel_network['flannel_mtu']} --pidfile=/var/run/docker.pid --host=unix:///var/run/docker.sock"
+      args: "--bridge=kube0 --mtu=#{flannel_network['flannel_mtu']} --pidfile=/var/run/docker.pid --host=unix:///var/run/docker.sock"
     )
   end
 end
