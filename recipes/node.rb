@@ -10,9 +10,13 @@ include_recipe 'kubernetes::default'
 internal_ip = node[:network][:interfaces][node['kubernetes']['interface']]
               .addresses.find {|addr, properties| properties['family'] == 'inet'}.first
 
-master_node = search(:node, 'role:kube_master').first
-master_ip = master_node[:network][:interfaces][node['kubernetes']['interface']]
+if Chef::Config[:solo]
+  master_ip = node['kubernetes']['master']['ip']
+else
+  master_node = search(:node, 'role:kube_master').first
+  master_ip = master_node[:network][:interfaces][node['kubernetes']['interface']]
               .addresses.find {|addr, properties| properties['family'] == 'inet'}.first
+end
 
 runit_service 'kubelet' do
   default_logger true
