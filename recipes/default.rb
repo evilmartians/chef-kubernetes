@@ -21,7 +21,7 @@ runit_service 'etcd' do
   template_name 'docker'
   options(
     docker_args: '--host=unix:///var/run/docker_core.sock',
-    run_args: '-i --rm --net=host -v /var/lib/etcd/data:/var/lib/etcd/data:rw -v /etc/ssl:/etc/ssl:ro',
+    run_args: '--name=core-etcd -i --rm --net=host -v /var/lib/etcd/data:/var/lib/etcd/data:rw -v /etc/ssl:/etc/ssl:ro',
     image: "quay.io/coreos/etcd:#{node['kubernetes']['etcd']['version']}",
     command: "--data-dir=/var/lib/etcd/data \
     --name=#{node.fqdn} --initial-advertise-peer-urls=http://#{internal_ip}:2380 \
@@ -41,7 +41,7 @@ runit_service 'flannel' do
   template_name 'docker'
   options(
     docker_args: '--host=unix:///var/run/docker_core.sock',
-    run_args: '-i --rm --net=host --privileged -v /run/flannel:/run/flannel -v /dev/net:/dev/net',
+    run_args: '--name=core-flanneld -i --rm --net=host --privileged -v /run/flannel:/run/flannel -v /dev/net:/dev/net',
     image: "quay.io/coreos/flannel:#{node['kubernetes']['flannel']['version']}",
     command: "/opt/bin/flanneld --ip-masq=true --iface=#{internal_ip} --etcd-endpoints=http://#{internal_ip}:2379"
   )
