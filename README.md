@@ -20,7 +20,7 @@ Google Kubernetes installer for deb-based distros with docker
     <td><tt>['kubernetes']['version']</tt></td>
     <td>String</td>
     <td>version of hyperkube image</td>
-    <td><tt>v1.0.1</tt></td>
+    <td><tt>v1.0.3</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['interface']</tt></td>
