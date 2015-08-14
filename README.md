@@ -29,6 +29,12 @@ Google Kubernetes installer for deb-based distros with docker
     <td><tt>eth1</tt></td>
   </tr>
   <tr>
+    <td><tt>['kubernetes']['cluster_name']</tt></td>
+    <td>String</td>
+    <td>Cluster name to use with API</td>
+    <td><tt>kubernetes</tt></td>
+  </tr>
+  <tr>
     <td><tt>['kubernetes']['etcd']['discovery_url']</tt></td>
     <td>String</td>
     <td>Cluster discovery URL</td>

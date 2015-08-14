@@ -16,7 +16,7 @@ runit_service 'kube_apiserver' do
   options(
     run_args: '--name=kubernetes-apiserver -i --rm --net=host -v /var/run/docker.sock:/var/run/docker.sock',
     image: "gcr.io/google_containers/hyperkube:#{node['kubernetes']['version']}",
-    command: "/hyperkube apiserver --portal-net=#{node['kubernetes']['flannel']['network']['Network']} --address=#{internal_ip} --etcd_servers=http://127.0.0.1:2379 --cluster_name=kubernetes --v=2"
+    command: "/hyperkube apiserver --portal-net=#{node['kubernetes']['flannel']['network']['Network']} --address=#{internal_ip} --etcd_servers=http://127.0.0.1:2379 --cluster_name=#{node['kubernetes']['cluster_name']} --v=2"
   )
 end
 
