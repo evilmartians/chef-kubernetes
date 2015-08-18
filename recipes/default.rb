@@ -9,8 +9,8 @@ include_recipe 'runit'
 include_recipe 'kubernetes::docker_install'
 include_recipe 'network_interfaces'
 
-internal_ip = node[:network][:interfaces][node['kubernetes']['interface']]
-              .addresses.find {|addr, properties| properties['family'] == 'inet'}.first
+internal_ip = node['network']['interfaces'][node['kubernetes']['interface']]
+              .addresses.find { |addr, properties| properties['family'] == 'inet' }.first
 
 runit_service 'docker_core' do
   default_logger true
@@ -48,8 +48,8 @@ runit_service 'flannel' do
   )
 end
 
-if File.exists? '/run/flannel/subnet.env'
-  flannel_network = Hash[File.read('/run/flannel/subnet.env').lines.map {|l| l.downcase.chomp.split('=')}]
+if File.exist? '/run/flannel/subnet.env'
+  flannel_network = Hash[File.read('/run/flannel/subnet.env').lines.map { |l| l.downcase.chomp.split('=') }]
 
   network_interfaces 'kube0' do
     target IPAddress::IPv4.new(flannel_network['flannel_subnet']).address
