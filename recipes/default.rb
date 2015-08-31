@@ -17,11 +17,6 @@ runit_service 'docker_core' do
   template_name 'docker_core'
 end
 
-docker_image "quay.io/coreos/etcd:#{node['kubernetes']['etcd']['version']}" do
-  action :pull
-  not_if "/usr/bin/docker images | grep -q 'quay.io/coreos/etcd'"
-end
-
 runit_service 'etcd' do
   default_logger true
   template_name 'docker'
