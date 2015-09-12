@@ -1,4 +1,4 @@
-default['kubernetes']['version']               = 'v1.0.3'
+default['kubernetes']['version']               = 'v1.0.6'
 default['kubernetes']['interface']             = 'eth1'
 default['kubernetes']['cluster-name']          = 'kubernetes'
 default['kubernetes']['etcd']['discovery_url'] = ''
