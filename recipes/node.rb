@@ -24,7 +24,7 @@ runit_service 'kubelet' do
   options(
     run_args: '--name=kubelet -i --rm --net=host -v /var/run/docker.sock:/var/run/docker.sock --privileged',
     image: "gcr.io/google_containers/hyperkube:#{node['kubernetes']['version']}",
-    command: "/hyperkube kubelet --api_servers=http://#{master_ip}:8080 --v=2 --address=#{internal_ip} --enable_server --hostname_override=#{internal_ip} --allow-privileged"
+    command: "/hyperkube kubelet --api_servers=http://#{master_ip}:8080 --v=2 --address=#{internal_ip} --enable_server --hostname_override=#{internal_ip} --allow-privileged --cluster_dns=#{node['kubernetes']['cluster_dns']} --cluster_domain=#{node['kubernetes']['cluster_domain']}"
   )
 end
 

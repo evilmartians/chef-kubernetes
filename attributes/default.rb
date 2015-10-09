@@ -1,6 +1,8 @@
 default['kubernetes']['version']               = 'v1.0.6'
 default['kubernetes']['interface']             = 'eth1'
 default['kubernetes']['cluster-name']          = 'kubernetes'
+default['kubernetes']['cluster_dns']           = '10.222.222.222'
+default['kubernetes']['cluster_domain']        = 'kubernetes.local'
 default['kubernetes']['etcd']['discovery_url'] = ''
 default['kubernetes']['etcd']['version']       = 'v2.2.0'
 default['kubernetes']['flannel']['version']    = '0.5.3'
