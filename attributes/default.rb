@@ -1,4 +1,4 @@
-default['kubernetes']['version']               = 'v1.0.7'
+default['kubernetes']['version']               = 'v1.1.1'
 default['kubernetes']['interface']             = 'eth1'
 default['kubernetes']['cluster-name']          = 'kubernetes'
 default['kubernetes']['cluster_dns']           = '10.222.222.222'
