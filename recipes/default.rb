@@ -17,6 +17,8 @@ template '/etc/kubernetes/kubeconfig.yaml' do
   source 'kubeconfig.yaml.erb'
 end
 
+template '/etc/kubernetes/manifests/proxy.yaml' do
+  source 'proxy.yaml.erb'
 end
 
   end
