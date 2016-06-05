@@ -11,7 +11,6 @@ spec:
     command:
     - /hyperkube
     - scheduler
-    - --master=http://<%= node[:kubernetes][:api][:insecure_bind_address] %>:<%=node[:kubernetes][:api][:insecure_port] %>
     - --leader-elect=true
     - --docker=<%= node[:kubernetes][:docker] %>
     - --kubeconfig=/etc/kubernetes/kubeconfig.yaml

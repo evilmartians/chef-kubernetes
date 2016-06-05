@@ -11,7 +11,6 @@ spec:
     command:
     - /hyperkube
     - controller-manager
-    - --master=http://<%= node[:kubernetes][:api][:insecure_bind_address] %>:<%=node[:kubernetes][:api][:insecure_port] %>
     - --leader-elect=true
     - --docker=<%= node[:kubernetes][:docker] %>
     - --cloud-config=<%= node[:kubernetes][:cloud_config] %>

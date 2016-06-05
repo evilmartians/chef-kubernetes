@@ -11,7 +11,6 @@ spec:
     command:
     - /hyperkube
     - proxy
-    - --master=http://<%= node[:kubernetes][:api][:insecure_bind_address] %>:<%=node[:kubernetes][:api][:insecure_port] %>
     - --proxy-mode=iptables
     - --kubeconfig=/etc/kubernetes/kubeconfig.yaml
     - --log-dir=/var/log/kubernetes
