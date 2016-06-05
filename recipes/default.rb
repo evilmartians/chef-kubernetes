@@ -30,6 +30,10 @@ end
   end
 end
 
+file node[:kubernetes][:client_ca_file] do
+  content Chef::EncryptedDataBagItem.load(node[:kubernetes][:databag], "#{node[:kubernetes][:cluster_name]}_cluster_ssl")['client_ca_file']
+end
+
 template '/etc/kubernetes/kubeconfig.yaml' do
   source 'kubeconfig.yaml.erb'
 end
