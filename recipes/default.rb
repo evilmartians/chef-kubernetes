@@ -24,6 +24,12 @@ package 'socat'
   end
 end
 
+['client_certificate', 'client_key'].each do |f|
+  file node[:kubernetes][:kubelet][f.to_sym] do
+    content Chef::EncryptedDataBagItem.load(node[:kubernetes][:databag], "#{node[:hostname]}_ssl")[f]
+  end
+end
+
 template '/etc/kubernetes/kubeconfig.yaml' do
   source 'kubeconfig.yaml.erb'
 end

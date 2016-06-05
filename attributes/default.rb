@@ -23,7 +23,7 @@ default[:kubernetes][:api][:secure_port]              = 8443
 default[:kubernetes][:api][:service_cluster_ip_range] = '10.222.10.0/16'
 default[:kubernetes][:api][:admission_control]        = ['NamespaceLifecycle','LimitRanger','ResourceQuota']
 default[:kubernetes][:api][:runtime_config]           = ['extensions/v1beta1=true','extensions/v1beta1/thirdpartyresources=true']
-default[:kubernetes][:kubelet][:client_certificate]   = '/etc/kubernetes/ssl/apiserver.pem'
-default[:kubernetes][:kubelet][:client_key]           = '/etc/kubernetes/ssl/apiserver-key.pem'
+default[:kubernetes][:kubelet][:client_certificate]   = '/etc/kubernetes/ssl/node.pem'
+default[:kubernetes][:kubelet][:client_key]           = '/etc/kubernetes/ssl/node-key.pem'
 default[:kubernetes][:md5][:kubelet]                  = 'ca5ea12ad92d44a7c5e203ed719fd8a0'
 default[:kubernetes][:md5][:kubectl]                  = '4aaf6d2c87300e3534a563584b739846'

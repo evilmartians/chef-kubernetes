@@ -23,8 +23,8 @@ template '/etc/kubernetes/network.json' do
   source 'network.json.erb'
 end
 
-[:client_ca_file, :tls_cert_file, :tls_private_key_file].each do |f|
-  file node[:kubernetes][f] do
-    content Chef::EncryptedDataBagItem.load(node[:kubernetes][:databag], "#{node[:kubernetes][:cluster_name]}_#{f}")['body']
+['client_ca_file', 'tls_cert_file', 'tls_private_key_file'].each do |f|
+  file node[:kubernetes][f.to_sym] do
+    content Chef::EncryptedDataBagItem.load(node[:kubernetes][:databag], "#{node[:kubernetes][:cluster_name]}_cluster_ssl")[f]
   end
 end
