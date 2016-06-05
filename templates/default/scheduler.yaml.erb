@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kube-scheduler
+  namespace: kube-system
+spec:
+  hostNetwork: true
+  containers:
+  - name: kube-scheduler
+    image: <%= node[:kubernetes][:image] %>:<%=node[:kubernetes][:version] %>
+    command:
+    - /hyperkube
+    - scheduler
+    - --master=http://<%= node[:kubernetes][:api][:insecure_bind_address] %>:<%=node[:kubernetes][:api][:insecure_port] %>
+    - --leader-elect=true
+    - --docker=<%= node[:kubernetes][:docker] %>
+    - --kubeconfig=/etc/kubernetes/kubeconfig.yaml
+    - --log-dir=/var/log/kubernetes
+    livenessProbe:
+      httpGet:
+        host: 127.0.0.1
+        path: /healthz
+        port: 10251
+      initialDelaySeconds: 15
+      timeoutSeconds: 1
+    volumeMounts:
+    - mountPath: /etc/kubernetes/ssl
+      name: ssl-certs-kubernetes
+      readOnly: true
+    - mountPath: /etc/ssl/certs
+      name: ssl-certs-host
+      readOnly: true
+    - mountPath: /etc/kubernetes/kubeconfig.yaml
+      name: kubeconfig
+      readOnly: true
+    - mountPath: /var/log/kubernetes
+      name: logdir
+      readOnly: false
+  volumes:
+  - hostPath:
+      path: /etc/kubernetes/ssl
+    name: ssl-certs-kubernetes
+  - hostPath:
+      path: /usr/share/ca-certificates
+    name: ssl-certs-host
+  - hostPath:
+      path: /etc/kubernetes/kubeconfig.yaml
+    name: kubeconfig
+  - hostPath:
+      path: /var/log/kubernetes
+    name: logdir

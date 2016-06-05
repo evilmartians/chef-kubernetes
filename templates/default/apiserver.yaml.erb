@@ -1,0 +1,66 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kube-apiserver
+  namespace: kube-system
+spec:
+  hostNetwork: true
+  containers:
+  - name: kube-apiserver
+    image: <%= node[:kubernetes][:image] %>:<%=node[:kubernetes][:version] %>
+    command:
+    - /hyperkube
+    - apiserver
+    - --bind-address=<%= node[:kubernetes][:api][:bind_address] %>
+    - --etcd-servers=<%= node[:etcd][:proto] %>://<%= node[:etcd][:host] %>:<%= node[:etcd][:client_port] %>
+    - --etcd-certfile=<%= node[:etcd][:cert_file] %>
+    - --etcd-keyfile=<%= node[:etcd][:key_file] %>
+    - --etcd-cafile=<%= node[:etcd][:trusted_ca_file] %>
+    - --allow-privileged=true
+    - --service-cluster-ip-range=<%= node[:kubernetes][:api][:service_cluster_ip_range] %>
+    - --secure-port=<%= node[:kubernetes][:api][:secure_port] %>
+    - --insecure-bind-address=<%= node[:kubernetes][:api][:insecure_bind_address] %>
+    - --insecure-port=<%=node[:kubernetes][:api][:insecure_port] %>
+    - --admission-control=<%= node[:kubernetes][:api][:admission_control].join(',') %>
+    - --runtime-config=<%= node[:kubernetes][:api][:runtime_config].join(',') %>
+    - --tls_cert_file=<%= node[:kubernetes][:tls_cert_file] %>
+    - --tls_private_key_file=<%= node[:kubernetes][:tls_private_key_file] %>
+    - --client_ca_file=<%= node[:kubernetes][:client_ca_file] %>
+    - --service_account_key_file=<%= node[:kubernetes][:service_account_key_file] %>
+    - --docker=<%= node[:kubernetes][:docker] %>
+    - --cloud-config=<%= node[:kubernetes][:cloud_config] %>
+    - --cloud-provider=<%= node[:kubernetes][:cloud_provider] %>
+    - --log-dir=/var/log/kubernetes
+    ports:
+    - containerPort: <%= node[:kubernetes][:api][:secure_port] %>
+      hostPort: <%= node[:kubernetes][:api][:secure_port] %>
+      name: https
+    - containerPort: <%= node[:kubernetes][:api][:insecure_port] %>
+      hostPort: <%= node[:kubernetes][:api][:insecure_port] %>
+      name: local
+    volumeMounts:
+    - mountPath: /etc/kubernetes/ssl
+      name: ssl-certs-kubernetes
+      readOnly: true
+    - mountPath: /etc/ssl/certs
+      name: ssl-certs-host
+      readOnly: true
+    - mountPath: /etc/kubernetes/tokens
+      name: kube-tokens
+      readOnly: false
+    - mountPath: /var/log/kubernetes
+      name: logdir
+      readOnly: false
+  volumes:
+  - hostPath:
+      path: /etc/kubernetes/ssl
+    name: ssl-certs-kubernetes
+  - hostPath:
+      path: /usr/share/ca-certificates
+    name: ssl-certs-host
+  - hostPath:
+      path: /etc/kubernetes/tokens
+    name: kube-tokens
+  - hostPath:
+      path: /var/log/kubernetes
+    name: logdir
