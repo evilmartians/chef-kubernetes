@@ -13,3 +13,5 @@ pkg/
 # Bundler
 bin/*
 .bundle/*
+
+ssl/
