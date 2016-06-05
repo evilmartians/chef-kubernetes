@@ -1,0 +1,17 @@
+default[:etcd][:discovery_url]         = ''
+default[:etcd][:version]               = '2.2.1'
+default[:etcd][:image]                 = 'gcr.io/google_containers/etcd'
+default[:etcd][:trusted_ca_file]       = '/etc/kubernetes/ssl/ca.pem'
+default[:etcd][:client_cert_auth]      = 'true'
+default[:etcd][:key_file]              = '/etc/kubernetes/ssl/apiserver-key.pem'
+default[:etcd][:cert_file]             = '/etc/kubernetes/ssl/apiserver.pem'
+default[:etcd][:peer_trusted_ca_file]  = '/etc/kubernetes/ssl/ca.pem'
+default[:etcd][:peer_client_cert_auth] = 'true'
+default[:etcd][:peer_key_file]         = '/etc/kubernetes/ssl/apiserver-key.pem'
+default[:etcd][:peer_cert_file]        = '/etc/kubernetes/ssl/apiserver.pem'
+default[:etcd][:server_port]           = 2380
+default[:etcd][:client_port]           = 2379
+default[:etcd][:data_dir]              = '/var/lib/etcd'
+default[:etcd][:host]                  = '127.0.0.1'
+default[:etcd][:proto]                 = 'http'
+default[:etcd][:binary]                = '/usr/local/bin/etcd'
