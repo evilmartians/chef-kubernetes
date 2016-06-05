@@ -19,6 +19,8 @@ end
   end
 end
 
+template '/etc/kubernetes/network.json' do
+  source 'network.json.erb'
 end
 
 [:client_ca_file, :tls_cert_file, :tls_private_key_file].each do |f|
