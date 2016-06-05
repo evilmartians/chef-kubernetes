@@ -13,6 +13,8 @@
   end
 end
 
+template '/etc/kubernetes/kubeconfig.yaml' do
+  source 'kubeconfig.yaml.erb'
 end
 
 end
