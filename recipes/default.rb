@@ -7,6 +7,17 @@
 
 # include_recipe 'kubernetes::docker_install'
 
+bash 'install_nsenter' do
+  code <<-EOH
+/usr/bin/docker run --rm -v /usr/local/bin:/target jpetazzo/nsenter
+chmod +x /usr/local/bin/nsenter
+/usr/bin/docker rmi jpetazzo/nsenter
+EOH
+  not_if { File.exists? '/usr/local/bin/nsenter' }
+end
+
+package 'socat'
+
 %w(manifests tokens ssl addons).each do |dir|
   directory("/etc/kubernetes/#{dir}") do
     recursive true
