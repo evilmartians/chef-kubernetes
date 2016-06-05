@@ -5,9 +5,7 @@
 # Author:: Maxim Filatov <bregor@evilmartians.com>
 #
 
-include_recipe 'runit'
-include_recipe 'kubernetes::docker_install'
-include_recipe 'network_interfaces'
+# include_recipe 'kubernetes::docker_install'
 
 internal_ip = node['network']['interfaces'][node['kubernetes']['interface']]
               .addresses.find { |addr, properties| properties['family'] == 'inet' }.first
