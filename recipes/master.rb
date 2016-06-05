@@ -13,6 +13,10 @@ include_recipe 'kubernetes::default'
   end
 end
 
+['skydns-rc', 'skydns-svc'].each do |srv|
+  template "/etc/kubernetes/addons/#{srv}.yaml" do
+    source "#{srv}.yaml.erb"
+  end
 end
 
 end
