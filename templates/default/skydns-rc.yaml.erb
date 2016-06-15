@@ -19,6 +19,8 @@ spec:
         version: v11
         kubernetes.io/cluster-service: "true"
     spec:
+      nodeSelector:
+        kube-role: master
       containers:
       - name: etcd
         image: gcr.io/google_containers/etcd-amd64:2.2.1
