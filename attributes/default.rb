@@ -2,6 +2,9 @@ default[:kubernetes][:databag]                        = 'kubernetes'
 default[:kubernetes][:version]                        = 'v1.2.4'
 default[:kubernetes][:image]                          = 'gcr.io/google_containers/hyperkube'
 default[:kubernetes][:interface]                      = 'eth1'
+default[:kubernetes][:register_as]                    = 'ip'
+default[:kubernetes][:sdn]                            = 'weave'
+default[:kubernetes][:master]                         = '127.0.0.1'
 default[:kubernetes][:cluster_name]                   = 'kubernetes'
 default[:kubernetes][:cluster_dns]                    = '10.222.222.222'
 default[:kubernetes][:cluster_domain]                 = 'kubernetes.local'
@@ -14,13 +17,11 @@ default[:kubernetes][:token_auth_file]                = '/etc/kubernetes/tokens/
 default[:kubernetes][:cloud_config]                   = ''
 default[:kubernetes][:cloud_provider]                 = ''
 default[:kubernetes][:docker]                         = 'unix:///var/run/docker.sock'
-default[:kubernetes][:flannel][:version]              = '0.5.4'
-default[:kubernetes][:flannel][:network]              = {'Network' => '10.222.10.0/16'}
 default[:kubernetes][:api][:bind_address]             = '0.0.0.0'
 default[:kubernetes][:api][:insecure_bind_address]    = '127.0.0.1'
 default[:kubernetes][:api][:insecure_port]            = 8080
 default[:kubernetes][:api][:secure_port]              = 8443
-default[:kubernetes][:api][:service_cluster_ip_range] = '10.222.10.0/16'
+default[:kubernetes][:api][:service_cluster_ip_range] = '10.222.0.0/16'
 default[:kubernetes][:api][:admission_control]        = ['NamespaceLifecycle','LimitRanger','ResourceQuota']
 default[:kubernetes][:api][:runtime_config]           = ['extensions/v1beta1=true','extensions/v1beta1/thirdpartyresources=true']
 default[:kubernetes][:kubelet][:client_certificate]   = '/etc/kubernetes/ssl/node.pem'
