@@ -17,6 +17,7 @@ spec:
     - --cloud-provider=<%= node[:kubernetes][:cloud_provider] %>
     - --cluster-cidr=<%= node[:kubernetes][:api][:service_cluster_ip_range] %>
     - --cluster-name=<%= node[:kubernetes][:cluster_name] %>
+    - --service-account-private-key-file=<%= node[:kubernetes][:service_account_key_file] %>
     - --kubeconfig=/etc/kubernetes/kubeconfig.yaml
     - --log-dir=/var/log/kubernetes
     livenessProbe:
