@@ -31,6 +31,11 @@ template '/etc/kubernetes/manifests/proxy.yaml' do
   source 'proxy.yaml.erb'
 end
 
+template '/etc/kubernetes/manifests/weavescope.yaml' do
+  source 'weavescope.yaml.erb'
+  variables(listen_addr: Chef::Recipe.allocate.internal_ip(node))
+end
+
 # TODO: avoid Recipe.allocate in kubelet command
 poise_service 'kubelet' do
   provider node['platform_version'].to_f < 16.04 ? :runit : :systemd
