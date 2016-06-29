@@ -20,6 +20,9 @@ spec:
     - --service-account-private-key-file=<%= node[:kubernetes][:service_account_key_file] %>
     - --kubeconfig=/etc/kubernetes/kubeconfig.yaml
     - --log-dir=/var/log/kubernetes
+    - --node-monitor-period=2s
+    - --node-monitor-grace-period=16s
+    - --pod-eviction-timeout=30s
     livenessProbe:
       httpGet:
         host: 127.0.0.1

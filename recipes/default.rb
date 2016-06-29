@@ -39,5 +39,9 @@ end
 # TODO: avoid Recipe.allocate in kubelet command
 poise_service 'kubelet' do
   provider node['platform_version'].to_f < 16.04 ? :runit : :systemd
-  command "/usr/local/bin/kubelet --api_servers=https://#{node[:kubernetes][:master]}:#{node[:kubernetes][:api][:secure_port]} --cluster-dns=#{node[:kubernetes][:cluster_dns]} --hostname_override=#{Chef::Recipe.allocate.hostname(node)} --allow_privileged=true --config=/etc/kubernetes/manifests --kubeconfig=/etc/kubernetes/kubeconfig.yaml --network-plugin=cni --network-plugin-dir=/etc/cni/net.d"
+  command "/usr/local/bin/kubelet --api_servers=https://#{node[:kubernetes][:master]}:#{node[:kubernetes][:api][:secure_port]} --cluster-dns=#{node[:kubernetes][:cluster_dns]} --hostname_override=#{Chef::Recipe.allocate.hostname(node)} --allow_privileged=true --config=/etc/kubernetes/manifests --node-status-update-frequency=4s --kubeconfig=/etc/kubernetes/kubeconfig.yaml --network-plugin=cni --network-plugin-dir=/etc/cni/net.d"
+end
+
+poise_service_options 'kubelet'do
+  restart_on_update true
 end
