@@ -7,7 +7,7 @@ spec:
   hostNetwork: true
   containers:
   - name: kube-addon-manager
-    image: gcr.io/google-containers/kube-addon-manager-amd64:v2
+    image: gcr.io/google-containers/kube-addon-manager-amd64:v5
     env:
       - name: KUBECTL
         value: "/usr/local/bin/kubectl --certificate-authority=<%= node[:kubernetes][:client_ca_file] %> --client-key=<%= node[:kubernetes][:tls_private_key_file] %> --client-certificate=<%= node[:kubernetes][:tls_cert_file] %> --cluster=<%= node[:kubernetes][:cluster_name] %> -s https://10.83.8.197:8443"
