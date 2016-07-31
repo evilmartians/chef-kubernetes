@@ -28,3 +28,4 @@ default[:kubernetes][:kubelet][:client_certificate]   = '/etc/kubernetes/ssl/nod
 default[:kubernetes][:kubelet][:client_key]           = '/etc/kubernetes/ssl/node-key.pem'
 default[:kubernetes][:md5][:kubelet]                  = '44311511197a217011e970b2aff9e539'
 default[:kubernetes][:md5][:kubectl]                  = '196530f4b2f7a0d6cfabaeb02977fd9b'
+default[:kubernetes][:dashboard][:version]            = 'v1.1.0'
