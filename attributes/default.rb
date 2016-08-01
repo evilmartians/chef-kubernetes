@@ -1,5 +1,5 @@
 default[:kubernetes][:databag]                        = 'kubernetes'
-default[:kubernetes][:version]                        = 'v1.3.3'
+default[:kubernetes][:version]                        = 'v1.3.4'
 default[:kubernetes][:image]                          = 'gcr.io/google_containers/hyperkube'
 default[:kubernetes][:interface]                      = 'eth1'
 default[:kubernetes][:register_as]                    = 'ip'
@@ -26,6 +26,6 @@ default[:kubernetes][:api][:admission_control]        = ['NamespaceLifecycle','L
 default[:kubernetes][:api][:runtime_config]           = ['extensions/v1beta1=true','extensions/v1beta1/thirdpartyresources=true']
 default[:kubernetes][:kubelet][:client_certificate]   = '/etc/kubernetes/ssl/node.pem'
 default[:kubernetes][:kubelet][:client_key]           = '/etc/kubernetes/ssl/node-key.pem'
-default[:kubernetes][:md5][:kubelet]                  = '44311511197a217011e970b2aff9e539'
-default[:kubernetes][:md5][:kubectl]                  = '196530f4b2f7a0d6cfabaeb02977fd9b'
+default[:kubernetes][:md5][:kubelet]                  = '10306ab511d5898a04780cf36f011b8c'
+default[:kubernetes][:md5][:kubectl]                  = '8eb6cd8e80143ab692257cca9911562c'
 default[:kubernetes][:dashboard][:version]            = 'v1.1.0'
