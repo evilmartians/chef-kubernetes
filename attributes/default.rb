@@ -22,7 +22,7 @@ default[:kubernetes][:api][:insecure_bind_address]    = '127.0.0.1'
 default[:kubernetes][:api][:insecure_port]            = 8080
 default[:kubernetes][:api][:secure_port]              = 8443
 default[:kubernetes][:api][:service_cluster_ip_range] = '10.222.0.0/16'
-default[:kubernetes][:api][:admission_control]        = ['NamespaceLifecycle','LimitRanger','ResourceQuota']
+default[:kubernetes][:api][:admission_control]        = ['NamespaceLifecycle', 'LimitRanger', 'ServiceAccount', 'ResourceQuota']
 default[:kubernetes][:api][:runtime_config]           = ['extensions/v1beta1=true','extensions/v1beta1/thirdpartyresources=true']
 default[:kubernetes][:kubelet][:client_certificate]   = '/etc/kubernetes/ssl/node.pem'
 default[:kubernetes][:kubelet][:client_key]           = '/etc/kubernetes/ssl/node-key.pem'
