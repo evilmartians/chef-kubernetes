@@ -1,6 +1,6 @@
 default[:etcd][:discovery_url]         = ''
-default[:etcd][:version]               = '2.2.1'
-default[:etcd][:image]                 = 'gcr.io/google_containers/etcd'
+default[:etcd][:version]               = 'v3.0.4'
+default[:etcd][:image]                 = 'quay.io/coreos/etcd'
 default[:etcd][:trusted_ca_file]       = '/etc/kubernetes/ssl/ca.pem'
 default[:etcd][:client_cert_auth]      = 'true'
 default[:etcd][:key_file]              = '/etc/kubernetes/ssl/apiserver-key.pem'

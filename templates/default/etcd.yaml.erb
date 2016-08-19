@@ -14,7 +14,7 @@ spec:
     command:
     - "/bin/sh"
     - "-c"
-    - "<%= node[:etcd][:binary]%> --listen-peer-urls <%= node[:etcd][:proto] %>://<%= node[:etcd][:host] %>:<%= node[:etcd][:server_port] %> --addr <%= node[:etcd][:host] %>:<%= node[:etcd][:client_port] %> --bind-addr <%= node[:etcd][:host] %>:<%= node[:etcd][:client_port] %> --data-dir <%= node[:etcd][:data_dir] %>"
+    - "<%= node[:etcd][:binary]%> --listen-peer-urls '<%= node[:etcd][:proto] %>://<%= node[:etcd][:host] %>:<%= node[:etcd][:server_port] %>' --listen-client-urls '<%= node[:etcd][:proto] %>://<%= node[:etcd][:host] %>:<%= node[:etcd][:client_port] %>' --advertise-client-urls '<%= node[:etcd][:proto] %>://<%= node[:etcd][:host] %>:<%= node[:etcd][:client_port] %>' --data-dir <%= node[:etcd][:data_dir] %>"
     # --client-cert-auth <%= node[:etcd][:client_cert_auth] %> --trusted-ca-file <%= node[:etcd][:trusted_ca_file] %> --cert-file <%= node[:etcd][:cert_file] %> --key-file <%= node[:etcd][:key_file] %> --peer-client-cert-auth <%= node[:etcd][:peer_client_cert_auth] %> --peer-trusted-ca-file <%= node[:etcd][:peer_trusted_ca_file] %> --peer-cert-file <%= node[:etcd][:peer_cert_file] %> --peer-key-file <%= node[:etcd][:peer_key_file] %>
     livenessProbe:
       httpGet:
