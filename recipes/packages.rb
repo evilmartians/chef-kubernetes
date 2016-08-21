@@ -27,10 +27,18 @@ EOH
   not_if { File.exists? '/usr/local/bin/nsenter' }
 end
 
+directory "/opt/kubernetes/#{node[:kubernetes][:version]}/bin" do
+  recursive true
+end
+
 %w(kubelet kubectl).each do |f|
-  remote_file "/usr/local/bin/#{f}" do
+  remote_file "/opt/kubernetes/#{node[:kubernetes][:version]}/bin/#{f}" do
     source "https://storage.googleapis.com/kubernetes-release/release/#{node[:kubernetes][:version]}/bin/linux/amd64/#{f}"
     mode '0755'
     not_if { Digest::MD5.file("/usr/local/bin/#{f}").to_s == node[:kubernetes][:md5][f.to_sym] rescue false }
   end
+end
+
+link '/usr/local/bin/kubectl' do
+  to "/opt/kubernetes/#{node[:kubernetes][:version]}/bin/kubectl"
 end

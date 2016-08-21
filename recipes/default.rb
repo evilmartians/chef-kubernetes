@@ -36,6 +36,11 @@ template '/etc/kubernetes/manifests/weavescope.yaml' do
   variables(listen_addr: Chef::Recipe.allocate.internal_ip(node))
 end
 
+link '/usr/local/bin/kubelet' do
+  to "/opt/kubernetes/#{node[:kubernetes][:version]}/bin/kubelet"
+  notifies :restart, 'poise_service[kubelet]'
+end
+
 # TODO: avoid Recipe.allocate in kubelet command
 poise_service 'kubelet' do
   provider node['platform_version'].to_f < 16.04 ? :runit : :systemd
