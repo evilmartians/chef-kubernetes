@@ -18,6 +18,7 @@ spec:
     - --cluster-cidr=<%= node[:kubernetes][:api][:service_cluster_ip_range] %>
     - --cluster-name=<%= node[:kubernetes][:cluster_name] %>
     - --service-account-private-key-file=<%= node[:kubernetes][:service_account_key_file] %>
+    - --root-ca-file=<%= node[:kubernetes][:client_ca_file] %>
     - --kubeconfig=/etc/kubernetes/kubeconfig.yaml
     - --log-dir=/var/log/kubernetes
     - --node-monitor-period=2s
