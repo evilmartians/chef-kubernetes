@@ -15,6 +15,7 @@ spec:
     - --docker=<%= node[:kubernetes][:docker] %>
     - --kubeconfig=/etc/kubernetes/kubeconfig.yaml
     - --log-dir=/var/log/kubernetes
+    - --machine-id-file=/var/lib/dbus/machine-id
     livenessProbe:
       httpGet:
         host: 127.0.0.1
@@ -35,6 +36,9 @@ spec:
     - mountPath: /var/log/kubernetes
       name: logdir
       readOnly: false
+    - mountPath: /var/lib/dbus/machine-id
+      name: machine-id
+      readOnly: true
   volumes:
   - hostPath:
       path: /etc/kubernetes/ssl
@@ -48,3 +52,6 @@ spec:
   - hostPath:
       path: /var/log/kubernetes
     name: logdir
+  - hostPath:
+      path: /var/lib/dbus/machine-id
+    name: machine-id
