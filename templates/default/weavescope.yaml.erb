@@ -19,6 +19,7 @@ spec:
         command:
         - /home/weave/entrypoint.sh
         - --probe.docker=true
+        - -probe.kubernetes.kubeconfig /etc/kubernetes/kubeconfig.yaml
         - -app.http.address <%= @listen_addr %>:<%= node[:kubernetes][:weavescope][:port] %>
         - <%= node[:kubernetes][:weavescope][:master] %>
         - <%= @listen_addr %>:<%= node[:kubernetes][:weavescope][:port] %>
@@ -34,6 +35,12 @@ spec:
         - mountPath: /var/run/docker.sock
           name: docker-sock
           readOnly: false
+        - mountPath: /etc/kubernetes/ssl
+          name: ssl-certs-kubernetes
+          readOnly: true
+        - mountPath: /etc/kubernetes/kubeconfig.yaml
+          name: kubeconfig
+          readOnly: true
       volumes:
       - hostPath:
           path: /var/run/scope/plugins
@@ -41,3 +48,9 @@ spec:
       - hostPath:
           path: /var/run/docker.sock
         name: docker-sock
+      - hostPath:
+          path: /etc/kubernetes/ssl
+        name: ssl-certs-kubernetes
+      - hostPath:
+          path: /etc/kubernetes/kubeconfig.yaml
+        name: kubeconfig
