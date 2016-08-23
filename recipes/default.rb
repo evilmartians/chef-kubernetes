@@ -31,11 +31,6 @@ template '/etc/kubernetes/manifests/proxy.yaml' do
   source 'proxy.yaml.erb'
 end
 
-template '/etc/kubernetes/manifests/weavescope.yaml' do
-  source 'weavescope.yaml.erb'
-  variables(listen_addr: Chef::Recipe.allocate.internal_ip(node))
-end
-
 link '/usr/local/bin/kubelet' do
   to "/opt/kubernetes/#{node[:kubernetes][:version]}/bin/kubelet"
   notifies :restart, 'poise_service[kubelet]'

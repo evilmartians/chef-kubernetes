@@ -19,6 +19,13 @@ end
   end
 end
 
+if node[:kubernetes][:weave][:use_scope]
+  template '/etc/kubernetes/addons/weavescope.yaml' do
+    source 'weavescope.yaml.erb'
+    variables(listen_addr: Chef::Recipe.allocate.internal_ip(node))
+  end
+end
+
 ['client_ca_file', 'tls_cert_file', 'tls_private_key_file'].each do |f|
   file node[:kubernetes][f.to_sym] do
     content Chef::EncryptedDataBagItem.load(node[:kubernetes][:databag], "#{node[:kubernetes][:cluster_name]}_cluster_ssl")[f]
