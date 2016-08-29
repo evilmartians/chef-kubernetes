@@ -32,6 +32,12 @@ end
   end
 end
 
+if node[:kubernetes][:authorization][:mode] == 'ABAC'
+  template '/etc/kubernetes/authorization-policy.jsonl' do
+    source 'authorization-policy.jsonl.erb'
+  end
+end
+
 if node[:kubernetes][:token_auth]
   template node[:kubernetes][:token_auth_file] do
     source 'tokens.csv.erb'

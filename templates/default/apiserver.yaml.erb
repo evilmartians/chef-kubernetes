@@ -34,6 +34,10 @@ spec:
     <% if node[:kubernetes][:token_auth] %>
     - --token-auth-file=<%= node[:kubernetes][:token_auth_file] %>
     <% end %>
+    - --authorization-mode=<%= node[:kubernetes][:authorization][:mode] %>
+    <% if node[:kubernetes][:authorization][:mode] == 'ABAC' %>
+    - --authorization-policy-file=/etc/kubernetes/authorization-policy.jsonl
+    <% end %>
     ports:
     - containerPort: <%= node[:kubernetes][:api][:secure_port] %>
       hostPort: <%= node[:kubernetes][:api][:secure_port] %>
