@@ -46,28 +46,22 @@ spec:
       hostPort: <%= node[:kubernetes][:api][:insecure_port] %>
       name: local
     volumeMounts:
-    - mountPath: /etc/kubernetes/ssl
-      name: ssl-certs-kubernetes
+    - mountPath: /etc/kubernetes
+      name: etc-kubernetes
       readOnly: true
     - mountPath: /etc/ssl/certs
       name: ssl-certs-host
       readOnly: true
-    - mountPath: /etc/kubernetes/tokens
-      name: kube-tokens
-      readOnly: false
     - mountPath: /var/log/kubernetes
       name: logdir
       readOnly: false
   volumes:
   - hostPath:
-      path: /etc/kubernetes/ssl
-    name: ssl-certs-kubernetes
-  - hostPath:
       path: /usr/share/ca-certificates
     name: ssl-certs-host
   - hostPath:
-      path: /etc/kubernetes/tokens
-    name: kube-tokens
+      path: /etc/kubernetes/
+    name: etc-kubernetes
   - hostPath:
       path: /var/log/kubernetes
     name: logdir
