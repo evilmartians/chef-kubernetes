@@ -25,6 +25,8 @@ end
 
 template '/etc/kubernetes/kubeconfig.yaml' do
   source 'kubeconfig.yaml.erb'
+  variables(token: Chef::EncryptedDataBagItem.load(node[:kubernetes][:databag], 'users')['users']
+             .find {|user| user['name'] == 'kubelet'}['token'])
 end
 
 template '/etc/kubernetes/manifests/proxy.yaml' do

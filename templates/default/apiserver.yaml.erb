@@ -31,6 +31,9 @@ spec:
     - --cloud-config=<%= node[:kubernetes][:cloud_config] %>
     - --cloud-provider=<%= node[:kubernetes][:cloud_provider] %>
     - --log-dir=/var/log/kubernetes
+    <% if node[:kubernetes][:token_auth] %>
+    - --token-auth-file=<%= node[:kubernetes][:token_auth_file] %>
+    <% end %>
     ports:
     - containerPort: <%= node[:kubernetes][:api][:secure_port] %>
       hostPort: <%= node[:kubernetes][:api][:secure_port] %>

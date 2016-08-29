@@ -31,3 +31,10 @@ end
     content Chef::EncryptedDataBagItem.load(node[:kubernetes][:databag], "#{node[:kubernetes][:cluster_name]}_cluster_ssl")[f]
   end
 end
+
+if node[:kubernetes][:token_auth]
+  template node[:kubernetes][:token_auth_file] do
+    source 'tokens.csv.erb'
+    variables(users: Chef::EncryptedDataBagItem.load(node[:kubernetes][:databag], 'users')['users'])
+  end
+end
