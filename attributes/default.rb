@@ -30,3 +30,5 @@ default[:kubernetes][:kubelet][:client_key]           = '/etc/kubernetes/ssl/nod
 default[:kubernetes][:md5][:kubelet]                  = 'fb783ae5bbc8d757aa382b006724243e'
 default[:kubernetes][:md5][:kubectl]                  = 'bbf2801d77cf10c1fa708f699606e5e2'
 default[:kubernetes][:dashboard][:version]            = 'v1.1.1'
+default[:kubernetes][:token_auth]                        = false
+default[:kubernetes][:token_auth_file]                   = '/etc/kubernetes/known_tokens.csv'
