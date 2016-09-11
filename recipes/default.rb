@@ -41,11 +41,26 @@ link '/usr/local/bin/kubelet' do
 end
 
 # TODO: avoid Recipe.allocate in kubelet command
+kubelet_args = [
+  "--address=#{Chef::Recipe.allocate.internal_ip(node)}",
+  "--api_servers=https://#{node[:kubernetes][:master]}:#{node[:kubernetes][:api][:secure_port]}",
+  "--cluster-dns=#{node[:kubernetes][:cluster_dns]}",
+  "--hostname_override=#{Chef::Recipe.allocate.hostname(node)}",
+  "--allow_privileged=true",
+  "--config=/etc/kubernetes/manifests",
+  "--node-status-update-frequency=4s",
+  "--kubeconfig=/etc/kubernetes/kubeconfig.yaml",
+  "--network-plugin=cni",
+  "--network-plugin-dir=/etc/cni/net.d",
+  "--image-gc-low-threshold=#{node[:kubernetes][:kubelet][:image_gc_low_threshold]}",
+  "--image-gc-high-threshold=#{node[:kubernetes][:kubelet][:image_gc_high_threshold]}"
+]
+
 poise_service 'kubelet' do
   provider node['platform_version'].to_f < 16.04 ? :runit : :systemd
-  command "/usr/local/bin/kubelet --address=#{Chef::Recipe.allocate.internal_ip(node)} --api_servers=https://#{node[:kubernetes][:master]}:#{node[:kubernetes][:api][:secure_port]} --cluster-dns=#{node[:kubernetes][:cluster_dns]} --hostname_override=#{Chef::Recipe.allocate.hostname(node)} --allow_privileged=true --config=/etc/kubernetes/manifests --node-status-update-frequency=4s --kubeconfig=/etc/kubernetes/kubeconfig.yaml --network-plugin=cni --network-plugin-dir=/etc/cni/net.d"
+  command "/usr/local/bin/kubelet #{kubelet_args.join(' ')}"
 end
 
-poise_service_options 'kubelet'do
+poise_service_options 'kubelet' do
   restart_on_update true
 end
