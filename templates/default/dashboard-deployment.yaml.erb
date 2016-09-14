@@ -25,11 +25,12 @@ spec:
         version: <%= node[:kubernetes][:dashboard][:version] %>
     spec:
       containers:
-      - env:
-        - name: KUBECONFIG
-          value: /etc/kubernetes/kubeconfig.yaml
+      - name: kubernetes-dashboard
         image: gcr.io/google_containers/kubernetes-dashboard-amd64:<%= node[:kubernetes][:dashboard][:version] %>
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9090
+          protocol: TCP
         livenessProbe:
           failureThreshold: 3
           httpGet:
@@ -40,26 +41,8 @@ spec:
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 30
-        name: kubernetes-dashboard
-        ports:
-        - containerPort: 9090
-          protocol: TCP
-        volumeMounts:
-        - mountPath: /etc/kubernetes/ssl
-          name: ssl-certs-kubernetes
-          readOnly: true
-        - mountPath: /etc/kubernetes/kubeconfig.yaml
-          name: kubeconfig
-          readOnly: true
       dnsPolicy: ClusterFirst
       nodeSelector:
         kube-role: master
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
-      volumes:
-      - hostPath:
-          path: /etc/kubernetes/ssl
-        name: ssl-certs-kubernetes
-      - hostPath:
-          path: /etc/kubernetes/kubeconfig.yaml
-        name: kubeconfig
