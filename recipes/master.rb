@@ -10,6 +10,7 @@ include_recipe 'kubernetes::default'
 ['etcd', 'apiserver', 'controller-manager', 'scheduler', 'addon-manager'].each do |srv|
   template "/etc/kubernetes/manifests/#{srv}.yaml" do
     source "#{srv}.yaml.erb"
+    variables(advertise_address: Chef::Recipe.allocate.internal_ip(node))
   end
 end
 
