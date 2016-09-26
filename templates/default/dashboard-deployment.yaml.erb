@@ -28,6 +28,8 @@ spec:
       - name: kubernetes-dashboard
         image: gcr.io/google_containers/kubernetes-dashboard-amd64:<%= node[:kubernetes][:dashboard][:version] %>
         imagePullPolicy: IfNotPresent
+        args:
+          - --heapster-host=http://heapster.kube-system.svc.<%= node[:kubernetes][:cluster_domain] %>
         ports:
         - containerPort: 9090
           protocol: TCP
@@ -42,7 +44,5 @@ spec:
           successThreshold: 1
           timeoutSeconds: 30
       dnsPolicy: ClusterFirst
-      nodeSelector:
-        kube-role: master
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
