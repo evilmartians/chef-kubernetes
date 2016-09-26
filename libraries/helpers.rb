@@ -1,8 +1,13 @@
 class Chef
+  # Few helpers for Kubernetes installation.
   class Recipe
     def internal_ip(n = node)
-      n.send(:network)[:interfaces][n['kubernetes']['interface']]['addresses']
-        .find {|addr, properties| properties['family'] == 'inet'}.first rescue ''
+      begin
+        n.send(:network)[:interfaces][n['kubernetes']['interface']]['addresses']
+          .find { |addr, properties| properties['family'] == 'inet' }.first
+      rescue
+        ''
+      end
     end
 
     def hostname(n = node)
@@ -10,11 +15,11 @@ class Chef
     end
 
     def weave_images
-      %w(weave weaveexec plugin).map {|image| "weaveworks/#{image}:#{node[:kubernetes][:weave][:version]}"}
+      %w(weave weaveexec plugin).map { |image| "weaveworks/#{image}:#{node[:kubernetes][:weave][:version]}" }
     end
 
     def weave_works?
-      weave_images.all? {|c| system("docker ps|grep '#{c}' >/dev/null 2>&1")}
+      weave_images.all? { |c| system("docker ps|grep '#{c}' >/dev/null 2>&1") }
     end
 
     def weavedb_downloaded?

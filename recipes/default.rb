@@ -21,7 +21,7 @@ template '/etc/kubernetes/kubeconfig.yaml' do
   source 'kubeconfig.yaml.erb'
   if node[:kubernetes][:token_auth]
     variables(token: Chef::EncryptedDataBagItem.load(node[:kubernetes][:databag], 'users')['users']
-               .find {|user| user['name'] == 'kubelet'}['token'])
+               .find { |user| user['name'] == 'kubelet' }['token'])
   end
 end
 
@@ -40,12 +40,12 @@ kubelet_args = [
   "--api_servers=https://#{node[:kubernetes][:master]}:#{node[:kubernetes][:api][:secure_port]}",
   "--cluster-dns=#{node[:kubernetes][:cluster_dns]}",
   "--hostname_override=#{Chef::Recipe.allocate.hostname(node)}",
-  "--allow_privileged=true",
-  "--config=/etc/kubernetes/manifests",
-  "--node-status-update-frequency=4s",
-  "--kubeconfig=/etc/kubernetes/kubeconfig.yaml",
-  "--network-plugin=cni",
-  "--network-plugin-dir=/etc/cni/net.d",
+  '--allow_privileged=true',
+  '--config=/etc/kubernetes/manifests',
+  '--node-status-update-frequency=4s',
+  '--kubeconfig=/etc/kubernetes/kubeconfig.yaml',
+  '--network-plugin=cni',
+  '--network-plugin-dir=/etc/cni/net.d',
   "--image-gc-low-threshold=#{node[:kubernetes][:kubelet][:image_gc_low_threshold]}",
   "--image-gc-high-threshold=#{node[:kubernetes][:kubelet][:image_gc_high_threshold]}"
 ]

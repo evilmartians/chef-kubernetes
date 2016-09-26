@@ -6,10 +6,9 @@
 #
 
 internal_ip = node[:network][:interfaces][node['kubernetes']['interface']]
-              .addresses.find {|addr, properties| properties['family'] == 'inet'}.first
+              .addresses.find { |addr, properties| properties['family'] == 'inet' }.first
 
 hostname = internal_ip
-
 
 poise_service 'kubelet' do
   provider node['platform_version'].to_f < 16.04 ? :runit : :systemd
