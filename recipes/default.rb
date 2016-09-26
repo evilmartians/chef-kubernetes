@@ -13,12 +13,6 @@ include_recipe 'kubernetes::packages'
   end
 end
 
-['client_certificate', 'client_key'].each do |f|
-  file node[:kubernetes][:kubelet][f.to_sym] do
-    content Chef::EncryptedDataBagItem.load(node[:kubernetes][:databag], "#{node[:hostname]}_ssl")[f]
-  end
-end
-
 file node[:kubernetes][:client_ca_file] do
   content Chef::EncryptedDataBagItem.load(node[:kubernetes][:databag], "#{node[:kubernetes][:cluster_name]}_cluster_ssl")['client_ca_file']
 end
