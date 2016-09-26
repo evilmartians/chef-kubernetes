@@ -2,12 +2,10 @@ class Chef
   # Few helpers for Kubernetes installation.
   class Recipe
     def internal_ip(n = node)
-      begin
-        n.send(:network)[:interfaces][n['kubernetes']['interface']]['addresses']
-          .find { |addr, properties| properties['family'] == 'inet' }.first
-      rescue
-        ''
-      end
+      n.send(:network)[:interfaces][n['kubernetes']['interface']]['addresses']
+        .find { |addr, properties| properties['family'] == 'inet' }.first
+    rescue
+      ''
     end
 
     def hostname(n = node)
