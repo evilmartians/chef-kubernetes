@@ -37,7 +37,7 @@ end
     mode '0755'
     not_if do
       begin
-        Digest::MD5.file("/usr/local/bin/#{f}").to_s == node[:kubernetes][:md5][f.to_sym]
+        Digest::MD5.file("/opt/kubernetes/#{node[:kubernetes][:version]}/bin/#{f}").to_s == node[:kubernetes][:md5][f.to_sym]
       rescue
         false
       end
