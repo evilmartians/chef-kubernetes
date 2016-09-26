@@ -82,14 +82,14 @@ Include `kubernetes::master` in your master node's `run_list`:
 And add master node to role `kube_master`.
 This is **obligatory** in multinode configuration - minions uses role to find master.
 
-### kubernetes::node
+### kubernetes::default
 
-Include `kubernetes::node` in your minion node's `run_list`:
+Include `kubernetes::default` in your minion node's `run_list`:
 
 ```json
 {
   "run_list": [
-    "recipe[kubernetes::node]"
+    "recipe[kubernetes]"
   ]
 }
 ```
