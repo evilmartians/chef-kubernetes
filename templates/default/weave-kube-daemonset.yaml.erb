@@ -1,0 +1,83 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: weave-net
+  namespace: kube-system
+  labels:
+    kubernetes.io/cluster-service: "true"
+spec:
+  template:
+    metadata:
+      labels:
+        name: weave-net
+      annotations:
+        scheduler.alpha.kubernetes.io/tolerations: |
+          [
+            {
+              "key": "dedicated",
+              "operator": "Equal",
+              "value": "master",
+              "effect": "NoSchedule"
+            }
+          ]
+    spec:
+      hostNetwork: true
+      containers:
+        - name: weave
+          image: weaveworks/weave-kube:<%= node[:kubernetes][:weave][:version] %>
+          imagePullPolicy: Always
+          command:
+            - /home/weave/launch.sh
+            - --host=$(LISTEN_ON)
+          livenessProbe:
+            initialDelaySeconds: 30
+            httpGet:
+              host: 127.0.0.1
+              path: /status
+              port: 6784
+          env:
+            - name: WEAVE_VERSION
+              value: <%= node[:kubernetes][:weave][:version] %>
+            - name: IPALLOC_RANGE
+              value: <%= node[:kubernetes][:weave][:network] %>
+            - name: LISTEN_ON
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: spec.nodeName
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - name: weavedb
+              mountPath: /weavedb
+            - name: cni-bin
+              mountPath: /opt
+            - name: cni-conf
+              mountPath: /etc
+          resources:
+            limits:
+              cpu: 200m
+            requests:
+              cpu: 25m
+          securityContext:
+            privileged: true
+        - name: weave-npc
+          image: weaveworks/weave-npc:<%= node[:kubernetes][:weave][:version] %>
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              cpu: 200m
+            requests:
+              cpu: 25m
+          securityContext:
+            privileged: true
+      restartPolicy: Always
+      volumes:
+        - name: weavedb
+          emptyDir: {}
+        - name: cni-bin
+          hostPath:
+            path: /opt
+        - name: cni-conf
+          hostPath:
+            path: /etc

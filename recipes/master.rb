@@ -14,7 +14,7 @@ include_recipe 'kubernetes::default'
   end
 end
 
-['skydns-rc', 'skydns-svc', 'dashboard-deployment', 'dashboard-svc'].each do |srv|
+['weave-kube-daemonset', 'skydns-rc', 'skydns-svc', 'dashboard-deployment', 'dashboard-svc'].each do |srv|
   template "/etc/kubernetes/addons/#{srv}.yaml" do
     source "#{srv}.yaml.erb"
   end

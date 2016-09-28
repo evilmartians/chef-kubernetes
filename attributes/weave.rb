@@ -1,4 +1,4 @@
-default[:kubernetes][:weave][:version]                = '1.6.1'
+default[:kubernetes][:weave][:version]                = '1.7.0'
 default[:kubernetes][:weave][:network]                = '192.168.0.0/16'
 default[:kubernetes][:weave][:interface]              = 'eth1'
 default[:kubernetes][:weave][:use_scope]              = true
