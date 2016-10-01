@@ -12,7 +12,7 @@ spec:
     - /hyperkube
     - apiserver
     - --bind-address=<%= node[:kubernetes][:api][:bind_address] %>
-    - --advertise-address=<%= @advertise_address %>
+    - --advertise-address=$(ADVERTISE_ADDRESS)
     - --etcd-servers=<%= @etcd_servers %>
     - --etcd-certfile=<%= node[:etcd][:cert_file] %>
     - --etcd-keyfile=<%= node[:etcd][:key_file] %>
@@ -39,6 +39,12 @@ spec:
     <% if node[:kubernetes][:authorization][:mode] == 'ABAC' %>
     - --authorization-policy-file=/etc/kubernetes/authorization-policy.jsonl
     <% end %>
+    env:
+      - name: ADVERTISE_ADDRESS
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: spec.nodeName
     ports:
     - containerPort: <%= node[:kubernetes][:api][:secure_port] %>
       hostPort: <%= node[:kubernetes][:api][:secure_port] %>
