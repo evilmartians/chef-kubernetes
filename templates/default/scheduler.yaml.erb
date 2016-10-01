@@ -12,16 +12,8 @@ spec:
     - /hyperkube
     - scheduler
     - --leader-elect=true
-    - --docker=<%= node[:kubernetes][:docker] %>
-    - --kubeconfig=/etc/kubernetes/kubeconfig.yaml
-    - --log-dir=/var/log/kubernetes
+    - --master=http://127.0.0.1:<%= node[:kubernetes][:api][:insecure_port] %>
     - --machine-id-file=/var/lib/dbus/machine-id
-    env:
-      - name: ADDRESS
-        valueFrom:
-          fieldRef:
-            apiVersion: v1
-            fieldPath: spec.nodeName
     livenessProbe:
       httpGet:
         path: /healthz
