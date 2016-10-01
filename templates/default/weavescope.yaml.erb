@@ -29,28 +29,10 @@ spec:
         securityContext:
           privileged: true
         volumeMounts:
-        - mountPath: /var/run/scope/plugins
-          name: scope-plugins
-          readOnly: false
         - mountPath: /var/run/docker.sock
           name: docker-sock
           readOnly: false
-        - mountPath: /etc/kubernetes/ssl
-          name: ssl-certs-kubernetes
-          readOnly: true
-        - mountPath: /etc/kubernetes/kubeconfig.yaml
-          name: kubeconfig
-          readOnly: true
       volumes:
-      - hostPath:
-          path: /var/run/scope/plugins
-        name: scope-plugins
       - hostPath:
           path: /var/run/docker.sock
         name: docker-sock
-      - hostPath:
-          path: /etc/kubernetes/ssl
-        name: ssl-certs-kubernetes
-      - hostPath:
-          path: /etc/kubernetes/kubeconfig.yaml
-        name: kubeconfig
