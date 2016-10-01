@@ -5,6 +5,8 @@
 # Author:: Maxim Filatov <bregor@evilmartians.com>
 #
 
+require 'base64'
+
 include_recipe 'kubernetes::packages'
 
 %w(manifests tokens ssl addons).each do |dir|
@@ -13,15 +15,18 @@ include_recipe 'kubernetes::packages'
   end
 end
 
+ca_file = Chef::EncryptedDataBagItem.load(node[:kubernetes][:databag], "#{node[:kubernetes][:cluster_name]}_cluster_ssl")['client_ca_file']
+
 file node[:kubernetes][:client_ca_file] do
-  content Chef::EncryptedDataBagItem.load(node[:kubernetes][:databag], "#{node[:kubernetes][:cluster_name]}_cluster_ssl")['client_ca_file']
+  content ca_file
 end
 
 template '/etc/kubernetes/kubeconfig.yaml' do
   source 'kubeconfig.yaml.erb'
   if node[:kubernetes][:token_auth]
     variables(token: Chef::EncryptedDataBagItem.load(node[:kubernetes][:databag], 'users')['users']
-               .find { |user| user['name'] == 'kubelet' }['token'])
+                .find { |user| user['name'] == 'kubelet' }['token'],
+              ca_file: Base64.encode64(ca_file).gsub(/\n/,''))
   end
 end
 
