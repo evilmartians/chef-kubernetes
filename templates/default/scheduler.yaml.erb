@@ -11,11 +11,18 @@ spec:
     command:
     - /hyperkube
     - scheduler
+    - --address=$(ADDRESS)
     - --leader-elect=true
     - --docker=<%= node[:kubernetes][:docker] %>
     - --kubeconfig=/etc/kubernetes/kubeconfig.yaml
     - --log-dir=/var/log/kubernetes
     - --machine-id-file=/var/lib/dbus/machine-id
+    env:
+      - name: ADDRESS
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: spec.nodeName
     livenessProbe:
       httpGet:
         host: 127.0.0.1
