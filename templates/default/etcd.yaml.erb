@@ -3,6 +3,10 @@ kind: Pod
 metadata:
   name: etcd-server
   namespace: kube-system
+  annotations:
+    prometheus.io/path: /metrics
+    prometheus.io/port: "<%= node[:etcd][:client_port] %>"
+    prometheus.io/scrape: "true"
 spec:
   hostNetwork: true
   containers:
