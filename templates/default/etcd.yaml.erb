@@ -12,9 +12,6 @@ spec:
   containers:
   - name: etcd-container
     image: <%= node[:etcd][:image] %>:<%= node[:etcd][:version] %>
-    resources:
-      requests:
-        cpu: 100m
     command:
     - <%= node[:etcd][:binary] %>
     - --name=<%= node[:etcd][:host] %>
