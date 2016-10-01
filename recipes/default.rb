@@ -45,6 +45,7 @@ kubelet_args = [
   "--api_servers=https://#{node[:kubernetes][:master]}:#{node[:kubernetes][:api][:secure_port]}",
   "--cluster-dns=#{node[:kubernetes][:cluster_dns]}",
   "--hostname_override=#{Chef::Recipe.allocate.hostname(node)}",
+  "--node-ip=#{Chef::Recipe.allocate.internal_ip(node)}",
   '--allow_privileged=true',
   '--pod-manifest-path=/etc/kubernetes/manifests',
   '--node-status-update-frequency=4s',
