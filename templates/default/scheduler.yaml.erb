@@ -11,7 +11,6 @@ spec:
     command:
     - /hyperkube
     - scheduler
-    - --address=$(ADDRESS)
     - --leader-elect=true
     - --docker=<%= node[:kubernetes][:docker] %>
     - --kubeconfig=/etc/kubernetes/kubeconfig.yaml
@@ -25,11 +24,14 @@ spec:
             fieldPath: spec.nodeName
     livenessProbe:
       httpGet:
-        host: 127.0.0.1
         path: /healthz
         port: 10251
       initialDelaySeconds: 15
-      timeoutSeconds: 1
+    readinessProbe:
+      httpGet:
+        path: /healthz
+        port: 10251
+      initialDelaySeconds: 15
     volumeMounts:
     - mountPath: /etc/kubernetes/ssl
       name: ssl-certs-kubernetes
