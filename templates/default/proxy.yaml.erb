@@ -13,32 +13,19 @@ spec:
     - proxy
     - --proxy-mode=iptables
     - --kubeconfig=/etc/kubernetes/kubeconfig.yaml
-    - --log-dir=/var/log/kubernetes
     securityContext:
       privileged: true
     volumeMounts:
     - mountPath: /etc/kubernetes/ssl
       name: ssl-certs-kubernetes
       readOnly: true
-    - mountPath: /etc/ssl/certs
-      name: ssl-certs-host
-      readOnly: true
     - mountPath: /etc/kubernetes/kubeconfig.yaml
       name: kubeconfig
       readOnly: true
-    - mountPath: /var/log/kubernetes
-      name: logdir
-      readOnly: false
   volumes:
   - hostPath:
       path: /etc/kubernetes/ssl
     name: ssl-certs-kubernetes
   - hostPath:
-      path: /usr/share/ca-certificates
-    name: ssl-certs-host
-  - hostPath:
       path: /etc/kubernetes/kubeconfig.yaml
     name: kubeconfig
-  - hostPath:
-      path: /var/log/kubernetes
-    name: logdir
