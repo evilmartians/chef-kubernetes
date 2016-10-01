@@ -21,7 +21,7 @@ spec:
     - --advertise-client-urls=<%= node[:etcd][:proto] %>://<%= node[:etcd][:host] %>:<%= node[:etcd][:client_port] %>
     - --initial-cluster-token=<%= node[:etcd][:initial_cluster_token] %>
     - --initial-cluster=<%= node[:etcd][:host] %>=<%= node[:etcd][:proto] %>://<%= node[:etcd][:host] %>:<%= node[:etcd][:server_port] %>
-    - --initial-cluster-state=new
+    - --initial-cluster-state=existing
     - --data-dir=<%= node[:etcd][:data_dir] %>
     # - --client-cert-auth=<%= node[:etcd][:client_cert_auth] %>
     # - --trusted-ca-file=<%= node[:etcd][:trusted_ca_file] %>
