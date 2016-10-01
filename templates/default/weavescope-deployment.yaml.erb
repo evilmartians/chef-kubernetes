@@ -1,0 +1,32 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: weavescope-app
+  namespace: kube-system
+  generation: 1
+  labels:
+    app: weavescope
+    weavescope-component: weavescope-app
+    kubernetes.io/cluster-service: "true"
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: weavescope
+        weavescope-component: weavescope-app
+    spec:
+      containers:
+      - name: weavescope
+        image: weaveworks/scope:<%= node[:kubernetes][:weavescope][:version] %>
+        imagePullPolicy: IfNotPresent
+        args:
+          - '--no-probe'
+          - '--probe.weave.addr ""'
+        ports:
+        - containerPort: <%= node[:kubernetes][:weavescope][:port] %>

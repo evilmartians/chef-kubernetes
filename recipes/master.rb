@@ -28,9 +28,10 @@ end
 end
 
 if node[:kubernetes][:weave][:use_scope]
-  template '/etc/kubernetes/addons/weavescope.yaml' do
-    source 'weavescope.yaml.erb'
-    variables(listen_addr: Chef::Recipe.allocate.internal_ip(node))
+  ['weavescope-deployment', 'weavescope-svc', 'weavescope-daemonset']. each do |srv|
+    template "/etc/kubernetes/addons/#{srv}.yaml" do
+      source "#{srv}.yaml.erb"
+    end
   end
 end
 

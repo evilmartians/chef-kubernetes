@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
-  name: weavescope
+  name: weavescope-probe
   namespace: kube-system
   labels:
     name: weavescope
@@ -10,22 +10,20 @@ spec:
   template:
     metadata:
       labels:
-        app: weavescope
+        app: weavescope-probe
+        weavescope-component: weavescope-probe
     spec:
       hostNetwork: true
+      hostPID: true
       containers:
       - name: weavescope
         image: weaveworks/scope:<%= node[:kubernetes][:weavescope][:version] %>
-        command:
-        - /home/weave/entrypoint.sh
-        - --probe.docker=true
-        - -probe.kubernetes.kubeconfig /etc/kubernetes/kubeconfig.yaml
-        - -app.http.address <%= @listen_addr %>:<%= node[:kubernetes][:weavescope][:port] %>
-        - <%= node[:kubernetes][:weavescope][:master] %>
-        - <%= @listen_addr %>:<%= node[:kubernetes][:weavescope][:port] %>
-        ports:
-        - containerPort: <%= node[:kubernetes][:weavescope][:port] %>
-          name: scope
+        args:
+          - '--no-app'
+          - '--probe.docker.bridge=docker0'
+          - '--probe.docker=true'
+          - '--probe.kubernetes=true'
+          - '$(WEAVESCOPE_APP_SERVICE_HOST):$(WEAVESCOPE_APP_SERVICE_PORT)'
         securityContext:
           privileged: true
         resources:
