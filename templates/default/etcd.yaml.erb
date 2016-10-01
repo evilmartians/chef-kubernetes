@@ -20,8 +20,8 @@ spec:
     - --listen-client-urls=<%= node[:etcd][:proto] %>://$(LISTEN_ON):<%= node[:etcd][:client_port] %>,http://127.0.0.1:2379
     - --advertise-client-urls=<%= node[:etcd][:proto] %>://$(LISTEN_ON):<%= node[:etcd][:client_port] %>
     - --initial-cluster-token=<%= node[:etcd][:initial_cluster_token] %>
-    - --initial-cluster=<%= node[:etcd][:host] %>=<%= node[:etcd][:proto] %>://<%= node[:etcd][:host] %>:<%= node[:etcd][:server_port] %>
-    - --initial-cluster-state=existing
+    - --initial-cluster=<%= @initial_cluster %>
+    - --initial-cluster-state=<%= node[:etcd][:initial_cluster_state] %>
     - --data-dir=<%= node[:etcd][:data_dir] %>
     # - --client-cert-auth=<%= node[:etcd][:client_cert_auth] %>
     # - --trusted-ca-file=<%= node[:etcd][:trusted_ca_file] %>
