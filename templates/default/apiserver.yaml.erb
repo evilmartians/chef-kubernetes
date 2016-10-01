@@ -13,7 +13,7 @@ spec:
     - apiserver
     - --bind-address=<%= node[:kubernetes][:api][:bind_address] %>
     - --advertise-address=<%= @advertise_address %>
-    - --etcd-servers=<%= node[:etcd][:proto] %>://<%= node[:etcd][:host] %>:<%= node[:etcd][:client_port] %>
+    - --etcd-servers=<%= @etcd_servers %>
     - --etcd-certfile=<%= node[:etcd][:cert_file] %>
     - --etcd-keyfile=<%= node[:etcd][:key_file] %>
     - --etcd-cafile=<%= node[:etcd][:trusted_ca_file] %>

@@ -7,10 +7,17 @@
 
 include_recipe 'kubernetes::default'
 
-['etcd', 'apiserver', 'controller-manager', 'scheduler', 'addon-manager'].each do |srv|
+etcd_nodes = search(:node, "role:etcd").map {|node| internal_ip(node)}
+etcd_servers = etcd_nodes.map {|addr| "#{node[:etcd][:proto]}://#{addr}:#{node[:etcd][:client_port]}"}.join ','
+
+template '/etc/kubernetes/manifests/apiserver.yaml' do
+  source 'apiserver.yaml.erb'
+  variables(etcd_servers: etcd_servers)
+end
+
+['controller-manager', 'scheduler', 'addon-manager'].each do |srv|
   template "/etc/kubernetes/manifests/#{srv}.yaml" do
     source "#{srv}.yaml.erb"
-    variables(advertise_address: Chef::Recipe.allocate.internal_ip(node))
   end
 end
 
