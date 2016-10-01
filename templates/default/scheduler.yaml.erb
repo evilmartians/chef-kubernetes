@@ -33,34 +33,10 @@ spec:
         port: 10251
       initialDelaySeconds: 15
     volumeMounts:
-    - mountPath: /etc/kubernetes/ssl
-      name: ssl-certs-kubernetes
-      readOnly: true
-    - mountPath: /etc/ssl/certs
-      name: ssl-certs-host
-      readOnly: true
-    - mountPath: /etc/kubernetes/kubeconfig.yaml
-      name: kubeconfig
-      readOnly: true
-    - mountPath: /var/log/kubernetes
-      name: logdir
-      readOnly: false
     - mountPath: /var/lib/dbus/machine-id
       name: machine-id
       readOnly: true
   volumes:
-  - hostPath:
-      path: /etc/kubernetes/ssl
-    name: ssl-certs-kubernetes
-  - hostPath:
-      path: /usr/share/ca-certificates
-    name: ssl-certs-host
-  - hostPath:
-      path: /etc/kubernetes/kubeconfig.yaml
-    name: kubeconfig
-  - hostPath:
-      path: /var/log/kubernetes
-    name: logdir
   - hostPath:
       path: /var/lib/dbus/machine-id
     name: machine-id
