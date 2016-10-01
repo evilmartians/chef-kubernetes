@@ -14,11 +14,11 @@ spec:
     image: <%= node[:etcd][:image] %>:<%= node[:etcd][:version] %>
     command:
     - <%= node[:etcd][:binary] %>
-    - --name=<%= node[:etcd][:host] %>
-    - --initial-advertise-peer-urls=<%= node[:etcd][:proto] %>://<%= node[:etcd][:host] %>:<%= node[:etcd][:server_port] %>
-    - --listen-peer-urls=<%= node[:etcd][:proto] %>://<%= node[:etcd][:host] %>:<%= node[:etcd][:server_port] %>,http://127.0.0.1:2380
-    - --listen-client-urls=<%= node[:etcd][:proto] %>://<%= node[:etcd][:host] %>:<%= node[:etcd][:client_port] %>,http://127.0.0.1:2379
-    - --advertise-client-urls=<%= node[:etcd][:proto] %>://<%= node[:etcd][:host] %>:<%= node[:etcd][:client_port] %>
+    - --name=$(LISTEN_ON)
+    - --initial-advertise-peer-urls=<%= node[:etcd][:proto] %>://$(LISTEN_ON):<%= node[:etcd][:server_port] %>
+    - --listen-peer-urls=<%= node[:etcd][:proto] %>://$(LISTEN_ON):<%= node[:etcd][:server_port] %>,http://127.0.0.1:2380
+    - --listen-client-urls=<%= node[:etcd][:proto] %>://$(LISTEN_ON):<%= node[:etcd][:client_port] %>,http://127.0.0.1:2379
+    - --advertise-client-urls=<%= node[:etcd][:proto] %>://$(LISTEN_ON):<%= node[:etcd][:client_port] %>
     - --initial-cluster-token=<%= node[:etcd][:initial_cluster_token] %>
     - --initial-cluster=<%= node[:etcd][:host] %>=<%= node[:etcd][:proto] %>://<%= node[:etcd][:host] %>:<%= node[:etcd][:server_port] %>
     - --initial-cluster-state=existing
@@ -38,6 +38,12 @@ spec:
         path: "/health"
       initialDelaySeconds: 15
       timeoutSeconds: 15
+    env:
+      - name: LISTEN_ON
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: spec.nodeName
     ports:
     - name: serverport
       containerPort: <%= node[:etcd][:server_port] %>
