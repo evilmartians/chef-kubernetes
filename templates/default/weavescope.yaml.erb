@@ -28,6 +28,9 @@ spec:
           name: scope
         securityContext:
           privileged: true
+        resources:
+          limits:
+            cpu: 50m
         volumeMounts:
         - mountPath: /var/run/docker.sock
           name: docker-sock
