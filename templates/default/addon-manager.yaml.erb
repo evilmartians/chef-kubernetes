@@ -21,13 +21,7 @@ spec:
     - name: addons
       mountPath: "/etc/kubernetes/"
       readOnly: true
-    - name: ssl-certs-kubernetes
-      mountPath: /etc/kubernetes/ssl
-      readOnly: true
   volumes:
   - name: addons
     hostPath:
       path: "/etc/kubernetes"
-  - name: ssl-certs-kubernetes
-    hostPath:
-      path: /etc/kubernetes/ssl
