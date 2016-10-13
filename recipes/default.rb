@@ -9,7 +9,7 @@ require 'base64'
 
 include_recipe 'kubernetes::packages'
 
-%w(manifests tokens ssl addons).each do |dir|
+%w(manifests ssl addons).each do |dir|
   directory("/etc/kubernetes/#{dir}") do
     recursive true
   end
