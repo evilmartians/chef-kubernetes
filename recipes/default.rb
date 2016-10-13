@@ -36,7 +36,8 @@ template '/etc/kubernetes/kubeconfig.yaml' do
   if node[:kubernetes][:token_auth]
     variables(token: Chef::EncryptedDataBagItem.load(node[:kubernetes][:databag], 'users')['users']
                 .find { |user| user['name'] == 'kubelet' }['token'],
-              ca_file: Base64.encode64(ca_file).gsub(/\n/,''))
+              ca_file: Base64.encode64(ca_file).gsub(/\n/,''),
+              user: 'kubelet')
   end
 end
 
