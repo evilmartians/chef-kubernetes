@@ -21,6 +21,16 @@ file node[:kubernetes][:client_ca_file] do
   content ca_file
 end
 
+template '/etc/kubernetes/kubeconfig-bootstrap.yaml' do
+  source 'kubeconfig.yaml.erb'
+  if node[:kubernetes][:token_auth]
+    variables(token: Chef::EncryptedDataBagItem.load(node[:kubernetes][:databag], 'users')['users']
+                .find { |user| user['name'] == 'kubelet-bootstrap' }['token'],
+              ca_file: Base64.encode64(ca_file).gsub(/\n/,''),
+              user: 'kubelet-bootstrap')
+  end
+end
+
 template '/etc/kubernetes/kubeconfig.yaml' do
   source 'kubeconfig.yaml.erb'
   if node[:kubernetes][:token_auth]
@@ -50,6 +60,8 @@ kubelet_args = [
   '--pod-manifest-path=/etc/kubernetes/manifests',
   '--node-status-update-frequency=4s',
   '--kubeconfig=/etc/kubernetes/kubeconfig.yaml',
+  '--experimental-bootstrap-kubeconfig=/etc/kubernetes/kubeconfig-bootstrap.yaml',
+  '--cert-dir=/etc/kubernetes/ssl',
   '--network-plugin=cni',
   '--network-plugin-dir=/etc/cni/net.d',
   "--image-gc-low-threshold=#{node[:kubernetes][:kubelet][:image_gc_low_threshold]}",
