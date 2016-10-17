@@ -30,6 +30,7 @@ end
 package 'iptables'
 package 'socat'
 package 'ethtool'
+package 'dbus'
 
 bash 'install_nsenter' do
   code <<-EOH
