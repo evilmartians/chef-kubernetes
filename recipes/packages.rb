@@ -28,9 +28,23 @@ package 'docker-engine' do
 end
 
 package 'iptables'
+package 'ebtables'
 package 'socat'
 package 'ethtool'
+package 'kmod'
+package 'tcpd'
 package 'dbus'
+package 'apt-transport-https'
+
+if node['lsb']['release'].to_i >= 16
+  apt_repository 'kubernetes' do
+    uri 'http://apt.kubernetes.io/'
+    distribution "kubernetes-#{node.lsb.codename}"
+    components ['main']
+    key 'https://packages.cloud.google.com/apt/doc/apt-key.gpg'
+  end
+  package 'kubernetes-cni'
+end
 
 bash 'install_nsenter' do
   code <<-EOH
