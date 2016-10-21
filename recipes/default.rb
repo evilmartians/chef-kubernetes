@@ -32,6 +32,8 @@ file node[:kubernetes][:client_ca_file] do
   content ca_file
 end
 
+include_recipe 'kubernetes::haproxy' if node[:kubernetes][:multimaster][:access_via] == 'haproxy'
+
 template '/etc/kubernetes/kubeconfig-bootstrap.yaml' do
   source 'kubeconfig.yaml.erb'
   if node[:kubernetes][:token_auth]
