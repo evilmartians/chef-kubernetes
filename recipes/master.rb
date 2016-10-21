@@ -5,8 +5,6 @@
 # Author:: Maxim Filatov <bregor@evilmartians.com>
 #
 
-include_recipe 'kubernetes::default'
-
 etcd_nodes = search(:node, "role:etcd").map {|node| internal_ip(node)}
 etcd_servers = etcd_nodes.map {|addr| "#{node[:etcd][:proto]}://#{addr}:#{node[:etcd][:client_port]}"}.join ','
 
