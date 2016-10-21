@@ -66,7 +66,7 @@ end
 # TODO: avoid Recipe.allocate in kubelet command
 kubelet_args = [
   "--address=#{Chef::Recipe.allocate.internal_ip(node)}",
-  "--api_servers=https://#{node[:kubernetes][:master]}:#{node[:kubernetes][:api][:secure_port]}",
+  "--api_servers=#{node[:kubernetes][:master]}",
   "--cluster-dns=#{node[:kubernetes][:cluster_dns]}",
   "--hostname_override=#{Chef::Recipe.allocate.hostname(node)}",
   "--node-ip=#{Chef::Recipe.allocate.internal_ip(node)}",
