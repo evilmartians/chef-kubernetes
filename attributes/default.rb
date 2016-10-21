@@ -32,6 +32,6 @@ default[:kubernetes][:kubelet][:client_certificate]      = '/etc/kubernetes/ssl/
 default[:kubernetes][:kubelet][:client_key]              = '/etc/kubernetes/ssl/node-key.pem'
 default[:kubernetes][:kubelet][:image_gc_low_threshold]  = '70'
 default[:kubernetes][:kubelet][:image_gc_high_threshold] = '80'
-default[:kubernetes][:dashboard][:version]               = 'v1.4.0'
 default[:kubernetes][:md5][:kubelet]                     = 'f19bcff4c64c9a2cc44e2924f35946a2'
 default[:kubernetes][:md5][:kubectl]                     = '6a2912492f2cd845319a843bbcd89d1b'
+default[:kubernetes][:dashboard][:version]               = 'v1.4.1'
