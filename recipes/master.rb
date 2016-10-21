@@ -10,9 +10,11 @@ include_recipe 'kubernetes::default'
 etcd_nodes = search(:node, "role:etcd").map {|node| internal_ip(node)}
 etcd_servers = etcd_nodes.map {|addr| "#{node[:etcd][:proto]}://#{addr}:#{node[:etcd][:client_port]}"}.join ','
 
+master_nodes = search(:node, "role:#{node[:kubernetes][:roles][:master]}")
+
 template '/etc/kubernetes/manifests/apiserver.yaml' do
   source 'apiserver.yaml.erb'
-  variables(etcd_servers: etcd_servers)
+  variables(etcd_servers: etcd_servers, apiserver_count: master_nodes.size)
 end
 
 ['controller-manager', 'scheduler', 'addon-manager'].each do |srv|

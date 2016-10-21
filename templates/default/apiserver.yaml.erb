@@ -18,6 +18,7 @@ spec:
     - --etcd-keyfile=<%= node[:etcd][:key_file] %>
     - --etcd-cafile=<%= node[:etcd][:trusted_ca_file] %>
     - --allow-privileged=true
+    - --apiserver-count=<%= @apiserver_count %>
     - --service-cluster-ip-range=<%= node[:kubernetes][:api][:service_cluster_ip_range] %>
     - --secure-port=<%= node[:kubernetes][:api][:secure_port] %>
     - --insecure-bind-address=<%= node[:kubernetes][:api][:insecure_bind_address] %>
