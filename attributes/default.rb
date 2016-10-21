@@ -1,3 +1,5 @@
+default[:kubernetes][:roles][:master]                    = 'kubernetes_master'
+default[:kubernetes][:roles][:node]                      = 'kubernetes_node'
 default[:kubernetes][:databag]                           = 'kubernetes'
 default[:kubernetes][:version]                           = 'v1.4.4'
 default[:kubernetes][:image]                             = 'gcr.io/google_containers/hyperkube'
