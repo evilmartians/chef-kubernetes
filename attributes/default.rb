@@ -37,3 +37,7 @@ default[:kubernetes][:kubelet][:image_gc_high_threshold] = '80'
 default[:kubernetes][:md5][:kubelet]                     = 'f19bcff4c64c9a2cc44e2924f35946a2'
 default[:kubernetes][:md5][:kubectl]                     = '6a2912492f2cd845319a843bbcd89d1b'
 default[:kubernetes][:dashboard][:version]               = 'v1.4.1'
+default[:kubernetes][:multimaster][:access_via]          = 'haproxy' # other possible values are: direct, dns
+default[:kubernetes][:multimaster][:haproxy_url]         = '127.0.0.1'
+default[:kubernetes][:multimaster][:haproxy_port]        = 6443
+default[:kubernetes][:multimaster][:dns_name]            = ''
