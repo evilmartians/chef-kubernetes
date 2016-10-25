@@ -18,7 +18,7 @@ master_url = case node['kubernetes']['multimaster']['access_via']
              when 'dns'
                "https://#{node['kubernetes']['multimaster']['dns_name']}"
              end
-node.set['kubernetes']['master'] = master_url
+node.override['kubernetes']['master'] = master_url
 
 %w(manifests ssl addons).each do |dir|
   directory("/etc/kubernetes/#{dir}") do
