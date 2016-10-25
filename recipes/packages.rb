@@ -7,7 +7,7 @@
 
 apt_repository 'docker' do
   uri 'https://apt.dockerproject.org/repo'
-  distribution "#{node.platform}-#{node.lsb.codename}"
+  distribution "#{node['platform']}-#{node['lsb']['codename']}"
   components ['main']
   keyserver 'hkp://p80.pool.sks-keyservers.net:80'
   key '58118E89F3A912897C070ADBF76221572C52609D'
@@ -39,7 +39,7 @@ package 'apt-transport-https'
 if node['lsb']['release'].to_i >= 16
   apt_repository 'kubernetes' do
     uri 'http://apt.kubernetes.io/'
-    distribution "kubernetes-#{node.lsb.codename}"
+    distribution "kubernetes-#{node['lsb']['codename']}"
     components ['main']
     key 'https://packages.cloud.google.com/apt/doc/apt-key.gpg'
   end
