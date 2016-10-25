@@ -61,6 +61,11 @@ spec:
     - name: ssl
       mountPath: "/etc/kubernetes/ssl"
       readOnly: true
+    <% unless node['etcd']['wal_dir'].empty? %>
+    - name: wal
+      mountPath: "<%= node['etcd']['data_dir'] %>/member/wal"
+      readOnly: false
+    <% end %>
   volumes:
   - name: ssl
     hostPath:
@@ -71,3 +76,8 @@ spec:
   - name: logs
     hostPath:
       path: "/var/log/etcd.log"
+  <% unless node['etcd']['wal_dir'].empty? %>
+  - name: wal
+    hostPath:
+      path: "<%= node['etcd']['wal_dir'] %>"
+  <% end %>

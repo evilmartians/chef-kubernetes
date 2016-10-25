@@ -12,6 +12,7 @@ default['etcd']['peer_cert_file']        = '/etc/kubernetes/ssl/apiserver.pem'
 default['etcd']['server_port']           = 2380
 default['etcd']['client_port']           = 2379
 default['etcd']['data_dir']              = '/var/lib/etcd'
+default['etcd']['wal_dir']               = ''
 default['etcd']['proto']                 = 'http'
 default['etcd']['binary']                = '/usr/local/bin/etcd'
 default['etcd']['initial_cluster_token'] = 'etcd-cluster'
