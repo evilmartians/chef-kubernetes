@@ -52,22 +52,22 @@ spec:
       containerPort: <%= node[:etcd][:client_port] %>
       hostPort: <%= node[:etcd][:client_port] %>
     volumeMounts:
-    - name: varetcd
+    - name: data
       mountPath: "<%= node[:etcd][:data_dir] %>"
       readOnly: false
-    - name: varlogetcd
+    - name: logs
       mountPath: "/var/log/etcd.log"
       readOnly: false
-    - name: ssl-certs-kubernetes
+    - name: ssl
       mountPath: "/etc/kubernetes/ssl"
       readOnly: true
   volumes:
-  - name: ssl-certs-kubernetes
+  - name: ssl
     hostPath:
       path: /etc/kubernetes/ssl
-  - name: varetcd
+  - name: data
     hostPath:
       path: "<%= node[:etcd][:data_dir] %>"
-  - name: varlogetcd
+  - name: logs
     hostPath:
       path: "/var/log/etcd.log"
