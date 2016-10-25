@@ -17,7 +17,7 @@ spec:
       hostPID: true
       containers:
       - name: weavescope
-        image: weaveworks/scope:<%= node[:kubernetes][:weavescope][:version] %>
+        image: weaveworks/scope:<%= node['kubernetes']['weavescope']['version'] %>
         args:
           - '--no-app'
           - '--probe.docker.bridge=docker0'

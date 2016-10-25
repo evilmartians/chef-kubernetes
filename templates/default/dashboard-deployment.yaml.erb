@@ -5,7 +5,7 @@ metadata:
   generation: 1
   labels:
     app: kubernetes-dashboard
-    version: <%= node[:kubernetes][:dashboard][:version] %>
+    version: <%= node['kubernetes']['dashboard']['version'] %>
     kubernetes.io/cluster-service: "true"
   name: kubernetes-dashboard
 spec:
@@ -22,14 +22,14 @@ spec:
     metadata:
       labels:
         app: kubernetes-dashboard
-        version: <%= node[:kubernetes][:dashboard][:version] %>
+        version: <%= node['kubernetes']['dashboard']['version'] %>
     spec:
       containers:
       - name: kubernetes-dashboard
-        image: gcr.io/google_containers/kubernetes-dashboard-amd64:<%= node[:kubernetes][:dashboard][:version] %>
+        image: gcr.io/google_containers/kubernetes-dashboard-amd64:<%= node['kubernetes']['dashboard']['version'] %>
         imagePullPolicy: IfNotPresent
         args:
-          - --heapster-host=http://heapster.kube-system.svc.<%= node[:kubernetes][:cluster_domain] %>
+          - --heapster-host=http://heapster.kube-system.svc.<%= node['kubernetes']['cluster_domain'] %>
         ports:
         - containerPort: 9090
           protocol: TCP

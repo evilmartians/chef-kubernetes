@@ -7,7 +7,7 @@ spec:
   hostNetwork: true
   containers:
   - name: kube-proxy
-    image: <%= node[:kubernetes][:image] %>:<%=node[:kubernetes][:version] %>
+    image: <%= node['kubernetes']['image'] %>:<%=node['kubernetes']['version'] %>
     command:
     - /hyperkube
     - proxy

@@ -6,9 +6,9 @@
 #
 
 etcd_nodes = search(:node, "role:etcd").map {|node| internal_ip(node)}
-etcd_servers = etcd_nodes.map {|addr| "#{node[:etcd][:proto]}://#{addr}:#{node[:etcd][:client_port]}"}.join ','
+etcd_servers = etcd_nodes.map {|addr| "#{node['etcd']['proto']}://#{addr}:#{node['etcd']['client_port']}"}.join ','
 
-master_nodes = search(:node, "role:#{node[:kubernetes][:roles][:master]}")
+master_nodes = search(:node, "role:#{node['kubernetes']['roles']['master']}")
 
 template '/etc/kubernetes/manifests/apiserver.yaml' do
   source 'apiserver.yaml.erb'
@@ -27,7 +27,7 @@ end
   end
 end
 
-if node[:kubernetes][:weave][:use_scope]
+if node['kubernetes']['weave']['use_scope']
   ['weavescope-deployment', 'weavescope-svc', 'weavescope-daemonset']. each do |srv|
     template "/etc/kubernetes/addons/#{srv}.yaml" do
       source "#{srv}.yaml.erb"
@@ -36,20 +36,20 @@ if node[:kubernetes][:weave][:use_scope]
 end
 
 %w(client_ca_file ca_key_file tls_cert_file tls_private_key_file).each do |f|
-  file node[:kubernetes][f.to_sym] do
-    content Chef::EncryptedDataBagItem.load(node[:kubernetes][:databag], "#{node[:kubernetes][:cluster_name]}_cluster_ssl")[f]
+  file node['kubernetes'][f.to_sym] do
+    content Chef::EncryptedDataBagItem.load(node['kubernetes']['databag'], "#{node['kubernetes']['cluster_name']}_cluster_ssl")[f]
   end
 end
 
-if node[:kubernetes][:authorization][:mode] == 'ABAC'
+if node['kubernetes']['authorization']['mode'] == 'ABAC'
   template '/etc/kubernetes/authorization-policy.jsonl' do
     source 'authorization-policy.jsonl.erb'
   end
 end
 
-if node[:kubernetes][:token_auth]
-  template node[:kubernetes][:token_auth_file] do
+if node['kubernetes']['token_auth']
+  template node['kubernetes']['token_auth_file'] do
     source 'tokens.csv.erb'
-    variables(users: Chef::EncryptedDataBagItem.load(node[:kubernetes][:databag], 'users')['users'])
+    variables(users: Chef::EncryptedDataBagItem.load(node['kubernetes']['databag'], 'users')['users'])
   end
 end

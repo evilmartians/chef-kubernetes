@@ -7,12 +7,12 @@ spec:
   hostNetwork: true
   containers:
   - name: kube-scheduler
-    image: <%= node[:kubernetes][:image] %>:<%=node[:kubernetes][:version] %>
+    image: <%= node['kubernetes']['image'] %>:<%=node['kubernetes']['version'] %>
     command:
     - /hyperkube
     - scheduler
     - --leader-elect=true
-    - --master=http://127.0.0.1:<%= node[:kubernetes][:api][:insecure_port] %>
+    - --master=http://127.0.0.1:<%= node['kubernetes']['api']['insecure_port'] %>
     - --machine-id-file=/var/lib/dbus/machine-id
     livenessProbe:
       httpGet:

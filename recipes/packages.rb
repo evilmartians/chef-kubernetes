@@ -55,17 +55,17 @@ EOH
   not_if { File.exist? '/usr/local/bin/nsenter' }
 end
 
-directory "/opt/kubernetes/#{node[:kubernetes][:version]}/bin" do
+directory "/opt/kubernetes/#{node['kubernetes']['version']}/bin" do
   recursive true
 end
 
 %w(kubelet kubectl).each do |f|
-  remote_file "/opt/kubernetes/#{node[:kubernetes][:version]}/bin/#{f}" do
-    source "https://storage.googleapis.com/kubernetes-release/release/#{node[:kubernetes][:version]}/bin/linux/amd64/#{f}"
+  remote_file "/opt/kubernetes/#{node['kubernetes']['version']}/bin/#{f}" do
+    source "https://storage.googleapis.com/kubernetes-release/release/#{node['kubernetes']['version']}/bin/linux/amd64/#{f}"
     mode '0755'
     not_if do
       begin
-        Digest::MD5.file("/opt/kubernetes/#{node[:kubernetes][:version]}/bin/#{f}").to_s == node[:kubernetes][:md5][f.to_sym]
+        Digest::MD5.file("/opt/kubernetes/#{node['kubernetes']['version']}/bin/#{f}").to_s == node['kubernetes']['md5'][f.to_sym]
       rescue
         false
       end
@@ -74,5 +74,5 @@ end
 end
 
 link '/usr/local/bin/kubectl' do
-  to "/opt/kubernetes/#{node[:kubernetes][:version]}/bin/kubectl"
+  to "/opt/kubernetes/#{node['kubernetes']['version']}/bin/kubectl"
 end

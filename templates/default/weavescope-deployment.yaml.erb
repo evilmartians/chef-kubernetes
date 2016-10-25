@@ -23,10 +23,10 @@ spec:
     spec:
       containers:
       - name: weavescope
-        image: weaveworks/scope:<%= node[:kubernetes][:weavescope][:version] %>
+        image: weaveworks/scope:<%= node['kubernetes']['weavescope']['version'] %>
         imagePullPolicy: IfNotPresent
         args:
           - '--no-probe'
           - '--probe.weave.addr ""'
         ports:
-        - containerPort: <%= node[:kubernetes][:weavescope][:port] %>
+        - containerPort: <%= node['kubernetes']['weavescope']['port'] %>

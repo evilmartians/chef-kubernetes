@@ -11,4 +11,4 @@ export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export LC_CTYPE="UTF-8"
 
-exec /usr/bin/docker <%= @options.fetch(:docker_args, '') %> run <%= @options.fetch(:run_args, '-i --rm')%> <%= @options[:image]%> <%= @options.fetch(:command, '') %>
+exec /usr/bin/docker <%= @options.fetch(:docker_args, '') %> run <%= @options.fetch(:run_args, '-i --rm')%> <%= @options['image']%> <%= @options.fetch(:command, '') %>

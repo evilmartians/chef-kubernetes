@@ -6,7 +6,7 @@
 #
 
 nodes = search(:node, "role:etcd").map {|node| internal_ip(node)}
-initial_cluster = nodes.map {|addr| "#{addr}=#{node[:etcd][:proto]}://#{addr}:#{node[:etcd][:server_port]}"}.join ','
+initial_cluster = nodes.map {|addr| "#{addr}=#{node['etcd']['proto']}://#{addr}:#{node['etcd']['server_port']}"}.join ','
 
 template "/etc/kubernetes/manifests/etcd.yaml" do
   source "etcd.yaml.erb"

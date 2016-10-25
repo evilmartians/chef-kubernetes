@@ -24,7 +24,7 @@ spec:
       hostNetwork: true
       containers:
         - name: weave
-          image: weaveworks/weave-kube:<%= node[:kubernetes][:weave][:version] %>
+          image: weaveworks/weave-kube:<%= node['kubernetes']['weave']['version'] %>
           imagePullPolicy: Always
           command:
             - /home/weave/launch.sh
@@ -37,9 +37,9 @@ spec:
               port: 6784
           env:
             - name: WEAVE_VERSION
-              value: <%= node[:kubernetes][:weave][:version] %>
+              value: <%= node['kubernetes']['weave']['version'] %>
             - name: IPALLOC_RANGE
-              value: <%= node[:kubernetes][:weave][:network] %>
+              value: <%= node['kubernetes']['weave']['network'] %>
             - name: LISTEN_ON
               valueFrom:
                 fieldRef:
@@ -62,7 +62,7 @@ spec:
           securityContext:
             privileged: true
         - name: weave-npc
-          image: weaveworks/weave-npc:<%= node[:kubernetes][:weave][:version] %>
+          image: weaveworks/weave-npc:<%= node['kubernetes']['weave']['version'] %>
           imagePullPolicy: IfNotPresent
           resources:
             limits:
