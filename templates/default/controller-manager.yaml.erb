@@ -11,6 +11,7 @@ spec:
     command:
     - /hyperkube
     - controller-manager
+    - --address=$(LISTEN_ON)
     - --leader-elect=true
     - --docker=<%= node['kubernetes']['docker'] %>
     - --cloud-config=<%= node['kubernetes']['cloud_config'] %>
@@ -35,6 +36,12 @@ spec:
         path: /healthz
         port: 10252
       initialDelaySeconds: 15
+    env:
+      - name: LISTEN_ON
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: spec.nodeName
     volumeMounts:
     - mountPath: /etc/kubernetes/ssl
       name: ssl-certs-kubernetes
