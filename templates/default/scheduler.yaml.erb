@@ -11,26 +11,22 @@ spec:
     command:
     - /hyperkube
     - scheduler
-    - --address=$(LISTEN_ON)
+    - --address=127.0.0.1
     - --leader-elect=true
     - --master=http://127.0.0.1:<%= node['kubernetes']['api']['insecure_port'] %>
     - --machine-id-file=/var/lib/dbus/machine-id
     livenessProbe:
       httpGet:
+        host: 127.0.0.1
         path: /healthz
         port: 10251
       initialDelaySeconds: 15
     readinessProbe:
       httpGet:
+        host: 127.0.0.1
         path: /healthz
         port: 10251
       initialDelaySeconds: 15
-    env:
-      - name: LISTEN_ON
-        valueFrom:
-          fieldRef:
-            apiVersion: v1
-            fieldPath: spec.nodeName
     volumeMounts:
     - mountPath: /var/lib/dbus/machine-id
       name: machine-id
