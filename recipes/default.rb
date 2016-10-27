@@ -70,7 +70,8 @@ kubelet_args = [
   '--network-plugin-dir=/etc/cni/net.d',
   "--image-gc-low-threshold=#{node['kubernetes']['kubelet']['image_gc_low_threshold']}",
   "--image-gc-high-threshold=#{node['kubernetes']['kubelet']['image_gc_high_threshold']}",
-  "--cadvisor-port=#{node['kubernetes']['kubelet']['cadvisor_port']}"
+  "--cadvisor-port=#{node['kubernetes']['kubelet']['cadvisor_port']}",
+  "--v=#{node['kubernetes']['kubelet']['verbosity']}"
 ]
 
 poise_service 'kubelet' do
