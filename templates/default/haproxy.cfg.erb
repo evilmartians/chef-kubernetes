@@ -43,7 +43,7 @@ backend k8s_masters
     mode tcp
     balance roundrobin
     option log-health-checks
-    option ssl-hello-chk
+    option tcp-check
     <% @nodes.each do |server| %>
-    server <%= server[:name] %> <%= server[:ip] %>:<%= node['kubernetes']['api']['secure_port'] %> check ca-file <%= node['kubernetes']['client_ca_file'] %>
+    server <%= server[:name] %> <%= server[:ip] %>:<%= node['kubernetes']['api']['secure_port'] %> check
     <% end %>
