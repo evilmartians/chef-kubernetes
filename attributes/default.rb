@@ -39,6 +39,7 @@ default['kubernetes']['kubelet']['verbosity']               = 2
 default['kubernetes']['md5']['kubelet']                     = '568380c6fe2916a763e28057392fcbef'
 default['kubernetes']['md5']['kubectl']                     = '400fe0fe30df83dee4b2bec10a85fe54'
 default['kubernetes']['dashboard']['version']               = 'v1.4.2'
+default['kubernetes']['addon_manager']['version']           = 'v5.2'
 default['kubernetes']['multimaster']['access_via']          = 'haproxy' # other possible values are: direct, dns
 default['kubernetes']['multimaster']['haproxy_url']         = '127.0.0.1'
 default['kubernetes']['multimaster']['haproxy_port']        = 6443
