@@ -30,6 +30,12 @@ end
   end
 end
 
+if node['kubernetes']['weave']['deploy_via'] == 'daemonset'
+  template '/etc/kubernetes/addons/weave-kube-daemonset.yaml' do
+    source 'weave-kube-daemonset.yaml.erb'
+  end
+end
+
 ['skydns-rc', 'skydns-svc', 'dashboard-deployment', 'dashboard-svc'].each do |srv|
   template "/etc/kubernetes/addons/#{srv}.yaml" do
     source "#{srv}.yaml.erb"
