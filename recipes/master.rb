@@ -12,6 +12,13 @@ etcd_servers = etcd_nodes.map {|addr| "#{node['etcd']['proto']}://#{addr}:#{node
 
 master_nodes = search(:node, "role:#{node['kubernetes']['roles']['master']}")
 
+['ssl', 'addons'].each do |dir|
+  directory "/etc/kubernetes/#{dir}" do
+    recursive true
+  end
+end
+
+
 template '/etc/kubernetes/manifests/apiserver.yaml' do
   source 'apiserver.yaml.erb'
   variables(etcd_servers: etcd_servers, apiserver_count: master_nodes.size)
