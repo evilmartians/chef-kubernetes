@@ -9,6 +9,7 @@ require 'base64'
 
 include_recipe 'kubernetes::packages'
 include_recipe 'kubernetes::master_detect'
+include_recipe "kubernetes::sdn_#{node['kubernetes']['sdn']}"
 
 %w(manifests ssl addons).each do |dir|
   directory("/etc/kubernetes/#{dir}") do
