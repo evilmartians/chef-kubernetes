@@ -22,10 +22,10 @@ spec:
           ]
     spec:
       hostNetwork: true
+      hostPID: true
       containers:
         - name: weave
           image: weaveworks/weave-kube:<%= node['kubernetes']['weave']['version'] %>
-          imagePullPolicy: Always
           command:
             - /home/weave/launch.sh
             - --host=$(LISTEN_ON)
@@ -36,8 +36,6 @@ spec:
               path: /status
               port: 6784
           env:
-            - name: WEAVE_VERSION
-              value: <%= node['kubernetes']['weave']['version'] %>
             - name: IPALLOC_RANGE
               value: <%= node['kubernetes']['weave']['network'] %>
             - name: LISTEN_ON
@@ -52,23 +50,26 @@ spec:
               mountPath: /weavedb
             - name: cni-bin
               mountPath: /opt
+            - name: cni-bin2
+              mountPath: /host_home
             - name: cni-conf
               mountPath: /etc
           resources:
-            limits:
-              cpu: 200m
             requests:
-              cpu: 25m
-          securityContext:
-            privileged: true
+              cpu: 10m
         - name: weave-npc
           image: weaveworks/weave-npc:<%= node['kubernetes']['weave']['version'] %>
-          imagePullPolicy: IfNotPresent
+          args:
+            - --metrics-addr=$(LISTEN_ON):6781
           resources:
-            limits:
-              cpu: 200m
             requests:
-              cpu: 25m
+              cpu: 10m
+          env:
+            - name: LISTEN_ON
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: spec.nodeName
           securityContext:
             privileged: true
       restartPolicy: Always
@@ -78,6 +79,9 @@ spec:
         - name: cni-bin
           hostPath:
             path: /opt
+        - name: cni-bin2
+          hostPath:
+            path: /home
         - name: cni-conf
           hostPath:
             path: /etc
