@@ -7,5 +7,4 @@ long_description 'Google Kubernetes installer for deb-based distros with docker'
 version          '0.0.2'
 
 depends 'apt'
-depends 'poise-service'
-depends 'poise-service-runit'
+depends 'systemd'

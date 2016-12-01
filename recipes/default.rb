@@ -51,7 +51,7 @@ end
 
 link '/usr/local/bin/kubelet' do
   to "/opt/kubernetes/#{node['kubernetes']['version']}/bin/kubelet"
-  notifies :restart, 'poise_service[kubelet]'
+  notifies :restart, 'systemd_service[kubelet]'
 end
 
 # TODO: avoid Recipe.allocate in kubelet command
@@ -75,11 +75,19 @@ kubelet_args = [
   "--v=#{node['kubernetes']['kubelet']['verbosity']}"
 ]
 
-poise_service 'kubelet' do
-  provider node['platform_version'].to_f < 16.04 ? :runit : :systemd
-  command "/usr/local/bin/kubelet #{kubelet_args.join(' ')}"
-end
-
-poise_service_options 'kubelet' do
-  restart_on_update true
+systemd_service 'kubelet' do
+  description "Systemd unit for Kubernetes worker service (kubelet)"
+  after %w( network.target remote-fs.target )
+  install do
+    wanted_by 'multi-user.target'
+  end
+  service do
+    type 'simple'
+    user 'root'
+    exec_start "/usr/local/bin/kubelet #{kubelet_args.join(' ')}"
+    exec_reload '/bin/kill -HUP $MAINPID'
+    working_directory '/'
+    restart 'on-failure'
+    restart_sec '30s'
+  end
 end
