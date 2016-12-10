@@ -29,6 +29,7 @@ spec:
           command:
             - /home/weave/launch.sh
             - --host=$(LISTEN_ON)
+            - --status-addr=$(LISTEN_ON):6782
           livenessProbe:
             initialDelaySeconds: 30
             httpGet:
