@@ -18,13 +18,7 @@ master_nodes = search(:node, "role:#{node['kubernetes']['roles']['master']}")
   end
 end
 
-
-template '/etc/kubernetes/manifests/apiserver.yaml' do
-  source 'apiserver.yaml.erb'
-  variables(etcd_servers: etcd_servers, apiserver_count: master_nodes.size)
-end
-
-['controller-manager', 'scheduler', 'addon-manager'].each do |srv|
+['apiserver', 'controller-manager', 'scheduler', 'addon-manager'].each do |srv|
   template "/etc/kubernetes/manifests/#{srv}.yaml" do
     source "#{srv}.yaml.erb"
   end
@@ -33,6 +27,7 @@ end
 if node['kubernetes']['weave']['deploy_via'] == 'daemonset'
   template '/etc/kubernetes/addons/weave-kube-daemonset.yaml' do
     source 'weave-kube-daemonset.yaml.erb'
+    variables(etcd_servers: etcd_servers, apiserver_count: master_nodes.size)
   end
 end
 
