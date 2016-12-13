@@ -6,6 +6,7 @@
 #
 
 include_recipe 'kubernetes::master_detect'
+include_recipe "kubernetes::sdn_#{node['kubernetes']['sdn']}" if node['kubernetes']['use_sdn']
 
 etcd_nodes = search(:node, "role:etcd").map {|node| internal_ip(node)}
 etcd_servers = etcd_nodes.map {|addr| "#{node['etcd']['proto']}://#{addr}:#{node['etcd']['client_port']}"}.join ','
@@ -21,12 +22,6 @@ end
 ['apiserver', 'controller-manager', 'scheduler', 'addon-manager'].each do |srv|
   template "/etc/kubernetes/manifests/#{srv}.yaml" do
     source "#{srv}.yaml.erb"
-  end
-end
-
-if node['kubernetes']['weave']['deploy_via'] == 'daemonset'
-  template '/etc/kubernetes/addons/weave-kube-daemonset.yaml' do
-    source 'weave-kube-daemonset.yaml.erb'
     variables(etcd_servers: etcd_servers, apiserver_count: master_nodes.size)
   end
 end
@@ -34,14 +29,6 @@ end
 ['skydns-deployment', 'skydns-svc', 'dashboard-deployment', 'dashboard-svc'].each do |srv|
   template "/etc/kubernetes/addons/#{srv}.yaml" do
     source "#{srv}.yaml.erb"
-  end
-end
-
-if node['kubernetes']['weave']['use_scope']
-  ['weavescope-deployment', 'weavescope-svc', 'weavescope-daemonset']. each do |srv|
-    template "/etc/kubernetes/addons/#{srv}.yaml" do
-      source "#{srv}.yaml.erb"
-    end
   end
 end
 

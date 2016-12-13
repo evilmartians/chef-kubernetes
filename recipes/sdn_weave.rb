@@ -14,3 +14,19 @@ end
 template '/etc/cni/net.d/10-weave.conf' do
   source 'weave.conf.erb'
 end
+
+directory '/etc/kubernetes/addons' do
+  recursive true
+end
+
+template '/etc/kubernetes/addons/weave-kube-daemonset.yaml' do
+  source 'weave-kube-daemonset.yaml.erb'
+end
+
+if node['kubernetes']['weave']['use_scope']
+  ['weavescope-deployment', 'weavescope-svc', 'weavescope-daemonset']. each do |srv|
+    template "/etc/kubernetes/addons/#{srv}.yaml" do
+      source "#{srv}.yaml.erb"
+    end
+  end
+end
