@@ -5,6 +5,7 @@ default['kubernetes']['version']                            = 'v1.4.7'
 default['kubernetes']['image']                              = 'gcr.io/google_containers/hyperkube'
 default['kubernetes']['interface']                          = 'eth1'
 default['kubernetes']['register_as']                        = 'ip'
+default['kubernetes']['use_sdn']                            = true
 default['kubernetes']['sdn']                                = 'weave'
 default['kubernetes']['master']                             = '127.0.0.1'
 default['kubernetes']['cluster_name']                       = 'kubernetes'
