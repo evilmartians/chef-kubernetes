@@ -19,7 +19,7 @@ file '/etc/docker/daemon.json' do
   owner 'root'
   group 'root'
   mode '0644'
-  content({ 'storage-driver' => 'overlay2' }.to_json)
+  content(node['docker'].to_json)
   not_if { node['platform_version'].to_f < 16.04 }
 end
 
