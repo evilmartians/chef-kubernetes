@@ -79,6 +79,23 @@ kubelet_args = [
   "--v=#{node['kubernetes']['kubelet']['verbosity']}"
 ]
 
+template '/etc/init/kubelet.conf' do
+  source 'kubelet-upstart.erb'
+  owner 'root'
+  group 'root'
+  mode '0644'
+  variables(
+    cmd: "/usr/local/bin/kubelet #{kubelet_args.join(' ')}"
+  )
+  only_if { node['platform_version'] == '14.04' }
+end
+
+service 'kubelet' do
+  action [:start, :enable]
+  provider Chef::Provider::Service::Upstart
+  only_if { node['platform_version'] == '14.04' }
+end
+
 systemd_service 'kubelet' do
   description "Systemd unit for Kubernetes worker service (kubelet)"
   after %w( network.target remote-fs.target )
@@ -94,4 +111,6 @@ systemd_service 'kubelet' do
     restart 'on-failure'
     restart_sec '30s'
   end
+  not_if { node['platform_version'] == '14.04' }
 end
+
