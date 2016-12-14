@@ -93,6 +93,7 @@ end
 service 'kubelet' do
   action [:start, :enable]
   provider Chef::Provider::Service::Upstart
+  subscribes :restart, 'template[/etc/init/kubelet.conf]'
   only_if { node['platform_version'] == '14.04' }
 end
 
