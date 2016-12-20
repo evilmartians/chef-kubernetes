@@ -31,6 +31,9 @@ default['kubernetes']['api']['secure_port']                 = 8443
 default['kubernetes']['api']['service_cluster_ip_range']    = '10.222.0.0/16'
 default['kubernetes']['api']['admission_control']           = %w(NamespaceLifecycle LimitRanger ServiceAccount ResourceQuota)
 default['kubernetes']['api']['runtime_config']              = %w(extensions/v1beta1=true extensions/v1beta1/thirdpartyresources=true)
+default['kubernetes']['audit']['enabled']                   = true
+default['kubernetes']['audit']['log_file']                  = '/var/log/kubernetes/audit.log'
+default['kubernetes']['audit']['maxbackup']                 = 3
 default['kubernetes']['kubelet']['client_certificate']      = '/etc/kubernetes/ssl/node.pem'
 default['kubernetes']['kubelet']['client_key']              = '/etc/kubernetes/ssl/node-key.pem'
 default['kubernetes']['kubelet']['image_gc_low_threshold']  = '70'

@@ -39,6 +39,10 @@ spec:
     - --authorization-mode=<%= node['kubernetes']['authorization']['mode'] %>
     <% if node['kubernetes']['authorization']['mode'] == 'ABAC' %>
     - --authorization-policy-file=/etc/kubernetes/authorization-policy.jsonl
+    <%- if node['kubernetes']['audit']['enabled'] %>
+    - --audit-log-maxbackup=<%= node['kubernetes']['audit']['maxbackup'] %>
+    - --audit-log-path=<%= node['kubernetes']['audit']['log_file'] %>
+    <%- end %>
     <% end %>
     env:
       - name: ADVERTISE_ADDRESS
