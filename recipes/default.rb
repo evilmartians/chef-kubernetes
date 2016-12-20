@@ -40,16 +40,7 @@ template '/etc/kubernetes/kubeconfig-bootstrap.yaml' do
   end
 end
 
-template '/etc/kubernetes/kubeconfig.yaml' do
-  source 'kubeconfig.yaml.erb'
-  if node['kubernetes']['token_auth']
-    variables(token: Chef::EncryptedDataBagItem.load(node['kubernetes']['databag'], 'users')['users']
-                .find { |user| user['name'] == 'kubelet' }['token'],
-              ca_file: Base64.encode64(ca_file).gsub(/\n/,''),
-              user: 'kubelet')
-  end
-end
-
+include_recipe 'kubernetes::kubeconfig'
 include_recipe 'kubernetes::proxy'
 
 link '/usr/local/bin/kubelet' do

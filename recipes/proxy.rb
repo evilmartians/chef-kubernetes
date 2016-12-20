@@ -5,6 +5,8 @@
 # Author:: Maxim Filatov <bregor@evilmartians.com>
 #
 
+include_recipe 'kubernetes::kubeconfig'
+
 if node['kubernetes']['install_via'] == 'static_pods'
 
   directory '/etc/kubernetes/manifests' do
