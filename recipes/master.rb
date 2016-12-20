@@ -8,22 +8,14 @@
 include_recipe 'kubernetes::master_detect'
 include_recipe "kubernetes::sdn_#{node['kubernetes']['sdn']}" if node['kubernetes']['use_sdn']
 
-etcd_nodes = search(:node, "role:etcd").map {|node| internal_ip(node)}
-etcd_servers = etcd_nodes.map {|addr| "#{node['etcd']['proto']}://#{addr}:#{node['etcd']['client_port']}"}.join ','
-
-master_nodes = search(:node, "role:#{node['kubernetes']['roles']['master']}")
-
 ['ssl', 'addons'].each do |dir|
   directory "/etc/kubernetes/#{dir}" do
     recursive true
   end
 end
 
-['apiserver', 'controller-manager', 'scheduler', 'addon-manager'].each do |srv|
-  template "/etc/kubernetes/manifests/#{srv}.yaml" do
-    source "#{srv}.yaml.erb"
-    variables(etcd_servers: etcd_servers, apiserver_count: master_nodes.size)
-  end
+template "/etc/kubernetes/manifests/addon-manager.yaml" do
+  source "addon-manager.yaml.erb"
 end
 
 ['skydns-deployment', 'skydns-svc', 'dashboard-deployment', 'dashboard-svc'].each do |srv|
@@ -50,3 +42,5 @@ if node['kubernetes']['token_auth']
     variables(users: Chef::EncryptedDataBagItem.load(node['kubernetes']['databag'], 'users')['users'])
   end
 end
+
+include_recipe "kubernetes::master_#{node['kubernetes']['install_via']}"
