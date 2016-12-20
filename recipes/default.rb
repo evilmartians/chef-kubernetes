@@ -10,6 +10,7 @@ require 'base64'
 include_recipe 'kubernetes::packages'
 include_recipe 'kubernetes::master_detect'
 include_recipe "kubernetes::sdn_#{node['kubernetes']['sdn']}"
+include_recipe 'kubernetes::cleaner'
 
 route node['kubernetes']['api']['service_cluster_ip_range'] do
   device node['kubernetes']['interface']
