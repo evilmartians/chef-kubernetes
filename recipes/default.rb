@@ -49,9 +49,7 @@ template '/etc/kubernetes/kubeconfig.yaml' do
   end
 end
 
-template '/etc/kubernetes/manifests/proxy.yaml' do
-  source 'proxy.yaml.erb'
-end
+include_recipe 'kubernetes::proxy'
 
 link '/usr/local/bin/kubelet' do
   to "/opt/kubernetes/#{node['kubernetes']['version']}/bin/kubelet"
@@ -114,4 +112,3 @@ systemd_service 'kubelet' do
   end
   not_if { node['platform_version'] == '14.04' }
 end
-
