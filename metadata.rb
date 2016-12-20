@@ -8,3 +8,4 @@ version          '0.0.2'
 
 depends 'apt'
 depends 'systemd'
+depends 'etcd'
