@@ -68,11 +68,14 @@ end
 
 if node['kubernetes']['install_via'] == 'upstart'
   template '/etc/init/kube-proxy.conf' do
-    source 'kube-proxy-upstart.erb'
+    source 'upstart.conf.erb'
     owner 'root'
     group 'root'
     mode '0644'
-    variables(cmd: "/usr/local/bin/kube-proxy #{proxy_args.join(' ')}")
+    variables(
+      service_description: 'Kubernetes proxy daemon',
+      cmd: "/usr/local/bin/kube-proxy #{proxy_args.join(' ')}"
+    )
   end
 
   directory "/opt/kubernetes/#{node['kubernetes']['version']}/bin" do
