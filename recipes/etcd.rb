@@ -5,8 +5,8 @@
 # Author:: Maxim Filatov <bregor@evilmartians.com>
 #
 
-nodes = search(:node, 'role:etcd').map {|node| internal_ip(node)}
-initial_cluster_string = nodes.map {|addr| "#{addr}=#{node['etcd']['proto']}://#{addr}:#{node['etcd']['server_port']}"}.join ','
+nodes = search(:node, 'role:etcd').map { |node| internal_ip(node) }
+initial_cluster_string = nodes.map { |addr| "#{addr}=#{node['etcd']['proto']}://#{addr}:#{node['etcd']['server_port']}" }.join ','
 internal_ip = node['network']['interfaces'][node['kubernetes']['interface']]['addresses'].find { |address, data| data['family'] == 'inet' }.first
 
 %w(data wal).each do |t|
@@ -35,8 +35,8 @@ if node['kubernetes']['install_via'] == 'static_pods'
     FileUtils.chown_R('root', 'root', node['etcd']['wal_dir'])
   end
 
-  template "/etc/kubernetes/manifests/etcd.yaml" do
-    source "etcd.yaml.erb"
+  template '/etc/kubernetes/manifests/etcd.yaml' do
+    source 'etcd.yaml.erb'
     variables(initial_cluster: initial_cluster_string)
   end
 

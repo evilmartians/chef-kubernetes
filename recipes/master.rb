@@ -10,17 +10,22 @@ include_recipe "kubernetes::sdn_#{node['kubernetes']['sdn']}" if node['kubernete
 include_recipe 'kubernetes::cleaner'
 include_recipe 'kubernetes::kubeconfig'
 
-['ssl', 'addons'].each do |dir|
+%w(ssl addons).each do |dir|
   directory "/etc/kubernetes/#{dir}" do
     recursive true
   end
 end
 
-template "/etc/kubernetes/manifests/addon-manager.yaml" do
-  source "addon-manager.yaml.erb"
+template '/etc/kubernetes/manifests/addon-manager.yaml' do
+  source 'addon-manager.yaml.erb'
 end
 
-['skydns-deployment', 'skydns-svc', 'dashboard-deployment', 'dashboard-svc'].each do |srv|
+%w(
+  skydns-deployment
+  skydns-svc
+  dashboard-deployment
+  dashboard-svc
+).each do |srv|
   template "/etc/kubernetes/addons/#{srv}.yaml" do
     source "#{srv}.yaml.erb"
   end
