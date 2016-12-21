@@ -35,7 +35,7 @@ template '/etc/kubernetes/kubeconfig-bootstrap.yaml' do
   if node['kubernetes']['token_auth']
     variables(token: Chef::EncryptedDataBagItem.load(node['kubernetes']['databag'], 'users')['users']
                 .find { |user| user['name'] == 'kubelet-bootstrap' }['token'],
-              ca_file: Base64.encode64(ca_file).gsub(/\n/,''),
+              ca_file: Base64.encode64(ca_file).delete("\n"),
               user: 'kubelet-bootstrap')
   end
 end
@@ -89,8 +89,8 @@ service 'kubelet' do
 end
 
 systemd_service 'kubelet' do
-  description "Systemd unit for Kubernetes worker service (kubelet)"
-  after %w( network.target remote-fs.target )
+  description 'Systemd unit for Kubernetes worker service (kubelet)'
+  after %w(network.target remote-fs.target)
   install do
     wanted_by 'multi-user.target'
   end

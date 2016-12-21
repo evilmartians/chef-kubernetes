@@ -10,8 +10,8 @@ include_recipe 'kubernetes::kubeconfig'
 proxy_args = [
   "--bind-address=#{Chef::Recipe.allocate.internal_ip(node)}",
   "--hostname_override=#{Chef::Recipe.allocate.hostname(node)}",
-  "--proxy-mode=iptables",
-  "--kubeconfig=/etc/kubernetes/kubeconfig.yaml"
+  '--proxy-mode=iptables',
+  '--kubeconfig=/etc/kubernetes/kubeconfig.yaml'
 ]
 
 if node['kubernetes']['install_via'] == 'static_pods'
@@ -29,8 +29,8 @@ end
 if node['kubernetes']['install_via'] == 'systemd_units'
 
   systemd_service 'kube-proxy' do
-    description "Systemd unit for Kubernetes Proxy"
-    after %w( network.target remote-fs.target )
+    description 'Systemd unit for Kubernetes Proxy'
+    after %w(network.target remote-fs.target)
     install do
       wanted_by 'multi-user.target'
     end
@@ -60,9 +60,9 @@ if node['kubernetes']['install_via'] == 'systemd_units'
       end
     end
   end
-  link "/usr/local/bin/kube-proxy" do
+  link '/usr/local/bin/kube-proxy' do
     to "/opt/kubernetes/#{node['kubernetes']['version']}/bin/kube-proxy"
-    notifies :restart, "systemd_service[kube-proxy]"
+    notifies :restart, 'systemd_service[kube-proxy]'
   end
 end
 
@@ -94,7 +94,7 @@ if node['kubernetes']['install_via'] == 'upstart'
     end
   end
 
-  link "/usr/local/bin/kube-proxy" do
+  link '/usr/local/bin/kube-proxy' do
     to "/opt/kubernetes/#{node['kubernetes']['version']}/bin/kube-proxy"
   end
 

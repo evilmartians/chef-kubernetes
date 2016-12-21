@@ -5,8 +5,8 @@
 # Author:: Maxim Filatov <bregor@evilmartians.com>
 #
 
-etcd_nodes = search(:node, "role:etcd").map {|node| internal_ip(node)}
-etcd_servers = etcd_nodes.map {|addr| "#{node['etcd']['proto']}://#{addr}:#{node['etcd']['client_port']}"}.join ','
+etcd_nodes = search(:node, 'role:etcd').map { |node| internal_ip(node) }
+etcd_servers = etcd_nodes.map { |addr| "#{node['etcd']['proto']}://#{addr}:#{node['etcd']['client_port']}" }.join ','
 
 master_nodes = search(:node, "role:#{node['kubernetes']['roles']['master']}")
 
@@ -17,7 +17,7 @@ apiserver_args = [
   "--etcd-certfile=#{node['etcd']['cert_file']}",
   "--etcd-keyfile=#{node['etcd']['key_file']}",
   "--etcd-cafile=#{node['etcd']['trusted_ca_file']}",
-  "--allow-privileged=true",
+  '--allow-privileged=true',
   "--apiserver-count=#{master_nodes.size}",
   "--service-cluster-ip-range=#{node['kubernetes']['api']['service_cluster_ip_range']}",
   "--secure-port=#{node['kubernetes']['api']['secure_port']}",
@@ -31,7 +31,7 @@ apiserver_args = [
   "--service-account-key-file=#{node['kubernetes']['service_account_key_file']}",
   "--cloud-config=#{node['kubernetes']['cloud_config']}",
   "--cloud-provider=#{node['kubernetes']['cloud_provider']}",
-  "--log-dir=/var/log/kubernetes",
+  '--log-dir=/var/log/kubernetes',
   "--authorization-mode=#{node['kubernetes']['authorization']['mode']}"
 ]
 
@@ -40,7 +40,7 @@ if node['kubernetes']['token_auth']
 end
 
 if node['kubernetes']['authorization']['mode'] == 'ABAC'
-  apiserver_args.push "--authorization-policy-file=/etc/kubernetes/authorization-policy.jsonl"
+  apiserver_args.push '--authorization-policy-file=/etc/kubernetes/authorization-policy.jsonl'
 end
 
 if node['kubernetes']['audit']['enabled']
@@ -49,8 +49,8 @@ if node['kubernetes']['audit']['enabled']
 end
 
 systemd_service 'kube-apiserver' do
-  description "Systemd unit for Kubernetes API server"
-  after %w( network.target remote-fs.target )
+  description 'Systemd unit for Kubernetes API server'
+  after %w(network.target remote-fs.target)
   install do
     wanted_by 'multi-user.target'
   end
@@ -66,8 +66,8 @@ systemd_service 'kube-apiserver' do
 end
 
 controller_manager_args = [
-  "--address=127.0.0.1",
-  "--leader-elect=true",
+  '--address=127.0.0.1',
+  '--leader-elect=true',
   "--cloud-config=#{node['kubernetes']['cloud_config']}",
   "--cloud-provider=#{node['kubernetes']['cloud_provider']}",
   "--cluster-cidr=#{node['kubernetes']['api']['service_cluster_ip_range']}",
@@ -77,14 +77,14 @@ controller_manager_args = [
   "--cluster-signing-key-file=#{node['kubernetes']['cluster_signing_key_file']}",
   "--root-ca-file=#{node['kubernetes']['client_ca_file']}",
   "--master=http://127.0.0.1:#{node['kubernetes']['api']['insecure_port']}",
-  "--node-monitor-period=2s",
-  "--node-monitor-grace-period=16s",
-  "--pod-eviction-timeout=30s"
+  '--node-monitor-period=2s',
+  '--node-monitor-grace-period=16s',
+  '--pod-eviction-timeout=30s'
 ]
 
 systemd_service 'kube-controller-manager' do
-  description "Systemd unit for Kubernetes Controller Manager"
-  after %w( network.target remote-fs.target apiserver.service )
+  description 'Systemd unit for Kubernetes Controller Manager'
+  after %w(network.target remote-fs.target apiserver.service)
   install do
     wanted_by 'multi-user.target'
   end
@@ -100,14 +100,14 @@ systemd_service 'kube-controller-manager' do
 end
 
 scheduler_args = [
-  "--address=127.0.0.1",
-  "--leader-elect=true",
+  '--address=127.0.0.1',
+  '--leader-elect=true',
   "--master=http://127.0.0.1:#{node['kubernetes']['api']['insecure_port']}"
 ]
 
 systemd_service 'kube-scheduler' do
-  description "Systemd unit for Kubernetes Scheduler"
-  after %w( network.target remote-fs.target apiserver.service )
+  description 'Systemd unit for Kubernetes Scheduler'
+  after %w(network.target remote-fs.target apiserver.service)
   install do
     wanted_by 'multi-user.target'
   end
