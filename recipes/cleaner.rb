@@ -16,6 +16,15 @@ require 'fileutils'
   if node['kubernetes']['install_via'] == 'static_pods'
     systemd_service "kube-#{srv}" do
       action [:disable, :stop]
+      only_if { node['init_package'] == 'systemd' }
+    end
+  end
+
+  if node['kubernetes']['install_via'] == 'upstart'
+    FileUtils.rm_f "/etc/kubernetes/manifests/#{srv}.yaml"
+    systemd_service "kube-#{srv}" do
+      action [:disable, :stop]
+      only_if { node['init_package'] == 'systemd' }
     end
   end
 
