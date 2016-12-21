@@ -70,11 +70,12 @@ kubelet_args = [
 ]
 
 template '/etc/init/kubelet.conf' do
-  source 'kubelet-upstart.erb'
+  source 'upstart.conf.erb'
   owner 'root'
   group 'root'
   mode '0644'
   variables(
+    service_description: 'Kubebernetes workload daemon',
     cmd: "/usr/local/bin/kubelet #{kubelet_args.join(' ')}"
   )
   only_if { node['platform_version'] == '14.04' }
