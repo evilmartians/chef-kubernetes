@@ -7,7 +7,7 @@
 
 require 'fileutils'
 
-%w(apiserver controller-manager scheduler proxy).each do |srv|
+%w(apiserver controller-manager scheduler proxy addon-manager).each do |srv|
 
   if node['kubernetes']['install_via'] == 'systemd_units'
     FileUtils.rm_f "/etc/kubernetes/manifests/#{srv}.yaml"

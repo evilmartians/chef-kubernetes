@@ -16,10 +16,6 @@ include_recipe 'kubernetes::kubeconfig'
   end
 end
 
-template '/etc/kubernetes/manifests/addon-manager.yaml' do
-  source 'addon-manager.yaml.erb'
-end
-
 %w(
   skydns-deployment
   skydns-svc

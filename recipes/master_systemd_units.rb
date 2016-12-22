@@ -122,6 +122,36 @@ systemd_service 'kube-scheduler' do
   end
 end
 
+template '/etc/kubernetes/kube-system-ns.yaml' do
+  source 'kube-system-ns.yaml.erb'
+  mode '0644'
+end
+
+template '/usr/local/bin/kube-addon-manager' do
+  source 'kube-addon-manager.sh.erb'
+  owner 'root'
+  group 'root'
+  mode '0755'
+end
+
+systemd_service 'kube-addon-manager' do
+  description 'Systemd unit for Kubernetes Addon Manager'
+  after %w(network.target remote-fs.target apiserver.service)
+  install do
+    wanted_by 'multi-user.target'
+  end
+  subscribes :restart, 'template[/usr/local/bin/kube-addon-manager]'
+  service do
+    type 'simple'
+    user 'root'
+    exec_start '/usr/local/bin/kube-addon-manager'
+    exec_reload '/bin/kill -HUP $MAINPID'
+    working_directory '/'
+    restart 'on-failure'
+    restart_sec '30s'
+  end
+end
+
 directory "/opt/kubernetes/#{node['kubernetes']['version']}/bin" do
   recursive true
 end

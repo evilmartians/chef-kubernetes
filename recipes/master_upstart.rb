@@ -122,6 +122,36 @@ service 'kube-scheduler' do
   subscribes :restart, 'link[/usr/local/bin/kube-scheduler]'
 end
 
+template '/etc/kubernetes/kube-system-ns.yaml' do
+  source 'kube-system-ns.yaml.erb'
+  mode '0644'
+end
+
+template '/usr/local/bin/kube-addon-manager' do
+  source 'kube-addon-manager.sh.erb'
+  owner 'root'
+  group 'root'
+  mode '0755'
+end
+
+template '/etc/init/kube-addon-manager.conf' do
+  source 'upstart.conf.erb'
+  owner 'root'
+  group 'root'
+  mode '0644'
+  variables(
+    service_description: 'Kubernetes Addon Manager',
+    cmd: "/usr/local/bin/kube-addon-manager"
+  )
+end
+
+service 'kube-addon-manager' do
+  action [:start, :enable]
+  provider Chef::Provider::Service::Upstart
+  subscribes :restart, 'template[/usr/local/bin/kube-addon-manager]'
+  subscribes :restart, 'template[/etc/init/kube-addon-manager.conf]'
+end
+
 directory "/opt/kubernetes/#{node['kubernetes']['version']}/bin" do
   recursive true
 end
