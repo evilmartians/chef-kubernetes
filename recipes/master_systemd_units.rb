@@ -50,6 +50,7 @@ end
 
 systemd_service 'kube-apiserver' do
   description 'Systemd unit for Kubernetes API server'
+  action [:enable, :start]
   after %w(network.target remote-fs.target)
   install do
     wanted_by 'multi-user.target'
@@ -84,6 +85,7 @@ controller_manager_args = [
 
 systemd_service 'kube-controller-manager' do
   description 'Systemd unit for Kubernetes Controller Manager'
+  action [:enable, :start]
   after %w(network.target remote-fs.target apiserver.service)
   install do
     wanted_by 'multi-user.target'
@@ -107,6 +109,7 @@ scheduler_args = [
 
 systemd_service 'kube-scheduler' do
   description 'Systemd unit for Kubernetes Scheduler'
+  action [:enable, :start]
   after %w(network.target remote-fs.target apiserver.service)
   install do
     wanted_by 'multi-user.target'
@@ -136,6 +139,7 @@ end
 
 systemd_service 'kube-addon-manager' do
   description 'Systemd unit for Kubernetes Addon Manager'
+  action [:enable, :start]
   after %w(network.target remote-fs.target apiserver.service)
   install do
     wanted_by 'multi-user.target'
