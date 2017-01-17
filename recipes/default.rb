@@ -90,6 +90,7 @@ end
 
 systemd_service 'kubelet' do
   description 'Systemd unit for Kubernetes worker service (kubelet)'
+  action [:enable, :start]
   after %w(network.target remote-fs.target)
   install do
     wanted_by 'multi-user.target'

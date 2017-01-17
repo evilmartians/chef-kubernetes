@@ -50,6 +50,7 @@ end
 
 systemd_service 'kube-apiserver' do
   description 'Systemd unit for Kubernetes API server'
+  action [:enable, :start]
   after %w(network.target remote-fs.target)
   install do
     wanted_by 'multi-user.target'
@@ -84,6 +85,7 @@ controller_manager_args = [
 
 systemd_service 'kube-controller-manager' do
   description 'Systemd unit for Kubernetes Controller Manager'
+  action [:enable, :start]
   after %w(network.target remote-fs.target apiserver.service)
   install do
     wanted_by 'multi-user.target'
@@ -107,6 +109,7 @@ scheduler_args = [
 
 systemd_service 'kube-scheduler' do
   description 'Systemd unit for Kubernetes Scheduler'
+  action [:enable, :start]
   after %w(network.target remote-fs.target apiserver.service)
   install do
     wanted_by 'multi-user.target'
@@ -115,6 +118,37 @@ systemd_service 'kube-scheduler' do
     type 'simple'
     user 'root'
     exec_start "/usr/local/bin/kube-scheduler #{scheduler_args.join(' ')}"
+    exec_reload '/bin/kill -HUP $MAINPID'
+    working_directory '/'
+    restart 'on-failure'
+    restart_sec '30s'
+  end
+end
+
+template '/etc/kubernetes/kube-system-ns.yaml' do
+  source 'kube-system-ns.yaml.erb'
+  mode '0644'
+end
+
+template '/usr/local/bin/kube-addon-manager' do
+  source 'kube-addon-manager.sh.erb'
+  owner 'root'
+  group 'root'
+  mode '0755'
+end
+
+systemd_service 'kube-addon-manager' do
+  description 'Systemd unit for Kubernetes Addon Manager'
+  action [:enable, :start]
+  after %w(network.target remote-fs.target apiserver.service)
+  install do
+    wanted_by 'multi-user.target'
+  end
+  subscribes :restart, 'template[/usr/local/bin/kube-addon-manager]'
+  service do
+    type 'simple'
+    user 'root'
+    exec_start '/usr/local/bin/kube-addon-manager'
     exec_reload '/bin/kill -HUP $MAINPID'
     working_directory '/'
     restart 'on-failure'
