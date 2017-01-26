@@ -19,8 +19,12 @@ file '/etc/docker/daemon.json' do
   owner 'root'
   group 'root'
   mode '0644'
-  content(node['docker'].to_json)
-  not_if { node['platform_version'].to_f < 16.04 }
+  content(node['docker']['settings'].to_json)
+end
+
+apt_preference 'docker-engine' do
+  pin          "version #{node['docker']['version']}~#{node['platform']}-#{node['lsb']['codename']}"
+  pin_priority '700'
 end
 
 package 'docker-engine' do
