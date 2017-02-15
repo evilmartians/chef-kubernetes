@@ -11,6 +11,9 @@ spec:
       labels:
         name: weave-net
       annotations:
+        prometheus.io/path: /metrics
+        prometheus.io/port: "6782"
+        prometheus.io/scrape: "true"
         scheduler.alpha.kubernetes.io/tolerations: |
           [
             {
