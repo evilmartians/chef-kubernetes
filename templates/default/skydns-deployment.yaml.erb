@@ -96,7 +96,7 @@ spec:
         - --server=/in-addr.arpa/127.0.0.1#10053
         - --server=/ip6.arpa/127.0.0.1#10053
         - --log-facility=-
-        - --dns-forward-max=300
+        - --dns-forward-max=<%= node['kubernetes']['addons']['dns']['dns_forward_max'] %>
         ports:
         - containerPort: 53
           name: dns
