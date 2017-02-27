@@ -60,6 +60,8 @@ spec:
               mountPath: /host/etc
             - name: dbus
               mountPath: /host/var/lib/dbus
+            - name: lib-modules
+              mountPath: /lib/modules
           resources:
             requests:
               cpu: 10m
@@ -94,3 +96,6 @@ spec:
         - name: dbus
           hostPath:
             path: /var/lib/dbus
+        - name: lib-modules
+          hostPath:
+            path: /lib/modules
