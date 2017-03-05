@@ -30,7 +30,7 @@ if node['kubernetes']['install_via'] == 'systemd_units'
 
   systemd_service 'kube-proxy' do
     description 'Systemd unit for Kubernetes Proxy'
-    action [:enable, :start]
+    action [:create, :enable, :start]
     after %w(network.target remote-fs.target)
     install do
       wanted_by 'multi-user.target'
