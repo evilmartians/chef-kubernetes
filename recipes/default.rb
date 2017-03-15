@@ -69,6 +69,12 @@ kubelet_args = [
   "--v=#{node['kubernetes']['kubelet']['verbosity']}"
 ]
 
+if node['kubernetes']['kubelet']['system_reserved']
+  res = node['kubernetes']['kubelet']['system_reserved']
+  res = res.map { |hash| hash.map { |k, v| "#{k}=#{v}" }}.join(',')
+  kubelet_args << "--system-reserved=#{res}"
+end
+
 template '/etc/init/kubelet.conf' do
   source 'upstart.conf.erb'
   owner 'root'
