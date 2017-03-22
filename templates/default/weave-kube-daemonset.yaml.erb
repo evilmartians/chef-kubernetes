@@ -81,6 +81,13 @@ spec:
           securityContext:
             privileged: true
       restartPolicy: Always
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
+      serviceAccountName: weave-net
+      securityContext:
+        seLinuxOptions:
+          type: spc_t
       volumes:
         - name: weavedb
           emptyDir: {}
