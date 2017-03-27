@@ -17,6 +17,7 @@ apiserver_args = [
   "--etcd-certfile=#{node['etcd']['cert_file']}",
   "--etcd-keyfile=#{node['etcd']['key_file']}",
   "--etcd-cafile=#{node['etcd']['trusted_ca_file']}",
+  "--storage-backend=#{node['kubernetes']['api']['storage_backend']}",
   '--allow-privileged=true',
   "--apiserver-count=#{master_nodes.size}",
   "--service-cluster-ip-range=#{node['kubernetes']['api']['service_cluster_ip_range']}",
