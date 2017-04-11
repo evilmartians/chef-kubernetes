@@ -5,14 +5,35 @@
 # Author:: Maxim Filatov <bregor@evilmartians.com>
 #
 
-nodes = search(:node, 'role:etcd').map { |node| internal_ip(node) }
+nodes = search(:node, "role:#{node['etcd']['role']}").map { |n| internal_ip(n) }.sort
 initial_cluster_string = nodes.map { |addr| "#{addr}=#{node['etcd']['proto']}://#{addr}:#{node['etcd']['server_port']}" }.join ','
 internal_ip = node['network']['interfaces'][node['kubernetes']['interface']]['addresses'].find { |address, data| data['family'] == 'inet' }.first
 
-%w(data wal).each do |t|
-  directory node['etcd']["#{t}_dir"] do
+group node['etcd']['group'] do
+  not_if { node['kubernetes']['install_via'] == 'static_pods' }
+end
+
+user node['etcd']['user'] do
+  comment 'Etcd user'
+  gid node['etcd']['group']
+  shell '/bin/bash'
+  not_if { node['kubernetes']['install_via'] == 'static_pods' }
+end
+
+etcd_user = node['etcd']['user']
+etcd_group = node['etcd']['group']
+
+case node['kubernetes']['install_via']
+when 'static_pods'
+  etcd_user = 'root'
+  etcd_group = 'root'
+end
+
+[node['etcd']['data_dir'], "#{node['etcd']['data_dir']}/member", node['etcd']['wal_dir']].each do |d|
+  directory d do
     recursive true
-    not_if { File.exist?(node['etcd']["#{t}_dir"]) }
+    owner etcd_user
+    group etcd_group
   end
 end
 
@@ -20,19 +41,6 @@ if node['kubernetes']['install_via'] == 'static_pods'
 
   directory '/etc/kubernetes/manifests' do
     recursive true
-  end
-
-  systemd_service "etcd-#{internal_ip}" do
-    action [:disable, :stop]
-    only_if { node['init_package'] == 'systemd' }
-  end
-
-  unless Etc.getpwuid(File.stat(node['etcd']['data_dir']).uid).name == 'root'
-    FileUtils.chown_R('root', 'root', node['etcd']['data_dir'])
-  end
-
-  unless Etc.getpwuid(File.stat(node['etcd']['wal_dir']).uid).name == 'root'
-    FileUtils.chown_R('root', 'root', node['etcd']['wal_dir'])
   end
 
   template '/etc/kubernetes/manifests/etcd.yaml' do
@@ -45,14 +53,6 @@ end
 if node['kubernetes']['install_via'] == 'systemd_units'
 
   FileUtils.rm_f('/etc/kubernetes/manifests/etcd.yaml')
-
-  unless Etc.getpwuid(File.stat(node['etcd']['data_dir']).uid).name == 'etcd'
-    FileUtils.chown_R(node['etcd']['user'], node['etcd']['group'], node['etcd']['data_dir'])
-  end
-
-  unless Etc.getpwuid(File.stat(node['etcd']['wal_dir']).uid).name == 'etcd'
-    FileUtils.chown_R(node['etcd']['user'], node['etcd']['group'], node['etcd']['wal_dir'])
-  end
 
   etcd_service 'etcd' do
     action [:create, :start]
@@ -69,6 +69,7 @@ if node['kubernetes']['install_via'] == 'systemd_units'
     initial_cluster initial_cluster_string
     initial_cluster_state node['etcd']['initial_cluster_state']
     version node['etcd']['version'].tr('A-z', '')
+    not_if { nodes.any?(&:empty?) }
   end
 
 end
