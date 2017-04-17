@@ -11,6 +11,7 @@ include_recipe 'kubernetes::packages'
 include_recipe 'kubernetes::master_detect'
 include_recipe "kubernetes::sdn_#{node['kubernetes']['sdn']}"
 include_recipe 'kubernetes::cleaner'
+include_recipe 'kubernetes::haproxy' if node['kubernetes']['multimaster']['access_via'] == 'haproxy'
 
 route node['kubernetes']['api']['service_cluster_ip_range'] do
   device node['kubernetes']['interface']
@@ -27,8 +28,6 @@ ca_file = Chef::EncryptedDataBagItem.load(node['kubernetes']['databag'], "#{node
 file node['kubernetes']['client_ca_file'] do
   content ca_file
 end
-
-include_recipe 'kubernetes::haproxy' if node['kubernetes']['multimaster']['access_via'] == 'haproxy'
 
 template '/etc/kubernetes/kubeconfig-bootstrap.yaml' do
   source 'kubeconfig.yaml.erb'

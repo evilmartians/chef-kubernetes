@@ -5,6 +5,16 @@
 # Author:: Maxim Filatov <bregor@evilmartians.com>
 #
 
+package 'iptables'
+package 'ebtables'
+package 'socat'
+package 'ethtool'
+package 'kmod'
+package 'tcpd'
+package 'dbus'
+package 'apt-transport-https'
+package 'linux-image-extra-virtual' if node['docker']['settings']['storage-driver'] == 'aufs'
+
 apt_repository 'docker' do
   uri 'https://apt.dockerproject.org/repo'
   distribution "#{node['platform']}-#{node['lsb']['codename']}"
@@ -30,15 +40,6 @@ end
 package 'docker-engine' do
   options '-o Dpkg::Options::="--force-confold"'
 end
-
-package 'iptables'
-package 'ebtables'
-package 'socat'
-package 'ethtool'
-package 'kmod'
-package 'tcpd'
-package 'dbus'
-package 'apt-transport-https'
 
 if node['lsb']['release'].to_i >= 16
   apt_repository 'kubernetes' do

@@ -16,10 +16,13 @@ service 'haproxy' do
   action :nothing
 end
 
-master_nodes = search(:node, "role:#{node['kubernetes']['roles']['master']}").map { |node| { name: hostname(node), ip: internal_ip(node) } }
+master_nodes = search(:node, "role:#{node['kubernetes']['roles']['master']}")
+if !master_nodes.empty? && master_nodes.all? {|n| n.keys.include? 'kubernetes'}
+  master_nodes.map! { |node| { name: hostname(node), ip: internal_ip(node) } }
 
-template '/etc/haproxy/haproxy.cfg' do
-  source 'haproxy.cfg.erb'
-  variables(nodes: master_nodes)
-  notifies :restart, 'service[haproxy]'
+  template '/etc/haproxy/haproxy.cfg' do
+    source 'haproxy.cfg.erb'
+    variables(nodes: master_nodes)
+    notifies :restart, 'service[haproxy]'
+  end
 end
