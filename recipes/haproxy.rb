@@ -6,7 +6,7 @@
 #
 
 apt_repository 'haproxy' do
-  uri 'ppa:vbernat/haproxy-1.6'
+  uri 'ppa:vbernat/haproxy-1.7'
   distribution node['lsb']['codename']
 end
 
