@@ -7,7 +7,7 @@
 
 require 'base64'
 
-ca_file = Chef::EncryptedDataBagItem.load(node['kubernetes']['databag'], "#{node['kubernetes']['cluster_name']}_cluster_ssl")['client_ca_file']
+ca_file = Chef::EncryptedDataBagItem.load(node['kubernetes']['databag'], 'ca_ssl')['public_key']
 
 file node['kubernetes']['client_ca_file'] do
   content ca_file
