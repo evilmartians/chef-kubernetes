@@ -1,0 +1,48 @@
+ca_config:
+  signing:
+    default:
+      expiry: 8760h
+    profiles:
+      kubernetes:
+        usages: ["signing", "key encipherment", "server auth", "client auth"]
+        expiry: 8760h
+csr:
+  key:
+    algo: rsa
+    size: 2048
+  profile: kubernetes
+names:
+  common:
+    C: RU
+    L: Moscow
+    ST: Moscow
+  ca:
+    O: Kubernetes
+    OU: CA
+  admin:
+    O: system:masters
+    OU: Cluster
+  proxy:
+    O: system:node-proxier
+    OU: Cluster
+  apiserver:
+    O: Kubernetes
+    OU: Cluster
+accounts:
+  admin:
+    cn: admin
+    hosts: []
+  proxy:
+    cn: system:kube-proxy
+    hosts: []
+  apiserver:
+    cn: kubernetes
+    hosts:
+    - ''
+    - 127.0.0.1
+    - 10.222.0.1
+    - kubernetes
+    - kubernetes.default
+    - kubernetes.default.svc
+    - kubernetes.local
+    - kubernetes.default.svc.kubernetes.local
