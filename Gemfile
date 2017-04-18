@@ -15,3 +15,5 @@ gem 'berkshelf'
 # end
 
 gem 'thor-foodcritic'
+
+gem 'chef', '~>12'
