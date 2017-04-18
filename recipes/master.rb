@@ -28,9 +28,11 @@ end
   end
 end
 
-%w(client_ca_file ca_key_file tls_cert_file tls_private_key_file).each do |f|
-  file node['kubernetes'][f.to_sym] do
-    content Chef::EncryptedDataBagItem.load(node['kubernetes']['databag'], "#{node['kubernetes']['cluster_name']}_cluster_ssl")[f]
+%w(apiserver ca).each do |keypair|
+  %w(public_key private_key).each do |key_type|
+    file node['kubernetes']['ssl'][keypair][key_type] do
+      content Chef::EncryptedDataBagItem.load(node['kubernetes']['databag'], "#{keypair}_ssl")[key_type]
+    end
   end
 end
 
