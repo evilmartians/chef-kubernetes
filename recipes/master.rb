@@ -8,13 +8,14 @@
 include_recipe 'kubernetes::master_detect'
 include_recipe "kubernetes::sdn_#{node['kubernetes']['sdn']}" if node['kubernetes']['use_sdn']
 include_recipe 'kubernetes::cleaner'
-include_recipe 'kubernetes::kubeconfig'
 
 %w(ssl addons).each do |dir|
   directory "/etc/kubernetes/#{dir}" do
     recursive true
   end
 end
+
+include_recipe 'kubernetes::kubeconfig'
 
 %w(
   kubedns-sa
