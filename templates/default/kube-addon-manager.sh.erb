@@ -30,7 +30,7 @@
 # was already enforced by salt, and /etc/kubernetes/addons is the
 # managed result is of that. Start everything below that directory.
 KUBECTL=${KUBECTL_BIN:-/usr/local/bin/kubectl}
-KUBECTL_OPTS=${KUBECTL_OPTS:-"--kubeconfig=/etc/kubernetes/kubeconfig.yaml"}
+KUBECTL_OPTS=${KUBECTL_OPTS:-"--server=http://<%= node['kubernetes']['api']['insecure_bind_address'] %>:<%= node['kubernetes']['api']['insecure_port'] %>"}
 
 ADDON_CHECK_INTERVAL_SEC=${TEST_ADDON_CHECK_INTERVAL_SEC:-10}
 ADDON_PATH=${ADDON_PATH:-/etc/kubernetes/addons}
