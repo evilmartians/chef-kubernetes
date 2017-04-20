@@ -81,6 +81,7 @@ spec:
           securityContext:
             privileged: true
       restartPolicy: Always
+      serviceAccountName: weave-net
       volumes:
         - name: weavedb
           emptyDir: {}
