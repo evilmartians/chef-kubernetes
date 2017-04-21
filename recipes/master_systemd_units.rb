@@ -34,7 +34,8 @@ apiserver_args = [
   "--cloud-config=#{node['kubernetes']['cloud_config']}",
   "--cloud-provider=#{node['kubernetes']['cloud_provider']}",
   '--log-dir=/var/log/kubernetes',
-  "--authorization-mode=#{node['kubernetes']['authorization']['mode']}"
+  "--authorization-mode=#{node['kubernetes']['authorization']['mode']}",
+  "--experimental-bootstrap-token-auth"
 ]
 
 if node['kubernetes']['token_auth']
