@@ -37,7 +37,7 @@ default['kubernetes']['api']['insecure_port']               = 8080
 default['kubernetes']['api']['secure_port']                 = 8443
 default['kubernetes']['api']['service_cluster_ip_range']    = '10.222.0.0/16'
 default['kubernetes']['api']['admission_control']           = %w(NamespaceLifecycle LimitRanger ServiceAccount ResourceQuota)
-default['kubernetes']['api']['runtime_config']              = %w(extensions/v1beta1=true extensions/v1beta1/thirdpartyresources=true)
+default['kubernetes']['api']['runtime_config']              = %w(rbac.authorization.k8s.io/v1alpha1)
 default['kubernetes']['api']['storage_backend']             = 'etcd2'
 default['kubernetes']['api']['storage_media_type']          = 'application/json'
 default['kubernetes']['audit']['enabled']                   = true
