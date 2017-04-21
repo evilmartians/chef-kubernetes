@@ -103,7 +103,7 @@ systemd_service 'kubelet' do
   service do
     type 'simple'
     user 'root'
-    exec_start "/usr/local/bin/kubelet #{kubelet_args.join(' ')}"
+    exec_start "/usr/local/bin/kubelet #{kubelet_args.join(" \\\n")}"
     exec_reload '/bin/kill -HUP $MAINPID'
     working_directory '/'
     restart 'on-failure'

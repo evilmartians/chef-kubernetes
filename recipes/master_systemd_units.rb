@@ -58,7 +58,7 @@ systemd_service 'kube-apiserver' do
   service do
     type 'simple'
     user 'root'
-    exec_start "/usr/local/bin/kube-apiserver #{apiserver_args.join(' ')}"
+    exec_start "/usr/local/bin/kube-apiserver #{apiserver_args.join(" \\\n")}"
     exec_reload '/bin/kill -HUP $MAINPID'
     working_directory '/'
     restart 'on-failure'
@@ -93,7 +93,7 @@ systemd_service 'kube-controller-manager' do
   service do
     type 'simple'
     user 'root'
-    exec_start "/usr/local/bin/kube-controller-manager #{controller_manager_args.join(' ')}"
+    exec_start "/usr/local/bin/kube-controller-manager #{controller_manager_args.join(" \\\n")}"
     exec_reload '/bin/kill -HUP $MAINPID'
     working_directory '/'
     restart 'on-failure'
@@ -117,7 +117,7 @@ systemd_service 'kube-scheduler' do
   service do
     type 'simple'
     user 'root'
-    exec_start "/usr/local/bin/kube-scheduler #{scheduler_args.join(' ')}"
+    exec_start "/usr/local/bin/kube-scheduler #{scheduler_args.join(" \\\n")}"
     exec_reload '/bin/kill -HUP $MAINPID'
     working_directory '/'
     restart 'on-failure'
