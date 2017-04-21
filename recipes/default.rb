@@ -55,6 +55,7 @@ kubelet_args = [
   "--hostname_override=#{Chef::Recipe.allocate.hostname(node)}",
   "--node-ip=#{Chef::Recipe.allocate.internal_ip(node)}",
   '--allow_privileged=true',
+  "--register-node=#{node['kubernetes']['kubelet']['register_node']}",
   '--pod-manifest-path=/etc/kubernetes/manifests',
   '--node-status-update-frequency=4s',
   '--kubeconfig=/etc/kubernetes/kubeconfig.yaml',
