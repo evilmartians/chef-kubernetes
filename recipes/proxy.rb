@@ -38,7 +38,7 @@ if node['kubernetes']['install_via'] == 'systemd_units'
     service do
       type 'simple'
       user 'root'
-      exec_start "/usr/local/bin/kube-proxy #{proxy_args.join(' ')}"
+      exec_start "/usr/local/bin/kube-proxy #{proxy_args.join(" \\\n")}"
       exec_reload '/bin/kill -HUP $MAINPID'
       working_directory '/'
       restart 'on-failure'
