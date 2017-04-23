@@ -34,6 +34,15 @@ defaults
 	errorfile 504 /etc/haproxy/errors/504.http
 	default-server init-addr last,libc,none
 
+<% @resolvers.each do |resolver| %>
+resolvers <%= resolver[:name] %>
+<% resolver[:nameservers].each_with_index do |ns, index| %>
+  nameserver dns<%= index %> <%= ns[0] %>:<%= ns[1] %>
+<% end %>
+  timeout retry <%= resolver[:timeout_retry] %>
+  resolve_retries <%= resolver[:resolve_retries] %>
+<% end %>
+
 frontend localhost
     bind <%= node['kubernetes']['multimaster']['haproxy_url'] %>:<%= node['kubernetes']['multimaster']['haproxy_port'] %>
     option tcplog
