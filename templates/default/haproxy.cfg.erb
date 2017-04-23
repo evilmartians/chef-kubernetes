@@ -32,6 +32,7 @@ defaults
 	errorfile 502 /etc/haproxy/errors/502.http
 	errorfile 503 /etc/haproxy/errors/503.http
 	errorfile 504 /etc/haproxy/errors/504.http
+	default-server init-addr last,libc,none
 
 frontend localhost
     bind <%= node['kubernetes']['multimaster']['haproxy_url'] %>:<%= node['kubernetes']['multimaster']['haproxy_port'] %>
