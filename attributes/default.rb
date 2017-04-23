@@ -12,6 +12,7 @@ default['kubernetes']['master']                             = '127.0.0.1'
 default['kubernetes']['cluster_name']                       = 'kubernetes'
 default['kubernetes']['cluster_dns']                        = '10.222.222.222'
 default['kubernetes']['cluster_domain']                     = 'kubernetes.local'
+default['kubernetes']['use_cluster_dns_systemwide']         = false
 default['kubernetes']['ssl']['ca']['public_key']            = '/etc/kubernetes/ssl/ca.pem'
 default['kubernetes']['ssl']['ca']['private_key']           = '/etc/kubernetes/ssl/ca-key.pem'
 default['kubernetes']['ssl']['apiserver']['public_key']     = '/etc/kubernetes/ssl/apiserver.pem'

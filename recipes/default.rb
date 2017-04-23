@@ -11,11 +11,8 @@ include_recipe 'kubernetes::packages'
 include_recipe 'kubernetes::master_detect'
 include_recipe "kubernetes::sdn_#{node['kubernetes']['sdn']}"
 include_recipe 'kubernetes::cleaner'
+include_recipe 'kubernetes::networking'
 include_recipe 'kubernetes::haproxy' if node['kubernetes']['multimaster']['access_via'] == 'haproxy'
-
-route node['kubernetes']['api']['service_cluster_ip_range'] do
-  device node['kubernetes']['interface']
-end
 
 %w(manifests ssl addons).each do |dir|
   directory("/etc/kubernetes/#{dir}") do
