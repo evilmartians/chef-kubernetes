@@ -39,7 +39,7 @@ if node['kubernetes']['token_auth']
   apiserver_args.push "--token-auth-file=#{node['kubernetes']['token_auth_file']}"
 end
 
-if node['kubernetes']['authorization']['mode'] == 'ABAC'
+if node['kubernetes']['authorization']['mode'].include? 'ABAC'
   apiserver_args.push '--authorization-policy-file=/etc/kubernetes/authorization-policy.jsonl'
 end
 

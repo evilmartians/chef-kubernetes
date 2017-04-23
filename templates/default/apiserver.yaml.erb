@@ -37,7 +37,7 @@ spec:
     - --token-auth-file=<%= node['kubernetes']['token_auth_file'] %>
     <% end %>
     - --authorization-mode=<%= node['kubernetes']['authorization']['mode'] %>
-    <% if node['kubernetes']['authorization']['mode'] == 'ABAC' %>
+    <% if node['kubernetes']['authorization']['mode'].include? 'ABAC' %>
     - --authorization-policy-file=/etc/kubernetes/authorization-policy.jsonl
     <%- if node['kubernetes']['audit']['enabled'] %>
     - --audit-log-maxbackup=<%= node['kubernetes']['audit']['maxbackup'] %>

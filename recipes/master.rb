@@ -35,7 +35,7 @@ end
   end
 end
 
-if node['kubernetes']['authorization']['mode'] == 'ABAC'
+if node['kubernetes']['authorization']['mode'].include? 'ABAC'
   template '/etc/kubernetes/authorization-policy.jsonl' do
     source 'authorization-policy.jsonl.erb'
   end
