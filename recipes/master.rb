@@ -19,6 +19,7 @@ include_recipe 'kubernetes::kubeconfig'
 
 %w(
   kubedns-sa
+  kubedns-cm
   skydns-deployment
   skydns-svc
   dashboard-deployment
