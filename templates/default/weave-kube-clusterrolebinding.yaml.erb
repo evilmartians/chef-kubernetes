@@ -1,5 +1,5 @@
-apiVersion: rbac.authorization.k8s.io/v1alpha1
 kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1alpha1
 metadata:
   labels:
     addonmanager.kubernetes.io/mode: Reconcile
@@ -11,6 +11,6 @@ roleRef:
   kind: ClusterRole
   name: weave-net
 subjects:
-  - kind: ServiceAccount
-    name: weave-net
-    namespace: kube-system
+- kind: ServiceAccount
+  name: weave-net
+  namespace: kube-system
