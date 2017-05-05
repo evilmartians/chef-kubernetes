@@ -5,6 +5,7 @@ metadata:
   namespace: kube-system
   labels:
     addonmanager.kubernetes.io/mode: Reconcile
+    kubernetes.io/cluster-service: "true"
 spec:
   template:
     metadata:
@@ -14,15 +15,6 @@ spec:
         prometheus.io/path: /metrics
         prometheus.io/port: "6782"
         prometheus.io/scrape: "true"
-        scheduler.alpha.kubernetes.io/tolerations: |
-          [
-            {
-              "key": "dedicated",
-              "operator": "Equal",
-              "value": "master",
-              "effect": "NoSchedule"
-            }
-          ]
     spec:
       hostNetwork: true
       hostPID: true
