@@ -11,7 +11,7 @@ proxy_args = [
   "--bind-address=#{Chef::Recipe.allocate.internal_ip(node)}",
   "--hostname_override=#{Chef::Recipe.allocate.hostname(node)}",
   '--proxy-mode=iptables',
-  '--kubeconfig=/etc/kubernetes/kubeconfig.yaml'
+  '--kubeconfig=/etc/kubernetes/system:kube-proxy_config.yaml'
 ]
 
 if node['kubernetes']['install_via'] == 'static_pods'
