@@ -13,6 +13,7 @@ package 'kmod'
 package 'tcpd'
 package 'dbus'
 package 'apt-transport-https'
+package 'conntrack'
 package 'linux-image-extra-virtual' if node['docker']['settings']['storage-driver'] == 'aufs'
 
 apt_repository 'docker' do
