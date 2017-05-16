@@ -24,40 +24,15 @@ if node['init_package'] == 'systemd'
     action [:enable, :start]
   end
 
-  directory '/etc/systemd/network' do
-    owner 'root'
-    group 'root'
-    mode '0755'
-    action :create
+  systemd_network 'kubernetes_services' do
+    address_address "#{ifaddr}/#{ifopts['prefixlen']}"
+    match_name node['kubernetes']['interface']
+    route do
+      destination node['kubernetes']['api']['service_cluster_ip_range']
+      scope 'link'
+    end
+    notifies :restart, 'service[systemd-networkd]'
   end
-
-  file '/etc/systemd/network/kubernetes_services.network' do
-    owner 'root'
-    group 'root'
-    mode '0644'
-    content <<-EOF
-[Match]
-Name = eth1
-
-[Address]
-Address = #{ifaddr}/#{ifopts['prefixlen']}
-
-[Route]
-Destination = #{node['kubernetes']['api']['service_cluster_ip_range']}
-Scope = link
-EOF
-    notifies :restart, 'service[systemd-networkd]', :immediately
-  end
-
-  # systemd_network 'kubernetes_services' do
-  #   address_address "#{ifaddr}/#{ifopts['prefixlen']}"
-  #   match_name node['kubernetes']['interface']
-  #   route do
-  #     destination node['kubernetes']['api']['service_cluster_ip_range']
-  #     scope 'link'
-  #   end
-  #   notifies :restart, 'service[systemd-networkd]'
-  # end
 end
 
 if node['init_package'] == 'init' and node['packages'].key?('upstart')

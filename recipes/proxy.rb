@@ -28,24 +28,6 @@ end
 
 if install_via == 'systemd'
 
-  systemd_service 'kube-proxy' do
-    description 'Systemd unit for Kubernetes Proxy'
-    action [:create, :enable, :start]
-    after %w(network.target remote-fs.target)
-    install do
-      wanted_by 'multi-user.target'
-    end
-    service do
-      type 'simple'
-      user 'root'
-      exec_start "/usr/local/bin/kube-proxy #{proxy_args.join(" \\\n")}"
-      exec_reload '/bin/kill -HUP $MAINPID'
-      working_directory '/'
-      restart 'on-failure'
-      restart_sec '30s'
-    end
-  end
-
   directory "/opt/kubernetes/#{node['kubernetes']['version']}/bin" do
     recursive true
   end
@@ -65,6 +47,26 @@ if install_via == 'systemd'
     to "/opt/kubernetes/#{node['kubernetes']['version']}/bin/kube-proxy"
     notifies :restart, 'systemd_service[kube-proxy]'
   end
+
+  systemd_service 'kube-proxy' do
+    unit do
+      description 'Systemd unit for Kubernetes Proxy'
+      action [:create, :enable, :start]
+      after %w(network.target remote-fs.target)
+    end
+    install do
+      wanted_by 'multi-user.target'
+    end
+    service do
+      type 'simple'
+      exec_start "/usr/local/bin/kube-proxy #{proxy_args.join(" \\\n")}"
+      exec_reload '/bin/kill -HUP $MAINPID'
+      working_directory '/'
+      restart 'on-failure'
+      restart_sec '30s'
+    end
+  end
+
 end
 
 if install_via == 'upstart'
