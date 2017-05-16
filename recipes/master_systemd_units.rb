@@ -51,16 +51,39 @@ if node['kubernetes']['audit']['enabled']
   apiserver_args.push "--audit-log-path=#{node['kubernetes']['audit']['log_file']}"
 end
 
+directory "/opt/kubernetes/#{node['kubernetes']['version']}/bin" do
+  recursive true
+end
+
+%w(apiserver controller-manager scheduler).each do |f|
+  remote_file "/opt/kubernetes/#{node['kubernetes']['version']}/bin/kube-#{f}" do
+    source "https://storage.googleapis.com/kubernetes-release/release/#{node['kubernetes']['version']}/bin/linux/amd64/kube-#{f}"
+    mode '0755'
+    not_if do
+      begin
+        Digest::MD5.file("/opt/kubernetes/#{node['kubernetes']['version']}/bin/kube-#{f}").to_s == node['kubernetes']['md5'][f.to_sym]
+      rescue
+        false
+      end
+    end
+  end
+  link "/usr/local/bin/kube-#{f}" do
+    to "/opt/kubernetes/#{node['kubernetes']['version']}/bin/kube-#{f}"
+    notifies :restart, "systemd_service[kube-#{f}]"
+  end
+end
+
 systemd_service 'kube-apiserver' do
-  description 'Systemd unit for Kubernetes API server'
-  action [:create, :enable, :start]
-  after %w(network.target remote-fs.target)
+  unit do
+    description 'Systemd unit for Kubernetes API server'
+    action [:create, :enable, :start]
+    after %w(network.target remote-fs.target)
+  end
   install do
     wanted_by 'multi-user.target'
   end
   service do
     type 'simple'
-    user 'root'
     exec_start "/usr/local/bin/kube-apiserver #{apiserver_args.join(" \\\n")}"
     exec_reload '/bin/kill -HUP $MAINPID'
     working_directory '/'
@@ -87,15 +110,16 @@ controller_manager_args = [
 ]
 
 systemd_service 'kube-controller-manager' do
-  description 'Systemd unit for Kubernetes Controller Manager'
-  action [:create, :enable, :start]
-  after %w(network.target remote-fs.target apiserver.service)
+  unit do
+    description 'Systemd unit for Kubernetes Controller Manager'
+    action [:create, :enable, :start]
+    after %w(network.target remote-fs.target apiserver.service)
+  end
   install do
     wanted_by 'multi-user.target'
   end
   service do
     type 'simple'
-    user 'root'
     exec_start "/usr/local/bin/kube-controller-manager #{controller_manager_args.join(" \\\n")}"
     exec_reload '/bin/kill -HUP $MAINPID'
     working_directory '/'
@@ -111,15 +135,16 @@ scheduler_args = [
 ]
 
 systemd_service 'kube-scheduler' do
-  description 'Systemd unit for Kubernetes Scheduler'
-  action [:create, :enable, :start]
-  after %w(network.target remote-fs.target apiserver.service)
+  unit do
+    description 'Systemd unit for Kubernetes Scheduler'
+    action [:create, :enable, :start]
+    after %w(network.target remote-fs.target apiserver.service)
+  end
   install do
     wanted_by 'multi-user.target'
   end
   service do
     type 'simple'
-    user 'root'
     exec_start "/usr/local/bin/kube-scheduler #{scheduler_args.join(" \\\n")}"
     exec_reload '/bin/kill -HUP $MAINPID'
     working_directory '/'
@@ -141,42 +166,21 @@ template '/usr/local/bin/kube-addon-manager' do
 end
 
 systemd_service 'kube-addon-manager' do
-  description 'Systemd unit for Kubernetes Addon Manager'
-  action [:create, :enable, :start]
-  after %w(network.target remote-fs.target apiserver.service)
+  unit do
+    description 'Systemd unit for Kubernetes Addon Manager'
+    action [:create, :enable, :start]
+    after %w(network.target remote-fs.target apiserver.service)
+  end
   install do
     wanted_by 'multi-user.target'
   end
   subscribes :restart, 'template[/usr/local/bin/kube-addon-manager]'
   service do
     type 'simple'
-    user 'root'
     exec_start '/usr/local/bin/kube-addon-manager'
     exec_reload '/bin/kill -HUP $MAINPID'
     working_directory '/'
     restart 'on-failure'
     restart_sec '30s'
-  end
-end
-
-directory "/opt/kubernetes/#{node['kubernetes']['version']}/bin" do
-  recursive true
-end
-
-%w(apiserver controller-manager scheduler).each do |f|
-  remote_file "/opt/kubernetes/#{node['kubernetes']['version']}/bin/kube-#{f}" do
-    source "https://storage.googleapis.com/kubernetes-release/release/#{node['kubernetes']['version']}/bin/linux/amd64/kube-#{f}"
-    mode '0755'
-    not_if do
-      begin
-        Digest::MD5.file("/opt/kubernetes/#{node['kubernetes']['version']}/bin/kube-#{f}").to_s == node['kubernetes']['md5'][f.to_sym]
-      rescue
-        false
-      end
-    end
-  end
-  link "/usr/local/bin/kube-#{f}" do
-    to "/opt/kubernetes/#{node['kubernetes']['version']}/bin/kube-#{f}"
-    notifies :restart, "systemd_service[kube-#{f}]"
   end
 end
