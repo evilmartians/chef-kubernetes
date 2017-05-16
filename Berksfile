@@ -5,6 +5,6 @@ cookbook 'tar'
 cookbook 'firewall'
 cookbook 'ufw'
 cookbook 'network_interfaces_v2', github: 'target/network_interfaces_v2-cookbook'
-cookbook 'systemd',               github: 'nathwill/chef-systemd'
+cookbook 'systemd',               github: 'nathwill/chef-systemd', tag: 'v3.1.1'
 
 metadata
