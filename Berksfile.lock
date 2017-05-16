@@ -3,15 +3,15 @@ DEPENDENCIES
   kubernetes
     path: .
     metadata: true
-  network_interfaces
-    git: git://github.com/redguide/network_interfaces.git
-    revision: c1263c017d2168c94d28526c6849208ff80b19a4
-  runit
-    git: git://github.com/opscode-cookbooks/runit.git
-    revision: f9362e4b8b2c021e02dc750f7e9a0d6e65e1b3f7
+  network_interfaces_v2
+    git: https://github.com/target/network_interfaces_v2-cookbook.git
+    revision: 9e7e2fa883e363e1dcf62c37a80f36fc9b9a45f0
+  systemd
+    git: https://github.com/nathwill/chef-systemd.git
+    revision: 0233eabbc500230b315bdbd8dc9b200c0f642c5c
 
 GRAPH
-  apt (2.7.0)
+  apt (6.1.0)
   chef_handler (2.1.1)
   compat_resource (12.19.0)
   docker (2.15.6)
@@ -24,22 +24,16 @@ GRAPH
     etcd (>= 0.0.0)
     network_interfaces_v2 (>= 0.0.0)
     systemd (>= 0.0.0)
-  modules (0.2.0)
   ms_dotnet (3.2.1)
     windows (>= 1.36.1)
-  network_interfaces (1.0.1)
-    modules (>= 0.1.2)
   network_interfaces_v2 (2.11.0)
     kernel_module (~> 1.0)
     powershell (>= 0.0.0)
   ohai (5.1.0)
-  packagecloud (0.0.19)
   powershell (6.0.0)
     chef_handler (>= 0.0.0)
     ms_dotnet (>= 2.6)
     windows (>= 3.0)
-  runit (1.7.2)
-    packagecloud (>= 0.0.0)
   systemd (2.1.3)
   windows (3.0.5)
     ohai (>= 4.0.0)
