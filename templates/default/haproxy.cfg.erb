@@ -71,17 +71,4 @@ backend deis_builder_backend
     option log-health-checks
     option tcp-check
     server deis-builder deis-builder.deis.svc.kubernetes.local:<%= node['kubernetes']['deis']['builder']['port'] %> check
-
-frontend deis_registry_frontend
-    bind 127.0.0.1:<%= node['kubernetes']['deis']['registry']['port'] %>
-    option tcplog
-    mode tcp
-    default_backend deis_registry_backend
-
-backend deis_registry_backend
-    mode tcp
-    balance roundrobin
-    option log-health-checks
-    option tcp-check
-    server deis-registry deis-registry.deis.svc.kubernetes.local:80 check
 <% end %>
