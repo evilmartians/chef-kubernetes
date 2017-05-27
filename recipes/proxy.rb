@@ -14,7 +14,7 @@ proxy_args = [
   '--kubeconfig=/etc/kubernetes/system:kube-proxy_config.yaml'
 ]
 
-if node['kubernetes']['install_via'] == 'static_pods'
+if install_via == 'static_pods'
 
   directory '/etc/kubernetes/manifests' do
     recursive true
@@ -26,7 +26,7 @@ if node['kubernetes']['install_via'] == 'static_pods'
 
 end
 
-if node['kubernetes']['install_via'] == 'systemd_units'
+if install_via == 'systemd'
 
   directory "/opt/kubernetes/#{node['kubernetes']['version']}/bin" do
     recursive true
@@ -69,7 +69,7 @@ if node['kubernetes']['install_via'] == 'systemd_units'
 
 end
 
-if node['kubernetes']['install_via'] == 'upstart'
+if install_via == 'upstart'
   template '/etc/init/kube-proxy.conf' do
     source 'upstart.conf.erb'
     owner 'root'

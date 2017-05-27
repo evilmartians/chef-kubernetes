@@ -37,7 +37,7 @@ end
   end
 end
 
-if node['kubernetes']['install_via'] == 'static_pods'
+if install_via == 'static_pods'
 
   directory '/etc/kubernetes/manifests' do
     recursive true
@@ -50,7 +50,7 @@ if node['kubernetes']['install_via'] == 'static_pods'
 
 end
 
-if node['kubernetes']['install_via'] == 'systemd_units'
+unless install_via == 'static_pods'
 
   FileUtils.rm_f('/etc/kubernetes/manifests/etcd.yaml')
 
