@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: kubernetes
-# Recipe:: master_systemd_units
+# Recipe:: master_systemd
 #
 # Author:: Maxim Filatov <bregor@evilmartians.com>
 #
