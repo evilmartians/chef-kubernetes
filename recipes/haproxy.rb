@@ -18,7 +18,7 @@ service 'haproxy' do
   action :nothing
 end
 
-master_nodes = search(:node, "role:#{node['kubernetes']['roles']['master']}")
+master_nodes = search(:node, "roles:#{node['kubernetes']['roles']['master']}")
 if !master_nodes.empty? && master_nodes.all? {|n| n.keys.include? 'kubernetes'}
   master_nodes.map! { |node| { name: hostname(node), ip: internal_ip(node) } }
 
