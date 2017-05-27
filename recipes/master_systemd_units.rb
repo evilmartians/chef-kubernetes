@@ -12,7 +12,7 @@ master_nodes = search(:node, "role:#{node['kubernetes']['roles']['master']}")
 
 apiserver_args = [
   "--bind-address=#{node['kubernetes']['api']['bind_address']}",
-  "--advertise-address=#{Chef::Recipe.allocate.internal_ip(node)}",
+  "--advertise-address=#{internal_ip(node)}",
   "--etcd-servers=#{etcd_servers}",
   "--etcd-certfile=#{node['etcd']['cert_file']}",
   "--etcd-keyfile=#{node['etcd']['key_file']}",

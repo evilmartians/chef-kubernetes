@@ -44,13 +44,12 @@ link '/usr/local/bin/kubelet' do
   notifies :restart, 'systemd_service[kubelet]'
 end
 
-# TODO: avoid Recipe.allocate in kubelet command
 kubelet_args = [
-  "--address=#{Chef::Recipe.allocate.internal_ip(node)}",
+  "--address=#{internal_ip(node)}",
   "--api_servers=#{node['kubernetes']['master']}",
   "--cluster-dns=#{node['kubernetes']['cluster_dns']}",
-  "--hostname_override=#{Chef::Recipe.allocate.hostname(node)}",
-  "--node-ip=#{Chef::Recipe.allocate.internal_ip(node)}",
+  "--hostname_override=#{hostname(node)}",
+  "--node-ip=#{internal_ip(node)}",
   '--allow_privileged=true',
   "--register-node=#{node['kubernetes']['kubelet']['register_node']}",
   '--pod-manifest-path=/etc/kubernetes/manifests',
