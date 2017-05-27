@@ -8,8 +8,8 @@
 include_recipe 'kubernetes::kubeconfig'
 
 proxy_args = [
-  "--bind-address=#{Chef::Recipe.allocate.internal_ip(node)}",
-  "--hostname_override=#{Chef::Recipe.allocate.hostname(node)}",
+  "--bind-address=#{internal_ip(node)}",
+  "--hostname_override=#{hostname(node)}",
   '--proxy-mode=iptables',
   '--kubeconfig=/etc/kubernetes/system:kube-proxy_config.yaml'
 ]

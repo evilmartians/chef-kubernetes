@@ -1,6 +1,6 @@
-class Chef
+module Kubernetes
   # Few helpers for Kubernetes installation.
-  class Recipe
+  module Helpers
     def internal_ip(n = node)
       n['network']['interfaces'][n['kubernetes']['interface']]['addresses']
         .find { |addr, properties| properties['family'] == 'inet' }.first
@@ -14,3 +14,5 @@ class Chef
 
   end
 end
+
+Chef::Recipe.send(:include, ::Kubernetes::Helpers)
