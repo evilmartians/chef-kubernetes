@@ -41,7 +41,6 @@ include_recipe 'kubernetes::proxy'
 
 link '/usr/local/bin/kubelet' do
   to "/opt/kubernetes/#{node['kubernetes']['version']}/bin/kubelet"
-  notifies :restart, 'systemd_service[kubelet]'
 end
 
 kubelet_args = [
@@ -82,14 +81,15 @@ template '/etc/init/kubelet.conf' do
     service_description: 'Kubebernetes workload daemon',
     cmd: "/usr/local/bin/kubelet #{kubelet_args.join(' ')}"
   )
-  only_if { node['platform_version'] == '14.04' }
+  only_if { node['init_package'] == 'init' and node['packages'].has_key?('upstart') }
 end
 
 service 'kubelet' do
   action [:start, :enable]
   provider Chef::Provider::Service::Upstart
   subscribes :restart, 'template[/etc/init/kubelet.conf]'
-  only_if { node['platform_version'] == '14.04' }
+  subscribes :restart, 'link[/usr/local/bin/kubelet]'
+  only_if { node['init_package'] == 'init' and node['packages'].has_key?('upstart') }
 end
 
 systemd_service 'kubelet' do
@@ -109,5 +109,6 @@ systemd_service 'kubelet' do
     restart 'on-failure'
     restart_sec '30s'
   end
-  not_if { node['platform_version'] == '14.04' }
+  only_if { node['init_package'] == 'systemd' }
+  subscribes :restart, 'link[/usr/local/bin/kubelet]'
 end

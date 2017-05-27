@@ -54,11 +54,13 @@ unless install_via == 'static_pods'
 
   FileUtils.rm_f('/etc/kubernetes/manifests/etcd.yaml')
 
+  service_type = install_via(node)
+
   etcd_service 'etcd' do
     action [:create, :start]
     node_name internal_ip
     install_method 'binary'
-    service_manager 'systemd'
+    service_manager service_type
     data_dir node['etcd']['data_dir']
     wal_dir node['etcd']['wal_dir']
     initial_advertise_peer_urls "#{node['etcd']['proto']}://#{internal_ip}:#{node['etcd']['server_port']}"

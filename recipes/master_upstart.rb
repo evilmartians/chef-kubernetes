@@ -18,6 +18,7 @@ apiserver_args = [
   "--etcd-keyfile=#{node['etcd']['key_file']}",
   "--etcd-cafile=#{node['etcd']['trusted_ca_file']}",
   "--storage-backend=#{node['kubernetes']['api']['storage_backend']}",
+  "--storage-media-type=#{node['kubernetes']['api']['storage_media_type']}",
   '--allow-privileged=true',
   "--apiserver-count=#{master_nodes.size}",
   "--service-cluster-ip-range=#{node['kubernetes']['api']['service_cluster_ip_range']}",
@@ -33,7 +34,8 @@ apiserver_args = [
   "--cloud-config=#{node['kubernetes']['cloud_config']}",
   "--cloud-provider=#{node['kubernetes']['cloud_provider']}",
   '--log-dir=/var/log/kubernetes',
-  "--authorization-mode=#{node['kubernetes']['authorization']['mode']}"
+  "--authorization-mode=#{node['kubernetes']['authorization']['mode']}",
+  "--experimental-bootstrap-token-auth"
 ]
 
 if node['kubernetes']['token_auth']
@@ -171,6 +173,6 @@ end
   end
   link "/usr/local/bin/kube-#{f}" do
     to "/opt/kubernetes/#{node['kubernetes']['version']}/bin/kube-#{f}"
-    notifies :restart, "systemd_service[kube-#{f}]"
+    notifies :restart, "service[kube-#{f}]"
   end
 end
