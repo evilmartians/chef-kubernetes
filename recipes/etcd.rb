@@ -5,7 +5,7 @@
 # Author:: Maxim Filatov <bregor@evilmartians.com>
 #
 
-nodes = search(:node, "role:#{node['etcd']['role']}").map { |n| internal_ip(n) }.sort
+nodes = search(:node, "roles:#{node['etcd']['role']}").map { |n| internal_ip(n) }.sort
 initial_cluster_string = nodes.map { |addr| "#{addr}=#{node['etcd']['proto']}://#{addr}:#{node['etcd']['server_port']}" }.join ','
 internal_ip = node['network']['interfaces'][node['kubernetes']['interface']]['addresses'].find { |address, data| data['family'] == 'inet' }.first
 
