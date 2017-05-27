@@ -1,6 +1,6 @@
 default['kubernetes']['roles']['master']                    = 'kubernetes_master'
 default['kubernetes']['roles']['node']                      = 'kubernetes_node'
-default['kubernetes']['install_via']                        = 'systemd_units' # other possible values are: static_pods, upstart (only for kubelet and kube-proxy for now)
+default['kubernetes']['install_via']                        = 'systemd' # other possible values are: static_pods, upstart
 default['kubernetes']['databag']                            = 'kubernetes'
 default['kubernetes']['version']                            = 'v1.6.4'
 default['kubernetes']['image']                              = 'gcr.io/google_containers/hyperkube'
