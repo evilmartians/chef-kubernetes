@@ -57,6 +57,6 @@ if node['kubernetes']['token_auth']
   end
 end
 
-include_recipe "kubernetes::master_#{node['kubernetes']['install_via']}"
+include_recipe "kubernetes::master_#{install_via}"
 include_recipe 'kubernetes::haproxy' if node['kubernetes']['multimaster']['access_via'] == 'haproxy'
 include_recipe 'kubernetes::proxy'
