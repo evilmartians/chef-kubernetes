@@ -128,7 +128,7 @@ task default: ['ca:generate'] + CONFIG['accounts'].map {|name, data| "#{name}:ge
 
 desc "Generate all the keys and format encrypted databags"
 task encrypt_all: ['ca:encrypt'] + CONFIG['accounts'].map {|name, data| "#{name}:encrypt"} do
-  LOGGER.info "Now move #{WORK_DIR}/{ca_ssl.json,#{CONFIG['accounts'].map {|name, data| name + '_ssl.json'}.join(',')}} to $chef_databags_folder/kubernetes"
+  LOGGER.info "Now move #{WORK_DIR}/{ca,#{CONFIG['accounts'].map {|name, data| name}.join(',')}}_ssl.json to $chef_databags_folder/kubernetes"
 end
 
 namespace :ca do
