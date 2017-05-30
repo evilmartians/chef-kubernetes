@@ -12,11 +12,11 @@ if node['kubernetes']['use_cluster_dns_systemwide']
   nameservers = Array(node['kubernetes']['cluster_dns']) + nameservers
   nameservers.uniq!
   network_interface 'lo' do
-    custom "dns-nameservers" => nameservers.join(' ')
+    custom 'dns-nameservers' => nameservers.join(' ')
   end
 end
 
-ifaddr, ifopts = node['network']['interfaces'][node['kubernetes']['interface']]['addresses'].find {|addr, opts| opts['family'] == 'inet'}
+ifaddr, ifopts = node['network']['interfaces'][node['kubernetes']['interface']]['addresses'].find { |addr, opts| opts['family'] == 'inet' }
 
 if node['init_package'] == 'systemd'
 
@@ -35,7 +35,7 @@ if node['init_package'] == 'systemd'
   end
 end
 
-if node['init_package'] == 'init' and node['packages'].has_key?('upstart')
+if node['init_package'] == 'init' and node['packages'].key?('upstart')
 
   template '/etc/init/kube-service-network-route.conf' do
     source 'kubernetes_services_upstart.conf.erb'
