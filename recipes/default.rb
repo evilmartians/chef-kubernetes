@@ -93,16 +93,15 @@ service 'kubelet' do
 end
 
 systemd_service 'kubelet' do
-  unit do
-    description 'Systemd unit for Kubernetes worker service (kubelet)'
-    action [:create, :enable, :start]
-    after %w(network.target remote-fs.target)
-  end
+  description 'Systemd unit for Kubernetes worker service (kubelet)'
+  action [:create, :enable, :start]
+  after %w(network.target remote-fs.target)
   install do
     wanted_by 'multi-user.target'
   end
   service do
     type 'simple'
+    user 'root'
     exec_start "/usr/local/bin/kubelet #{kubelet_args.join(" \\\n")}"
     exec_reload '/bin/kill -HUP $MAINPID'
     working_directory '/'
