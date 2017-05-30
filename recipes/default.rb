@@ -58,6 +58,7 @@ kubelet_args = [
   '--cert-dir=/etc/kubernetes/ssl',
   '--network-plugin=cni',
   '--network-plugin-dir=/etc/cni/net.d',
+  "--cluster-domain=#{node['kubernetes']['cluster_domain']}",
   "--image-gc-low-threshold=#{node['kubernetes']['kubelet']['image_gc_low_threshold']}",
   "--image-gc-high-threshold=#{node['kubernetes']['kubelet']['image_gc_high_threshold']}",
   "--cadvisor-port=#{node['kubernetes']['kubelet']['cadvisor_port']}",
