@@ -2,6 +2,6 @@ source "https://supermarket.chef.io"
 
 cookbook 'apt'
 cookbook 'network_interfaces_v2', github: 'target/network_interfaces_v2-cookbook'
-cookbook 'systemd',               github: 'nathwill/chef-systemd', branch: 'refactor'
+cookbook 'systemd',               github: 'nathwill/chef-systemd'
 
 metadata
