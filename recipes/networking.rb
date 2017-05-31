@@ -24,11 +24,6 @@ if node['init_package'] == 'systemd'
     action [:enable, :start]
   end
 
-  execute 'reload-systemd' do
-    command '/bin/systemctl daemon-reload'
-    action :nothing
-  end
-
   directory '/etc/systemd/network' do
     owner 'root'
     group 'root'
@@ -51,7 +46,7 @@ Address = #{ifaddr}/#{ifopts['prefixlen']}
 Destination = #{node['kubernetes']['api']['service_cluster_ip_range']}
 Scope = link
 EOF
-    notifies :run, 'execute[reload-systemd]', :immediately
+    notifies :restart, 'service[systemd-networkd]', :immediately
   end
 
   # systemd_network 'kubernetes_services' do
