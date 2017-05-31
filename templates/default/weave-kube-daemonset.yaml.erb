@@ -65,11 +65,16 @@ spec:
             requests:
               cpu: 10m
           env:
-            - name: LISTEN_ON
-              valueFrom:
-                fieldRef:
-                  apiVersion: v1
-                  fieldPath: spec.nodeName
+          - name: LISTEN_ON
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: spec.nodeName
+          - name: HOSTNAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: spec.nodeName
           securityContext:
             privileged: true
       restartPolicy: Always
@@ -98,3 +103,5 @@ spec:
         - name: lib-modules
           hostPath:
             path: /lib/modules
+  updateStrategy:
+    type: OnDelete
