@@ -3,6 +3,7 @@ default['kubernetes']['roles']['node']                      = 'kubernetes_node'
 default['kubernetes']['install_via']                        = 'systemd' # other possible values are: static_pods, upstart
 default['kubernetes']['databag']                            = 'kubernetes'
 default['kubernetes']['version']                            = 'v1.5.7'
+default['kubernetes']['keep_versions']                      = 3
 default['kubernetes']['image']                              = 'gcr.io/google_containers/hyperkube'
 default['kubernetes']['interface']                          = 'eth1'
 default['kubernetes']['register_as']                        = 'ip'

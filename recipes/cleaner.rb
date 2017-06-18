@@ -29,3 +29,7 @@ require 'fileutils'
   end
 
 end
+
+# Cleanup old kubernetes binaries
+versions = Dir["/opt/kubernetes/*"].sort_by {|f| File.mtime(f)}
+FileUtils.rm_rf(versions[0...-node['kubernetes']['keep_versions']])
