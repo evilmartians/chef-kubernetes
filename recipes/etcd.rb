@@ -71,7 +71,7 @@ unless install_via == 'static_pods'
     initial_cluster initial_cluster_string
     initial_cluster_state node['etcd']['initial_cluster_state']
     version node['etcd']['version'].tr('A-z', '')
-    not_if { nodes.any?(&:empty?) }
+    not_if { nodes.empty? || nodes.any?(&:empty?) }
   end
 
 end
