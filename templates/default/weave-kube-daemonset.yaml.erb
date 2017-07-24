@@ -2,35 +2,27 @@ apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
   name: weave-net
-  namespace: kube-system
   labels:
     addonmanager.kubernetes.io/mode: Reconcile
     kubernetes.io/cluster-service: "true"
+    name: weave-net
+  namespace: kube-system
 spec:
   template:
     metadata:
-      labels:
-        name: weave-net
       annotations:
         prometheus.io/path: /metrics
         prometheus.io/port: "6782"
         prometheus.io/scrape: "true"
+      labels:
+        name: weave-net
     spec:
-      hostNetwork: true
-      hostPID: true
       containers:
         - name: weave
-          image: weaveworks/weave-kube:<%= node['kubernetes']['weave']['version'] %>
           command:
             - /home/weave/launch.sh
             - --host=$(LISTEN_ON)
             - --status-addr=$(LISTEN_ON):6782
-          livenessProbe:
-            initialDelaySeconds: 30
-            httpGet:
-              host: 127.0.0.1
-              path: /status
-              port: 6784
           env:
             - name: IPALLOC_RANGE
               value: <%= node['kubernetes']['weave']['network'] %>
@@ -39,6 +31,22 @@ spec:
                 fieldRef:
                   apiVersion: v1
                   fieldPath: spec.nodeName
+            - name: HOSTNAME
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: spec.nodeName
+          image: weaveworks/weave-kube:<%= node['kubernetes']['weave']['version'] %>
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            httpGet:
+              host: 127.0.0.1
+              path: /status
+              port: 6784
+            initialDelaySeconds: 30
+          resources:
+            requests:
+              cpu: 10m
           securityContext:
             privileged: true
           volumeMounts:
@@ -54,40 +62,40 @@ spec:
               mountPath: /host/var/lib/dbus
             - name: lib-modules
               mountPath: /lib/modules
-          resources:
-            requests:
-              cpu: 10m
         - name: weave-npc
-          image: weaveworks/weave-npc:<%= node['kubernetes']['weave']['version'] %>
           args:
             - --metrics-addr=$(LISTEN_ON):6781
+          env:
+            - name: LISTEN_ON
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: spec.nodeName
+            - name: HOSTNAME
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: spec.nodeName
+          image: weaveworks/weave-npc:<%= node['kubernetes']['weave']['version'] %>
+          imagePullPolicy: IfNotPresent
           resources:
             requests:
               cpu: 10m
-          env:
-          - name: LISTEN_ON
-            valueFrom:
-              fieldRef:
-                apiVersion: v1
-                fieldPath: spec.nodeName
-          - name: HOSTNAME
-            valueFrom:
-              fieldRef:
-                apiVersion: v1
-                fieldPath: spec.nodeName
           securityContext:
             privileged: true
+      hostNetwork: true
+      hostPID: true
       restartPolicy: Always
-      tolerations:
-      - key: node-role.kubernetes.io/master
-        effect: NoSchedule
-      serviceAccountName: weave-net
       securityContext:
-        seLinuxOptions:
-          type: spc_t
+        seLinuxOptions: {}
+      serviceAccountName: weave-net
+      tolerations:
+        - effect: NoSchedule
+          operator: Exists
       volumes:
         - name: weavedb
-          emptyDir: {}
+          hostPath:
+            path: /var/lib/weave
         - name: cni-bin
           hostPath:
             path: /opt

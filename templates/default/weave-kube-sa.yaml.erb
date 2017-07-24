@@ -3,6 +3,7 @@ kind: ServiceAccount
 metadata:
   labels:
     addonmanager.kubernetes.io/mode: Reconcile
+    kubernetes.io/cluster-service: "true"
     name: weave-net
   name: weave-net
   namespace: kube-system
