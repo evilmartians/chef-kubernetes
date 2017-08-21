@@ -36,8 +36,14 @@ end
   end
 end
 
+template '/etc/cni/net.d/10-weave.conflist' do
+  source 'weave-portmap.conf.erb'
+  action node['kubernetes']['weave']['use_portmap'] ? :create : :delete
+end
+
 template '/etc/cni/net.d/10-weave.conf' do
   source 'weave.conf.erb'
+  action node['kubernetes']['weave']['use_portmap'] ? :delete : :create
 end
 
 directory '/etc/kubernetes/addons' do

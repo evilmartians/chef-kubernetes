@@ -1,0 +1,18 @@
+{
+    "cniVersion": "0.3.0",
+    "name": "weave",
+    "plugins": [
+        {
+            "name": "weave",
+            "type": "weave-net",
+            "hairpinMode": true
+        },
+        {
+            "type": "portmap",
+            "capabilities": {
+                "portMappings": true
+            },
+            "snat": true
+        }
+    ]
+}
