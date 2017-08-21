@@ -42,16 +42,6 @@ package 'docker-engine' do
   options '-o Dpkg::Options::="--force-confold"'
 end
 
-if node['lsb']['release'].to_i >= 16
-  apt_repository 'kubernetes' do
-    uri 'http://apt.kubernetes.io/'
-    distribution "kubernetes-#{node['lsb']['codename']}"
-    components ['main']
-    key 'https://packages.cloud.google.com/apt/doc/apt-key.gpg'
-  end
-  package 'kubernetes-cni'
-end
-
 bash 'install_nsenter' do
   code <<-EOH
 /usr/bin/docker run --rm -v /usr/local/bin:/target jpetazzo/nsenter
