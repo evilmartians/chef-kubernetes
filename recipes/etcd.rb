@@ -75,3 +75,10 @@ unless install_via == 'static_pods'
   end
 
 end
+
+firewall_rule 'etcd' do
+  port [2379,2380]
+  protocol :tcp
+  interface node['kubernetes']['interface']
+  command :allow
+end

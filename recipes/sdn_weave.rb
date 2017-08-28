@@ -63,3 +63,31 @@ if node['kubernetes']['weave']['use_scope']
     end
   end
 end
+
+firewall_rule 'weave_npc' do
+  port 6781
+  protocol :tcp
+  interface node['kubernetes']['interface']
+  command :allow
+end
+
+firewall_rule 'weave_status' do
+  port 6782
+  protocol :tcp
+  interface node['kubernetes']['interface']
+  command :allow
+end
+
+firewall_rule 'weave_control' do
+  port 6783
+  protocol :tcp
+  interface node['kubernetes']['interface']
+  command :allow
+end
+
+firewall_rule 'weave_data' do
+  port [6783, 6784]
+  protocol :udp
+  interface node['kubernetes']['interface']
+  command :allow
+end

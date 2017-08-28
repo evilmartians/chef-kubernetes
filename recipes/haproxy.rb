@@ -41,3 +41,11 @@ if !master_nodes.empty? && master_nodes.all? {|n| n.keys.include? 'kubernetes'}
     notifies :restart, 'service[haproxy]'
   end
 end
+
+if node['kubernetes']['deis']['enabled'] and node['kubernetes']['deis']['route_via'] == 'haproxy'
+  firewall_rule 'deis_builder' do
+    port 2222
+    protocol :tcp
+    command :allow
+  end
+end

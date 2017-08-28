@@ -13,6 +13,7 @@ include_recipe "kubernetes::sdn_#{node['kubernetes']['sdn']}"
 include_recipe 'kubernetes::cleaner'
 include_recipe 'kubernetes::networking'
 include_recipe 'kubernetes::haproxy' if node['kubernetes']['multimaster']['access_via'] == 'haproxy'
+include_recipe 'firewall'
 
 %w(manifests ssl addons).each do |dir|
   directory("/etc/kubernetes/#{dir}") do
@@ -111,4 +112,11 @@ systemd_service 'kubelet' do
   end
   only_if { node['init_package'] == 'systemd' }
   subscribes :restart, 'link[/usr/local/bin/kubelet]'
+end
+
+firewall_rule 'kubelet' do
+  port [10250, 10255]
+  protocol :tcp
+  interface node['kubernetes']['interface']
+  command :allow
 end
