@@ -1,0 +1,94 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: coredns
+  namespace: kube-system
+  labels:
+    k8s-app: coredns
+    addonmanager.kubernetes.io/mode: Reconcile
+    kubernetes.io/cluster-service: "true"
+    kubernetes.io/name: "CoreDNS"
+spec:
+  selector:
+    matchLabels:
+      k8s-app: coredns
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        k8s-app: coredns
+      annotations:
+        scheduler.alpha.kubernetes.io/critical-pod: ''
+        prometheus.io/path: /metrics
+        prometheus.io/port: "9153"
+        prometheus.io/scrape: "true"
+    spec:
+      affinity:
+        podAntiAffinity:
+          <%= node['kubernetes']['addons']['dns']['antiaffinity_type'] %>:
+          - labelSelector:
+              matchExpressions:
+              - key: k8s-app
+                operator: In
+                values:
+                - coredns
+            topologyKey: kubernetes.io/hostname
+      serviceAccountName: coredns
+      tolerations:
+      - key: "CriticalAddonsOnly"
+        operator: "Exists"
+      containers:
+      - name: coredns
+        image: coredns/coredns:<%= node['kubernetes']['addons']['coredns']['version'] %>
+        imagePullPolicy: IfNotPresent
+        args: [ "-conf", "/etc/coredns/Corefile" ]
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/coredns
+        ports:
+        - containerPort: 53
+          name: dns
+          protocol: UDP
+        - containerPort: 53
+          name: dns-tcp
+          protocol: TCP
+        - containerPort: 9153
+          name: metrics
+          protocol: TCP
+        resources:
+          limits:
+            cpu: <%= node['kubernetes']['addons']['coredns']['limits']['cpu'] %>
+            memory: <%= node['kubernetes']['addons']['coredns']['limits']['memory'] %>
+          requests:
+            cpu: <%= node['kubernetes']['addons']['coredns']['requests']['cpu'] %>
+            memory: <%= node['kubernetes']['addons']['coredns']['requests']['memory'] %>
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 10
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 5
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 10
+          timeoutSeconds: 2
+          successThreshold: 1
+          failureThreshold: 3
+      dnsPolicy: Default
+      volumes:
+        - name: config-volume
+          configMap:
+            name: coredns
+            items:
+            - key: Corefile
+              path: Corefile

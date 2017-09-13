@@ -8,10 +8,6 @@ metadata:
     kubernetes.io/cluster-service: "true"
     addonmanager.kubernetes.io/mode: Reconcile
 spec:
-  # replicas: not specified here:
-  # 1. In order to make Addon Manager do not reconcile this replicas parameter.
-  # 2. Default is 1.
-  # 3. Will be tuned in real time if DNS horizontal auto-scaling is turned on.
   strategy:
     rollingUpdate:
       maxSurge: 10%
@@ -29,6 +25,16 @@ spec:
         prometheus.io/port: "10054"
         prometheus.io/scrape: "true"
     spec:
+      affinity:
+        podAntiAffinity:
+          <%= node['kubernetes']['addons']['dns']['antiaffinity_type'] %>:
+          - labelSelector:
+              matchExpressions:
+              - key: k8s-app
+                operator: In
+                values:
+                - kube-dns
+            topologyKey: kubernetes.io/hostname
       tolerations:
       - key: "CriticalAddonsOnly"
         operator: "Exists"
@@ -39,17 +45,14 @@ spec:
           optional: true
       containers:
       - name: kubedns
-        image: gcr.io/google_containers/k8s-dns-kube-dns-amd64:<%= node['kubernetes']['addons']['dns']['version'] %>
+        image: gcr.io/google_containers/k8s-dns-kube-dns-amd64:<%= node['kubernetes']['addons']['kubedns']['version'] %>
         resources:
-          # TODO: Set memory limits when we've profiled the container for large
-          # clusters, then set request = limit to keep this container in
-          # guaranteed class. Currently, this container falls into the
-          # "burstable" category so the kubelet doesn't backoff from restarting it.
           limits:
-            memory: 170Mi
+            cpu: <%= node['kubernetes']['addons']['kubedns']['limits']['cpu'] %>
+            memory: <%= node['kubernetes']['addons']['kubedns']['limits']['memory'] %>
           requests:
-            cpu: 100m
-            memory: 70Mi
+            cpu: <%= node['kubernetes']['addons']['kubedns']['requests']['cpu'] %>
+            memory: <%= node['kubernetes']['addons']['kubedns']['requests']['memory'] %>
         livenessProbe:
           httpGet:
             path: /healthcheck/kubedns
@@ -90,7 +93,7 @@ spec:
         - name: kube-dns-config
           mountPath: /kube-dns-config
       - name: dnsmasq
-        image: gcr.io/google_containers/k8s-dns-dnsmasq-nanny-amd64:<%= node['kubernetes']['addons']['dns']['version'] %>
+        image: gcr.io/google_containers/k8s-dns-dnsmasq-nanny-amd64:<%= node['kubernetes']['addons']['kubedns']['version'] %>
         livenessProbe:
           httpGet:
             path: /healthcheck/dnsmasq
@@ -112,7 +115,7 @@ spec:
         - --server=/<%= node['kubernetes']['cluster_domain'] %>/127.0.0.1#10053
         - --server=/in-addr.arpa/127.0.0.1#10053
         - --server=/ip6.arpa/127.0.0.1#10053
-        - --dns-forward-max=<%= node['kubernetes']['addons']['dns']['dns_forward_max'] %>
+        - --dns-forward-max=<%= node['kubernetes']['addons']['kubedns']['dns_forward_max'] %>
         ports:
         - containerPort: 53
           name: dns
@@ -129,7 +132,7 @@ spec:
         - name: kube-dns-config
           mountPath: /etc/k8s/dns/dnsmasq-nanny
       - name: sidecar
-        image: gcr.io/google_containers/k8s-dns-sidecar-amd64:<%= node['kubernetes']['addons']['dns']['version'] %>
+        image: gcr.io/google_containers/k8s-dns-sidecar-amd64:<%= node['kubernetes']['addons']['kubedns']['version'] %>
         livenessProbe:
           httpGet:
             path: /metrics

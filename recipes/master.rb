@@ -17,11 +17,19 @@ end
 
 include_recipe 'kubernetes::kubeconfig'
 
+# DNS manifests
+manifests = %w(sa cm deploy svc)
+unless node['kubernetes']['addons']['dns']['controller'] == 'kubedns'
+  manifests += %w(clusterrole clusterrolebinding)
+end
+
+manifests.each do |manifest|
+  template "/etc/kubernetes/addons/dns-#{manifest}.yaml" do
+    source "#{node['kubernetes']['addons']['dns']['controller']}-#{manifest}.yaml.erb"
+  end
+end
+
 %w(
-  kubedns-sa
-  kubedns-cm
-  skydns-deployment
-  skydns-svc
   dashboard-deployment
   dashboard-svc
 ).each do |srv|
