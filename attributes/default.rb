@@ -66,3 +66,5 @@ default['kubernetes']['multimaster']['haproxy_port']        = 6443
 default['kubernetes']['multimaster']['dns_name']            = ''
 default['kubernetes']['cni']['version']                     = '0.6.0'
 default['kubernetes']['cni']['plugins_version']             = '0.6.0'
+default['kubernetes']['encryption']                         = 'aescbc'
+default['kubernetes']['api']['experimental_encryption_provider_config'] = '/etc/kubernetes/encryption-config.yaml'

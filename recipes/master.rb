@@ -17,6 +17,19 @@ end
 
 include_recipe 'kubernetes::kubeconfig'
 
+# Encryption config
+keys = Chef::EncryptedDataBagItem.load(
+  node['kubernetes']['databag'], 'encryption_keys'
+)[node['kubernetes']['encryption']]
+
+keys.map! {|k| {'name' => k['name'], 'secret' => Base64.encode64(k['secret'])} }
+keys.sort! {|k| k['name'] <=> k['name']}
+
+template node['kubernetes']['api']['experimental_encryption_provider_config'] do
+  source 'encryption-config.yaml.erb'
+  variables(keys: keys)
+end
+
 # DNS manifests
 manifests = %w(sa cm deploy svc)
 unless node['kubernetes']['addons']['dns']['controller'] == 'kubedns'
