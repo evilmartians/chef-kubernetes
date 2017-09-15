@@ -9,7 +9,7 @@ include_recipe 'kubernetes::kubeconfig'
 
 proxy_args = [
   "--bind-address=#{internal_ip(node)}",
-  "--hostname_override=#{hostname(node)}",
+  "--hostname-override=#{hostname(node)}",
   '--proxy-mode=iptables',
   '--kubeconfig=/etc/kubernetes/system:kube-proxy_config.yaml'
 ]
