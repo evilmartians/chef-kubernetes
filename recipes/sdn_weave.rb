@@ -64,6 +64,12 @@ if node['kubernetes']['weave']['use_scope']
   end
 end
 
+firewall_rule 'weave_to_node' do
+  interface node['kubernetes']['weave']['interface']
+  protocol :none
+  command :allow
+end
+
 firewall_rule 'weave_npc' do
   port 6781
   protocol :tcp
