@@ -85,6 +85,10 @@ spec:
           successThreshold: 1
           failureThreshold: 3
       dnsPolicy: Default
+      <% if node['kubernetes']['addons']['coredns']['node_selector'] %>
+      nodeSelector:
+        <%= node['kubernetes']['addons']['coredns']['node_selector'].split('=')[0] %>: <%= node['kubernetes']['addons']['coredns']['node_selector'].split('=')[1] %>
+      <% end -%>
       volumes:
         - name: config-volume
           configMap:
