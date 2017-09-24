@@ -157,3 +157,7 @@ spec:
             cpu: 10m
       dnsPolicy: Default  # Don't use cluster DNS.
       serviceAccountName: kube-dns
+      <% if node['kubernetes']['addons']['kubedns']['node_selector'] %>
+      nodeSelector:
+        <%= node['kubernetes']['addons']['kubedns']['node_selector'].split('=')[0] %>: <%= node['kubernetes']['addons']['kubedns']['node_selector'].split('=')[1] %>
+      <% end -%>
