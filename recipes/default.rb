@@ -10,7 +10,6 @@ require 'base64'
 include_recipe 'kubernetes::packages'
 include_recipe 'kubernetes::master_detect'
 include_recipe "kubernetes::sdn_#{node['kubernetes']['sdn']}"
-include_recipe 'kubernetes::cleaner'
 include_recipe 'kubernetes::networking'
 include_recipe 'kubernetes::haproxy' if node['kubernetes']['multimaster']['access_via'] == 'haproxy'
 include_recipe 'firewall'
@@ -120,3 +119,5 @@ firewall_rule 'kubelet' do
   interface node['kubernetes']['interface']
   command :allow
 end
+
+include_recipe 'kubernetes::cleaner'
