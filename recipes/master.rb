@@ -7,7 +7,6 @@
 
 include_recipe 'kubernetes::master_detect'
 include_recipe "kubernetes::sdn_#{node['kubernetes']['sdn']}" if node['kubernetes']['use_sdn']
-include_recipe 'kubernetes::cleaner'
 
 %w(ssl addons).each do |dir|
   directory "/etc/kubernetes/#{dir}" do
@@ -68,3 +67,4 @@ end
 include_recipe "kubernetes::master_#{install_via}"
 include_recipe 'kubernetes::haproxy' if node['kubernetes']['multimaster']['access_via'] == 'haproxy'
 include_recipe 'kubernetes::proxy'
+include_recipe 'kubernetes::cleaner'

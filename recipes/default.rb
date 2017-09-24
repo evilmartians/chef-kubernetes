@@ -10,7 +10,6 @@ require 'base64'
 include_recipe 'kubernetes::packages'
 include_recipe 'kubernetes::master_detect'
 include_recipe "kubernetes::sdn_#{node['kubernetes']['sdn']}"
-include_recipe 'kubernetes::cleaner'
 include_recipe 'kubernetes::networking'
 include_recipe 'kubernetes::haproxy' if node['kubernetes']['multimaster']['access_via'] == 'haproxy'
 
@@ -112,3 +111,5 @@ systemd_service 'kubelet' do
   only_if { node['init_package'] == 'systemd' }
   subscribes :restart, 'link[/usr/local/bin/kubelet]'
 end
+
+include_recipe 'kubernetes::cleaner'
