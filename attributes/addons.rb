@@ -11,3 +11,4 @@ default['kubernetes']['addons']['coredns']['limits']['cpu']      = '100m'
 default['kubernetes']['addons']['coredns']['limits']['memory']   = '256Mi'
 default['kubernetes']['addons']['coredns']['requests']['cpu']    = '100m'
 default['kubernetes']['addons']['coredns']['requests']['memory'] = '256Mi'
+default['kubernetes']['addons']['coredns']['log']                = false

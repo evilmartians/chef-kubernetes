@@ -10,10 +10,12 @@ data:
   Corefile: |
     .:53 {
         errors
-        log stdout
         health
         kubernetes <%= node['kubernetes']['cluster_domain'] %> <%= node['kubernetes']['api']['service_cluster_ip_range'] %>
         proxy . /etc/resolv.conf
         cache 30
         prometheus 0.0.0.0:9153
+        <% if node['kubernetes']['addons']['coredns']['log'] %>
+        log <%= node['kubernetes']['addons']['coredns']['log'] %>
+        <% end %>
     }
