@@ -1,5 +1,6 @@
 DEPENDENCIES
   apt
+  etcd (~> 4.1)
   kubernetes
     path: .
     metadata: true
@@ -16,14 +17,13 @@ GRAPH
   apt (6.1.0)
   chef_handler (2.1.1)
   compat_resource (12.19.0)
-  docker (2.15.6)
-  etcd (4.1.0)
-    compat_resource (>= 12.14.6)
+  docker (2.16.0)
+  etcd (4.1.1)
     docker (>= 0.0.0)
   kernel_module (1.0.1)
   kubernetes (0.0.2)
     apt (>= 0.0.0)
-    etcd (>= 0.0.0)
+    etcd (~> 4.1)
     network_interfaces_v2 (>= 0.0.0)
     systemd (>= 3.1.0)
     tar (>= 0.0.0)
