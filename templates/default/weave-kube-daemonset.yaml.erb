@@ -112,4 +112,4 @@ spec:
           hostPath:
             path: /lib/modules
   updateStrategy:
-    type: OnDelete
+    type: <%= node['kubernetes']['weave']['update_strategy']['type'] %>
