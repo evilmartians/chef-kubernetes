@@ -62,6 +62,9 @@ spec:
               mountPath: /host/var/lib/dbus
             - name: lib-modules
               mountPath: /lib/modules
+            - name: xtables-lock
+              mountPath: /run/xtables.lock
+              readOnly: false
         - name: weave-npc
           args:
             - --metrics-addr=$(LISTEN_ON):6781
@@ -83,6 +86,10 @@ spec:
               cpu: 10m
           securityContext:
             privileged: true
+          volumeMounts:
+            - name: xtables-lock
+              mountPath: /run/xtables.lock
+              readOnly: false
       hostNetwork: true
       hostPID: true
       restartPolicy: Always
@@ -111,5 +118,8 @@ spec:
         - name: lib-modules
           hostPath:
             path: /lib/modules
+        - name: xtables-lock
+          hostPath:
+            path: /run/xtables.lock
   updateStrategy:
     type: OnDelete
