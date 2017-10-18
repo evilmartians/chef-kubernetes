@@ -5,6 +5,13 @@
 # Author:: Maxim Filatov <bregor@evilmartians.com>
 #
 
+%w(apiserver controller-manager scheduler).each do |f|
+  link "/usr/local/bin/kube-#{f}" do
+    to "/opt/kubernetes/#{node['kubernetes']['version']}/bin/kube-#{f}"
+    notifies :restart, "systemd_service[kube-#{f}]"
+  end
+end
+
 etcd_nodes = search(:node, "roles:#{node['etcd']['role']}").map { |node| internal_ip(node) }
 etcd_servers = etcd_nodes.map { |addr| "#{node['etcd']['proto']}://#{addr}:#{node['etcd']['client_port']}" }.join ','
 
@@ -161,27 +168,5 @@ systemd_service 'kube-addon-manager' do
     working_directory '/'
     restart 'on-failure'
     restart_sec '30s'
-  end
-end
-
-directory "/opt/kubernetes/#{node['kubernetes']['version']}/bin" do
-  recursive true
-end
-
-%w(apiserver controller-manager scheduler).each do |f|
-  remote_file "/opt/kubernetes/#{node['kubernetes']['version']}/bin/kube-#{f}" do
-    source "https://storage.googleapis.com/kubernetes-release/release/#{node['kubernetes']['version']}/bin/linux/amd64/kube-#{f}"
-    mode '0755'
-    not_if do
-      begin
-        Digest::MD5.file("/opt/kubernetes/#{node['kubernetes']['version']}/bin/kube-#{f}").to_s == node['kubernetes']['md5'][f.to_sym]
-      rescue
-        false
-      end
-    end
-  end
-  link "/usr/local/bin/kube-#{f}" do
-    to "/opt/kubernetes/#{node['kubernetes']['version']}/bin/kube-#{f}"
-    notifies :restart, "systemd_service[kube-#{f}]"
   end
 end
