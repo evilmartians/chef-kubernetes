@@ -8,6 +8,24 @@
 include_recipe 'kubernetes::master_detect'
 include_recipe "kubernetes::sdn_#{node['kubernetes']['sdn']}" if node['kubernetes']['use_sdn']
 
+directory "/opt/kubernetes/#{node['kubernetes']['version']}/bin" do
+  recursive true
+end
+
+%w(apiserver controller-manager scheduler).each do |f|
+  remote_file "/opt/kubernetes/#{node['kubernetes']['version']}/bin/kube-#{f}" do
+    source "https://storage.googleapis.com/kubernetes-release/release/#{node['kubernetes']['version']}/bin/linux/amd64/kube-#{f}"
+    mode '0755'
+    not_if do
+      begin
+        Digest::MD5.file("/opt/kubernetes/#{node['kubernetes']['version']}/bin/kube-#{f}").to_s == node['kubernetes']['md5'][f.to_sym]
+      rescue
+        false
+      end
+    end
+  end
+end
+
 %w(ssl addons).each do |dir|
   directory "/etc/kubernetes/#{dir}" do
     recursive true
