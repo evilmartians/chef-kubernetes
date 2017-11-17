@@ -45,7 +45,6 @@ end
 
 kubelet_args = [
   "--address=#{internal_ip(node)}",
-  "--api_servers=#{node['kubernetes']['master']}",
   "--cluster-dns=#{node['kubernetes']['cluster_dns']}",
   "--hostname_override=#{hostname(node)}",
   "--node-ip=#{internal_ip(node)}",
@@ -54,7 +53,7 @@ kubelet_args = [
   '--pod-manifest-path=/etc/kubernetes/manifests',
   '--node-status-update-frequency=4s',
   '--kubeconfig=/etc/kubernetes/kubelet_config.yaml',
-  '--experimental-bootstrap-kubeconfig=/etc/kubernetes/kubeconfig-bootstrap.yaml',
+  '--bootstrap-kubeconfig=/etc/kubernetes/kubeconfig-bootstrap.yaml',
   '--cert-dir=/etc/kubernetes/ssl',
   '--network-plugin=cni',
   '--network-plugin-dir=/etc/cni/net.d',
@@ -97,7 +96,7 @@ systemd_service 'kubelet' do
   unit do
     description 'Systemd unit for Kubernetes worker service (kubelet)'
     action [:create, :enable, :start]
-    after %w(network.target remote-fs.target)
+    after %W(network.target remote-fs.target #{node['kubernetes']['container_engine']}.service)
   end
   install do
     wanted_by 'multi-user.target'
