@@ -61,6 +61,9 @@ manifests.each do |manifest|
 end
 
 %w(
+  dashboard-sa
+  dashboard-role
+  dashboard-rolebinding
   dashboard-deployment
   dashboard-svc
 ).each do |srv|
