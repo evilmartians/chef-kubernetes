@@ -92,6 +92,12 @@ if node['kubernetes']['authorization']['mode'].include? 'RBAC'
   end
 end
 
+if node['kubernetes']['authorization']['mode'].include? 'Node'
+  template '/etc/kubernetes/addons/kubelet-clusterrolebinding.yaml' do
+    source 'kubelet-clusterrolebinding.yaml.erb'
+  end
+end
+
 if node['kubernetes']['token_auth']
   template node['kubernetes']['token_auth_file'] do
     source 'tokens.csv.erb'
