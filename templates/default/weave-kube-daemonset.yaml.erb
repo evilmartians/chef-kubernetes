@@ -25,7 +25,7 @@ spec:
             - --status-addr=$(LISTEN_ON):6782
           env:
             - name: IPALLOC_RANGE
-              value: <%= node['kubernetes']['weave']['network'] %>
+              value: <%= node['kubernetes']['cluster_cidr'] %>
             - name: LISTEN_ON
               valueFrom:
                 fieldRef:
