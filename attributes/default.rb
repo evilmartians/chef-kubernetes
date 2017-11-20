@@ -53,6 +53,7 @@ default['kubernetes']['kubelet']['image_gc_high_threshold'] = '80'
 default['kubernetes']['kubelet']['cadvisor_port']           = 0
 default['kubernetes']['kubelet']['verbosity']               = 2
 default['kubernetes']['kubelet']['register_node']           = 'true'
+default['kubernetes']['kubelet']['fail_swap_on']            = 'false'
 default['kubernetes']['md5']['apiserver']                   = '14279d92d8787b6f66686297e7bb7f77'
 default['kubernetes']['md5']['controller-manager']          = 'c04eb650bb6f3cbf2a3f273bbf197056'
 default['kubernetes']['md5']['proxy']                       = '4f204efb9550d618029689c0dfbf2f0e'

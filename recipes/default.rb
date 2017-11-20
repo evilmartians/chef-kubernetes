@@ -59,6 +59,7 @@ kubelet_args = [
   '--network-plugin-dir=/etc/cni/net.d',
   '--cni-bin-dir=/opt/cni/bin',
   '--cni-conf-dir=/etc/cni/net.d',
+  "--fail-swap-on=#{node['kubernetes']['kubelet']['fail_swap_on']}",
   "--cluster-domain=#{node['kubernetes']['cluster_domain']}",
   "--image-gc-low-threshold=#{node['kubernetes']['kubelet']['image_gc_low_threshold']}",
   "--image-gc-high-threshold=#{node['kubernetes']['kubelet']['image_gc_high_threshold']}",
