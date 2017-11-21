@@ -56,7 +56,6 @@ kubelet_args = [
   '--bootstrap-kubeconfig=/etc/kubernetes/kubeconfig-bootstrap.yaml',
   '--cert-dir=/etc/kubernetes/ssl',
   '--network-plugin=cni',
-  '--network-plugin-dir=/etc/cni/net.d',
   '--cni-bin-dir=/opt/cni/bin',
   '--cni-conf-dir=/etc/cni/net.d',
   "--fail-swap-on=#{node['kubernetes']['kubelet']['fail_swap_on']}",
