@@ -11,7 +11,9 @@ proxy_args = [
   "--bind-address=#{internal_ip(node)}",
   "--hostname-override=#{hostname(node)}",
   '--proxy-mode=iptables',
+  "--feature-gates=#{node['kubernetes']['feature_gates'].join(',')}",
   '--kubeconfig=/etc/kubernetes/system:kube-proxy_config.yaml'
+
 ]
 
 if install_via == 'static_pods'

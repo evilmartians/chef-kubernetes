@@ -55,6 +55,7 @@ kubelet_args = [
   '--node-status-update-frequency=4s',
   '--kubeconfig=/etc/kubernetes/kubelet_config.yaml',
   '--experimental-bootstrap-kubeconfig=/etc/kubernetes/kubeconfig-bootstrap.yaml',
+  "--feature-gates=#{node['kubernetes']['feature_gates'].join(',')}",
   '--cert-dir=/etc/kubernetes/ssl',
   '--network-plugin=cni',
   '--network-plugin-dir=/etc/cni/net.d',

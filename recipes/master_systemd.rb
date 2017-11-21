@@ -43,6 +43,7 @@ apiserver_args = [
   '--log-dir=/var/log/kubernetes',
   "--authorization-mode=#{node['kubernetes']['authorization']['mode']}",
   "--experimental-encryption-provider-config=#{node['kubernetes']['api']['experimental_encryption_provider_config']}",
+  "--feature-gates=#{node['kubernetes']['feature_gates'].join(',')}",
   "--experimental-bootstrap-token-auth"
 ]
 
@@ -90,6 +91,7 @@ controller_manager_args = [
   "--cluster-signing-key-file=#{node['kubernetes']['cluster_signing_key_file']}",
   "--root-ca-file=#{node['kubernetes']['client_ca_file']}",
   "--master=http://127.0.0.1:#{node['kubernetes']['api']['insecure_port']}",
+  "--feature-gates=#{node['kubernetes']['feature_gates'].join(',')}",
   '--node-monitor-period=2s',
   '--node-monitor-grace-period=16s',
   '--pod-eviction-timeout=30s'
@@ -117,6 +119,7 @@ end
 scheduler_args = [
   '--address=127.0.0.1',
   '--leader-elect=true',
+  "--feature-gates=#{node['kubernetes']['feature_gates'].join(',')}",
   "--master=http://127.0.0.1:#{node['kubernetes']['api']['insecure_port']}"
 ]
 
