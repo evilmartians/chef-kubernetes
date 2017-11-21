@@ -34,13 +34,13 @@ default['kubernetes']['token_auth_file']                    = '/etc/kubernetes/k
 default['kubernetes']['cloud_config']                       = ''
 default['kubernetes']['cloud_provider']                     = ''
 default['kubernetes']['docker']                             = 'unix:///var/run/docker.sock'
-default['kubernetes']['feature_gates']                      = []
+default['kubernetes']['feature_gates']                      = ['RotateKubeletClientCertificate=true', 'RotateKubeletServerCertificate=true']
 default['kubernetes']['api']['bind_address']                = '0.0.0.0'
 default['kubernetes']['api']['insecure_bind_address']       = '127.0.0.1'
 default['kubernetes']['api']['insecure_port']               = 8080
 default['kubernetes']['api']['secure_port']                 = 8443
 default['kubernetes']['api']['service_cluster_ip_range']    = '10.222.0.0/16'
-default['kubernetes']['api']['admission_control']           = %w(Initializers NamespaceLifecycle LimitRanger ServiceAccount NodeRestriction ResourceQuota)
+default['kubernetes']['api']['admission_control']           = %w(Initializers NamespaceLifecycle NodeRestriction LimitRanger ServiceAccount ResourceQuota)
 default['kubernetes']['api']['runtime_config']              = []
 default['kubernetes']['api']['storage_backend']             = 'etcd3' # Other possible values: 'etcd3'
 default['kubernetes']['api']['storage_media_type']          = 'application/vnd.kubernetes.protobuf' # Other values: 'application/json'

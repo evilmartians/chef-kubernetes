@@ -13,15 +13,15 @@ file node['kubernetes']['client_ca_file'] do
   content ca_file
 end
 
-['kubelet', 'system:kube-proxy'].each do |username|
-  template "/etc/kubernetes/#{username}_config.yaml" do
-    source 'kubeconfig.yaml.erb'
-    if node['kubernetes']['token_auth']
-      users = Chef::EncryptedDataBagItem.load(node['kubernetes']['databag'], 'users')['users']
-      token = users.find { |user| user['name'] == username }['token']
-      variables(token: token,
-                ca_file: Base64.encode64(ca_file).delete("\n"),
-                user: username)
-    end
+template "/etc/kubernetes/system:kube-proxy_config.yaml" do
+  source 'kubeconfig.yaml.erb'
+  if node['kubernetes']['token_auth']
+    users = Chef::EncryptedDataBagItem.load(node['kubernetes']['databag'], 'users')['users']
+    token = users.find { |user| user['name'] == 'system:kube-proxy' }['token']
+    variables(
+      token: token,
+      ca_file: Base64.encode64(ca_file).delete("\n"),
+      user: 'system:kube-proxy'
+    )
   end
 end

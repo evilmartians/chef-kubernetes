@@ -1,15 +1,15 @@
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
-  name: system:kubelet
+  name: system:node-bootstrapper
   labels:
     addonmanager.kubernetes.io/mode: Reconcile
     kubernetes.io/cluster-service: "true"
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: system:node
+  name: system:node-bootstrapper
 subjects:
 - apiGroup: rbac.authorization.k8s.io
-  kind: User
-  name: kubelet
+  kind: Group
+  name: system:bootstrappers

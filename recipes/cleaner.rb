@@ -49,3 +49,19 @@ if node['kubernetes']['addons']['dns']['controller'] == 'kubedns'
     end
   end
 end
+
+# Cleanup static kubelet kubeconfig and keypair
+file '/etc/kubernetes/kubelet_config.yaml' do
+  action :delete
+end
+
+%w(crt key).each do |f|
+  file "/etc/kubernetes/ssl/kubelet.#{f}" do
+    action :delete
+  end
+end
+
+# Kubelet clusterrolebinding
+file '/etc/kubernetes/addons/kubelet-clusterrolebinding.yaml' do
+  action :delete
+end
