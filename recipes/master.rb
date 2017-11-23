@@ -87,7 +87,10 @@ if node['kubernetes']['authorization']['mode'].include?('ABAC')
 end
 
 if node['kubernetes']['authorization']['mode'].include? 'RBAC'
-  %w(admin node-bootstrapper).each do |manifest|
+  template '/etc/kubernetes/addons/apiserver-to-kubelet-clusterrole.yaml' do
+    source 'apiserver-to-kubelet-clusterrole.yaml.erb'
+  end
+  %w(admin node-bootstrapper apiserver-to-kubelet).each do |manifest|
     template "/etc/kubernetes/addons/#{manifest}-clusterrolebinding.yaml" do
       source "#{manifest}-clusterrolebinding.yaml.erb"
     end
