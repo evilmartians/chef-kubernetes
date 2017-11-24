@@ -58,7 +58,6 @@ kubelet_args = [
   "--feature-gates=#{node['kubernetes']['feature_gates'].join(',')}",
   '--cert-dir=/etc/kubernetes/ssl',
   '--network-plugin=cni',
-  '--network-plugin-dir=/etc/cni/net.d',
   '--cni-bin-dir=/opt/cni/bin',
   '--cni-conf-dir=/etc/cni/net.d',
   "--cluster-domain=#{node['kubernetes']['cluster_domain']}",
