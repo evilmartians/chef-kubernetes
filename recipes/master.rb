@@ -90,7 +90,13 @@ if node['kubernetes']['authorization']['mode'].include? 'RBAC'
   template '/etc/kubernetes/addons/apiserver-to-kubelet-clusterrole.yaml' do
     source 'apiserver-to-kubelet-clusterrole.yaml.erb'
   end
-  %w(admin node-bootstrapper apiserver-to-kubelet).each do |manifest|
+  %w(
+        admin
+        node-bootstrapper
+        apiserver-to-kubelet
+        kubelet-client-certificate-rotation
+        kubelet-server-certificate-rotation
+     ).each do |manifest|
     template "/etc/kubernetes/addons/#{manifest}-clusterrolebinding.yaml" do
       source "#{manifest}-clusterrolebinding.yaml.erb"
     end
