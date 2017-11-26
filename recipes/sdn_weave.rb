@@ -50,7 +50,7 @@ directory '/etc/kubernetes/addons' do
   recursive true
 end
 
-['sa', 'clusterrole', 'clusterrolebinding', 'daemonset'].each do |addon|
+['sa', 'clusterrole', 'clusterrolebinding', 'role', 'rolebinding', 'daemonset'].each do |addon|
   template "/etc/kubernetes/addons/weave-kube-#{addon}.yaml" do
     source "weave-kube-#{addon}.yaml.erb"
   end
