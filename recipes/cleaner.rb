@@ -65,3 +65,46 @@ end
 file '/etc/kubernetes/addons/kubelet-clusterrolebinding.yaml' do
   action :delete
 end
+
+# Delete weave-related resources when canal is used as SDN
+if node['kubernetes']['sdn'] == 'canal'
+  ['sa', 'clusterrole', 'clusterrolebinding', 'role', 'rolebinding', 'daemonset'].each do |addon|
+    file "/etc/kubernetes/addons/weave-kube-#{addon}.yaml" do
+      action :delete
+    end
+  end
+
+  ['10-weave.conflist', '10-weave.conf'].each do |config|
+    file "/etc/cni/net.d/#{config}.yaml" do
+      action :delete
+    end
+  end
+end
+
+# Delete canal-related resources when weave is used as SDN
+if node['kubernetes']['sdn'] == 'weave'
+  %w(
+  sa
+  calico-clusterrole
+  calico-clusterrolebinding
+  flannel-clusterrole
+  flannel-clusterrolebinding
+  bgppeer-crd
+  globalbgpconfigs-crd
+  globalfelixconfigs-crd
+  globalnetworkpolicies-crd
+  ippools-crd
+  configmap
+  daemonset
+  ).each do |addon|
+    file "/etc/kubernetes/addons/canal-#{addon}.yaml" do
+      action :delete
+    end
+  end
+
+  ['10-calico.conflist', 'calico-kubeconfig'].each do |config|
+    file "/etc/cni/net.d/#{config}.yaml" do
+      action :delete
+    end
+  end
+end
