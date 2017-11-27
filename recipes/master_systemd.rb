@@ -101,6 +101,11 @@ controller_manager_args = [
   '--pod-eviction-timeout=30s'
 ]
 
+if node['kubernetes']['sdn'] == 'canal'
+  controller_manager_args.push "--allocate-node-cidrs"
+  controller_manager_args.push "--node-cidr-mask-size=#{node['kubernetes']['node_cidr_mask_size']}"
+end
+
 systemd_service 'kube-controller-manager' do
   unit do
     description 'Systemd unit for Kubernetes Controller Manager'

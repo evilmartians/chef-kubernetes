@@ -14,6 +14,7 @@ default['kubernetes']['cluster_name']                       = 'kubernetes'
 default['kubernetes']['cluster_dns']                        = '10.222.222.222'
 default['kubernetes']['cluster_domain']                     = 'kubernetes.local'
 default['kubernetes']['cluster_cidr']                       = '192.168.0.0/16'
+default['kubernetes']['node_cidr_mask_size']                = 24
 default['kubernetes']['use_cluster_dns_systemwide']         = false
 default['kubernetes']['ssl']['ca']['public_key']            = '/etc/kubernetes/ssl/ca.pem'
 default['kubernetes']['ssl']['ca']['private_key']           = '/etc/kubernetes/ssl/ca-key.pem'
