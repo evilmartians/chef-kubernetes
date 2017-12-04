@@ -8,7 +8,7 @@
 require 'resolv'
 
 apt_repository 'haproxy' do
-  uri 'ppa:vbernat/haproxy-1.7'
+  uri 'ppa:vbernat/haproxy-1.8'
   distribution node['lsb']['codename']
 end
 
