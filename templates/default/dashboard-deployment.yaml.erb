@@ -30,6 +30,7 @@ spec:
           - --heapster-host=http://heapster.kube-system.svc.<%= node['kubernetes']['cluster_domain'] %>
           - --insecure-bind-address=0.0.0.0
           - --insecure-port=9090
+          - --enable-insecure-login
         resources:
           limits:
             cpu: 100m
