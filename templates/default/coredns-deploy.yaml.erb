@@ -30,6 +30,7 @@ spec:
       affinity:
         podAntiAffinity:
           <%= node['kubernetes']['addons']['dns']['antiaffinity_type'] %>:
+          <% if node['kubernetes']['addons']['dns']['antiaffinity_type'] == 'requiredDuringSchedulingIgnoredDuringExecution' %>
           - labelSelector:
               matchExpressions:
               - key: k8s-app
@@ -37,6 +38,18 @@ spec:
                 values:
                 - coredns
             topologyKey: kubernetes.io/hostname
+          <% end %>
+          <% if node['kubernetes']['addons']['dns']['antiaffinity_type'] == 'preferredDuringSchedulingIgnoredDuringExecution' %>
+          - weight: <%= node['kubernetes']['addons']['dns']['antiaffinity_weight'] %>
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: k8s-app
+                  operator: In
+                  values:
+                  - coredns
+              topologyKey: kubernetes.io/hostname
+          <% end %>
       serviceAccountName: coredns
       tolerations:
       - key: "CriticalAddonsOnly"
