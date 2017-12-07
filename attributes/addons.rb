@@ -1,5 +1,6 @@
-default['kubernetes']['addons']['dns']['controller']             = 'kubedns'
-default['kubernetes']['addons']['dns']['antiaffinity_type']      = 'requiredDuringSchedulingIgnoredDuringExecution'
+default['kubernetes']['addons']['dns']['controller']             = 'coredns'
+default['kubernetes']['addons']['dns']['antiaffinity_type']      = 'preferredDuringSchedulingIgnoredDuringExecution'
+default['kubernetes']['addons']['dns']['antiaffinity_weight']    = 100
 default['kubernetes']['addons']['kubedns']['dns_forward_max']    = 150
 default['kubernetes']['addons']['kubedns']['version']            = '1.14.7'
 default['kubernetes']['addons']['kubedns']['limits']['cpu']      = '100m'
