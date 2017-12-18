@@ -64,23 +64,26 @@ if node['kubernetes']['audit']['enabled']
   apiserver_args.push "--audit-log-path=#{node['kubernetes']['audit']['log_file']}"
 end
 
-systemd_service 'kube-apiserver' do
-  unit do
-    description 'Systemd unit for Kubernetes API server'
-    action [:create, :enable, :start]
-    after %w(network.target remote-fs.target)
-  end
-  install do
-    wanted_by 'multi-user.target'
-  end
-  service do
-    type 'simple'
-    exec_start "/usr/local/bin/kube-apiserver #{apiserver_args.join(" \\\n")}"
-    exec_reload '/bin/kill -HUP $MAINPID'
-    working_directory '/'
-    restart 'on-failure'
-    restart_sec '30s'
-  end
+systemd_unit 'kube-apiserver.service' do
+  content(
+    Unit: {
+      Description: 'Systemd unit for Kubernetes API server',
+      After: 'network.target remote-fs.target'
+    },
+    Service: {
+      Type: 'simple',
+      ExecStart: "/usr/local/bin/kube-apiserver #{apiserver_args.join(" \\\n")}",
+      ExecReload: '/bin/kill -HUP $MAINPID',
+      WorkingDirectory: '/',
+      Restart: 'on-failure',
+      RestartSec: '30s'
+    },
+    Install: {
+      WantedBy: 'multi-user.target'
+    }
+  )
+  notifies :restart, 'systemd_unit[kube-apiserver.service]'
+  action [:create, :enable, :start]
 end
 
 controller_manager_args = [
@@ -106,23 +109,26 @@ if node['kubernetes']['sdn'] == 'canal'
   controller_manager_args.push "--node-cidr-mask-size=#{node['kubernetes']['node_cidr_mask_size']}"
 end
 
-systemd_service 'kube-controller-manager' do
-  unit do
-    description 'Systemd unit for Kubernetes Controller Manager'
-    action [:create, :enable, :start]
-    after %w(network.target remote-fs.target apiserver.service)
-  end
-  install do
-    wanted_by 'multi-user.target'
-  end
-  service do
-    type 'simple'
-    exec_start "/usr/local/bin/kube-controller-manager #{controller_manager_args.join(" \\\n")}"
-    exec_reload '/bin/kill -HUP $MAINPID'
-    working_directory '/'
-    restart 'on-failure'
-    restart_sec '30s'
-  end
+systemd_unit 'kube-controller-manager.service' do
+  content(
+    Unit: {
+      Description: 'Systemd unit for Kubernetes Controller Manager',
+      After: 'network.target remote-fs.target kube-apiserver.service'
+    },
+    Service: {
+      Type: 'simple',
+      ExecStart: "/usr/local/bin/kube-controller-manager #{controller_manager_args.join(" \\\n")}",
+      ExecReload: '/bin/kill -HUP $MAINPID',
+      WorkingDirectory: '/',
+      Restart: 'on-failure',
+      RestartSec: '30s'
+    },
+    Install: {
+      WantedBy: 'multi-user.target'
+    }
+  )
+  notifies :restart, 'systemd_unit[kube-controller-manager.service]'
+  action [:create, :enable, :start]
 end
 
 scheduler_args = [
@@ -132,23 +138,26 @@ scheduler_args = [
   "--master=http://127.0.0.1:#{node['kubernetes']['api']['insecure_port']}"
 ]
 
-systemd_service 'kube-scheduler' do
-  unit do
-    description 'Systemd unit for Kubernetes Scheduler'
-    action [:create, :enable, :start]
-    after %w(network.target remote-fs.target apiserver.service)
-  end
-  install do
-    wanted_by 'multi-user.target'
-  end
-  service do
-    type 'simple'
-    exec_start "/usr/local/bin/kube-scheduler #{scheduler_args.join(" \\\n")}"
-    exec_reload '/bin/kill -HUP $MAINPID'
-    working_directory '/'
-    restart 'on-failure'
-    restart_sec '30s'
-  end
+systemd_unit 'kube-scheduler.service' do
+  content(
+    Unit: {
+      Description: 'Systemd unit for Kubernetes Scheduler',
+      After: 'network.target remote-fs.target kube-apiserver.service'
+    },
+    Service: {
+      Type: 'simple',
+      ExecStart: "/usr/local/bin/kube-scheduler #{scheduler_args.join(" \\\n")}",
+      ExecReload: '/bin/kill -HUP $MAINPID',
+      WorkingDirectory: '/',
+      Restart: 'on-failure',
+      RestartSec: '30s'
+    },
+    Install: {
+      WantedBy: 'multi-user.target'
+    }
+  )
+  notifies :restart, 'systemd_unit[kube-scheduler.service]'
+  action [:create, :enable, :start]
 end
 
 template '/etc/kubernetes/kube-system-ns.yaml' do
@@ -163,22 +172,25 @@ template '/usr/local/bin/kube-addon-manager' do
   mode '0755'
 end
 
-systemd_service 'kube-addon-manager' do
-  unit do
-    description 'Systemd unit for Kubernetes Addon Manager'
-    action [:create, :enable, :start]
-    after %w(network.target remote-fs.target apiserver.service)
-  end
-  install do
-    wanted_by 'multi-user.target'
-  end
+systemd_unit 'kube-addon-manager.service' do
+  content(
+    Unit: {
+      Description: 'Systemd unit for Kubernetes Addon Manager',
+      After: 'network.target remote-fs.target kube-apiserver.service'
+    },
+    Service: {
+      Type: 'simple',
+      ExecStart: '/usr/local/bin/kube-addon-manager',
+      ExecReload: '/bin/kill -HUP $MAINPID',
+      WorkingDirectory: '/',
+      Restart: 'on-failure',
+      RestartSec: '30s'
+    },
+    Install: {
+      WantedBy: 'multi-user.target'
+    }
+  )
+  notifies :restart, 'systemd_unit[kube-addon-manager.service]'
   subscribes :restart, 'template[/usr/local/bin/kube-addon-manager]'
-  service do
-    type 'simple'
-    exec_start '/usr/local/bin/kube-addon-manager'
-    exec_reload '/bin/kill -HUP $MAINPID'
-    working_directory '/'
-    restart 'on-failure'
-    restart_sec '30s'
-  end
+  action [:create, :enable, :start]
 end

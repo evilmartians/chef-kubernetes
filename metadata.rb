@@ -7,7 +7,6 @@ long_description 'Google Kubernetes installer for deb-based distros with docker'
 version          '0.0.2'
 
 depends 'apt'
-depends 'systemd', '>= 3.1'
 depends 'etcd', '~> 4.1'
 depends 'network_interfaces_v2'
 depends 'tar'
