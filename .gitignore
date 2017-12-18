@@ -16,3 +16,6 @@ bin/*
 
 ssl/
 lib/tasks/ssl/config.yaml
+
+.chef/
+.kitchen/
