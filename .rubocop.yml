@@ -1,0 +1,10 @@
+Style/AndOr:
+  Enabled: false
+SpaceBeforeFirstArg:
+  Enabled: false
+UnusedBlockArgument:
+  Enabled: false
+LineLength:
+  Enabled: false
+Style/FileName:
+  Enabled: false

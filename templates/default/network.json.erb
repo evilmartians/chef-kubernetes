@@ -1,5 +1,5 @@
 {
-    "Network": "<%= node[:kubernetes][:flannel][:network] %>",
+    "Network": "<%= node['kubernetes']['flannel']['network'] %>",
     "SubnetLen": 24,
     "Backend": {
         "Type": "vxlan",

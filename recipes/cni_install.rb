@@ -8,7 +8,13 @@
 version         = node['kubernetes']['cni']['version']
 plugins_version = node['kubernetes']['cni']['plugins_version']
 
-['/etc/kubernetes/addons', '/opt/cni/bin', '/etc/cni/net.d', "/opt/cni/#{version}", "/opt/cni/plugins/#{plugins_version}"].each do |dir|
+[
+  '/etc/kubernetes/addons',
+  '/opt/cni/bin',
+  '/etc/cni/net.d',
+  "/opt/cni/#{version}",
+  "/opt/cni/plugins/#{plugins_version}"
+].each do |dir|
   directory dir do
     recursive true
   end
@@ -30,7 +36,20 @@ tar_extract "https://github.com/containernetworking/plugins/releases/download/v#
   creates "/opt/cni/plugins/#{plugins_version}/portmap"
 end
 
-%w(flannel ptp host-local portmap tuning vlan sample dhcp ipvlan macvlan loopback bridge).each do |plugin|
+%w(
+  flannel
+  ptp
+  host-local
+  portmap
+  tuning
+  vlan
+  sample
+  dhcp
+  ipvlan
+  macvlan
+  loopback
+  bridge
+).each do |plugin|
   link "/opt/cni/bin/#{plugin}" do
     to "../plugins/#{plugins_version}/#{plugin}"
   end

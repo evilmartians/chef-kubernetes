@@ -35,7 +35,7 @@ apiserver_args = [
   "--cloud-provider=#{node['kubernetes']['cloud_provider']}",
   '--log-dir=/var/log/kubernetes',
   "--authorization-mode=#{node['kubernetes']['authorization']['mode']}",
-  "--experimental-bootstrap-token-auth"
+  '--experimental-bootstrap-token-auth'
 ]
 
 if node['kubernetes']['token_auth']
@@ -144,7 +144,7 @@ template '/etc/init/kube-addon-manager.conf' do
   mode '0644'
   variables(
     service_description: 'Kubernetes Addon Manager',
-    cmd: "/usr/local/bin/kube-addon-manager"
+    cmd: '/usr/local/bin/kube-addon-manager'
   )
 end
 

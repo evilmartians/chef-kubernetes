@@ -3,7 +3,7 @@ module Kubernetes
   module Helpers
     def internal_ip(n = node)
       n['network']['interfaces'][n['kubernetes']['interface']]['addresses']
-        .find { |addr, properties| properties['family'] == 'inet' }.first
+        .find { |_addr, data| data['family'] == 'inet' }.first
     rescue
       ''
     end
@@ -15,12 +15,11 @@ module Kubernetes
     def install_via(n = node)
       result = n['kubernetes']['install_via']
       unless n['kubernetes']['install_via'] == 'static_pods'
-        result = 'upstart' if n['init_package'] == 'init' and n['packages'].has_key?('upstart')
+        result = 'upstart' if n['init_package'] == 'init' and n['packages'].key?('upstart')
         result = 'systemd' if n['init_package'] == 'systemd'
       end
       result
     end
-
   end
 end
 

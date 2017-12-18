@@ -51,7 +51,7 @@ kubelet_args = [
   '--allow_privileged=true',
   "--anonymous-auth=#{node['kubernetes']['kubelet']['anonymous_auth']}",
   "--authorization-mode=#{node['kubernetes']['kubelet']['authorization_mode']}",
-  "--authentication-token-webhook",
+  '--authentication-token-webhook',
   "--client-ca-file=#{node['kubernetes']['kubelet']['client_ca_file']}",
   "--register-node=#{node['kubernetes']['kubelet']['register_node']}",
   '--pod-manifest-path=/etc/kubernetes/manifests',
@@ -73,7 +73,7 @@ kubelet_args = [
 
 if node['kubernetes']['kubelet']['system_reserved']
   res = node['kubernetes']['kubelet']['system_reserved']
-  res = res.map { |hash| hash.map { |k, v| "#{k}=#{v}" }}.join(',')
+  res = res.map { |hash| hash.map { |k, v| "#{k}=#{v}" } }.join(',')
   kubelet_args << "--system-reserved=#{res}"
 end
 
@@ -86,7 +86,9 @@ template '/etc/init/kubelet.conf' do
     service_description: 'Kubebernetes workload daemon',
     cmd: "/usr/local/bin/kubelet #{kubelet_args.join(' ')}"
   )
-  only_if { node['init_package'] == 'init' and node['packages'].has_key?('upstart') }
+  only_if do
+    node['init_package'] == 'init' and node['packages'].key?('upstart')
+  end
 end
 
 service 'kubelet' do
