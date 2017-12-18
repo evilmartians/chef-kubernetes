@@ -6,6 +6,7 @@ default['kubernetes']['version']                            = 'v1.8.4'
 default['kubernetes']['keep_versions']                      = 3
 default['kubernetes']['image']                              = 'gcr.io/google_containers/hyperkube'
 default['kubernetes']['interface']                          = 'eth1'
+default['kubernetes']['enable_firewall']                    = true
 default['kubernetes']['register_as']                        = 'ip'
 default['kubernetes']['use_sdn']                            = true
 default['kubernetes']['sdn']                                = 'weave'

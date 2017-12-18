@@ -83,4 +83,7 @@ firewall_rule 'etcd' do
   protocol :tcp
   interface node['kubernetes']['interface']
   command :allow
+  only_if do
+    node['kubernetes']['enable_firewall']
+  end
 end

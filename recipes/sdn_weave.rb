@@ -46,6 +46,9 @@ firewall_rule 'weave_to_node' do
   interface node['kubernetes']['weave']['interface']
   protocol :none
   command :allow
+  only_if do
+    node['kubernetes']['enable_firewall']
+  end
 end
 
 firewall_rule 'weave_npc' do
@@ -53,6 +56,9 @@ firewall_rule 'weave_npc' do
   protocol :tcp
   interface node['kubernetes']['interface']
   command :allow
+  only_if do
+    node['kubernetes']['enable_firewall']
+  end
 end
 
 firewall_rule 'weave_status' do
@@ -60,6 +66,9 @@ firewall_rule 'weave_status' do
   protocol :tcp
   interface node['kubernetes']['interface']
   command :allow
+  only_if do
+    node['kubernetes']['enable_firewall']
+  end
 end
 
 firewall_rule 'weave_control' do
@@ -67,6 +76,9 @@ firewall_rule 'weave_control' do
   protocol :tcp
   interface node['kubernetes']['interface']
   command :allow
+  only_if do
+    node['kubernetes']['enable_firewall']
+  end
 end
 
 firewall_rule 'weave_data' do
@@ -74,4 +86,7 @@ firewall_rule 'weave_data' do
   protocol :udp
   interface node['kubernetes']['interface']
   command :allow
+  only_if do
+    node['kubernetes']['enable_firewall']
+  end
 end
