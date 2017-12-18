@@ -8,12 +8,11 @@
 include_recipe 'kubernetes::kubeconfig'
 
 proxy_args = [
-  "--bind-address=#{internal_ip(node)}",
-  "--hostname-override=#{hostname(node)}",
+  "--bind-address=#{k8s_ip(node)}",
+  "--hostname-override=#{k8s_hostname(node)}",
   '--proxy-mode=iptables',
   "--feature-gates=#{node['kubernetes']['feature_gates'].join(',')}",
   '--kubeconfig=/etc/kubernetes/system:kube-proxy_config.yaml'
-
 ]
 
 if install_via == 'static_pods'
@@ -90,26 +89,10 @@ if install_via == 'upstart'
     recursive true
   end
 
-  remote_file "/opt/kubernetes/#{node['kubernetes']['version']}/bin/kube-proxy" do
-    source "https://storage.googleapis.com/kubernetes-release/release/#{node['kubernetes']['version']}/bin/linux/amd64/kube-proxy"
-    mode '0755'
-    not_if do
-      begin
-        Digest::MD5.file("/opt/kubernetes/#{node['kubernetes']['version']}/bin/kube-proxy").to_s == node['kubernetes']['md5']['proxy']
-      rescue
-        false
-      end
-    end
-  end
-
-  link '/usr/local/bin/kube-proxy' do
-    to "/opt/kubernetes/#{node['kubernetes']['version']}/bin/kube-proxy"
-  end
-
   service 'kube-proxy' do
     action [:start, :enable]
     provider Chef::Provider::Service::Upstart
     subscribes :restart, 'link[/usr/local/bin/kube-proxy]'
+    subscribes :restart, "remote_file[/opt/kubernetes/#{node['kubernetes']['version']}/bin/kube-proxy]"
   end
-
 end

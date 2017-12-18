@@ -19,27 +19,43 @@ service 'haproxy' do
 end
 
 master_nodes = search(:node, "roles:#{node['kubernetes']['roles']['master']}")
-if !master_nodes.empty? && master_nodes.all? {|n| n.keys.include? 'kubernetes'}
-  master_nodes.map! { |node| { name: hostname(node), ip: internal_ip(node) } }
 
-  nameservers = Resolv::DNS::Config.new.lazy_initialize.nameserver_port
-  nameservers = nameservers.unshift([node['kubernetes']['cluster_dns'], 53])
-  nameservers.uniq!
+nameservers = Resolv::DNS::Config.new.lazy_initialize.nameserver_port
+nameservers = nameservers.unshift([node['kubernetes']['cluster_dns'], 53])
+nameservers.uniq!
 
-  template '/etc/haproxy/haproxy.cfg' do
-    source 'haproxy.cfg.erb'
-    variables(
-      nodes:     master_nodes,
-      resolvers: [
-        { name: node['kubernetes']['cluster_name'],
-          nameservers:     nameservers,
-          resolve_retries: 3,
-          timeout_retry:   '1s'
-        }
-      ]
-    )
-    notifies :restart, 'service[haproxy]'
+if !master_nodes.empty? &&
+   master_nodes.all? { |n| n.keys.include? 'kubernetes' }
+
+  master_nodes.map! do |master_node|
+    {
+      name: k8s_hostname(master_node),
+      ip: k8s_ip(master_node)
+    }
   end
+else
+  master_nodes = [
+    {
+      name: k8s_hostname(node),
+      ip: k8s_ip(node)
+    }
+  ]
+end
+
+template '/etc/haproxy/haproxy.cfg' do
+  source 'haproxy.cfg.erb'
+  variables(
+    nodes:     master_nodes,
+    resolvers: [
+      {
+        name: node['kubernetes']['cluster_name'],
+        nameservers:     nameservers,
+        resolve_retries: 3,
+        timeout_retry:   '1s'
+      }
+    ]
+  )
+  notifies :restart, 'service[haproxy]'
 end
 
 firewall_rule 'deis_builder' do

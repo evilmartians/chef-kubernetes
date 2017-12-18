@@ -21,12 +21,13 @@ require 'fileutils'
     end
   end
 
+  # Next is needed to prevent resource definition when it is not needed.
+  # `only_if` statement blocks notifications which we are sending
+  next unless node['init_package'] == 'systemd' and
+              %w(static_pods upstart).include? node['kubernetes']['install_via']
+
   systemd_unit "kube-#{srv}.service" do
     action [:disable, :stop, :delete]
-    only_if do
-      node['init_package'] == 'systemd' and
-        %w(static_pods upstart).include? node['kubernetes']['install_via']
-    end
   end
 end
 

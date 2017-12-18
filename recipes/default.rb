@@ -20,19 +20,27 @@ include_recipe 'firewall' if node['kubernetes']['enable_firewall']
   end
 end
 
-ca_file = Chef::EncryptedDataBagItem.load(node['kubernetes']['databag'], 'ca_ssl')['public_key']
+ca_file = data_bag_item(node['kubernetes']['databag'], 'ca_ssl')['public_key']
 
 file node['kubernetes']['client_ca_file'] do
   content ca_file
 end
 
+users_data = data_bag_item(node['kubernetes']['databag'], 'users')['users']
+token = users_data.find { |user| user['name'] == 'kubelet-bootstrap' }['token']
+
 template '/etc/kubernetes/kubeconfig-bootstrap.yaml' do
   source 'kubeconfig.yaml.erb'
   if node['kubernetes']['token_auth']
-    variables(token: Chef::EncryptedDataBagItem.load(node['kubernetes']['databag'], 'users')['users']
-                .find { |user| user['name'] == 'kubelet-bootstrap' }['token'],
-              ca_file: Base64.encode64(ca_file).delete("\n"),
-              user: 'kubelet-bootstrap')
+
+    users_data = data_bag_item(node['kubernetes']['databag'], 'users')['users']
+    token = users_data.find { |user| user['name'] == 'kubelet-bootstrap' }['token']
+
+    variables(
+      token: token,
+      ca_file: Base64.encode64(ca_file).delete("\n"),
+      user: 'kubelet-bootstrap'
+    )
   end
 end
 
@@ -44,10 +52,10 @@ link '/usr/local/bin/kubelet' do
 end
 
 kubelet_args = [
-  "--address=#{internal_ip(node)}",
+  "--address=#{k8s_ip(node)}",
   "--cluster-dns=#{node['kubernetes']['cluster_dns']}",
-  "--hostname_override=#{hostname(node)}",
-  "--node-ip=#{internal_ip(node)}",
+  "--hostname_override=#{k8s_hostname(node)}",
+  "--node-ip=#{k8s_ip(node)}",
   '--allow_privileged=true',
   "--anonymous-auth=#{node['kubernetes']['kubelet']['anonymous_auth']}",
   "--authorization-mode=#{node['kubernetes']['kubelet']['authorization_mode']}",
@@ -96,7 +104,9 @@ service 'kubelet' do
   provider Chef::Provider::Service::Upstart
   subscribes :restart, 'template[/etc/init/kubelet.conf]'
   subscribes :restart, 'link[/usr/local/bin/kubelet]'
-  only_if { node['init_package'] == 'init' and node['packages'].has_key?('upstart') }
+  only_if do
+    node['init_package'] == 'init' and node['packages'].key?('upstart')
+  end
 end
 
 systemd_unit 'kubelet.service' do

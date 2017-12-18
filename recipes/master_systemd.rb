@@ -8,18 +8,30 @@
 %w(apiserver controller-manager scheduler).each do |f|
   link "/usr/local/bin/kube-#{f}" do
     to "/opt/kubernetes/#{node['kubernetes']['version']}/bin/kube-#{f}"
-    notifies :restart, "systemd_service[kube-#{f}]"
+    notifies :restart, "systemd_unit[kube-#{f}.service]"
   end
 end
 
-etcd_nodes = search(:node, "roles:#{node['etcd']['role']}").map { |node| internal_ip(node) }
-etcd_servers = etcd_nodes.map { |addr| "#{node['etcd']['proto']}://#{addr}:#{node['etcd']['client_port']}" }.join ','
+etcd_nodes = search(
+  :node,
+  "roles:#{node['etcd']['role']}"
+).map { |node| k8s_ip(node) }
+
+etcd_servers = etcd_nodes.map do |addr|
+  "#{node['etcd']['proto']}://#{addr}:#{node['etcd']['client_port']}"
+end.join ','
+
+if etcd_nodes.empty?
+  etcd_servers = "#{node['etcd']['proto']}://#{k8s_ip(node)}:#{node['etcd']['client_port']}"
+end
 
 master_nodes = search(:node, "roles:#{node['kubernetes']['roles']['master']}")
 
+master_nodes = [node] if master_nodes.empty?
+
 apiserver_args = [
   "--bind-address=#{node['kubernetes']['api']['bind_address']}",
-  "--advertise-address=#{internal_ip(node)}",
+  "--advertise-address=#{k8s_ip(node)}",
   "--etcd-servers=#{etcd_servers}",
   "--etcd-certfile=#{node['etcd']['cert_file']}",
   "--etcd-keyfile=#{node['etcd']['key_file']}",
@@ -105,7 +117,7 @@ controller_manager_args = [
 ]
 
 if node['kubernetes']['sdn'] == 'canal'
-  controller_manager_args.push "--allocate-node-cidrs"
+  controller_manager_args.push '--allocate-node-cidrs'
   controller_manager_args.push "--node-cidr-mask-size=#{node['kubernetes']['node_cidr_mask_size']}"
 end
 

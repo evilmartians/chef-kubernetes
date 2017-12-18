@@ -5,14 +5,20 @@
 # Author:: Kirill Kuznetsov <kir@evilmartians.com>
 #
 
-etcd_nodes = search(:node, "roles:#{node['etcd']['role']}").map { |node| internal_ip(node) }
+etcd_nodes = search(:node, "roles:#{node['etcd']['role']}").map { |node| k8s_ip(node) }
 etcd_servers = etcd_nodes.map { |addr| "#{node['etcd']['proto']}://#{addr}:#{node['etcd']['client_port']}" }.join ','
+
+if etcd_nodes.empty?
+  etcd_servers = "#{node['etcd']['proto']}://#{k8s_ip(node)}:#{node['etcd']['client_port']}"
+end
 
 master_nodes = search(:node, "roles:#{node['kubernetes']['roles']['master']}")
 
+master_nodes = [node] if master_nodes.empty?
+
 apiserver_args = [
   "--bind-address=#{node['kubernetes']['api']['bind_address']}",
-  "--advertise-address=#{internal_ip(node)}",
+  "--advertise-address=#{k8s_ip(node)}",
   "--etcd-servers=#{etcd_servers}",
   "--etcd-certfile=#{node['etcd']['cert_file']}",
   "--etcd-keyfile=#{node['etcd']['key_file']}",
@@ -161,16 +167,11 @@ end
 
 %w(apiserver controller-manager scheduler).each do |f|
   remote_file "/opt/kubernetes/#{node['kubernetes']['version']}/bin/kube-#{f}" do
-    source "https://storage.googleapis.com/kubernetes-release/release/#{node['kubernetes']['version']}/bin/linux/amd64/kube-#{f}"
+    source "#{node['kubernetes']['paskages']['storage_url']}kube-#{f}"
     mode '0755'
-    not_if do
-      begin
-        Digest::MD5.file("/opt/kubernetes/#{node['kubernetes']['version']}/bin/kube-#{f}").to_s == node['kubernetes']['md5'][f.to_sym]
-      rescue
-        false
-      end
-    end
+    checksum node['kubernetes']['checksums'][f]
   end
+
   link "/usr/local/bin/kube-#{f}" do
     to "/opt/kubernetes/#{node['kubernetes']['version']}/bin/kube-#{f}"
     notifies :restart, "service[kube-#{f}]"
