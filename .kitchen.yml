@@ -1,0 +1,33 @@
+---
+driver:
+  name: vagrant
+  customize:
+    memory: 3072
+
+provisioner:
+  name: chef_zero
+  # log_level: debug
+
+verifier:
+  name: inspec
+
+platforms:
+  - name: bento/ubuntu-16.04
+
+suites:
+  - name: default
+    attributes:
+      kubernetes:
+        interface: eth0
+        enable_firewall: false
+        packages:
+          storage_url: http://192.168.1.2:8080/k8s-v1.8.5/
+    roles_path: ./test/integration/roles/
+    nodes_path: ./test/integration/nodes/
+    data_bags_path: ./test/integration/data_bags/
+    encrypted_data_bag_secret_key_path: ./test/integration/encrypted_data_bag_secret
+    run_list:
+      - role[etcd]
+      - role[kubernetes_master]
+      - role[kubernetes_node]
+      - recipe[testrig::approve_kubelet_csr]

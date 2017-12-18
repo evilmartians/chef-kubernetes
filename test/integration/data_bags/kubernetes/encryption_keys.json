@@ -1,0 +1,10 @@
+{
+  "id": "encryption_keys",
+  "aescbc": {
+    "encrypted_data": "eYudlo2xi8Jt4CCqTJIXcc/w4R6IFA9qgpwYyxAh2zp86MDedolgRu1t/Ttx\nDRYsS2o5ENQRytoNtEmSvbx4EnrlYRpEZXut0YJYTzHR\n",
+    "iv": "a6Gj1h81efscKeVE\n",
+    "auth_tag": "FTQNjY1AyRfPctpoj+bjwQ==\n",
+    "version": 3,
+    "cipher": "aes-256-gcm"
+  }
+}
