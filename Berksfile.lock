@@ -7,20 +7,16 @@ DEPENDENCIES
     metadata: true
   network_interfaces_v2
     git: https://github.com/target/network_interfaces_v2-cookbook.git
-    revision: 9e7e2fa883e363e1dcf62c37a80f36fc9b9a45f0
-  systemd
-    git: https://github.com/nathwill/chef-systemd.git
-    revision: 2fce85effc3b440d3cf83f10426688b75fad9287
-    tag: v3.1.1
+    revision: f8fdff4a05e1749200090997a4a253fe4b45a71a
   tar
+  testrig
+    path: test/integration/cookbooks/testrig
   ufw
 
 GRAPH
-  apt (6.1.0)
-  chef-sugar (3.4.0)
-  chef_handler (2.1.1)
-  compat_resource (12.19.0)
-  docker (2.16.0)
+  apt (6.1.4)
+  chef-sugar (3.6.0)
+  docker (2.17.0)
   etcd (4.1.1)
     docker (>= 0.0.0)
   firewall (2.6.2)
@@ -31,23 +27,21 @@ GRAPH
     etcd (~> 4.1)
     firewall (>= 0.0.0)
     network_interfaces_v2 (>= 0.0.0)
-    systemd (>= 3.1.0)
     tar (>= 0.0.0)
     ufw (>= 0.0.0)
-  ms_dotnet (3.2.1)
-    windows (>= 1.36.1)
+  ms_dotnet (4.0.1)
+    windows (>= 2.1.0)
   network_interfaces_v2 (2.11.0)
     kernel_module (~> 1.0)
     powershell (>= 0.0.0)
-  ohai (5.1.0)
-  powershell (6.0.0)
-    chef_handler (>= 0.0.0)
-    ms_dotnet (>= 2.6)
+  ohai (5.2.0)
+  powershell (6.1.1)
+    ms_dotnet (>= 3.2.1)
     windows (>= 3.0)
-  systemd (3.1.1)
-    compat_resource (>= 0.0.0)
   tar (2.1.1)
+  testrig (0.0.1)
+    kubernetes (>= 0.0.0)
   ufw (3.1.0)
     firewall (>= 2.0)
-  windows (3.0.5)
+  windows (3.4.1)
     ohai (>= 4.0.0)
