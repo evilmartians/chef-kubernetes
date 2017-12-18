@@ -8,3 +8,7 @@ cookbook 'ufw'
 cookbook 'network_interfaces_v2', github: 'target/network_interfaces_v2-cookbook'
 
 metadata
+
+group :integration do
+  cookbook 'testrig', path: './test/integration/cookbooks/testrig', group: :integration
+end
