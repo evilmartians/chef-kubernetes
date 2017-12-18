@@ -60,15 +60,9 @@ end
 
 %w(kubelet kubectl).each do |f|
   remote_file "/opt/kubernetes/#{node['kubernetes']['version']}/bin/#{f}" do
-    source "https://storage.googleapis.com/kubernetes-release/release/#{node['kubernetes']['version']}/bin/linux/amd64/#{f}"
+    source "#{node['kubernetes']['packages']['storage_url']}#{f}"
     mode '0755'
-    not_if do
-      begin
-        Digest::MD5.file("/opt/kubernetes/#{node['kubernetes']['version']}/bin/#{f}").to_s == node['kubernetes']['md5'][f.to_sym]
-      rescue
-        false
-      end
-    end
+    checksum node['kubernetes']['checksums'][f]
   end
 end
 

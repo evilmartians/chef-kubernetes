@@ -182,7 +182,7 @@ namespace :ca do
   end
 end
 
-CONFIG['accounts'].each do |name, _data|
+CONFIG['accounts'].each do |name, data|
   namespace name.to_sym do
     desc "Create the #{name} client certificate signing request"
     task :csr do

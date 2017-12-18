@@ -15,14 +15,11 @@ end
 
 %w(apiserver controller-manager scheduler).each do |f|
   remote_file "/opt/kubernetes/#{node['kubernetes']['version']}/bin/kube-#{f}" do
-    source "https://storage.googleapis.com/kubernetes-release/release/#{node['kubernetes']['version']}/bin/linux/amd64/kube-#{f}"
+    source "#{node['kubernetes']['packages']['storage_url']}kube-#{f}"
     mode '0755'
+    checksum node['kubernetes']['checksums'][f]
     not_if do
-      begin
-        Digest::MD5.file("/opt/kubernetes/#{node['kubernetes']['version']}/bin/kube-#{f}").to_s == node['kubernetes']['md5'][f.to_sym]
-      rescue
-        false
-      end
+      node['kubernetes']['install_via'] == 'static_pods'
     end
   end
 end
@@ -79,7 +76,7 @@ end
   end
 end
 
-%w(apiserver ca).each do |keypair|
+node['kubernetes']['ssl']['keypairs'].each do |keypair|
   %w(public_key private_key).each do |key_type|
     file node['kubernetes']['ssl'][keypair][key_type] do
       content data_bag_item(
