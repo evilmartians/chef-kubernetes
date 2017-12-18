@@ -36,12 +36,19 @@ end
 include_recipe 'kubernetes::kubeconfig'
 
 # Encryption config
-keys = Chef::EncryptedDataBagItem.load(
-  node['kubernetes']['databag'], 'encryption_keys'
+keys = data_bag_item(
+  node['kubernetes']['databag'],
+  'encryption_keys'
 )[node['kubernetes']['encryption']]
 
-keys.map! {|k| {'name' => k['name'], 'secret' => Base64.encode64(k['secret'])} }
-keys.sort! {|k| k['name'] <=> k['name']}
+# TODO: Fix this style.
+keys.map! do |k|
+  {
+    'name' => k['name'],
+    'secret' => Base64.encode64(k['secret'])
+  }
+end
+keys.sort_by! { |key| key['name'] }
 
 template node['kubernetes']['api']['experimental_encryption_provider_config'] do
   source 'encryption-config.yaml.erb'
@@ -75,14 +82,18 @@ end
 %w(apiserver ca).each do |keypair|
   %w(public_key private_key).each do |key_type|
     file node['kubernetes']['ssl'][keypair][key_type] do
-      content Chef::EncryptedDataBagItem.load(node['kubernetes']['databag'], "#{keypair}_ssl")[key_type]
+      content data_bag_item(
+        node['kubernetes']['databag'],
+        "#{keypair}_ssl"
+      )[key_type]
     end
   end
 end
 
-if node['kubernetes']['authorization']['mode'].include?('ABAC')
-  template '/etc/kubernetes/authorization-policy.jsonl' do
-    source 'authorization-policy.jsonl.erb'
+template '/etc/kubernetes/authorization-policy.jsonl' do
+  source 'authorization-policy.jsonl.erb'
+  only_if do
+    node['kubernetes']['authorization']['mode'].include?('ABAC')
   end
 end
 
@@ -90,13 +101,14 @@ if node['kubernetes']['authorization']['mode'].include? 'RBAC'
   template '/etc/kubernetes/addons/apiserver-to-kubelet-clusterrole.yaml' do
     source 'apiserver-to-kubelet-clusterrole.yaml.erb'
   end
+
   %w(
-        admin
-        node-bootstrapper
-        apiserver-to-kubelet
-        kubelet-client-certificate-rotation
-        kubelet-server-certificate-rotation
-     ).each do |manifest|
+    admin
+    node-bootstrapper
+    apiserver-to-kubelet
+    kubelet-client-certificate-rotation
+    kubelet-server-certificate-rotation
+  ).each do |manifest|
     template "/etc/kubernetes/addons/#{manifest}-clusterrolebinding.yaml" do
       source "#{manifest}-clusterrolebinding.yaml.erb"
     end
@@ -106,7 +118,12 @@ end
 if node['kubernetes']['token_auth']
   template node['kubernetes']['token_auth_file'] do
     source 'tokens.csv.erb'
-    variables(users: Chef::EncryptedDataBagItem.load(node['kubernetes']['databag'], 'users')['users'])
+    variables(
+      users: data_bag_item(
+        node['kubernetes']['databag'],
+        'users'
+      )['users']
+    )
   end
 end
 

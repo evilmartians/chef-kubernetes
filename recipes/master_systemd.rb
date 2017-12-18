@@ -48,7 +48,7 @@ apiserver_args = [
   "--authorization-mode=#{node['kubernetes']['authorization']['mode']}",
   "--experimental-encryption-provider-config=#{node['kubernetes']['api']['experimental_encryption_provider_config']}",
   "--feature-gates=#{node['kubernetes']['feature_gates'].join(',')}",
-  "--enable-bootstrap-token-auth"
+  '--enable-bootstrap-token-auth'
 ]
 
 if node['kubernetes']['token_auth']

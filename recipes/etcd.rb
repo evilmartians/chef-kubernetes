@@ -20,16 +20,19 @@ user node['etcd']['user'] do
   not_if { node['kubernetes']['install_via'] == 'static_pods' }
 end
 
-etcd_user = node['etcd']['user']
-etcd_group = node['etcd']['group']
-
-case node['kubernetes']['install_via']
-when 'static_pods'
+if install_via == 'static_pods'
   etcd_user = 'root'
   etcd_group = 'root'
+else
+  etcd_user = node['etcd']['user']
+  etcd_group = node['etcd']['group']
 end
 
-[node['etcd']['data_dir'], "#{node['etcd']['data_dir']}/member", node['etcd']['wal_dir']].each do |d|
+[
+  node['etcd']['data_dir'],
+  "#{node['etcd']['data_dir']}/member",
+  node['etcd']['wal_dir']
+].each do |d|
   directory d do
     recursive true
     owner etcd_user
@@ -73,11 +76,10 @@ unless install_via == 'static_pods'
     version node['etcd']['version'].tr('A-z', '')
     not_if { nodes.empty? || nodes.any?(&:empty?) }
   end
-
 end
 
 firewall_rule 'etcd' do
-  port [2379,2380]
+  port [2379, 2380]
   protocol :tcp
   interface node['kubernetes']['interface']
   command :allow

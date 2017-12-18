@@ -21,16 +21,23 @@ directory '/etc/kubernetes/addons' do
   recursive true
 end
 
-['sa', 'clusterrole', 'clusterrolebinding', 'role', 'rolebinding', 'daemonset'].each do |addon|
+%w(
+  sa
+  clusterrole
+  clusterrolebinding
+  role
+  rolebinding
+  daemonset
+).each do |addon|
   template "/etc/kubernetes/addons/weave-kube-#{addon}.yaml" do
     source "weave-kube-#{addon}.yaml.erb"
   end
 end
 
 if node['kubernetes']['weave']['use_scope']
-  ['weavescope-deployment', 'weavescope-svc', 'weavescope-daemonset']. each do |srv|
-    template "/etc/kubernetes/addons/#{srv}.yaml" do
-      source "#{srv}.yaml.erb"
+  %w(deployment svc daemonset).each do |item|
+    template "/etc/kubernetes/addons/weavescope-#{item}.yaml" do
+      source "weavescope-#{item}.yaml.erb"
     end
   end
 end

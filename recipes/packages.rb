@@ -5,15 +5,18 @@
 # Author:: Maxim Filatov <bregor@evilmartians.com>
 #
 
-package 'iptables'
-package 'ebtables'
-package 'socat'
-package 'ethtool'
-package 'kmod'
-package 'tcpd'
-package 'dbus'
-package 'apt-transport-https'
-package 'conntrack'
+package %w(
+  iptables
+  ebtables
+  socat
+  ethtool
+  kmod
+  tcpd
+  dbus
+  apt-transport-https
+  conntrack
+)
+
 package 'linux-image-extra-virtual' if node['docker']['settings']['storage-driver'] == 'aufs'
 
 apt_repository 'docker' do

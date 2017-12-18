@@ -31,11 +31,17 @@ require 'fileutils'
 end
 
 # Cleanup old kubernetes binaries
-versions = Dir["/opt/kubernetes/*"].sort_by {|f| File.mtime(f)}
+versions = Dir['/opt/kubernetes/*'].sort_by { |f| File.mtime(f) }
+
 FileUtils.rm_rf(versions[0...-node['kubernetes']['keep_versions']])
 
 # Cleanup old skydns manifests
-%w(kubedns-cm kubedns-sa skydns-deployment skydns-svc).each do |manifest|
+%w(
+  kubedns-cm
+  kubedns-sa
+  skydns-deployment
+  skydns-svc
+).each do |manifest|
   file "/etc/kubernetes/addons/#{manifest}.yaml" do
     action :delete
   end
@@ -68,13 +74,20 @@ end
 
 # Delete weave-related resources when canal is used as SDN
 if node['kubernetes']['sdn'] == 'canal'
-  ['sa', 'clusterrole', 'clusterrolebinding', 'role', 'rolebinding', 'daemonset'].each do |addon|
+  %w(
+    sa
+    clusterrole
+    clusterrolebinding
+    role
+    rolebinding
+    daemonset
+  ).each do |addon|
     file "/etc/kubernetes/addons/weave-kube-#{addon}.yaml" do
       action :delete
     end
   end
 
-  ['10-weave.conflist', '10-weave.conf'].each do |config|
+  %w(10-weave.conflist 10-weave.conf).each do |config|
     file "/etc/cni/net.d/#{config}.yaml" do
       action :delete
     end
@@ -84,25 +97,25 @@ end
 # Delete canal-related resources when weave is used as SDN
 if node['kubernetes']['sdn'] == 'weave'
   %w(
-  sa
-  calico-clusterrole
-  calico-clusterrolebinding
-  flannel-clusterrole
-  flannel-clusterrolebinding
-  bgppeer-crd
-  globalbgpconfigs-crd
-  globalfelixconfigs-crd
-  globalnetworkpolicies-crd
-  ippools-crd
-  configmap
-  daemonset
+    sa
+    calico-clusterrole
+    calico-clusterrolebinding
+    flannel-clusterrole
+    flannel-clusterrolebinding
+    bgppeer-crd
+    globalbgpconfigs-crd
+    globalfelixconfigs-crd
+    globalnetworkpolicies-crd
+    ippools-crd
+    configmap
+    daemonset
   ).each do |addon|
     file "/etc/kubernetes/addons/canal-#{addon}.yaml" do
       action :delete
     end
   end
 
-  ['10-calico.conflist', 'calico-kubeconfig'].each do |config|
+  %w(10-calico.conflist calico-kubeconfig).each do |config|
     file "/etc/cni/net.d/#{config}.yaml" do
       action :delete
     end

@@ -20,7 +20,7 @@ include_recipe 'kubernetes::cni_install'
   ippools-crd
   configmap
   daemonset
-  ).each do |addon|
+).each do |addon|
   template "/etc/kubernetes/addons/canal-#{addon}.yaml" do
     source "canal-#{addon}.yaml.erb"
   end
