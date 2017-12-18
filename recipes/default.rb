@@ -12,7 +12,7 @@ include_recipe 'kubernetes::master_detect'
 include_recipe "kubernetes::sdn_#{node['kubernetes']['sdn']}"
 include_recipe 'kubernetes::networking'
 include_recipe 'kubernetes::haproxy' if node['kubernetes']['multimaster']['access_via'] == 'haproxy'
-include_recipe 'firewall'
+include_recipe 'firewall' if node['kubernetes']['enable_firewall']
 
 %w(manifests ssl addons).each do |dir|
   directory("/etc/kubernetes/#{dir}") do
@@ -121,10 +121,13 @@ systemd_service 'kubelet' do
 end
 
 firewall_rule 'kubelet' do
-  port [10250, 10255]
+  port [10_250, 10_255]
   protocol :tcp
   interface node['kubernetes']['interface']
   command :allow
+  only_if do
+    node['kubernetes']['enable_firewall']
+  end
 end
 
 include_recipe 'kubernetes::cleaner'

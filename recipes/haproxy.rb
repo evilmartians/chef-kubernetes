@@ -42,10 +42,13 @@ if !master_nodes.empty? && master_nodes.all? {|n| n.keys.include? 'kubernetes'}
   end
 end
 
-if node['kubernetes']['deis']['enabled'] and node['kubernetes']['deis']['route_via'] == 'haproxy'
-  firewall_rule 'deis_builder' do
-    port 2222
-    protocol :tcp
-    command :allow
+firewall_rule 'deis_builder' do
+  port 2222
+  protocol :tcp
+  command :allow
+  only_if do
+    node['kubernetes']['enable_firewall'] and
+      node['kubernetes']['deis']['enabled'] and
+      node['kubernetes']['deis']['route_via'] == 'haproxy'
   end
 end

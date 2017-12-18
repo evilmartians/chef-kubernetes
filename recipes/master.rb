@@ -7,7 +7,7 @@
 
 include_recipe 'kubernetes::master_detect'
 include_recipe "kubernetes::sdn_#{node['kubernetes']['sdn']}" if node['kubernetes']['use_sdn']
-include_recipe 'firewall'
+include_recipe 'firewall' if node['kubernetes']['enable_firewall']
 
 directory "/opt/kubernetes/#{node['kubernetes']['version']}/bin" do
   recursive true
@@ -131,6 +131,9 @@ firewall_rule 'kube_apiserver' do
   port node['kubernetes']['api']['secure_port']
   protocol :tcp
   command :allow
+  only_if do
+    node['kubernetes']['enable_firewall']
+  end
 end
 
 include_recipe "kubernetes::master_#{install_via}"
