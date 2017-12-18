@@ -28,47 +28,50 @@ if install_via == 'static_pods'
 
 end
 
+remote_file "/opt/kubernetes/#{node['kubernetes']['version']}/bin/kube-proxy" do
+  source "#{node['kubernetes']['packages']['storage_url']}kube-proxy"
+  mode '0755'
+  checksum node['kubernetes']['checksums']['kube-proxy']
+  not_if do
+    node['kubernetes']['install_via'] == 'static_pods'
+  end
+end
+
+link '/usr/local/bin/kube-proxy' do
+  to "/opt/kubernetes/#{node['kubernetes']['version']}/bin/kube-proxy"
+  not_if do
+    node['kubernetes']['install_via'] == 'static_pods'
+  end
+end
+
 if install_via == 'systemd'
 
   directory "/opt/kubernetes/#{node['kubernetes']['version']}/bin" do
     recursive true
   end
 
-  remote_file "/opt/kubernetes/#{node['kubernetes']['version']}/bin/kube-proxy" do
-    source "https://storage.googleapis.com/kubernetes-release/release/#{node['kubernetes']['version']}/bin/linux/amd64/kube-proxy"
-    mode '0755'
-    not_if do
-      begin
-        Digest::MD5.file("/opt/kubernetes/#{node['kubernetes']['version']}/bin/kube-proxy").to_s == node['kubernetes']['md5']['proxy']
-      rescue
-        false
-      end
-    end
+  systemd_unit 'kube-proxy.service' do
+    content(
+      'Unit' => {
+        'Description' => 'Systemd unit for Kubernetes Proxy',
+        'After' => 'network.target remote-fs.target'
+      },
+      'Service' => {
+        'Type' => 'simple',
+        'ExecStart' => "/usr/local/bin/kube-proxy #{proxy_args.join(" \\\n")}",
+        'ExecReload' => '/bin/kill -HUP $MAINPID',
+        'WorkingDirectory' => '/',
+        'Restart' => 'on-failure',
+        'RestartSec' => '30s'
+      },
+      'Install' => {
+        'WantedBy' => 'multi-user.target'
+      }
+    )
+    notifies :restart, 'systemd_unit[kube-proxy.service]'
+    subscribes :restart, "remote_file[/opt/kubernetes/#{node['kubernetes']['version']}/bin/kube-proxy]"
+    action [:create, :enable, :start]
   end
-  link '/usr/local/bin/kube-proxy' do
-    to "/opt/kubernetes/#{node['kubernetes']['version']}/bin/kube-proxy"
-    notifies :restart, 'systemd_service[kube-proxy]'
-  end
-
-  systemd_service 'kube-proxy' do
-    unit do
-      description 'Systemd unit for Kubernetes Proxy'
-      action [:create, :enable, :start]
-      after %w(network.target remote-fs.target)
-    end
-    install do
-      wanted_by 'multi-user.target'
-    end
-    service do
-      type 'simple'
-      exec_start "/usr/local/bin/kube-proxy #{proxy_args.join(" \\\n")}"
-      exec_reload '/bin/kill -HUP $MAINPID'
-      working_directory '/'
-      restart 'on-failure'
-      restart_sec '30s'
-    end
-  end
-
 end
 
 if install_via == 'upstart'

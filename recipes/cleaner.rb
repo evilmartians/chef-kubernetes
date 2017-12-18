@@ -7,27 +7,27 @@
 
 require 'fileutils'
 
-%w(apiserver controller-manager scheduler proxy addon-manager).each do |srv|
-
-  if node['kubernetes']['install_via'] == 'systemd'
-    FileUtils.rm_f "/etc/kubernetes/manifests/#{srv}.yaml"
-  end
-
-  if node['kubernetes']['install_via'] == 'static_pods'
-    systemd_service "kube-#{srv}" do
-      action [:disable, :stop]
-      only_if { node['init_package'] == 'systemd' }
+%w(
+  apiserver
+  controller-manager
+  scheduler
+  proxy
+  addon-manager
+).each do |srv|
+  file "/etc/kubernetes/manifests/#{srv}.yaml" do
+    action :delete
+    only_if do
+      %(systemd upstart).include? node['kubernetes']['install_via']
     end
   end
 
-  if node['kubernetes']['install_via'] == 'upstart'
-    FileUtils.rm_f "/etc/kubernetes/manifests/#{srv}.yaml"
-    systemd_service "kube-#{srv}" do
-      action [:disable, :stop]
-      only_if { node['init_package'] == 'systemd' }
+  systemd_unit "kube-#{srv}.service" do
+    action [:disable, :stop, :delete]
+    only_if do
+      node['init_package'] == 'systemd' and
+        %w(static_pods upstart).include? node['kubernetes']['install_via']
     end
   end
-
 end
 
 # Cleanup old kubernetes binaries

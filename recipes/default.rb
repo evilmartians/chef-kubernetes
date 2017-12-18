@@ -99,25 +99,27 @@ service 'kubelet' do
   only_if { node['init_package'] == 'init' and node['packages'].has_key?('upstart') }
 end
 
-systemd_service 'kubelet' do
-  unit do
-    description 'Systemd unit for Kubernetes worker service (kubelet)'
-    action [:create, :enable, :start]
-    after %W(network.target remote-fs.target #{node['kubernetes']['container_engine']}.service)
-  end
-  install do
-    wanted_by 'multi-user.target'
-  end
-  service do
-    type 'simple'
-    exec_start "/usr/local/bin/kubelet #{kubelet_args.join(" \\\n")}"
-    exec_reload '/bin/kill -HUP $MAINPID'
-    working_directory '/'
-    restart 'on-failure'
-    restart_sec '30s'
-  end
-  only_if { node['init_package'] == 'systemd' }
-  subscribes :restart, 'link[/usr/local/bin/kubelet]'
+systemd_unit 'kubelet.service' do
+  content(
+    'Unit' => {
+      'Description' => 'Systemd unit for Kubernetes worker service (kubelet)',
+      'After' => "network.target remote-fs.target #{node['kubernetes']['container_engine']}.service"
+    },
+    'Service' => {
+      'Type' => 'simple',
+      'ExecStart' => "/usr/local/bin/kubelet #{kubelet_args.join(" \\\n")}",
+      'ExecReload' => '/bin/kill -HUP $MAINPID',
+      'WorkingDirectory' => '/',
+      'Restart' => 'on-failure',
+      'RestartSec' => '30s'
+    },
+    'Install' => {
+      'WantedBy' => 'multi-user.target'
+    }
+  )
+  notifies :restart, 'systemd_unit[kubelet.service]'
+  subscribes :restart, "remote_file[/opt/kubernetes/#{node['kubernetes']['version']}/bin/kubelet"
+  action [:create, :enable, :start]
 end
 
 firewall_rule 'kubelet' do

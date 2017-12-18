@@ -16,22 +16,29 @@ if node['kubernetes']['use_cluster_dns_systemwide']
   end
 end
 
-ifaddr, ifopts = node['network']['interfaces'][node['kubernetes']['interface']]['addresses'].find { |addr, opts| opts['family'] == 'inet' }
-
 if node['init_package'] == 'systemd'
-
   service 'systemd-networkd' do
     action [:enable, :start]
   end
 
-  systemd_network 'kubernetes_services' do
-    address_address "#{ifaddr}/#{ifopts['prefixlen']}"
-    match_name node['kubernetes']['interface']
-    route do
-      destination node['kubernetes']['api']['service_cluster_ip_range']
-      scope 'link'
-    end
-    notifies :restart, 'service[systemd-networkd]'
+  systemd_unit 'kube-service-network-route.service' do
+    content(
+      Unit: {
+        Description: 'Kubernetes services network route',
+        After: 'network.target'
+      },
+      Service: {
+        Type: 'oneshot',
+        RemainAfterExit: 'true',
+        ExecStop: "/sbin/ip route del #{node['kubernetes']['api']['service_cluster_ip_range']}",
+        ExecStart: "/sbin/ip route replace #{node['kubernetes']['api']['service_cluster_ip_range']} dev #{node['kubernetes']['interface']}"
+      },
+      Install: {
+        WantedBy: 'multi-user.target kubelet.service'
+      }
+    )
+    action [:create, :enable, :start]
+    notifies :restart, 'systemd_unit[kube-service-network-route.service]'
   end
 end
 
