@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: weave-net
@@ -8,6 +8,9 @@ metadata:
     name: weave-net
   namespace: kube-system
 spec:
+  selector:
+    matchLabels:
+      name: weave-net
   template:
     metadata:
       annotations:

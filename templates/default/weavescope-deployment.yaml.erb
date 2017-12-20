@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: weavescope-app
@@ -9,6 +9,10 @@ metadata:
     weavescope-component: weavescope-app
     kubernetes.io/cluster-service: "true"
 spec:
+  selector:
+    matchLabels:
+      app: weavescope
+      weavescope-component: weavescope-app
   replicas: 1
   strategy:
     rollingUpdate:
