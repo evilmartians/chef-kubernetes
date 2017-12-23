@@ -17,10 +17,6 @@ if node['kubernetes']['use_cluster_dns_systemwide']
 end
 
 if node['init_package'] == 'systemd'
-  service 'systemd-networkd' do
-    action [:enable, :start]
-  end
-
   systemd_unit 'kube-service-network-route.service' do
     content(
       Unit: {

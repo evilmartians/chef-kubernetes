@@ -122,3 +122,13 @@ if node['kubernetes']['sdn'] == 'weave'
     end
   end
 end
+
+# Cleanup networkd configuration
+service 'systemd-networkd' do
+  action :nothing
+end
+
+file '/etc/systemd/network/kubernetes_services.network' do
+  action :delete
+  notifies :restart, 'service[systemd-networkd]'
+end
