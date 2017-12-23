@@ -128,7 +128,7 @@ systemd_unit 'kubelet.service' do
     }
   )
   notifies :restart, 'systemd_unit[kubelet.service]'
-  subscribes :restart, "remote_file[/opt/kubernetes/#{node['kubernetes']['version']}/bin/kubelet"
+  subscribes :restart, 'link[/usr/local/bin/kubelet]'
   action [:create, :enable, :start]
 end
 
