@@ -25,10 +25,6 @@ if etcd_nodes.empty?
   etcd_servers = "#{node['etcd']['proto']}://#{k8s_ip(node)}:#{node['etcd']['client_port']}"
 end
 
-master_nodes = search(:node, "roles:#{node['kubernetes']['roles']['master']}")
-
-master_nodes = [node] if master_nodes.empty?
-
 apiserver_args = [
   "--bind-address=#{node['kubernetes']['api']['bind_address']}",
   "--advertise-address=#{k8s_ip(node)}",
@@ -39,7 +35,6 @@ apiserver_args = [
   "--storage-backend=#{node['kubernetes']['api']['storage_backend']}",
   "--storage-media-type=#{node['kubernetes']['api']['storage_media_type']}",
   '--allow-privileged=true',
-  "--apiserver-count=#{master_nodes.size}",
   "--service-cluster-ip-range=#{node['kubernetes']['api']['service_cluster_ip_range']}",
   "--secure-port=#{node['kubernetes']['api']['secure_port']}",
   "--insecure-bind-address=#{node['kubernetes']['api']['insecure_bind_address']}",
@@ -60,8 +55,15 @@ apiserver_args = [
   "--authorization-mode=#{node['kubernetes']['authorization']['mode']}",
   "--experimental-encryption-provider-config=#{node['kubernetes']['api']['experimental_encryption_provider_config']}",
   "--feature-gates=#{node['kubernetes']['feature_gates'].join(',')}",
-  '--enable-bootstrap-token-auth'
+  '--enable-bootstrap-token-auth',
+  "--endpoint-reconciler-type=#{node['kubernetes']['api']['endpoint_reconciler_type']}"
 ]
+
+if node['kubernetes']['api']['endpoint_reconciler_type'] == 'master-count'
+  master_nodes = search(:node, "roles:#{node['kubernetes']['roles']['master']}")
+  master_nodes = [node] if master_nodes.empty?
+  apiserver_args.push "--apiserver-count=#{master_nodes.size}"
+end
 
 if node['kubernetes']['token_auth']
   apiserver_args.push "--token-auth-file=#{node['kubernetes']['token_auth_file']}"

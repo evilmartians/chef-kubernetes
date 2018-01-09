@@ -52,6 +52,7 @@ default['kubernetes']['api']['kubelet_https']               = 'true'
 default['kubernetes']['api']['kubelet_certificate_authority'] = '/etc/kubernetes/ssl/ca.pem'
 default['kubernetes']['api']['kubelet_client_certificate']  = '/etc/kubernetes/ssl/apiserver.pem'
 default['kubernetes']['api']['kubelet_client_key']          = '/etc/kubernetes/ssl/apiserver-key.pem'
+default['kubernetes']['api']['endpoint_reconciler_type']    = 'lease' # Other possible values: 'master-count', 'none'
 default['kubernetes']['audit']['enabled']                   = true
 default['kubernetes']['audit']['log_file']                  = '/var/log/kubernetes/audit.log'
 default['kubernetes']['audit']['maxbackup']                 = 3
