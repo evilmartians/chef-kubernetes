@@ -83,3 +83,14 @@ default['kubernetes']['cni']['version']                     = '0.6.0'
 default['kubernetes']['cni']['plugins_version']             = '0.6.0'
 default['kubernetes']['encryption']                         = 'aescbc'
 default['kubernetes']['api']['experimental_encryption_provider_config'] = '/etc/kubernetes/encryption-config.yaml'
+default['kubernetes']['node']['packages']                   = %w(
+  iptables
+  ebtables
+  socat
+  ethtool
+  kmod
+  tcpd
+  dbus
+  apt-transport-https
+  conntrack
+)
