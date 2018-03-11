@@ -67,6 +67,104 @@ Google Kubernetes installer for deb-based distros with docker
 Be sure to get new discovery url for every new cluster from http://discovery.etcd.io/new?size=XXX (by default cluster size is equal to 3)
 and set it to `node['kubernetes']['etcd']['discovery_url']`
 
+### Certificates
+
+Create ssl certificates for k8s.
+
+```
+cd ./lib/tasks/ssl
+cp config_example.yaml config.yaml
+bundler
+rake ca:default
+```
+
+All keys will be generated at `./ssl` folder.
+
+### Prepare your data_bag
+
+You need to create `kubernetes` data_bag in chef server.
+
+Then add next files:
+* ca_ssl
+* encryption_keys
+* users
+
+###### Structure:
+
+`ca_ssl`
+```JSON
+{
+  "id": "ca_ssl",
+  "private_key": "PUT ca-key.pem HERE",
+  "public_key": "PUT ca.pem HERE"
+}
+```
+
+`encryption_keys`
+```JSON
+{
+  "id": "encryption_keys",
+  "aescbc": [
+    {
+      "name": "key1",
+      "secret": "baiBu8ais4bu3uRohqu6och5yai4wai8"
+    }
+  ]
+}
+```
+
+`users`
+```JSON
+{
+  "id": "users",
+  "users": [
+    {
+      "name": "exampleuser",
+      "token": "aenup6io4ciath7yaxu0vie6guaSie6goi3ahri0eemui3Ieghu4tuhaa3kisohv",
+      "uid": "10001",
+      "groups": [
+        "admins"
+      ]
+    },
+    {
+      "name": "kubelet-bootstrap",
+      "token": "nieJi3ooGh1ohy8sheowee7ohghei3Xaebeeve8Ooch3omex4cho2xuexuuzeeva",
+      "uid": "10100",
+      "groups": [
+        "system:bootstrappers"
+      ]
+    },
+    {
+      "name": "kubelet",
+      "token": "ieT5Oogecah6geengaeyai3ohNg6Fiecha6iemaifithah2ui3oChaixeThi5Shi",
+      "uid": "10101",
+      "groups": [
+        "kubelet",
+        "system:nodes"
+      ]
+    },
+    {
+      "name": "system:kube-proxy",
+      "token": "ka2thaijaek0oophoothahbahyaiphe6ahteegieyae8il9XohveeJahn3Aizohy",
+      "uid": "10102",
+      "groups": [
+        "system:node-proxier"
+      ]
+    },
+    {
+      "name": "scheduler",
+      "token": "MoN7ohz2Aebeep2eeneGhie5Hikop9iroSahyezohchuthi8Iu1iVaetae5xaj3W",
+      "uid": "10103",
+      "groups": [
+        "scheduler"
+      ]
+    }
+  ]
+}
+```
+
+
+
 ### kubernetes::master
 
 Include `kubernetes::master` in your master node's `run_list`:

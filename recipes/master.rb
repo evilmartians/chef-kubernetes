@@ -33,10 +33,7 @@ end
 include_recipe 'kubernetes::kubeconfig'
 
 # Encryption config
-keys = data_bag_item(
-  node['kubernetes']['databag'],
-  'encryption_keys'
-)[node['kubernetes']['encryption']]
+keys = data_bag_item(node['kubernetes']['databag'],'encryption_keys')[node['kubernetes']['encryption']]
 
 # TODO: Fix this style.
 keys.map! do |k|

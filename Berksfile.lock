@@ -22,7 +22,7 @@ GRAPH
   firewall (2.6.2)
     chef-sugar (>= 0.0.0)
   kernel_module (1.0.1)
-  kubernetes (0.0.2)
+  kubernetes (0.0.3)
     apt (>= 0.0.0)
     etcd (~> 4.1)
     firewall (>= 0.0.0)
