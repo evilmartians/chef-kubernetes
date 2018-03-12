@@ -62,11 +62,6 @@ Google Kubernetes installer for deb-based distros with docker
 
 ## Usage
 
-### Discovery url
-
-Be sure to get new discovery url for every new cluster from http://discovery.etcd.io/new?size=XXX (by default cluster size is equal to 3)
-and set it to `node['kubernetes']['etcd']['discovery_url']`
-
 ### Certificates
 
 Create ssl certificates for k8s.
@@ -85,11 +80,20 @@ All keys will be generated at `./ssl` folder.
 You need to create `kubernetes` data_bag in chef server.
 
 Then add next files:
+* apiserver_ssl
 * ca_ssl
 * encryption_keys
 * users
 
 ###### Structure:
+`apiserver_ssl`
+```JSON
+{
+  "id": "apiserver_ssl",
+  "private_key": "PUT apiserver-key.pem HERE",
+  "public_key": "PUT apiserver.pem HERE"
+}
+```
 
 `ca_ssl`
 ```JSON
