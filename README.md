@@ -35,28 +35,10 @@ Google Kubernetes installer for deb-based distros with docker
     <td><tt>kubernetes</tt></td>
   </tr>
   <tr>
-    <td><tt>['kubernetes']['etcd']['discovery_url']</tt></td>
-    <td>String</td>
-    <td>Cluster discovery URL</td>
-    <td><tt>''</tt></td>
-  </tr>
-  <tr>
     <td><tt>['kubernetes']['etcd']['version']</tt></td>
     <td>String</td>
     <td>version of etcd image</td>
     <td><tt>v2.1.1</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['flannel']['version']</tt></td>
-    <td>String</td>
-    <td>version of flannel image</td>
-    <td><tt>0.5.2</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['flannel']['network']</tt></td>
-    <td>Hash</td>
-    <td>Network range used by flanneld</td>
-    <td><tt>{'Network' => '10.222.10.0/16'}</tt></td>
   </tr>
 </table>
 
@@ -167,6 +149,24 @@ Then add next files:
 }
 ```
 
+### kubernetes::etcd
+
+Run `kubernetes::etcd` recipe or role on your nodes. Run it twice for normal `chef search`.
+
+Or you can add role without `kubernetes::etcd` for first servers registration in chef.
+
+```
+name 'etcd'
+description 'Etcd cluster node'
+override_attributes(
+  'etcd' => {
+    initial_cluster_state: 'new',
+    initial_cluster_token: 'etcd-test-cluster',
+    wal_dir: '/var/lib/etcd/member/wal'
+  }
+)
+run_list 'recipe[kubernetes::etcd]'
+```
 
 
 ### kubernetes::master
@@ -181,6 +181,47 @@ Include `kubernetes::master` in your master node's `run_list`:
 }
 ```
 
+Or role:
+```
+name 'kubernetes_master'
+description 'Kubernetes master node'
+run_list 'recipe[kubernetes::master]'
+override_attributes(
+  docker: {
+    build_in_enable: false
+  },
+  kubernetes: {
+    cluster_name: 'evilms',
+    cluster_dns: '192.168.222.222',
+    cluster_cidr: '192.168.0.0/17',
+    api: {
+      'service_cluster_ip_range' => '192.168.128.0/17',
+      'runtime_config' => %w(batch/v2alpha1)
+    },
+    dns: { deploy_via: 'deployment' },
+    token_auth: true,
+    addons: {
+      kubedns: {
+        node_selector: 'evl.ms/role=system'
+      },
+      coredns: {
+        node_selector: 'evl.ms/role=system',
+        requests: {
+          cpu: '200m'
+        },
+        limits: {
+          cpu: '200m'
+        }
+      },
+      dns: {
+        controller: 'coredns',
+        antiaffinity_type: 'requiredDuringSchedulingIgnoredDuringExecution'
+      }
+    }
+  }
+)
+```
+
 And add master node to role `kube_master`.
 This is **obligatory** in multinode configuration - minions uses role to find master.
 
@@ -193,6 +234,33 @@ Include `kubernetes::default` in your minion node's `run_list`:
   "run_list": [
     "recipe[kubernetes]"
   ]
+}
+```
+
+Or role:
+```
+name 'kubernetes_node'
+description 'kubernetes node'
+#run_list 'recipe[kubernetes]'
+run_list 'recipe[selectel-docker]','recipe[kubernetes]'
+override_attributes(
+  kubernetes: {
+    cluster_name: 'evilms',
+    cluster_dns: '192.168.222.222',
+    token_auth: true,
+    api:   { 'service_cluster_ip_range' => '192.168.128.0/17' },
+    weave: {
+      network: '192.168.0.0/17',
+      use_scope: false
+    }
+  }
+)
+```
+
+If you use custom docker installation you can disable built-it docker installation
+```
+docker: {
+  'build-it' => false
 }
 ```
 
