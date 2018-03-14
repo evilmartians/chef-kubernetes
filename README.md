@@ -222,6 +222,8 @@ override_attributes(
 )
 ```
 
+If you use master nodes without minions on them add `kubernetes::packages` to you run_list.
+
 And add master node to role `kube_master`.
 This is **obligatory** in multinode configuration - minions uses role to find master.
 
