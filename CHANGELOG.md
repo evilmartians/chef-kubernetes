@@ -1,6 +1,6 @@
 # 0.0.3 (11.03.2018)
 - Add custom docker installation. Default `true`. But if you have another docker
-instalation you can skip built-in.
+  installation you can skip built-in.
 - Move packages array from `packages.rb` to default attrs file
 - Update README.md for new users.
 
