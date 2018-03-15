@@ -1,3 +1,9 @@
+# 0.0.3 (11.03.2018)
+- Add custom docker installation. Default `true`. But if you have another docker
+  installation you can skip built-in.
+- Move packages array from `packages.rb` to default attrs file
+- Update README.md for new users.
+
 # 0.0.2 (29.06.2016)
 
 - Bunch of runit services replaced by manifests

@@ -1,4 +1,3 @@
-default['etcd']['discovery_url']         = ''
 default['etcd']['version']               = 'v3.3.2'
 default['etcd']['image']                 = 'quay.io/coreos/etcd'
 default['etcd']['trusted_ca_file']       = '/etc/kubernetes/ssl/ca.pem'
