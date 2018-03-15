@@ -27,7 +27,6 @@ default['kubernetes']['kubeconfig']                         = '/etc/kubernetes/k
 default['kubernetes']['tls_cert_file']                      = '/etc/kubernetes/ssl/apiserver.pem'
 default['kubernetes']['tls_private_key_file']               = '/etc/kubernetes/ssl/apiserver-key.pem'
 default['kubernetes']['client_ca_file']                     = '/etc/kubernetes/ssl/ca.pem'
-default['kubernetes']['ca_key_file']                        = '/etc/kubernetes/ssl/ca-key.pem'
 default['kubernetes']['service_account_key_file']           = '/etc/kubernetes/ssl/ca-key.pem'
 default['kubernetes']['cluster_signing_cert_file']          = '/etc/kubernetes/ssl/ca.pem'
 default['kubernetes']['cluster_signing_key_file']           = '/etc/kubernetes/ssl/ca-key.pem'
