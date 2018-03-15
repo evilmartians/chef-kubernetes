@@ -931,6 +931,15 @@ rake ca:default
 
 All keys will be generated at `./ssl` folder.
 
+After cluster installation weave pods can contain error about:
+```
+FATA: 2018/03/15 19:51:39.168435 [kube-peers] Could not get peers: Get https://192.168.128.1:443/api/v1/nodes:
+x509: certificate is valid for 127.0.0.1, 10.222.0.1, not 192.168.128.1
+
+```
+
+Add `192.168.128.1` to `ssl/tasks/config.yaml` and recreate and upload new `apiserver-key.pem` and `apiserver.pem`
+
 ### Prepare your data_bag
 
 You need to create `kubernetes` data_bag in chef server.
