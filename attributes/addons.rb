@@ -14,4 +14,3 @@ default['kubernetes']['addons']['coredns']['requests']['cpu']    = '100m'
 default['kubernetes']['addons']['coredns']['requests']['memory'] = '256Mi'
 default['kubernetes']['addons']['coredns']['log']                = false
 default['kubernetes']['addons']['dashboard']['version']          = 'v1.8.3'
-default['kubernetes']['addons']['dashboard']['init_version']     = 'v1.0.1'
