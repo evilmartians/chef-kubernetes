@@ -680,6 +680,52 @@ Google Kubernetes installer for deb-based distros with docker
   </tr>
 </table>
 
+###### docker
+<table>
+  <tr>
+    <th>Key</th>
+    <th>Type</th>
+    <th>Description</th>
+    <th>Default</th>
+  </tr>
+  <tr>
+    <td><tt>['docker']['built-in']</tt></td>
+    <td>Boolean</td>
+    <td>enable built-in docker installation</td>
+    <td><tt>true</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['docker']['version']</tt></td>
+    <td>String</td>
+    <td>default daemon version</td>
+    <td><tt>1.12.6-0</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['docker']['settings']['storage-driver']</tt></td>
+    <td>String</td>
+    <td>defalt storage driver</td>
+    <td><tt>aufs</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['docker']['settings']['live-restore']</tt></td>
+    <td>Boolean</td>
+    <td>live restore</td>
+    <td><tt>true</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['docker']['settings']['iptables']</tt></td>
+    <td>Boolean</td>
+    <td>iptables</td>
+    <td><tt>false</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['docker']['settings']['ip-masq']</tt></td>
+    <td>Boolean</td>
+    <td>ip masq</td>
+    <td><tt>false</tt></td>
+  </tr>
+</table>
+
 ###### etcd
 <table>
   <tr>
@@ -1142,10 +1188,10 @@ override_attributes(
 )
 ```
 
-If you use custom docker installation you can disable built-it docker installation
+If you use custom docker installation you can disable built-in docker installation
 ```
 docker: {
-  'build-it' => false
+  'built-in' => false
 }
 ```
 
