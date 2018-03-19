@@ -972,7 +972,8 @@ Create ssl certificates for k8s.
 cd ./lib/tasks/ssl
 cp config_example.yaml config.yaml
 bundler
-rake ca:default
+rake ca:generate
+rake apiserver:generate
 ```
 
 All keys will be generated at `./ssl` folder.
