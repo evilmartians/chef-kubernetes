@@ -276,10 +276,16 @@ Google Kubernetes installer for deb-based distros with docker
     <td><tt>10.222.0.0/16</tt></td>
   </tr>
   <tr>
-    <td><tt>['kubernetes']['api']['admission_control']</tt></td>
+    <td><tt>['kubernetes']['api']['enabled_admission_plugins']</tt></td>
     <td>Array</td>
-    <td>admission control</td>
+    <td>Comma-delimited list of admission control plugins to invoke prior to modifying objects in the cluster</td>
     <td><tt>['Initializers', 'NamespaceLifecycle', 'NodeRestriction', 'LimitRanger', 'ServiceAccount', 'DefaultStorageClass', 'ResourceQuota']</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['api']['disabled_admission_plugins']</tt></td>
+    <td>Array</td>
+    <td>Comma-delimited list of admission control plugins to be disabled, even if they are in the list of plugins enabled by default</td>
+    <td><tt>[]</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['api']['runtime_config']</tt></td>
@@ -514,7 +520,7 @@ Google Kubernetes installer for deb-based distros with docker
     <td>Array</td>
     <td>default node packages</td>
     <td><tt>['iptables', 'ebtables', 'socat', 'ethtool', 'kmod', 'tcpd', 'dbus', 'apt-transport-https', 'conntrack']</tt></td>
-  </tr>  
+  </tr>
 </table>
 
 
