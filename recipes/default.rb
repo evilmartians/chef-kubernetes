@@ -111,21 +111,21 @@ end
 
 systemd_unit 'kubelet.service' do
   content(
-    'Unit' => {
-      'Description' => 'Systemd unit for Kubernetes worker service (kubelet)',
-      'After' => "network.target remote-fs.target #{node['kubernetes']['container_engine']}.service"
+    Unit: {
+      Description: 'Systemd unit for Kubernetes worker service (kubelet)',
+      After: "network.target remote-fs.target #{node['kubernetes']['container_engine']}.service"
     },
-    'Service' => {
-      'Type' => 'simple',
-      'ExecStart' => "/usr/local/bin/kubelet #{kubelet_args.join(" \\\n")}",
-      'ExecReload' => '/bin/kill -HUP $MAINPID',
-      'WorkingDirectory' => '/',
-      'Restart' => 'on-failure',
-      'RestartSec' => '30s',
-      'LimitNOFILE' => node['kubernetes']['limits']['nofile']['kubelet']
+    Service: {
+      Type: 'simple',
+      ExecStart: "/usr/local/bin/kubelet #{kubelet_args.join(" \\\n")}",
+      ExecReload: '/bin/kill -HUP $MAINPID',
+      WorkingDirectory: '/',
+      Restart: 'on-failure',
+      RestartSec: '30s',
+      LimitNOFILE: node['kubernetes']['limits']['nofile']['kubelet']
     },
-    'Install' => {
-      'WantedBy' => 'multi-user.target'
+    Install: {
+      WantedBy: 'multi-user.target'
     }
   )
   notifies :restart, 'systemd_unit[kubelet.service]'
