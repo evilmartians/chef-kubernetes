@@ -61,7 +61,8 @@ if install_via == 'systemd'
         'ExecReload' => '/bin/kill -HUP $MAINPID',
         'WorkingDirectory' => '/',
         'Restart' => 'on-failure',
-        'RestartSec' => '30s'
+        'RestartSec' => '30s',
+        'LimitNOFILE' => node['kubernetes']['limits']['nofile']['addon_manager']
       },
       'Install' => {
         'WantedBy' => 'multi-user.target'
