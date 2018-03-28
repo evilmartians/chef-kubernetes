@@ -90,7 +90,8 @@ systemd_unit 'kube-apiserver.service' do
       ExecReload: '/bin/kill -HUP $MAINPID',
       WorkingDirectory: '/',
       Restart: 'on-failure',
-      RestartSec: '30s'
+      RestartSec: '30s',
+      LimitNOFILE: node['kubernetes']['limits']['nofile']['apiserver']
     },
     Install: {
       WantedBy: 'multi-user.target'
@@ -135,7 +136,8 @@ systemd_unit 'kube-controller-manager.service' do
       ExecReload: '/bin/kill -HUP $MAINPID',
       WorkingDirectory: '/',
       Restart: 'on-failure',
-      RestartSec: '30s'
+      RestartSec: '30s',
+      LimitNOFILE: node['kubernetes']['limits']['nofile']['controller_manager']
     },
     Install: {
       WantedBy: 'multi-user.target'
@@ -164,7 +166,8 @@ systemd_unit 'kube-scheduler.service' do
       ExecReload: '/bin/kill -HUP $MAINPID',
       WorkingDirectory: '/',
       Restart: 'on-failure',
-      RestartSec: '30s'
+      RestartSec: '30s',
+      LimitNOFILE: node['kubernetes']['limits']['nofile']['scheduler']
     },
     Install: {
       WantedBy: 'multi-user.target'
@@ -198,7 +201,8 @@ systemd_unit 'kube-addon-manager.service' do
       ExecReload: '/bin/kill -HUP $MAINPID',
       WorkingDirectory: '/',
       Restart: 'on-failure',
-      RestartSec: '30s'
+      RestartSec: '30s',
+      LimitNOFILE: node['kubernetes']['limits']['nofile']['addon_manager']
     },
     Install: {
       WantedBy: 'multi-user.target'
