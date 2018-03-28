@@ -51,21 +51,21 @@ if install_via == 'systemd'
 
   systemd_unit 'kube-proxy.service' do
     content(
-      'Unit' => {
-        'Description' => 'Systemd unit for Kubernetes Proxy',
-        'After' => 'network.target remote-fs.target'
+      Unit: {
+        Description: 'Systemd unit for Kubernetes Proxy',
+        After: 'network.target remote-fs.target'
       },
-      'Service' => {
-        'Type' => 'simple',
-        'ExecStart' => "/usr/local/bin/kube-proxy #{proxy_args.join(" \\\n")}",
-        'ExecReload' => '/bin/kill -HUP $MAINPID',
-        'WorkingDirectory' => '/',
-        'Restart' => 'on-failure',
-        'RestartSec' => '30s',
-        'LimitNOFILE' => node['kubernetes']['limits']['nofile']['addon_manager']
+      Service: {
+        Type: 'simple',
+        ExecStart: "/usr/local/bin/kube-proxy #{proxy_args.join(" \\\n")}",
+        ExecReload: '/bin/kill -HUP $MAINPID',
+        WorkingDirectory: '/',
+        Restart: 'on-failure',
+        RestartSec: '30s',
+        LimitNOFILE: node['kubernetes']['limits']['nofile']['addon_manager']
       },
-      'Install' => {
-        'WantedBy' => 'multi-user.target'
+      Install: {
+        WantedBy: 'multi-user.target'
       }
     )
     notifies :restart, 'systemd_unit[kube-proxy.service]'
