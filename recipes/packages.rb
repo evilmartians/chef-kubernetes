@@ -5,8 +5,10 @@
 # Author:: Maxim Filatov <bregor@evilmartians.com>
 #
 
-node['kubernetes']['node']['packages'].each do |pkg|
-  package pkg
+node['kubernetes']['node']['packages'].each do |pkg, flag|
+  if flag
+    package pkg
+  end
 end
 
 if node['docker']['build-it']

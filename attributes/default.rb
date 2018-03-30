@@ -77,18 +77,34 @@ default['kubernetes']['multimaster']['access_via']          = 'haproxy' # other 
 default['kubernetes']['multimaster']['haproxy_url']         = '127.0.0.1'
 default['kubernetes']['multimaster']['haproxy_port']        = 6443
 default['kubernetes']['multimaster']['dns_name']            = ''
-default['kubernetes']['cni']['version']                     = '0.6.0'
-default['kubernetes']['cni']['plugins_version']             = '0.6.0'
 default['kubernetes']['encryption']                         = 'aescbc'
 default['kubernetes']['api']['experimental_encryption_provider_config'] = '/etc/kubernetes/encryption-config.yaml'
-default['kubernetes']['node']['packages']                   = %w(
-  iptables
-  ebtables
-  socat
-  ethtool
-  kmod
-  tcpd
-  dbus
-  apt-transport-https
-  conntrack
-)
+
+default['kubernetes']['cni']['version']                     = '0.6.0'
+default['kubernetes']['cni']['plugins_version']             = '0.6.0'
+default['kubernetes']['cni']['plugins']                     = {
+  'flannel'    => true,
+  'ptp'        => true,
+  'host-local' => true,
+  'portmap'    => true,
+  'tuning'     => true,
+  'vlan'       => true,
+  'sample'     => true,
+  'dhcp'       => true,
+  'ipvlan'     => true,
+  'macvlan'    => true,
+  'loopback'   => true,
+  'bridge'     => true
+}
+
+default['kubernetes']['node']['packages']                   = {
+  'iptables'            => true,
+  'ebtables'            => true,
+  'socat'               => true,
+  'ethtool'             => true,
+  'kmod'                => true,
+  'tcpd'                => true,
+  'dbus'                => true,
+  'apt-transport-https' => true,
+  'conntrack'           => true
+}

@@ -36,21 +36,15 @@ tar_extract "https://github.com/containernetworking/plugins/releases/download/v#
   creates "/opt/cni/plugins/#{plugins_version}/portmap"
 end
 
-%w(
-  flannel
-  ptp
-  host-local
-  portmap
-  tuning
-  vlan
-  sample
-  dhcp
-  ipvlan
-  macvlan
-  loopback
-  bridge
-).each do |plugin|
-  link "/opt/cni/bin/#{plugin}" do
-    to "../plugins/#{plugins_version}/#{plugin}"
+node['kubernetes']['cni']['plugins'].each do |plugin, flag|
+  if flag
+    link "/opt/cni/bin/#{plugin}" do
+      to "../plugins/#{plugins_version}/#{plugin}"
+    end
+  else
+    link "/opt/cni/bin/#{plugin}" do
+      action :delete
+      only_if "test -L /opt/cni/bin/#{plugin}"
+    end
   end
 end

@@ -12,10 +12,10 @@ data:
         errors
         health
         kubernetes <%= node['kubernetes']['cluster_domain'] %> <%= node['kubernetes']['api']['service_cluster_ip_range'] %> {
-	  pods insecure
-	  upstream
-	  fallthrough in-addr.arpa ip6.arpa
-	}
+          pods insecure
+          upstream
+          fallthrough in-addr.arpa ip6.arpa
+        }
         proxy . /etc/resolv.conf
         cache 30
         prometheus :9153

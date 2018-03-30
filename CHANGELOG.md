@@ -1,3 +1,8 @@
+# 0.0.4 ()
+- Bump to 1.10.0 kubernetes version
+- Change packages array to hash
+- Move cni plugins symlinks to attributes for enable/disable actions
+
 # 0.0.3 (11.03.2018)
 - Add custom docker installation. Default `true`. But if you have another docker
   installation you can skip built-in.
