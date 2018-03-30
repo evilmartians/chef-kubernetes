@@ -498,6 +498,12 @@ Google Kubernetes installer for deb-based distros with docker
     <td><tt>0.6.0</tt></td>
   </tr>
   <tr>
+    <td><tt>['kubernetes']['cni']['plugins']</tt></td>
+    <td>Hash</td>
+    <td>cni plugins</td>
+    <td><tt>See attributes/default.rb for this big hash</tt></td>
+  </tr>
+  <tr>
     <td><tt>['kubernetes']['cni']['plugins_version']</tt></td>
     <td>String</td>
     <td>cni plugins version</td>
@@ -517,9 +523,9 @@ Google Kubernetes installer for deb-based distros with docker
   </tr>
   <tr>
     <td><tt>['kubernetes']['node']['packages']</tt></td>
-    <td>Array</td>
+    <td>Hash</td>
     <td>default node packages</td>
-    <td><tt>['iptables', 'ebtables', 'socat', 'ethtool', 'kmod', 'tcpd', 'dbus', 'apt-transport-https', 'conntrack']</tt></td>
+    <td><tt>See attributes/default.rb for more information</tt></td>
   </tr>
 </table>
 
