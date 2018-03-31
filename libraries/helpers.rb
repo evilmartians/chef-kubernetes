@@ -20,6 +20,14 @@ module Kubernetes
       end
       result
     end
+
+    def kubelet_args
+      options = Hash[node['kubernetes']['kubelet'].map { |k, v| [k.gsub(/_/, '-'), v] } ]
+      options.store("address", k8s_ip(node)) # FIXME
+      options.store("hostname-override", k8s_hostname(node)) #  FIXME
+      options.store("node-ip", k8s_ip(node)) # FIXME
+      options.sort_by{ |k,v| k}.map{|k,v| v.nil? ? "--#{k}" : "--#{k}=#{v}"}
+    end
   end
 end
 

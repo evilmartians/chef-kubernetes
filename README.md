@@ -354,72 +354,6 @@ Google Kubernetes installer for deb-based distros with docker
     <td><tt>3</tt></td>
   </tr>
   <tr>
-    <td><tt>['kubernetes']['kubelet']['client_certificate']</tt></td>
-    <td>String</td>
-    <td>kubelet client certificate</td>
-    <td><tt>/etc/kubernetes/ssl/node.pem</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['kubelet']['client_key']</tt></td>
-    <td>String</td>
-    <td>kubelet client key</td>
-    <td><tt>/etc/kubernetes/ssl/node-key.pem</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['kubelet']['image_gc_low_threshold']</tt></td>
-    <td>String</td>
-    <td>kubelet image_gc_low_threshold</td>
-    <td><tt>'70'</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['kubelet']['image_gc_high_threshold']</tt></td>
-    <td>String</td>
-    <td>kubelet image_gc_high_threshold</td>
-    <td><tt>'80'</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['kubelet']['cadvisor_port']</tt></td>
-    <td>Int</td>
-    <td>cadvisor port</td>
-    <td><tt>0</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['kubelet']['verbosity']</tt></td>
-    <td>Int</td>
-    <td>kubelet log verbosity</td>
-    <td><tt>2</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['kubelet']['register_node']</tt></td>
-    <td>String</td>
-    <td>kubelet register node</td>
-    <td><tt>'true'</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['kubelet']['anonymous_auth']</tt></td>
-    <td>String</td>
-    <td>kubelet anonymous auth</td>
-    <td><tt>'false'</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['kubelet']['client_ca_file']</tt></td>
-    <td>String</td>
-    <td>kubelet client ca file</td>
-    <td><tt>/etc/kubernetes/ssl/ca.pem</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['kubelet']['authorization_mode']</tt></td>
-    <td>String</td>
-    <td>kubelet auth mode</td>
-    <td><tt>Webhook</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['kubelet']['fail_swap_on']</tt></td>
-    <td>String</td>
-    <td>fail swap_on</td>
-    <td><tt>'false'</tt></td>
-  </tr>
-  <tr>
     <td><tt>['kubernetes']['packages']['storage_url']</tt></td>
     <td>String</td>
     <td>packages storage</td>
@@ -529,6 +463,76 @@ Google Kubernetes installer for deb-based distros with docker
   </tr>
 </table>
 
+###### kubelet
+
+<table>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['client_certificate']</tt></td>
+    <td>String</td>
+    <td>kubelet client certificate</td>
+    <td><tt>/etc/kubernetes/ssl/node.pem</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['client_key']</tt></td>
+    <td>String</td>
+    <td>kubelet client key</td>
+    <td><tt>/etc/kubernetes/ssl/node-key.pem</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['image_gc_low_threshold']</tt></td>
+    <td>String</td>
+    <td>kubelet image_gc_low_threshold</td>
+    <td><tt>'70'</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['image_gc_high_threshold']</tt></td>
+    <td>String</td>
+    <td>kubelet image_gc_high_threshold</td>
+    <td><tt>'80'</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['cadvisor_port']</tt></td>
+    <td>Int</td>
+    <td>cadvisor port</td>
+    <td><tt>0</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['verbosity']</tt></td>
+    <td>Int</td>
+    <td>kubelet log verbosity</td>
+    <td><tt>2</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['register_node']</tt></td>
+    <td>String</td>
+    <td>kubelet register node</td>
+    <td><tt>'true'</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['anonymous_auth']</tt></td>
+    <td>String</td>
+    <td>kubelet anonymous auth</td>
+    <td><tt>'false'</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['client_ca_file']</tt></td>
+    <td>String</td>
+    <td>kubelet client ca file</td>
+    <td><tt>/etc/kubernetes/ssl/ca.pem</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['authorization_mode']</tt></td>
+    <td>String</td>
+    <td>kubelet auth mode</td>
+    <td><tt>Webhook</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['fail_swap_on']</tt></td>
+    <td>String</td>
+    <td>fail swap_on</td>
+    <td><tt>'false'</tt></td>
+  </tr>
+</table>
 
 ###### addons
 <table>

@@ -43,10 +43,10 @@ end
 
 bash 'install_nsenter' do
   code <<-EOH
-/usr/bin/docker run --rm -v /usr/local/bin:/target jpetazzo/nsenter
-chmod +x /usr/local/bin/nsenter
-/usr/bin/docker rmi jpetazzo/nsenter
-EOH
+    /usr/bin/docker run --rm -v /usr/local/bin:/target jpetazzo/nsenter
+    chmod +x /usr/local/bin/nsenter
+    /usr/bin/docker rmi jpetazzo/nsenter
+  EOH
   not_if { File.exist? '/usr/local/bin/nsenter' }
 end
 
