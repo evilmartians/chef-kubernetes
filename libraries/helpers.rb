@@ -74,6 +74,18 @@ module Kubernetes
       options.sort_by{ |k,v| k}.map{|k,v| v.nil? ? "--#{k}" : "--#{k}=#{v}"}
     end
 
+
+    def controller_manager_args
+      options = Hash[node['kubernetes']['controller_manager'].map { |k, v| [k.gsub(/_/, '-'), v] } ]
+
+      if node['kubernetes']['sdn'] == 'canal'
+        options.store('allocate-node-cidrs',nil)
+        options.store('node-cidr-mask-size',node['kubernetes']['node_cidr_mask_size'])
+      end
+
+      options.sort_by{ |k,v| k}.map{|k,v| v.nil? ? "--#{k}" : "--#{k}=#{v}"}
+    end
+
   end
 end
 

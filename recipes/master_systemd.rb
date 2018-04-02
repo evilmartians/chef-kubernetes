@@ -35,29 +35,6 @@ systemd_unit 'kube-apiserver.service' do
   action [:create, :enable, :start]
 end
 
-controller_manager_args = [
-  '--address=127.0.0.1',
-  '--leader-elect=true',
-  "--cloud-config=#{node['kubernetes']['cloud_config']}",
-  "--cloud-provider=#{node['kubernetes']['cloud_provider']}",
-  "--cluster-cidr=#{node['kubernetes']['cluster_cidr']}",
-  "--cluster-name=#{node['kubernetes']['cluster_name']}",
-  "--service-account-private-key-file=#{node['kubernetes']['service_account_key_file']}",
-  "--cluster-signing-cert-file=#{node['kubernetes']['cluster_signing_cert_file']}",
-  "--cluster-signing-key-file=#{node['kubernetes']['cluster_signing_key_file']}",
-  "--root-ca-file=#{node['kubernetes']['client_ca_file']}",
-  "--master=http://127.0.0.1:#{node['kubernetes']['api']['insecure_port']}",
-  "--feature-gates=#{node['kubernetes']['feature_gates'].join(',')}",
-  '--node-monitor-period=2s',
-  '--node-monitor-grace-period=16s',
-  '--pod-eviction-timeout=30s'
-]
-
-if node['kubernetes']['sdn'] == 'canal'
-  controller_manager_args.push '--allocate-node-cidrs'
-  controller_manager_args.push "--node-cidr-mask-size=#{node['kubernetes']['node_cidr_mask_size']}"
-end
-
 systemd_unit 'kube-controller-manager.service' do
   content(
     Unit: {
