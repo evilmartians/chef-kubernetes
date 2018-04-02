@@ -35,22 +35,7 @@ default['kubernetes']['token_auth_file']                    = '/etc/kubernetes/k
 default['kubernetes']['cloud_config']                       = ''
 default['kubernetes']['cloud_provider']                     = ''
 default['kubernetes']['docker']                             = 'unix:///var/run/docker.sock'
-default['kubernetes']['feature_gates']                      = ['RotateKubeletServerCertificate=true', 'MountPropagation=true']
-default['kubernetes']['api']['bind_address']                = '0.0.0.0'
-default['kubernetes']['api']['insecure_bind_address']       = '127.0.0.1'
-default['kubernetes']['api']['insecure_port']               = 8080
-default['kubernetes']['api']['secure_port']                 = 8443
-default['kubernetes']['api']['service_cluster_ip_range']    = '10.222.0.0/16'
-default['kubernetes']['api']['enabled_admission_plugins']   = %w(Initializers NamespaceLifecycle NodeRestriction LimitRanger ServiceAccount DefaultStorageClass ResourceQuota)
-default['kubernetes']['api']['disabled_admission_plugins']  = []
-default['kubernetes']['api']['runtime_config']              = []
-default['kubernetes']['api']['storage_backend']             = 'etcd3' # Other possible values: 'etcd3'
-default['kubernetes']['api']['storage_media_type']          = 'application/vnd.kubernetes.protobuf' # Other values: 'application/json'
-default['kubernetes']['api']['kubelet_https']               = 'true'
-default['kubernetes']['api']['kubelet_certificate_authority'] = '/etc/kubernetes/ssl/ca.pem'
-default['kubernetes']['api']['kubelet_client_certificate']  = '/etc/kubernetes/ssl/apiserver.pem'
-default['kubernetes']['api']['kubelet_client_key']          = '/etc/kubernetes/ssl/apiserver-key.pem'
-default['kubernetes']['api']['endpoint_reconciler_type']    = 'lease' # Other possible values: 'master-count', 'none'
+default['kubernetes']['feature_gates']                      = ['RotateKubeletServerCertificate=true', 'MountPropagation=true','DynamicKubeletConfig=true']
 default['kubernetes']['audit']['enabled']                   = true
 default['kubernetes']['audit']['log_file']                  = '/var/log/kubernetes/audit.log'
 default['kubernetes']['audit']['maxbackup']                 = 3
@@ -67,7 +52,7 @@ default['kubernetes']['multimaster']['haproxy_url']         = '127.0.0.1'
 default['kubernetes']['multimaster']['haproxy_port']        = 6443
 default['kubernetes']['multimaster']['dns_name']            = ''
 default['kubernetes']['encryption']                         = 'aescbc'
-default['kubernetes']['api']['experimental_encryption_provider_config'] = '/etc/kubernetes/encryption-config.yaml'
+
 
 default['kubernetes']['cni']['version']                     = '0.6.0'
 default['kubernetes']['cni']['plugins_version']             = '0.6.0'
