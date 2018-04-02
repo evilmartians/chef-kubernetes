@@ -29,6 +29,11 @@ module Kubernetes
       options.sort_by { |k, v| k }.map { |k, v| v.nil? ? "--#{k}" : "--#{k}=#{v}" }
     end
 
+    def scheduler_args
+      options = Hash[node['kubernetes']['scheduler'].map { |k, v| [k.tr('_', '-'), v] }]
+      options.sort_by { |k, v| k }.map { |k, v| v.nil? ? "--#{k}" : "--#{k}=#{v}" }
+    end
+
     def apiserver_args
       etcd_nodes = search(
         :node,

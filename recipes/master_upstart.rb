@@ -39,12 +39,6 @@ service 'kube-controller-manager' do
   subscribes :restart, 'link[/usr/local/bin/kube-controller-manager]'
 end
 
-scheduler_args = [
-  '--address=127.0.0.1',
-  '--leader-elect=true',
-  "--master=http://127.0.0.1:#{node['kubernetes']['api']['insecure_port']}"
-]
-
 template '/etc/init/kube-scheduler.conf' do
   source 'upstart.conf.erb'
   owner 'root'

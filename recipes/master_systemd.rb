@@ -58,13 +58,6 @@ systemd_unit 'kube-controller-manager.service' do
   action [:create, :enable, :start]
 end
 
-scheduler_args = [
-  '--address=127.0.0.1',
-  '--leader-elect=true',
-  "--feature-gates=#{node['kubernetes']['feature_gates'].join(',')}",
-  "--master=http://127.0.0.1:#{node['kubernetes']['api']['insecure_port']}"
-]
-
 systemd_unit 'kube-scheduler.service' do
   content(
     Unit: {
