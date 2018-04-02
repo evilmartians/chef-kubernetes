@@ -5,59 +5,6 @@
 # Author:: Kirill Kuznetsov <kir@evilmartians.com>
 #
 
-etcd_nodes = search(:node, "roles:#{node['etcd']['role']}").map { |node| k8s_ip(node) }
-etcd_servers = etcd_nodes.map { |addr| "#{node['etcd']['proto']}://#{addr}:#{node['etcd']['client_port']}" }.join ','
-
-if etcd_nodes.empty?
-  etcd_servers = "#{node['etcd']['proto']}://#{k8s_ip(node)}:#{node['etcd']['client_port']}"
-end
-
-master_nodes = search(:node, "roles:#{node['kubernetes']['roles']['master']}")
-
-master_nodes = [node] if master_nodes.empty?
-
-apiserver_args = [
-  "--bind-address=#{node['kubernetes']['api']['bind_address']}",
-  "--advertise-address=#{k8s_ip(node)}",
-  "--etcd-servers=#{etcd_servers}",
-  "--etcd-certfile=#{node['etcd']['cert_file']}",
-  "--etcd-keyfile=#{node['etcd']['key_file']}",
-  "--etcd-cafile=#{node['etcd']['trusted_ca_file']}",
-  "--storage-backend=#{node['kubernetes']['api']['storage_backend']}",
-  "--storage-media-type=#{node['kubernetes']['api']['storage_media_type']}",
-  '--allow-privileged=true',
-  "--apiserver-count=#{master_nodes.size}",
-  "--service-cluster-ip-range=#{node['kubernetes']['api']['service_cluster_ip_range']}",
-  "--secure-port=#{node['kubernetes']['api']['secure_port']}",
-  "--insecure-bind-address=#{node['kubernetes']['api']['insecure_bind_address']}",
-  "--insecure-port=#{node['kubernetes']['api']['insecure_port']}",
-  "--enable-admission-plugins=#{node['kubernetes']['api']['enabled_admission_plugins'].join(',')}",
-  "--disable-admission-plugins=#{node['kubernetes']['api']['disabled_admission_plugins'].join(',')}",
-  "--runtime-config=#{node['kubernetes']['api']['runtime_config'].join(',')}",
-  "--tls-cert-file=#{node['kubernetes']['tls_cert_file']}",
-  "--tls-private-key-file=#{node['kubernetes']['tls_private_key_file']}",
-  "--client-ca-file=#{node['kubernetes']['client_ca_file']}",
-  "--service-account-key-file=#{node['kubernetes']['service_account_key_file']}",
-  "--cloud-config=#{node['kubernetes']['cloud_config']}",
-  "--cloud-provider=#{node['kubernetes']['cloud_provider']}",
-  '--log-dir=/var/log/kubernetes',
-  "--authorization-mode=#{node['kubernetes']['authorization']['mode']}",
-  '--experimental-bootstrap-token-auth'
-]
-
-if node['kubernetes']['token_auth']
-  apiserver_args.push "--token-auth-file=#{node['kubernetes']['token_auth_file']}"
-end
-
-if node['kubernetes']['authorization']['mode'].include?('ABAC')
-  apiserver_args.push '--authorization-policy-file=/etc/kubernetes/authorization-policy.jsonl'
-end
-
-if node['kubernetes']['audit']['enabled']
-  apiserver_args.push "--audit-log-maxbackup=#{node['kubernetes']['audit']['maxbackup']}"
-  apiserver_args.push "--audit-log-path=#{node['kubernetes']['audit']['log_file']}"
-end
-
 template '/etc/init/kube-apiserver.conf' do
   source 'upstart.conf.erb'
   owner 'root'
