@@ -3,7 +3,6 @@ default['kubernetes']['api']['insecure_bind_address']       = '127.0.0.1'
 default['kubernetes']['api']['insecure_port']               = 8080
 default['kubernetes']['api']['secure_port']                 = 8443
 default['kubernetes']['api']['service_cluster_ip_range']    = '10.222.0.0/16'
-# default['kubernetes']['api']['runtime_config']              = %(batch/v2alpha1)
 default['kubernetes']['api']['storage_backend']             = 'etcd3' # Other possible values: 'etcd3'
 default['kubernetes']['api']['storage_media_type']          = 'application/vnd.kubernetes.protobuf' # Other values: 'application/json'
 default['kubernetes']['api']['kubelet_https']               = true
@@ -22,12 +21,9 @@ default['kubernetes']['api']['tls_cert_file']               = node['kubernetes']
 default['kubernetes']['api']['tls_private_key_file']        = node['kubernetes']['tls_private_key_file']
 default['kubernetes']['api']['client_ca_file']              = node['kubernetes']['client_ca_file']
 default['kubernetes']['api']['service_account_key_file']    = node['kubernetes']['service_account_key_file']
-# default['kubernetes']['api']['cloud_config']                = node['kubernetes']['cloud_config']
-# default['kubernetes']['api']['cloud_provider']              = node['kubernetes']['cloud_provider']
 default['kubernetes']['api']['log_dir']                     = '/var/log/kubernetes'
 
-default['kubernetes']['api']['feature_gates']               = node['kubernetes']['feature_gates'].join(',')
-# default['kubernetes']['api']['disable_admission_plugins']  = %w().join(',')
+default['kubernetes']['api']['feature_gates']               = node['kubernetes']['feature_gates']
 default['kubernetes']['api']['enable_admission_plugins']   = %w(
   Initializers
   NamespaceLifecycle

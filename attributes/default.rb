@@ -32,10 +32,8 @@ default['kubernetes']['cluster_signing_cert_file']          = '/etc/kubernetes/s
 default['kubernetes']['cluster_signing_key_file']           = '/etc/kubernetes/ssl/ca-key.pem'
 default['kubernetes']['token_auth']                         = false
 default['kubernetes']['token_auth_file']                    = '/etc/kubernetes/known_tokens.csv'
-# default['kubernetes']['cloud_config']                       = ''
-# default['kubernetes']['cloud_provider']                     = ''
 default['kubernetes']['docker']                             = 'unix:///var/run/docker.sock'
-default['kubernetes']['feature_gates']                      = ['RotateKubeletServerCertificate=true', 'MountPropagation=true','DynamicKubeletConfig=true']
+default['kubernetes']['feature_gates']                      = ['RotateKubeletServerCertificate=true', 'MountPropagation=true','DynamicKubeletConfig=true'].join(',')
 default['kubernetes']['audit']['enabled']                   = true
 default['kubernetes']['audit']['log_file']                  = '/var/log/kubernetes/audit.log'
 default['kubernetes']['audit']['maxbackup']                 = 3

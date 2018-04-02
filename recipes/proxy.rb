@@ -11,7 +11,7 @@ proxy_args = [
   "--bind-address=#{k8s_ip(node)}",
   "--hostname-override=#{k8s_hostname(node)}",
   '--proxy-mode=iptables',
-  "--feature-gates=#{node['kubernetes']['feature_gates'].join(',')}",
+  "--feature-gates=#{node['kubernetes']['feature_gates']}",
   '--kubeconfig=/etc/kubernetes/system:kube-proxy_config.yaml'
 ]
 
