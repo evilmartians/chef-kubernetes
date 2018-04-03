@@ -1,4 +1,4 @@
-# 0.0.4 (31.03.2018)
+# 0.0.4 (03.04.2018)
 - Bump to 1.10.0 kubernetes version
 - Change packages array to hash
 - Move cni plugins symlinks to attributes for enable/disable actions
