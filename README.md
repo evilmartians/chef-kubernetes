@@ -177,18 +177,12 @@ Google Kubernetes installer for deb-based distros with docker
     <td><tt>['kubernetes']['tls_cert_file']</tt></td>
     <td>String</td>
     <td>tls_cert_file path</td>
-    <td><tt></tt></td>
-  </tr>
-  <tr>
     <td><tt>/etc/kubernetes/ssl/apiserver.pem</tt></td>
-    <td></td>
-    <td></td>
-    <td><tt></tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['tls_private_key_file']</tt></td>
     <td>String</td>
-    <td>tls_private_key_file path</td>
+    <td>tls private key file</td>
     <td><tt>/etc/kubernetes/ssl/apiserver-key.pem</tt></td>
   </tr>
   <tr>
@@ -222,18 +216,6 @@ Google Kubernetes installer for deb-based distros with docker
     <td><tt>/etc/kubernetes/known_tokens.csv</tt></td>
   </tr>
   <tr>
-    <td><tt>['kubernetes']['cloud_config']</tt></td>
-    <td>String</td>
-    <td>cloud config</td>
-    <td><tt></tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['cloud_provider']</tt></td>
-    <td>String</td>
-    <td>cloud provider</td>
-    <td><tt></tt></td>
-  </tr>
-  <tr>
     <td><tt>['kubernetes']['docker']</tt></td>
     <td>String</td>
     <td>path to docker socket</td>
@@ -244,96 +226,6 @@ Google Kubernetes installer for deb-based distros with docker
     <td>Array</td>
     <td>feature gates</td>
     <td><tt>['RotateKubeletServerCertificate=true', 'PersistentLocalVolumes=true', 'VolumeScheduling=true', 'MountPropagation=true']</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['api']['bind_address']</tt></td>
-    <td>String</td>
-    <td>api bind address</td>
-    <td><tt>0.0.0.0</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['api']['insecure_bind_address']</tt></td>
-    <td>String</td>
-    <td>insecure bind address</td>
-    <td><tt>127.0.0.1</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['api']['insecure_port']</tt></td>
-    <td>Int</td>
-    <td>insecure port</td>
-    <td><tt>8080</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['api']['secure_port']</tt></td>
-    <td>Int</td>
-    <td>secure port</td>
-    <td><tt>8443</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['api']['service_cluster_ip_range']</tt></td>
-    <td>String</td>
-    <td>service cluster ip range</td>
-    <td><tt>10.222.0.0/16</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['api']['enabled_admission_plugins']</tt></td>
-    <td>Array</td>
-    <td>Comma-delimited list of admission control plugins to invoke prior to modifying objects in the cluster</td>
-    <td><tt>['Initializers', 'NamespaceLifecycle', 'NodeRestriction', 'LimitRanger', 'ServiceAccount', 'DefaultStorageClass', 'ResourceQuota']</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['api']['disabled_admission_plugins']</tt></td>
-    <td>Array</td>
-    <td>Comma-delimited list of admission control plugins to be disabled, even if they are in the list of plugins enabled by default</td>
-    <td><tt>[]</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['api']['runtime_config']</tt></td>
-    <td>Array</td>
-    <td>api runtime config</td>
-    <td><tt></tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['api']['storage_backend']</tt></td>
-    <td>String</td>
-    <td>default storage backend</td>
-    <td><tt>etcd3</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['api']['storage_media_type']</tt></td>
-    <td>String</td>
-    <td>storage media type</td>
-    <td><tt>application/vnd.kubernetes.protobuf</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['api']['kubelet_https']</tt></td>
-    <td>String</td>
-    <td>Use https</td>
-    <td><tt>true</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['api']['kubelet_certificate_authority']</tt></td>
-    <td>String</td>
-    <td>kubelet certificate authority</td>
-    <td><tt>/etc/kubernetes/ssl/ca.pem</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['api']['kubelet_client_certificate']</tt></td>
-    <td>String</td>
-    <td>kubelet client certificate</td>
-    <td><tt>/etc/kubernetes/ssl/apiserver.pem</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['api']['kubelet_client_key']</tt></td>
-    <td>String</td>
-    <td>kubelet client key</td>
-    <td><tt>/etc/kubernetes/ssl/apiserver-key.pem</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['api']['endpoint_reconciler_type']</tt></td>
-    <td>String</td>
-    <td>endpoint reconciler type</td>
-    <td><tt>lease</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['audit']['enabled']</tt></td>
@@ -450,12 +342,6 @@ Google Kubernetes installer for deb-based distros with docker
     <td><tt>aescbc</tt></td>
   </tr>
   <tr>
-    <td><tt>['kubernetes']['api']['experimental_encryption_provider_config']</tt></td>
-    <td>String</td>
-    <td>experimental_encryption_provider_config</td>
-    <td><tt>/etc/kubernetes/encryption-config.yaml</tt></td>
-  </tr>
-  <tr>
     <td><tt>['kubernetes']['node']['packages']</tt></td>
     <td>Hash</td>
     <td>default node packages</td>
@@ -497,14 +383,14 @@ Google Kubernetes installer for deb-based distros with docker
     <td><tt>0</tt></td>
   </tr>
   <tr>
-    <td><tt>['kubernetes']['kubelet']['verbosity']</tt></td>
+    <td><tt>['kubernetes']['kubelet']['v']</tt></td>
     <td>Int</td>
     <td>kubelet log verbosity</td>
     <td><tt>2</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['kubelet']['register_node']</tt></td>
-    <td>String</td>
+    <td>Boolean</td>
     <td>kubelet register node</td>
     <td><tt>'true'</tt></td>
   </tr>
@@ -532,6 +418,84 @@ Google Kubernetes installer for deb-based distros with docker
     <td>fail swap_on</td>
     <td><tt>'false'</tt></td>
   </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['cluster_dns']</tt></td>
+    <td>String</td>
+    <td>cluster dns</td>
+    <td><tt>node['kubernetes']['cluster_dns']</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['allow_privileged']</tt></td>
+    <td>Boolean</td>
+    <td>allow run privileged containers</td>
+    <td><tt>true</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['pod_manifest_path']</tt></td>
+    <td>String</td>
+    <td>pod manifest dir</td>
+    <td><tt>/etc/kubernetes/manifests</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['node_status_update_frequency']</tt></td>
+    <td>String</td>
+    <td>node status update frequency</td>
+    <td><tt>4s</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['kubeconfig']</tt></td>
+    <td>String</td>
+    <td>kubelet config for connect to api</td>
+    <td><tt>/etc/kubernetes/kubelet.yaml</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['authentication_token_webhook']</tt></td>
+    <td></td>
+    <td>nil, because this option without params</td>
+    <td><tt>nil</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['bootstrap_kubeconfig']</tt></td>
+    <td>String</td>
+    <td>bootstrap config</td>
+    <td><tt>/etc/kubernetes/kubeconfig-bootstrap.yaml</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['feature_gates']</tt></td>
+    <td>String</td>
+    <td>include feature gates from default.rb</td>
+    <td><tt>node['kubernetes']['feature_gates']</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['cert_dir']</tt></td>
+    <td>String</td>
+    <td>cert dir</td>
+    <td><tt>/etc/kubernetes/ssl</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['network_plugin']</tt></td>
+    <td>String</td>
+    <td>network plugin</td>
+    <td><tt>cni</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['cni_bin_dir']</tt></td>
+    <td>String</td>
+    <td>cni bin dir</td>
+    <td><tt>/opt/cni/bin</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['cni_conf_dir']</tt></td>
+    <td>String</td>
+    <td>cni conf dir</td>
+    <td><tt>/etc/cni/net.d</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['cluster_domain']</tt></td>
+    <td>String</td>
+    <td>includes from default.rb by default</td>
+    <td><tt>node['kubernetes']['cluster_domain']</tt></td>
+  </tr>  
 </table>
 
 ###### addons
@@ -977,6 +941,297 @@ Google Kubernetes installer for deb-based distros with docker
     <td><tt>4040</tt></td>
   </tr>
 </table>
+
+###### k8s_apiserver
+
+<table>
+  <tr>
+    <th>Key</th>
+    <th>Type</th>
+    <th>Description</th>
+    <th>Default</th>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['api']['bind_address']</tt></td>
+    <td>String</td>
+    <td>bind_address</td>
+    <td><tt>0.0.0.0</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['api']['insecure_bind_address']</tt></td>
+    <td>String</td>
+    <td>insecure_bind_address</td>
+    <td><tt>127.0.0.1</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['api']['insecure_port']</tt></td>
+    <td>Integer</td>
+    <td>insecure_port</td>
+    <td><tt>8080</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['api']['secure_port']</tt></td>
+    <td>Integer</td>
+    <td>secure_port</td>
+    <td><tt>8443</tt></td>
+  </tr>  
+  <tr>
+    <td><tt>['kubernetes']['api']['service_cluster_ip_range']</tt></td>
+    <td>String</td>
+    <td></td>
+    <td><tt>10.222.0.0/16</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['api']['storage_backend']</tt></td>
+    <td>String</td>
+    <td>storage_backend</td>
+    <td><tt>etcd3</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['api']['storage_media_type']</tt></td>
+    <td>String</td>
+    <td>storage_media_type</td>
+    <td><tt>application/vnd.kubernetes.protobuf</tt></td>
+  </tr>  
+  <tr>
+    <td><tt>['kubernetes']['api']['kubelet_https']</tt></td>
+    <td>Boolean</td>
+    <td>kubelet_https</td>
+    <td><tt>true</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['api']['kubelet_certificate_authority']</tt></td>
+    <td>String</td>
+    <td>kubelet_certificate_authority</td>
+    <td><tt>/etc/kubernetes/ssl/ca.pem</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['api']['experimental_encryption_provider_config']</tt></td>
+    <td>String</td>
+    <td>experimental_encryption_provider_config</td>
+    <td><tt>/etc/kubernetes/encryption-config.yaml</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['api']['kubelet_client_certificate']</tt></td>
+    <td>String</td>
+    <td>kubelet_client_certificate</td>
+    <td><tt>/etc/kubernetes/ssl/apiserver.pem</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['api']['kubelet_client_key']</tt></td>
+    <td>String</td>
+    <td>kubelet_client_key</td>
+    <td><tt>/etc/kubernetes/ssl/apiserver-key.pem</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['api']['endpoint_reconciler_type']</tt></td>
+    <td>String</td>
+    <td>endpoint_reconciler_type</td>
+    <td><tt>lease</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['api']['etcd_certfile']</tt></td>
+    <td>String</td>
+    <td>etcd_certfile</td>
+    <td><tt>node['etcd']['cert_file']</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['api']['etcd_keyfile']</tt></td>
+    <td>String</td>
+    <td>etcd_keyfile</td>
+    <td><tt>node['etcd']['key_file']</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['api']['etcd_cafile']</tt></td>
+    <td>String</td>
+    <td>etcd_cafile</td>
+    <td><tt>node['etcd']['trusted_ca_file']</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['api']['allow_privileged']</tt></td>
+    <td>Boolean</td>
+    <td>allow privileged containers</td>
+    <td><tt>true</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['api']['authorization_mode']</tt></td>
+    <td>String</td>
+    <td>authorization_mode</td>
+    <td><tt>node['kubernetes']['authorization']['mode']</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['api']['enable_bootstrap_token_auth']</tt></td>
+    <td></td>
+    <td>default nit, because option without params</td>
+    <td><tt>nil</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['api']['tls_cert_file']</tt></td>
+    <td>String</td>
+    <td>tls_cert_file</td>
+    <td><tt>node['kubernetes']['tls_cert_file']</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['api']['tls_private_key_file']</tt></td>
+    <td>String</td>
+    <td>tls_private_key_file</td>
+    <td><tt>node['kubernetes']['tls_private_key_file']</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['api']['client_ca_file']</tt></td>
+    <td>String</td>
+    <td>client_ca_file</td>
+    <td><tt>node['kubernetes']['client_ca_file']</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['api']['service_account_key_file']</tt></td>
+    <td>String</td>
+    <td>service_account_key_file</td>
+    <td><tt>node['kubernetes']['service_account_key_file']</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['api']['log_dir']</tt></td>
+    <td>String</td>
+    <td>log_dir</td>
+    <td><tt>/var/log/kubernetes</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['api']['feature_gates']</tt></td>
+    <td>String</td>
+    <td>feature_gates</td>
+    <td><tt>node['kubernetes']['feature_gates']</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['api']['enable_admission_plugins']</tt></td>
+    <td>String</td>
+    <td>plugins separated by comma</td>
+    <td><tt>Initializers, NamespaceLifecycle, NodeRestriction, LimitRanger, ServiceAccount, DefaultStorageClass, ResourceQuota</tt></td>
+  </tr>
+</table>
+
+###### k8s_controller
+
+<table>
+  <tr>
+    <th>Key</th>
+    <th>Type</th>
+    <th>Description</th>
+    <th>Default</th>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['controller_manager']['address']</tt></td>
+    <td>String</td>
+    <td>address</td>
+    <td><tt>127.0.0.1</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['controller_manager']['leader_elect']</tt></td>
+    <td>Boolean</td>
+    <td>leader_elect</td>
+    <td><tt>true</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['controller_manager']['cluster_cidr']</tt></td>
+    <td>String</td>
+    <td>cluster cird</td>
+    <td><tt>node['kubernetes']['cluster_cidr']</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['controller_manager']['cluster_name']</tt></td>
+    <td>String</td>
+    <td>cluster name</td>
+    <td><tt>node['kubernetes']['cluster_name']</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['controller_manager']['service_account_private_key_file']</tt></td>
+    <td>String</td>
+    <td>service_account_key_file</td>
+    <td><tt>node['kubernetes']['service_account_key_file']</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['controller_manager']['cluster_signing_cert_file']</tt></td>
+    <td>String</td>
+    <td>cluster_signing_cert_file</td>
+    <td><tt>node['kubernetes']['cluster_signing_cert_file']</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['controller_manager']['cluster_signing_key_file']</tt></td>
+    <td>String</td>
+    <td>cluster_signing_key_file</td>
+    <td><tt>node['kubernetes']['cluster_signing_cert_file']</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['controller_manager']['root_ca_file']</tt></td>
+    <td>String</td>
+    <td>root_ca_file</td>
+    <td><tt>node['kubernetes']['client_ca_file']</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['controller_manager']['master'] </tt></td>
+    <td>String</td>
+    <td>master</td>
+    <td><tt>http://127.0.0.1:#{node['kubernetes']['api']['insecure_port']}</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['controller_manager']['feature_gates']</tt></td>
+    <td>String</td>
+    <td>feature_gates</td>
+    <td><tt>node['kubernetes']['feature_gates']</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['controller_manager']['node_monitor_period']</tt></td>
+    <td>String</td>
+    <td>node_monitor_period</td>
+    <td><tt>2s</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['controller_manager']['node_monitor_grace_period']</tt></td>
+    <td>String</td>
+    <td>node_monitor_grace_period</td>
+    <td><tt>16s</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['controller_manager']['pod_eviction_timeout']  </tt></td>
+    <td>String</td>
+    <td>pod_eviction_timeout</td>
+    <td><tt>30s</tt></td>
+  </tr>
+</table>
+
+###### scheduler
+<table>
+  <tr>
+    <th>Key</th>
+    <th>Type</th>
+    <th>Description</th>
+    <th>Default</th>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['scheduler']['address'] </tt></td>
+    <td>String</td>
+    <td>address</td>
+    <td><tt>127.0.0.1</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['scheduler']['leader_elect'] </tt></td>
+    <td>Boolean</td>
+    <td>leader_elect</td>
+    <td><tt>true</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['scheduler']['feature_gates']</tt></td>
+    <td>String</td>
+    <td>feature_gates</td>
+    <td><tt>node['kubernetes']['feature_gates']</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['scheduler']['master']</tt></td>
+    <td>String</td>
+    <td>master</td>
+    <td><tt>http://127.0.0.1:#{node['kubernetes']['api']['insecure_port']}</tt></td>
+  </tr>
+</table>
+
 
 ## Usage
 
