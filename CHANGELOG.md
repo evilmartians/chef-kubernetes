@@ -1,9 +1,11 @@
-# 0.0.4 (31.03.2018)
+# 0.0.4 (03.04.2018)
 - Bump to 1.10.0 kubernetes version
 - Change packages array to hash
 - Move cni plugins symlinks to attributes for enable/disable actions
 - Move kubelet args to attributes/kubelet.rb from recipe
-  Now you can change single kubelet.service parameter per node
+- Move apiserver args to attributes/k8s_apiserver.rb from recipe
+- Move scheduler args to attributes/scheduler.rb from recipe
+- Move controller_manager args to attributes/k8s_controller.rb from recipe
 
 # 0.0.3 (11.03.2018)
 - Add custom docker installation. Default `true`. But if you have another docker
