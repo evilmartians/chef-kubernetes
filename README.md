@@ -495,7 +495,7 @@ Google Kubernetes installer for deb-based distros with docker
     <td>String</td>
     <td>includes from default.rb by default</td>
     <td><tt>node['kubernetes']['cluster_domain']</tt></td>
-  </tr>  
+  </tr>
 </table>
 
 ###### addons
@@ -974,7 +974,7 @@ Google Kubernetes installer for deb-based distros with docker
     <td>Integer</td>
     <td>secure_port</td>
     <td><tt>8443</tt></td>
-  </tr>  
+  </tr>
   <tr>
     <td><tt>['kubernetes']['api']['service_cluster_ip_range']</tt></td>
     <td>String</td>
@@ -992,7 +992,7 @@ Google Kubernetes installer for deb-based distros with docker
     <td>String</td>
     <td>storage_media_type</td>
     <td><tt>application/vnd.kubernetes.protobuf</tt></td>
-  </tr>  
+  </tr>
   <tr>
     <td><tt>['kubernetes']['api']['kubelet_https']</tt></td>
     <td>Boolean</td>
@@ -1158,7 +1158,7 @@ Google Kubernetes installer for deb-based distros with docker
     <td><tt>['kubernetes']['controller_manager']['cluster_signing_key_file']</tt></td>
     <td>String</td>
     <td>cluster_signing_key_file</td>
-    <td><tt>node['kubernetes']['cluster_signing_cert_file']</tt></td>
+    <td><tt>node['kubernetes']['cluster_signing_key_file']</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['controller_manager']['root_ca_file']</tt></td>
