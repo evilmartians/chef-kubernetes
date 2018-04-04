@@ -4,7 +4,7 @@ default['kubernetes']['controller_manager']['cluster_cidr']                     
 default['kubernetes']['controller_manager']['cluster_name']                     = node['kubernetes']['cluster_name']
 default['kubernetes']['controller_manager']['service_account_private_key_file'] = node['kubernetes']['service_account_key_file']
 default['kubernetes']['controller_manager']['cluster_signing_cert_file']        = node['kubernetes']['cluster_signing_cert_file']
-default['kubernetes']['controller_manager']['cluster_signing_key_file']         = node['kubernetes']['cluster_signing_cert_file']
+default['kubernetes']['controller_manager']['cluster_signing_key_file']         = node['kubernetes']['cluster_signing_key_file']
 default['kubernetes']['controller_manager']['root_ca_file']                     = node['kubernetes']['client_ca_file']
 default['kubernetes']['controller_manager']['master']                           = "http://127.0.0.1:#{node['kubernetes']['api']['insecure_port']}"
 default['kubernetes']['controller_manager']['feature_gates']                    = node['kubernetes']['feature_gates']
