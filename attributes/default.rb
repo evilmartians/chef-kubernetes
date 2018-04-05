@@ -13,7 +13,7 @@ default['kubernetes']['use_sdn']                            = true
 default['kubernetes']['sdn']                                = 'weave'
 default['kubernetes']['master']                             = '127.0.0.1'
 default['kubernetes']['cluster_name']                       = 'kubernetes'
-default['kubernetes']['cluster_dns']                        = '10.222.222.222'
+default['kubernetes']['cluster_dns']                        = ['10.222.222.222']
 default['kubernetes']['cluster_domain']                     = 'kubernetes.local'
 default['kubernetes']['cluster_cidr']                       = '192.168.0.0/16'
 default['kubernetes']['node_cidr_mask_size']                = 24
@@ -33,7 +33,10 @@ default['kubernetes']['cluster_signing_key_file']           = '/etc/kubernetes/s
 default['kubernetes']['token_auth']                         = false
 default['kubernetes']['token_auth_file']                    = '/etc/kubernetes/known_tokens.csv'
 default['kubernetes']['docker']                             = 'unix:///var/run/docker.sock'
-default['kubernetes']['feature_gates']                      = ['RotateKubeletServerCertificate=true', 'MountPropagation=true','DynamicKubeletConfig=true'].join(',')
+default['kubernetes']['feature_gates']                      = {
+  'RotateKubeletServerCertificate' => true,
+  'MountPropagation' => true
+}
 default['kubernetes']['audit']['enabled']                   = true
 default['kubernetes']['audit']['log_file']                  = '/var/log/kubernetes/audit.log'
 default['kubernetes']['audit']['maxbackup']                 = 3

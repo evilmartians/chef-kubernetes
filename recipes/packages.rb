@@ -11,7 +11,7 @@ node['kubernetes']['node']['packages'].each do |pkg, flag|
   end
 end
 
-if node['docker']['build-it']
+if node['docker']['built-in']
   package 'linux-image-extra-virtual' if node['docker']['settings']['storage-driver'] == 'aufs'
 
   apt_repository 'docker' do
