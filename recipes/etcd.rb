@@ -37,7 +37,7 @@ end
 [
   node['etcd']['data_dir'],
   "#{node['etcd']['data_dir']}/member",
-  node['etcd']['wal_dir']
+  node['etcd']['wal_dir'],
 ].each do |d|
   directory d do
     recursive true

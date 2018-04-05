@@ -45,7 +45,7 @@ if install_via == 'systemd'
     content(
       Unit: {
         Description: 'Systemd unit for Kubernetes Proxy',
-        After: 'network.target remote-fs.target'
+        After: 'network.target remote-fs.target',
       },
       Service: {
         Type: 'simple',
@@ -54,10 +54,10 @@ if install_via == 'systemd'
         WorkingDirectory: '/',
         Restart: 'on-failure',
         RestartSec: '30s',
-        LimitNOFILE: node['kubernetes']['limits']['nofile']['addon_manager']
+        LimitNOFILE: node['kubernetes']['limits']['nofile']['addon_manager'],
       },
       Install: {
-        WantedBy: 'multi-user.target'
+        WantedBy: 'multi-user.target',
       }
     )
     notifies :restart, 'systemd_unit[kube-proxy.service]'

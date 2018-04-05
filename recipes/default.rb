@@ -14,7 +14,11 @@ include_recipe 'kubernetes::networking'
 include_recipe 'kubernetes::haproxy' if node['kubernetes']['multimaster']['access_via'] == 'haproxy'
 include_recipe 'firewall' if node['kubernetes']['enable_firewall']
 
-%w(manifests ssl addons).each do |dir|
+%w(
+  manifests
+  ssl
+  addons
+).each do |dir|
   directory("/etc/kubernetes/#{dir}") do
     recursive true
   end
@@ -69,17 +73,16 @@ template '/etc/kubernetes/kubeletconfig.yaml' do
   source 'kubeletconfig.yaml.erb'
   mode '0644'
   variables(
-    :address => k8s_ip(node), # FIXME
-    :options => YAML::dump(node['kubernetes']['kubelet']['config'].to_hash).sub(/---\n/,'')
+    address: k8s_ip(node), # FIXME
+    options: kubelet_yaml(node['kubernetes']['kubelet']['config'])
   )
   case install_via
   when 'upstart'
     notifies :restart, 'service[kubelet]'
   when 'systemd'
-    notifies :restart, "systemd_unit[kubelet.service]"
+    notifies :restart, 'systemd_unit[kubelet.service]'
   end
 end
-
 
 service 'kubelet' do
   action [:start, :enable]
@@ -95,7 +98,7 @@ systemd_unit 'kubelet.service' do
   content(
     Unit: {
       Description: 'Systemd unit for Kubernetes worker service (kubelet)',
-      After: "network.target remote-fs.target #{node['kubernetes']['container_engine']}.service"
+      After: "network.target remote-fs.target #{node['kubernetes']['container_engine']}.service",
     },
     Service: {
       Type: 'simple',
@@ -104,10 +107,10 @@ systemd_unit 'kubelet.service' do
       WorkingDirectory: '/',
       Restart: 'on-failure',
       RestartSec: '30s',
-      LimitNOFILE: node['kubernetes']['limits']['nofile']['kubelet']
+      LimitNOFILE: node['kubernetes']['limits']['nofile']['kubelet'],
     },
     Install: {
-      WantedBy: 'multi-user.target'
+      WantedBy: 'multi-user.target',
     }
   )
   notifies :restart, 'systemd_unit[kubelet.service]'
