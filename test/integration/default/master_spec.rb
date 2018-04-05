@@ -3,7 +3,7 @@
   controller-manager
   scheduler
 ).each do |component|
-  describe file("/opt/kubernetes/v1.8.5/bin/kube-#{component}") do
+  describe file("/opt/kubernetes/v1.10.0/bin/kube-#{component}") do
     it { should exist }
     it { should be_file }
     it { should be_executable }
