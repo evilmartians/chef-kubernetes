@@ -354,148 +354,142 @@ Google Kubernetes installer for deb-based distros with docker
 
 <table>
   <tr>
-    <td><tt>['kubernetes']['kubelet']['client_certificate']</tt></td>
+    <th>Key</th>
+    <th>Type</th>
+    <th>Description</th>
+    <th>Default</th>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['daemon_flags']['config']</tt></td>
     <td>String</td>
-    <td>kubelet client certificate</td>
-    <td><tt>/etc/kubernetes/ssl/node.pem</tt></td>
+    <td>kubelet init config</td>
+    <td><tt>/etc/kubernetes/kubeletconfig.yaml</tt></td>
   </tr>
   <tr>
-    <td><tt>['kubernetes']['kubelet']['client_key']</tt></td>
-    <td>String</td>
-    <td>kubelet client key</td>
-    <td><tt>/etc/kubernetes/ssl/node-key.pem</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['kubelet']['image_gc_low_threshold']</tt></td>
-    <td>String</td>
-    <td>kubelet image_gc_low_threshold</td>
-    <td><tt>'70'</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['kubelet']['image_gc_high_threshold']</tt></td>
-    <td>String</td>
-    <td>kubelet image_gc_high_threshold</td>
-    <td><tt>'80'</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['kubelet']['cadvisor_port']</tt></td>
-    <td>Int</td>
-    <td>cadvisor port</td>
-    <td><tt>0</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['kubelet']['v']</tt></td>
-    <td>Int</td>
-    <td>kubelet log verbosity</td>
-    <td><tt>2</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['kubelet']['register_node']</tt></td>
-    <td>Boolean</td>
-    <td>kubelet register node</td>
-    <td><tt>'true'</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['kubelet']['anonymous_auth']</tt></td>
-    <td>String</td>
-    <td>kubelet anonymous auth</td>
-    <td><tt>'false'</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['kubelet']['client_ca_file']</tt></td>
-    <td>String</td>
-    <td>kubelet client ca file</td>
-    <td><tt>/etc/kubernetes/ssl/ca.pem</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['kubelet']['authorization_mode']</tt></td>
-    <td>String</td>
-    <td>kubelet auth mode</td>
-    <td><tt>Webhook</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['kubelet']['fail_swap_on']</tt></td>
-    <td>String</td>
-    <td>fail swap_on</td>
-    <td><tt>'false'</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['kubelet']['cluster_dns']</tt></td>
-    <td>String</td>
-    <td>cluster dns</td>
-    <td><tt>node['kubernetes']['cluster_dns']</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['kubelet']['allow_privileged']</tt></td>
-    <td>Boolean</td>
-    <td>allow run privileged containers</td>
-    <td><tt>true</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['kubelet']['pod_manifest_path']</tt></td>
-    <td>String</td>
-    <td>pod manifest dir</td>
-    <td><tt>/etc/kubernetes/manifests</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['kubelet']['node_status_update_frequency']</tt></td>
-    <td>String</td>
-    <td>node status update frequency</td>
-    <td><tt>4s</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['kubelet']['kubeconfig']</tt></td>
-    <td>String</td>
-    <td>kubelet config for connect to api</td>
-    <td><tt>/etc/kubernetes/kubelet.yaml</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['kubelet']['authentication_token_webhook']</tt></td>
-    <td></td>
-    <td>nil, because this option without params</td>
-    <td><tt>nil</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['kubelet']['bootstrap_kubeconfig']</tt></td>
+    <td><tt>['kubernetes']['kubelet']['daemon_flags']['bootstrap_kubeconfig']</tt></td>
     <td>String</td>
     <td>bootstrap config</td>
     <td><tt>/etc/kubernetes/kubeconfig-bootstrap.yaml</tt></td>
   </tr>
   <tr>
-    <td><tt>['kubernetes']['kubelet']['feature_gates']</tt></td>
-    <td>String</td>
-    <td>include feature gates from default.rb</td>
-    <td><tt>node['kubernetes']['feature_gates']</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['kubelet']['cert_dir']</tt></td>
+    <td><tt>['kubernetes']['kubelet']['daemon_flags']['cert_dir']</tt></td>
     <td>String</td>
     <td>cert dir</td>
     <td><tt>/etc/kubernetes/ssl</tt></td>
   </tr>
   <tr>
-    <td><tt>['kubernetes']['kubelet']['network_plugin']</tt></td>
+    <td><tt>['kubernetes']['kubelet']['daemon_flags']['kubeconfig'] </tt></td>
+    <td>String</td>
+    <td>kubeconfig</td>
+    <td><tt>/etc/kubernetes/kubelet.yaml</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['daemon_flags']['allow_privileged']</tt></td>
+    <td>Boolean</td>
+    <td>allow run privileged pods</td>
+    <td><tt>true</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['daemon_flags']['v'] </tt></td>
+    <td>Integer</td>
+    <td>log veribosity</td>
+    <td><tt>2</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['daemon_flags']['network_plugin']</tt></td>
     <td>String</td>
     <td>network plugin</td>
     <td><tt>cni</tt></td>
   </tr>
   <tr>
-    <td><tt>['kubernetes']['kubelet']['cni_bin_dir']</tt></td>
-    <td>String</td>
-    <td>cni bin dir</td>
-    <td><tt>/opt/cni/bin</tt></td>
+    <td><tt>['kubernetes']['kubelet']['daemon_flags']['register_node']</tt></td>
+    <td>Boolean</td>
+    <td>register node</td>
+    <td><tt>true</tt></td>
   </tr>
   <tr>
-    <td><tt>['kubernetes']['kubelet']['cni_conf_dir']</tt></td>
-    <td>String</td>
-    <td>cni conf dir</td>
-    <td><tt>/etc/cni/net.d</tt></td>
+    <td><tt>['kubernetes']['kubelet']['daemon_flags']['cadvisor_port']</tt></td>
+    <td>Integer</td>
+    <td>cadvisor port</td>
+    <td><tt>0</tt></td>
   </tr>
   <tr>
-    <td><tt>['kubernetes']['kubelet']['cluster_domain']</tt></td>
+    <td><tt>['kubernetes']['kubelet']['config']['staticPodPath']</tt></td>
     <td>String</td>
-    <td>includes from default.rb by default</td>
+    <td>pod manifests</td>
+    <td><tt>/etc/kubernetes/manifests</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['config']['authentication']['x509']['clientCAFile']</tt></td>
+    <td>String</td>
+    <td>client ca file</td>
+    <td><tt>/etc/kubernetes/ssl/ca.pem</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['config']['authentication']['webhook']['enabled']</tt></td>
+    <td>Boolean</td>
+    <td>enable webhook</td>
+    <td><tt>true</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['config']['authentication']['webhook']['cacheTTL']</tt></td>
+    <td>String</td>
+    <td>webhook cacheTTL</td>
+    <td><tt>2m0s</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['config']['authentication']['anonymous']['enabled']</tt></td>
+    <td>Boolean</td>
+    <td>anonymous auth</td>
+    <td><tt>fase</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['config']['authorization']['mode']</tt></td>
+    <td>String</td>
+    <td>auth mode</td>
+    <td><tt>Webhook</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['config']['clusterDNS']</tt></td>
+    <td>Array</td>
+    <td>array of cluster dns ips</td>
+    <td><tt>node['kubernetes']['cluster_dns']</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['config']['featureGates']</tt></td>
+    <td>Hash</td>
+    <td>hash of feature gates</td>
+    <td><tt>node['kubernetes']['feature_gates']</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['config']['NodeStatusUpdateFrequency']</tt></td>
+    <td>String</td>
+    <td>NodeStatusUpdateFrequency</td>
+    <td><tt>4s</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['config']['clusterDomain']</tt></td>
+    <td>String</td>
+    <td>cluster domain</td>
     <td><tt>node['kubernetes']['cluster_domain']</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['config']['imageGCLowThresholdPercent']</tt></td>
+    <td>Integer</td>
+    <td>imageGCLowThresholdPercent</td>
+    <td><tt>70</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['config']['imageGCHighThresholdPercent']</tt></td>
+    <td>Integer</td>
+    <td>imageGCHighThresholdPercent</td>
+    <td><tt>80</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['config']['failSwapOn']</tt></td>
+    <td>Boolean</td>
+    <td>failSwapOn</td>
+    <td><tt>false</tt></td>
   </tr>
 </table>
 
@@ -1196,6 +1190,34 @@ Google Kubernetes installer for deb-based distros with docker
     <td>String</td>
     <td>pod_eviction_timeout</td>
     <td><tt>30s</tt></td>
+  </tr>
+</table>
+
+###### k8s_proxy
+<table>
+  <tr>
+    <th>Key</th>
+    <th>Type</th>
+    <th>Description</th>
+    <th>Default</th>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['proxy']['kubeconfig']</tt></td>
+    <td>String</td>
+    <td>path to config</td>
+    <td><tt>/etc/kubernetes/system:kube-proxy_config.yaml</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['proxy']['feature_gates']</tt></td>
+    <td>Hash</td>
+    <td>hash of feature gates</td>
+    <td><tt>node['kubernetes']['feature_gates']</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['proxy']['proxy_mode']</tt></td>
+    <td>String</td>
+    <td>proxy mode</td>
+    <td><tt>iptables</tt></td>
   </tr>
 </table>
 
