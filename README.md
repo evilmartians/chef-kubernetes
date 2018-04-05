@@ -109,7 +109,7 @@ Google Kubernetes installer for deb-based distros with docker
   </tr>
   <tr>
     <td><tt>['kubernetes']['cluster_dns']</tt></td>
-    <td>String</td>
+    <td>Array</td>
     <td>cluster dns</td>
     <td><tt>10.222.222.222</tt></td>
   </tr>
@@ -223,9 +223,9 @@ Google Kubernetes installer for deb-based distros with docker
   </tr>
   <tr>
     <td><tt>['kubernetes']['feature_gates']</tt></td>
-    <td>Array</td>
+    <td>Hash</td>
     <td>feature gates</td>
-    <td><tt>['RotateKubeletServerCertificate=true', 'PersistentLocalVolumes=true', 'VolumeScheduling=true', 'MountPropagation=true']</tt></td>
+    <td><tt>'RotateKubeletServerCertificate': true, 'PersistentLocalVolumes': true, 'VolumeScheduling: true, 'MountPropagation=true']</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['audit']['enabled']</tt></td>
