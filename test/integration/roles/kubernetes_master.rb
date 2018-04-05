@@ -16,11 +16,7 @@ override_attributes(
     dns: { deploy_via: 'deployment' },
     token_auth: true,
     addons: {
-      kubedns: {
-        node_selector: 'evl.ms/role=system'
-      },
       coredns: {
-        node_selector: 'evl.ms/role=system',
         requests: {
           cpu: '200m'
         },
