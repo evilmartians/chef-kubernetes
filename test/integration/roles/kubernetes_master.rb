@@ -4,11 +4,10 @@ run_list 'recipe[kubernetes::master]'
 override_attributes(
   kubernetes: {
     cluster_name: 'example',
-    cluster_dns: '192.168.222.222',
+    cluster_dns: ['192.168.222.222'],
     cluster_cidr: '192.168.0.0/17',
     api: {
-      'service_cluster_ip_range' => '192.168.128.0/17',
-      'runtime_config' => %w(batch/v2alpha1)
+      'service_cluster_ip_range' => '192.168.128.0/17'
     },
     weave: {
       use_scope: false,
