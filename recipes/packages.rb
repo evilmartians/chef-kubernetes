@@ -6,9 +6,7 @@
 #
 
 node['kubernetes']['node']['packages'].each do |pkg, flag|
-  if flag
-    package pkg
-  end
+  package pkg if flag
 end
 
 if node['docker']['built-in']

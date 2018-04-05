@@ -33,13 +33,13 @@ end
 include_recipe 'kubernetes::kubeconfig'
 
 # Encryption config
-keys = data_bag_item(node['kubernetes']['databag'],'encryption_keys')[node['kubernetes']['encryption']]
+keys = data_bag_item(node['kubernetes']['databag'], 'encryption_keys')[node['kubernetes']['encryption']]
 
 # TODO: Fix this style.
 keys.map! do |k|
   {
     'name' => k['name'],
-    'secret' => Base64.encode64(k['secret'])
+    'secret' => Base64.encode64(k['secret']),
   }
 end
 keys.sort_by! { |key| key['name'] }

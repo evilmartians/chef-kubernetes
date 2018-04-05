@@ -18,13 +18,14 @@ service 'haproxy' do
   action :nothing
 end
 
-# TODO move this logic to library
+# TODO
+# move this logic to library
 
 master_nodes = search(:node, "roles:#{node['kubernetes']['roles']['master']}")
 
 nameservers = Resolv::DNS::Config.new.lazy_initialize.nameserver_port
-cluster_dns = node['kubernetes']['cluster_dns'].map { |a| [a,53] }
-nameservers = nameservers + cluster_dns
+cluster_dns = node['kubernetes']['cluster_dns'].map { |a| [a, 53] }
+nameservers += cluster_dns
 nameservers.uniq!
 
 if !master_nodes.empty? &&
@@ -33,15 +34,15 @@ if !master_nodes.empty? &&
   master_nodes.map! do |master_node|
     {
       name: k8s_hostname(master_node),
-      ip: k8s_ip(master_node)
+      ip: k8s_ip(master_node),
     }
   end
 else
   master_nodes = [
     {
       name: k8s_hostname(node),
-      ip: k8s_ip(node)
-    }
+      ip: k8s_ip(node),
+    },
   ]
 end
 
@@ -54,8 +55,8 @@ template '/etc/haproxy/haproxy.cfg' do
         name: node['kubernetes']['cluster_name'],
         nameservers:     nameservers,
         resolve_retries: 3,
-        timeout_retry:   '1s'
-      }
+        timeout_retry:   '1s',
+      },
     ]
   )
   notifies :restart, 'service[haproxy]'

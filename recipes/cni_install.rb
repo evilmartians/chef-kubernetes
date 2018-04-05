@@ -13,7 +13,7 @@ plugins_version = node['kubernetes']['cni']['plugins_version']
   '/opt/cni/bin',
   '/etc/cni/net.d',
   "/opt/cni/#{version}",
-  "/opt/cni/plugins/#{plugins_version}"
+  "/opt/cni/plugins/#{plugins_version}",
 ].each do |dir|
   directory dir do
     recursive true

@@ -21,16 +21,16 @@ if node['init_package'] == 'systemd'
     content(
       Unit: {
         Description: 'Kubernetes services network route',
-        After: 'network.target'
+        After: 'network.target',
       },
       Service: {
         Type: 'oneshot',
         RemainAfterExit: 'true',
         ExecStop: "/sbin/ip route del #{node['kubernetes']['api']['service_cluster_ip_range']}",
-        ExecStart: "/sbin/ip route replace #{node['kubernetes']['api']['service_cluster_ip_range']} dev #{node['kubernetes']['interface']}"
+        ExecStart: "/sbin/ip route replace #{node['kubernetes']['api']['service_cluster_ip_range']} dev #{node['kubernetes']['interface']}",
       },
       Install: {
-        WantedBy: 'multi-user.target kubelet.service'
+        WantedBy: 'multi-user.target kubelet.service',
       }
     )
     action [:create, :enable, :start]
