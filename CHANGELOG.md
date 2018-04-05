@@ -1,4 +1,4 @@
-# 0.1.0 ()
+# 0.1.0 (05.04.2018)
 - Use --config for kubelet
 - Change featureGates struct from string to hash
 - Update helpers.rb for backward compatibility with service options
