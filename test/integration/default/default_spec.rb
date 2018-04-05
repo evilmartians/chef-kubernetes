@@ -24,6 +24,11 @@ end
 
 describe file('/etc/kubernetes/kubeletconfig.yaml') do
   it { should exist }
+  its('size') { should be > 100 }
+end
+
+describe command('grep "failed to load Kubelet config file /etc/kubernetes/kubeletconfig.yaml" /var/log/syslog') do
+  its('exit_status') { should_not eq 0 }
 end
 
 describe command('ip r') do
