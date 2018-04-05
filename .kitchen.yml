@@ -5,8 +5,8 @@ driver:
     memory: 3072
 
 provisioner:
-  name: chef_zero
-  require_chef_omnibus: 13
+  product_name: chef_zero
+  product_version: 13
   # log_level: debug
 
 verifier:
