@@ -65,6 +65,22 @@ template '/etc/init/kubelet.conf' do
   end
 end
 
+template '/etc/kubernetes/kubeletconfig.yaml' do
+  source 'kubeletconfig.yaml.erb'
+  mode '0644'
+  variables(
+    :address => k8s_ip(node), # FIXME
+    :options => YAML::dump(node['kubernetes']['kubelet']['config'].to_hash).sub(/---\n/,'')
+  )
+  case install_via
+  when 'upstart'
+    notifies :restart, 'service[kubelet]'
+  when 'systemd'
+    notifies :restart, "systemd_unit[kubelet.service]"
+  end
+end
+
+
 service 'kubelet' do
   action [:start, :enable]
   provider Chef::Provider::Service::Upstart

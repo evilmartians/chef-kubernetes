@@ -18,10 +18,13 @@ service 'haproxy' do
   action :nothing
 end
 
+# TODO move this logic to library
+
 master_nodes = search(:node, "roles:#{node['kubernetes']['roles']['master']}")
 
 nameservers = Resolv::DNS::Config.new.lazy_initialize.nameserver_port
-nameservers = nameservers.unshift([node['kubernetes']['cluster_dns'], 53])
+cluster_dns = node['kubernetes']['cluster_dns'].map { |a| [a,53] }
+nameservers = nameservers + cluster_dns
 nameservers.uniq!
 
 if !master_nodes.empty? &&
