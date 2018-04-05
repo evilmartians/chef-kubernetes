@@ -25,6 +25,7 @@
   "run_list": [
     "role[etcd]",
     "role[kubernetes_master]",
-    "role[kubernetes_node]"
+    "role[kubernetes_node]",
+    "recipe[testrig::approve_kubelet_csr]"
   ]
 }

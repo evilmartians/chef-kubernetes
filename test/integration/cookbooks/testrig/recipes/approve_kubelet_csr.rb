@@ -1,6 +1,5 @@
 
 # Approve pending CSR for local kubelet.
-# TODO check status code
 ruby_block 'approve local kubelet CSR' do
   block do
     get_csr_name_cmd = Mixlib::ShellOut.new("/usr/local/bin/kubectl get csr -o jsonpath='{.items[0].metadata.name}'")
