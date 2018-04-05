@@ -1,4 +1,5 @@
 # kubernetes-cookbook
+![alt text](evil_k8s.png)
 
 Google Kubernetes installer for deb-based distros with docker
 
