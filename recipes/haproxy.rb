@@ -49,7 +49,7 @@ end
 template '/etc/haproxy/haproxy.cfg' do
   source 'haproxy.cfg.erb'
   variables(
-    nodes:     master_nodes,
+    nodes:     master_nodes.sort_by { |h| h[:ip] },
     resolvers: [
       {
         name: node['kubernetes']['cluster_name'],
@@ -59,7 +59,7 @@ template '/etc/haproxy/haproxy.cfg' do
       },
     ]
   )
-  notifies :restart, 'service[haproxy]'
+  notifies :reload, 'service[haproxy]'
 end
 
 firewall_rule 'deis_builder' do

@@ -5,6 +5,9 @@
 - Reanimate inspec with testkitchen.
 - Fix docker built-in variables into recipe
 - Move kube-proxy config args from recipe to k8s_proxy.rb
+- Add sort for master nodes in haproxy config
+- Bump cniVersion from 0.3.0 to 0.3.1
+- Add haproxy reload by default
 
 # 0.0.4 (03.04.2018)
 - Bump to 1.10.0 kubernetes version
