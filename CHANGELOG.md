@@ -1,3 +1,6 @@
+# 0.1.3 (15.04.2018)
+- Upgrade etcd cookbook dependency from 4.1 to 5.5
+
 # 0.1.2 (14.04.2018)
 - Weave: 2.3.0
 - Weave: split `--status-addr` into separate `--status-addr` and `--metrics-addr` args
