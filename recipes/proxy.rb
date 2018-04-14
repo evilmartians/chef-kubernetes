@@ -7,14 +7,6 @@
 
 include_recipe 'kubernetes::kubeconfig'
 
-proxy_args = [
-  "--bind-address=#{k8s_ip(node)}",
-  "--hostname-override=#{k8s_hostname(node)}",
-  '--proxy-mode=iptables',
-  "--feature-gates=#{node['kubernetes']['feature_gates']}",
-  '--kubeconfig=/etc/kubernetes/system:kube-proxy_config.yaml'
-]
-
 if install_via == 'static_pods'
 
   directory '/etc/kubernetes/manifests' do
@@ -53,7 +45,7 @@ if install_via == 'systemd'
     content(
       Unit: {
         Description: 'Systemd unit for Kubernetes Proxy',
-        After: 'network.target remote-fs.target'
+        After: 'network.target remote-fs.target',
       },
       Service: {
         Type: 'simple',
@@ -62,10 +54,10 @@ if install_via == 'systemd'
         WorkingDirectory: '/',
         Restart: 'on-failure',
         RestartSec: '30s',
-        LimitNOFILE: node['kubernetes']['limits']['nofile']['addon_manager']
+        LimitNOFILE: node['kubernetes']['limits']['nofile']['addon_manager'],
       },
       Install: {
-        WantedBy: 'multi-user.target'
+        WantedBy: 'multi-user.target',
       }
     )
     notifies :restart, 'systemd_unit[kube-proxy.service]'

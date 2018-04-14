@@ -16,7 +16,7 @@ systemd_unit 'kube-apiserver.service' do
   content(
     Unit: {
       Description: 'Systemd unit for Kubernetes API server',
-      After: 'network.target remote-fs.target'
+      After: 'network.target remote-fs.target',
     },
     Service: {
       Type: 'simple',
@@ -25,10 +25,10 @@ systemd_unit 'kube-apiserver.service' do
       WorkingDirectory: '/',
       Restart: 'on-failure',
       RestartSec: '30s',
-      LimitNOFILE: node['kubernetes']['limits']['nofile']['apiserver']
+      LimitNOFILE: node['kubernetes']['limits']['nofile']['apiserver'],
     },
     Install: {
-      WantedBy: 'multi-user.target'
+      WantedBy: 'multi-user.target',
     }
   )
   notifies :restart, 'systemd_unit[kube-apiserver.service]'
@@ -39,7 +39,7 @@ systemd_unit 'kube-controller-manager.service' do
   content(
     Unit: {
       Description: 'Systemd unit for Kubernetes Controller Manager',
-      After: 'network.target remote-fs.target kube-apiserver.service'
+      After: 'network.target remote-fs.target kube-apiserver.service',
     },
     Service: {
       Type: 'simple',
@@ -48,10 +48,10 @@ systemd_unit 'kube-controller-manager.service' do
       WorkingDirectory: '/',
       Restart: 'on-failure',
       RestartSec: '30s',
-      LimitNOFILE: node['kubernetes']['limits']['nofile']['controller_manager']
+      LimitNOFILE: node['kubernetes']['limits']['nofile']['controller_manager'],
     },
     Install: {
-      WantedBy: 'multi-user.target'
+      WantedBy: 'multi-user.target',
     }
   )
   notifies :restart, 'systemd_unit[kube-controller-manager.service]'
@@ -62,7 +62,7 @@ systemd_unit 'kube-scheduler.service' do
   content(
     Unit: {
       Description: 'Systemd unit for Kubernetes Scheduler',
-      After: 'network.target remote-fs.target kube-apiserver.service'
+      After: 'network.target remote-fs.target kube-apiserver.service',
     },
     Service: {
       Type: 'simple',
@@ -71,10 +71,10 @@ systemd_unit 'kube-scheduler.service' do
       WorkingDirectory: '/',
       Restart: 'on-failure',
       RestartSec: '30s',
-      LimitNOFILE: node['kubernetes']['limits']['nofile']['scheduler']
+      LimitNOFILE: node['kubernetes']['limits']['nofile']['scheduler'],
     },
     Install: {
-      WantedBy: 'multi-user.target'
+      WantedBy: 'multi-user.target',
     }
   )
   notifies :restart, 'systemd_unit[kube-scheduler.service]'
@@ -97,7 +97,7 @@ systemd_unit 'kube-addon-manager.service' do
   content(
     Unit: {
       Description: 'Systemd unit for Kubernetes Addon Manager',
-      After: 'network.target remote-fs.target kube-apiserver.service'
+      After: 'network.target remote-fs.target kube-apiserver.service',
     },
     Service: {
       Type: 'simple',
@@ -106,10 +106,10 @@ systemd_unit 'kube-addon-manager.service' do
       WorkingDirectory: '/',
       Restart: 'on-failure',
       RestartSec: '30s',
-      LimitNOFILE: node['kubernetes']['limits']['nofile']['addon_manager']
+      LimitNOFILE: node['kubernetes']['limits']['nofile']['addon_manager'],
     },
     Install: {
-      WantedBy: 'multi-user.target'
+      WantedBy: 'multi-user.target',
     }
   )
   notifies :restart, 'systemd_unit[kube-addon-manager.service]'

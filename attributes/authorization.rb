@@ -5,5 +5,5 @@ default['kubernetes']['authorization']['policies']     = [
   { user:  'admin',                  namespace: '*', resource: '*', apiGroup: '*' },
   { user:  'scheduler',              namespace: '*', resource: '*', apiGroup: '*' },
   { user:  'kubelet',                namespace: '*', resource: '*', apiGroup: '*' },
-  { group: 'system:serviceaccounts', namespace: '*', resource: '*', apiGroup: '*', nonResourcePath: '*' }
+  { group: 'system:serviceaccounts', namespace: '*', resource: '*', apiGroup: '*', nonResourcePath: '*' },
 ]

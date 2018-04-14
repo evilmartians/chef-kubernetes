@@ -1,3 +1,5 @@
+require 'yaml'
+
 module Kubernetes
   # Few helpers for Kubernetes installation.
   module Helpers
@@ -21,16 +23,28 @@ module Kubernetes
       result
     end
 
+    def kubelet_yaml(a = atts)
+      a.to_hash.to_yaml.sub(/---\n/, '')
+    end
+
     def kubelet_args
-      options = Hash[node['kubernetes']['kubelet'].map { |k, v| [k.tr('_', '-'), v] }]
-      options.store('address', k8s_ip(node)) # FIXME
+      options = Hash[node['kubernetes']['kubelet']['daemon_flags'].map { |k, v| [k.tr('_', '-'), v] }]
       options.store('hostname-override', k8s_hostname(node)) #  FIXME
       options.store('node-ip', k8s_ip(node)) # FIXME
       options.sort_by { |k, v| k }.map { |k, v| v.nil? ? "--#{k}" : "--#{k}=#{v}" }
     end
 
+    def proxy_args
+      options = Hash[node['kubernetes']['proxy'].map { |k, v| [k.tr('_', '-'), v] }]
+      options.store('hostname-override', k8s_hostname(node)) #  FIXME
+      options.store('bind-address', k8s_ip(node)) # FIXME
+      options['feature-gates'] = options['feature-gates'].map { |k, v| "#{k}=#{v}" }.join(',')
+      options.sort_by { |k, v| k }.map { |k, v| v.nil? ? "--#{k}" : "--#{k}=#{v}" }
+    end
+
     def scheduler_args
       options = Hash[node['kubernetes']['scheduler'].map { |k, v| [k.tr('_', '-'), v] }]
+      options['feature-gates'] = options['feature-gates'].map { |k, v| "#{k}=#{v}" }.join(',')
       options.sort_by { |k, v| k }.map { |k, v| v.nil? ? "--#{k}" : "--#{k}=#{v}" }
     end
 
@@ -49,6 +63,7 @@ module Kubernetes
       end
 
       options = Hash[node['kubernetes']['api'].map { |k, v| [k.tr('_', '-'), v] }]
+      options['feature-gates'] = options['feature-gates'].map { |k, v| "#{k}=#{v}" }.join(',')
       options.store('advertise-address', k8s_ip(node)) # FIXME
       options.store('etcd-servers', etcd_servers) # FIXME
 
@@ -76,6 +91,7 @@ module Kubernetes
 
     def controller_manager_args
       options = Hash[node['kubernetes']['controller_manager'].map { |k, v| [k.tr('_', '-'), v] }]
+      options['feature-gates'] = options['feature-gates'].map { |k, v| "#{k}=#{v}" }.join(',')
 
       if node['kubernetes']['sdn'] == 'canal'
         options.store('allocate-node-cidrs', nil)

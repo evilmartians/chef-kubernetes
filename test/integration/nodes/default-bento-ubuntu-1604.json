@@ -2,9 +2,10 @@
   "id": "default-bento-ubuntu-1604",
   "chef_environment": "_default",
   "automatic": {
+    "roles": ["etcd"],
     "network": {
       "interfaces": {
-        "eth0": {
+        "enp0s3": {
           "addresses": {
             "10.0.2.15": {
               "family": "inet"
@@ -18,12 +19,13 @@
   },
   "default": {
     "kubernetes": {
-      "interface": "eth0"
+      "interface": "enp0s3"
     }
   },
   "run_list": [
     "role[etcd]",
     "role[kubernetes_master]",
-    "role[kubernetes_node]"
+    "role[kubernetes_node]",
+    "recipe[testrig::approve_kubelet_csr]"
   ]
 }

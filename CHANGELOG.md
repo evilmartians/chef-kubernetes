@@ -1,3 +1,14 @@
+# 0.1.0 (05.04.2018)
+- Use --config for kubelet
+- Change featureGates struct from string to hash
+- Update helpers.rb for backward compatibility with service options
+- Reanimate inspec with testkitchen.
+- Fix docker built-in variables into recipe
+- Move kube-proxy config args from recipe to k8s_proxy.rb
+- Add sort for master nodes in haproxy config
+- Bump cniVersion from 0.3.0 to 0.3.1
+- Add haproxy reload by default
+
 # 0.0.4 (03.04.2018)
 - Bump to 1.10.0 kubernetes version
 - Change packages array to hash
