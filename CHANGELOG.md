@@ -1,3 +1,9 @@
+# 0.1.2 (14.04.2018)
+- Weave: 2.3.0
+- Weave: split `--status-addr` into separate `--status-addr` and `--metrics-addr` args
+- Weave: make status port and metrics port as attributes
+- Etcd: 3.3.3
+
 # 0.1.1 (14.04.2018)
 - Kubernetes 1.10.1
 
