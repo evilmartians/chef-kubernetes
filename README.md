@@ -52,7 +52,7 @@ Google Kubernetes installer for deb-based distros with docker
     <td><tt>['kubernetes']['version']</tt></td>
     <td>String</td>
     <td>kubernetes version</td>
-    <td><tt>1.9.2</tt></td>
+    <td><tt>v1.10.1</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['keep_versions']</tt></td>
@@ -256,37 +256,37 @@ Google Kubernetes installer for deb-based distros with docker
     <td><tt>['kubernetes']['checksums']['apiserver']</tt></td>
     <td>String</td>
     <td>checksum</td>
-    <td><tt>c9d5b3c84cc45fad82840192ba202f828494c83f525d6cf95e95d0ead4393daf</tt></td>
+    <td><tt>1852bfe86cfa96959ece2db5c70847c4e6b993caf0799ecc0d11c788ed366a56</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['checksums']['controller-manager']</tt></td>
     <td>String</td>
     <td>checksum</td>
-    <td><tt>12f800b56500d2d5d1289e2d158a9fee0eacfad2f48fc77043f76a744b1f8716</tt></td>
+    <td><tt>114e7d1b6ff44bab03ecc84959b76455372445b703661863a9f222bf710e35f0</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['checksums']['proxy']</tt></td>
     <td>String</td>
     <td>checksum</td>
-    <td><tt>27d1eba7d4b0c4a52e15c217b688ad0610e044357dfd8db81fe7fa8d41f2a895</tt></td>
+    <td><tt>7670939861baeeca598bdfcbebc8f7e48f1c6fa73983c4d3f549e894757d2d2f</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['checksums']['scheduler']</tt></td>
     <td>String</td>
     <td>checksum</td>
-    <td><tt>593fa5dc99614ed85be25d800cc90d82552135b28cd92de0f3f19f967fb532fd</tt></td>
+    <td><tt>ad44f1c248ce0b6c35b7c7c66567d6e8085f785a130a6a26fd238411088fab5b</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['checksums']['kubectl']</tt></td>
     <td>String</td>
     <td>checksum</td>
-    <td><tt>455999c8232c57748f4cee4b5446ee39fe8af093434d732ddcd628a02f3d9118</tt></td>
+    <td><tt>1bb4d3793fb0f9e1cfee86599e0f43ae5f15578a01b61011fe7c9488e114a00b</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['checksums']['kubelet']</tt></td>
     <td>String</td>
     <td>checksum</td>
-    <td><tt>56dd720c239987a2a30ea1c2ae0497788efab0477c0198f592decc74d6a0364a</tt></td>
+    <td><tt>688d1167c5a8b37bb5f10e330ba43c15092f1d35dcc25929e84484c41a20319d</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['addon_manager']['version']</tt></td>
