@@ -1,3 +1,6 @@
+# 0.1.1 (14.04.2018)
+- Kubernetes 1.10.1
+
 # 0.1.0 (05.04.2018)
 - Use --config for kubelet
 - Change featureGates struct from string to hash
