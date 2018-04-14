@@ -66,7 +66,7 @@ else
   service_type = install_via(node)
 
   etcd_service 'etcd' do
-    action [:create, :start]
+    action :start
     node_name k8s_ip
     install_method 'binary'
     service_manager service_type

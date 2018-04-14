@@ -4,14 +4,14 @@ maintainer_email 'bregor@evilmartians.com'
 license          'MIT'
 description      'Installs/Configures google kubernetes'
 long_description 'Google Kubernetes installer for deb-based distros with docker'
-version          '0.1.2'
+version          '0.1.3'
 
 chef_version     '>= 12.14', '< 14'
 
 supports         'ubuntu', '>= 14.04'
 
 depends          'apt'
-depends          'etcd', '~> 4.1'
+depends          'etcd', '~> 5.5'
 depends          'network_interfaces_v2'
 depends          'tar'
 depends          'firewall'
