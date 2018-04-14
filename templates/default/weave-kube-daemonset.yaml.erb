@@ -25,8 +25,8 @@ spec:
           command:
             - /home/weave/launch.sh
             - --host=$(LISTEN_ON)
-            - --status-addr=$(LISTEN_ON):6785
-            - --metrics-addr=$(LISTEN_ON):6782
+            - --status-addr=$(LISTEN_ON):<%= node['kubernetes']['weave']['status_port'] %>
+            - --metrics-addr=$(LISTEN_ON):<%= node['kubernetes']['weave']['metrics_port'] %>
           env:
             - name: IPALLOC_RANGE
               value: <%= node['kubernetes']['cluster_cidr'] %>
