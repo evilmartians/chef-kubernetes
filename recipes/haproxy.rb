@@ -55,7 +55,7 @@ template '/etc/haproxy/haproxy.cfg' do
       }
     ]
   )
-  notifies :restart, 'service[haproxy]'
+  notifies :reload, 'service[haproxy]'
 end
 
 firewall_rule 'deis_builder' do
