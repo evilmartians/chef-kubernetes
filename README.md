@@ -1467,7 +1467,7 @@ Or role:
 name 'kubernetes_node'
 description 'kubernetes node'
 #run_list 'recipe[kubernetes]'
-run_list 'recipe[selectel-docker]','recipe[kubernetes]'
+run_list 'recipe[kubernetes]'
 override_attributes(
   kubernetes: {
     cluster_name: 'evilms',
