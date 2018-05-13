@@ -1471,7 +1471,7 @@ run_list 'recipe[kubernetes]'
 override_attributes(
   kubernetes: {
     cluster_name: 'evilms',
-    cluster_dns: '192.168.222.222',
+    cluster_dns: ['192.168.222.222'],
     token_auth: true,
     api:   { 'service_cluster_ip_range' => '192.168.128.0/17' },
     weave: {
