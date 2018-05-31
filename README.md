@@ -713,7 +713,7 @@ Google Kubernetes installer for deb-based distros with docker
     <td><tt>['etcd']['version']</tt></td>
     <td>String</td>
     <td>version</td>
-    <td><tt>v3.3.1</tt></td>
+    <td><tt>v3.3.5</tt></td>
   </tr>
   <tr>
     <td><tt>['etcd']['image']</tt></td>
