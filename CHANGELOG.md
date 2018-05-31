@@ -1,3 +1,9 @@
+# 1.10.0 (31.05.2018)
+- Update versioning procedure. From now on major and minor parts coincedes with Kubernetes major and minor, and patch version reflects the current release number
+- Kubernetes updated to 1.10.3
+- CoreDNS updated to 1.1.3
+- Etcd updated to 3.3.5
+
 # 0.1.3 (15.04.2018)
 - Upgrade etcd cookbook dependency from 4.1 to 5.5
 - Add chef-client 14 support
