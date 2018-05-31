@@ -1,3 +1,11 @@
+# 1.9.2 (31.05.2018)
+- Kubernetes updated to 1.9.8
+- Etcd updated to 3.3.5
+- CoreDNS updated to 1.1.3
+- WeaveNet updated to 2.3.0
+- Haproxy: sort master nodes to prevent config reload on each run
+- Haproxy: reload instead of restart
+
 # 1.9.1 (20.04.2018)
 - Kubernetes updated to 1.9.7
 - Etcd updated to 3.3.3
