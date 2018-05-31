@@ -1,3 +1,8 @@
+# 1.9.0 (28.03.2018)
+- Update versioning procedure. From now on major and minor parts coincedes with Kubernetes major and minor, and patch version reflects the current release number
+- Kubernetes updated to 1.9.6
+- CoreDNS updated to 1.1.1
+
 # 0.0.3 (11.03.2018)
 - Add custom docker installation. Default `true`. But if you have another docker
   installation you can skip built-in.
