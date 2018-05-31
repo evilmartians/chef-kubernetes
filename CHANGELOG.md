@@ -1,3 +1,8 @@
+# 1.9.1 (20.04.2018)
+- Kubernetes updated to 1.9.7
+- Etcd updated to 3.3.3
+- KubeDNS updated to 1.14.9
+
 # 1.9.0 (28.03.2018)
 - Update versioning procedure. From now on major and minor parts coincedes with Kubernetes major and minor, and patch version reflects the current release number
 - Kubernetes updated to 1.9.6
