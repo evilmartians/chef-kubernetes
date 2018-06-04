@@ -1,3 +1,6 @@
+# 1.9.3 (04.06.2018)
+- Etcd updated to 3.3.6
+
 # 1.9.2 (31.05.2018)
 - Kubernetes updated to 1.9.8
 - Etcd updated to 3.3.5
