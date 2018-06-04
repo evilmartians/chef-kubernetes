@@ -514,7 +514,7 @@ Google Kubernetes installer for deb-based distros with docker
     <td>Array</td>
     <td>default node packages</td>
     <td><tt>['iptables', 'ebtables', 'socat', 'ethtool', 'kmod', 'tcpd', 'dbus', 'apt-transport-https', 'conntrack']</tt></td>
-  </tr>  
+  </tr>
 </table>
 
 
@@ -738,7 +738,7 @@ Google Kubernetes installer for deb-based distros with docker
     <td><tt>['etcd']['version']</tt></td>
     <td>String</td>
     <td>version</td>
-    <td><tt>v3.3.5</tt></td>
+    <td><tt>v3.3.6</tt></td>
   </tr>
   <tr>
     <td><tt>['etcd']['image']</tt></td>
