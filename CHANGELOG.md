@@ -1,3 +1,6 @@
+# 1.9.4 (06.06.2018)
+- Etcd updated to [3.3.7](https://github.com/coreos/etcd/blob/master/CHANGELOG-3.3.md#v337-2018-06-06)
+
 # 1.9.3 (04.06.2018)
 - Etcd updated to 3.3.6
 
