@@ -1,3 +1,7 @@
+# 1.10.1 (06.06.2018)
+- Etcd updated to [3.3.7](https://github.com/coreos/etcd/blob/master/CHANGELOG-3.3.md#v337-2018-06-06)
+- Kubernetes updated to [1.10.4](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.10.md#changelog-since-v1103)
+
 # 1.10.0 (31.05.2018)
 - Update versioning procedure. From now on major and minor parts coincedes with Kubernetes major and minor, and patch version reflects the current release number
 - Kubernetes updated to 1.10.3
