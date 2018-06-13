@@ -491,6 +491,12 @@ Google Kubernetes installer for deb-based distros with docker
     <td>failSwapOn</td>
     <td><tt>false</tt></td>
   </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['config']['ReadOnlyPort']</tt></td>
+    <td>Integer</td>
+    <td>ReadOnlyPort</td>
+    <td><tt>10255</tt></td>
+  </tr>
 </table>
 
 ###### addons

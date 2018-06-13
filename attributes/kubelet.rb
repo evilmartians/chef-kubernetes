@@ -22,3 +22,4 @@ default['kubernetes']['kubelet']['config']['clusterDomain']                     
 default['kubernetes']['kubelet']['config']['imageGCLowThresholdPercent']             = 70
 default['kubernetes']['kubelet']['config']['imageGCHighThresholdPercent']            = 80
 default['kubernetes']['kubelet']['config']['failSwapOn']                             = false
+default['kubernetes']['kubelet']['config']['ReadOnlyPort']                           = 10255
