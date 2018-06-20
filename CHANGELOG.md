@@ -1,3 +1,6 @@
+# 1.9.5 (20.06.2018)
+- CoreDNS update to [1.1.4](https://github.com/coredns/coredns/releases/tag/v1.1.4)
+
 # 1.9.4 (06.06.2018)
 - Etcd updated to [3.3.7](https://github.com/coreos/etcd/blob/master/CHANGELOG-3.3.md#v337-2018-06-06)
 
