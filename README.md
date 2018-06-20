@@ -679,7 +679,7 @@ Google Kubernetes installer for deb-based distros with docker
     <td><tt>['docker']['version']</tt></td>
     <td>String</td>
     <td>default daemon version</td>
-    <td><tt>1.12.6-0</tt></td>
+    <td><tt>17.03.2</tt></td>
   </tr>
   <tr>
     <td><tt>['docker']['settings']['storage-driver']</tt></td>
