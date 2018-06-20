@@ -1,3 +1,6 @@
+# 1.10.3 (20.06.2018)
+- CoreDNS update to [1.1.4](https://github.com/coredns/coredns/releases/tag/v1.1.4)
+
 # 1.10.2 (13.06.2018)
 - Add ReadOnlyPort for kubelet. Need for heapster auth.
 
