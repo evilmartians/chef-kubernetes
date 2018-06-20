@@ -13,11 +13,10 @@ if node['docker']['built-in']
   package 'linux-image-extra-virtual' if node['docker']['settings']['storage-driver'] == 'aufs'
 
   apt_repository 'docker' do
-    uri 'https://apt.dockerproject.org/repo'
-    distribution "#{node['platform']}-#{node['lsb']['codename']}"
-    components ['main']
-    keyserver 'hkp://p80.pool.sks-keyservers.net:80'
-    key '58118E89F3A912897C070ADBF76221572C52609D'
+    uri 'https://download.docker.com/linux/ubuntu'
+    distribution node['lsb']['codename']
+    components ['stable']
+    key 'https://download.docker.com/linux/ubuntu/gpg'
   end
 
   directory '/etc/docker'
@@ -29,12 +28,12 @@ if node['docker']['built-in']
     content(node['docker']['settings'].to_json)
   end
 
-  apt_preference 'docker-engine' do
+  apt_preference 'docker-ce' do
     pin          "version #{node['docker']['version']}~#{node['platform']}-#{node['lsb']['codename']}"
     pin_priority '700'
   end
 
-  package 'docker-engine' do
+  package 'docker-ce' do
     options '-o Dpkg::Options::="--force-confold"'
   end
 end
