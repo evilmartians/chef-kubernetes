@@ -230,8 +230,8 @@ PLATFORMS
 
 DEPENDENCIES
   berkshelf
-  chef (~> 12)
+  chef (> 12)
   thor-foodcritic
 
 BUNDLED WITH
-   1.16.1
+   1.16.2

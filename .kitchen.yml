@@ -5,9 +5,9 @@ driver:
     memory: 3072
 
 provisioner:
-  product_name: chef_zero
-  product_version: 13
-  # log_level: debug
+  name: chef_zero
+  product_name: chef
+  product_version: 14
 
 verifier:
   name: inspec
@@ -19,7 +19,7 @@ suites:
   - name: default
     attributes:
       kubernetes:
-        interface: enp0s3
+        interface: eth0
         enable_firewall: false
 #        packages:
 #          storage_url: http://192.168.1.2:8080/k8s-v1.8.5/

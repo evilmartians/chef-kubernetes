@@ -1,4 +1,5 @@
 default['etcd']['version']               = 'v3.3.8'
+default['etcd']['checksum']              = 'a1e9d30312f712f714be3d09b242b901a531dd9472351425c1e712ba740012a4'
 default['etcd']['image']                 = 'quay.io/coreos/etcd'
 default['etcd']['trusted_ca_file']       = '/etc/kubernetes/ssl/ca.pem'
 default['etcd']['client_cert_auth']      = 'true'
