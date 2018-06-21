@@ -1,3 +1,6 @@
+# 1.10.5 (21.06.2018)
+- Kubernetes updated to 1.10.5
+
 # 1.10.4 (21.06.2018)
 - [breaking] Upgrade docker from `docker-engine-1.12` to `docker-ce-17.03`
 - Etcd updated to 3.3.8
