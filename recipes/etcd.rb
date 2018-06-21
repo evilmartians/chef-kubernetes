@@ -37,7 +37,7 @@ end
 [
   node['etcd']['data_dir'],
   "#{node['etcd']['data_dir']}/member",
-  node['etcd']['wal_dir'],
+  node['etcd']['wal_dir']
 ].each do |d|
   directory d do
     recursive true
@@ -66,7 +66,7 @@ else
   service_type = install_via(node)
 
   etcd_service 'etcd' do
-    action :start
+    action %i[create start]
     node_name k8s_ip
     install_method 'binary'
     service_manager service_type
@@ -80,6 +80,7 @@ else
     initial_cluster initial_cluster_string
     initial_cluster_state node['etcd']['initial_cluster_state']
     version node['etcd']['version'].tr('A-z', '')
+    checksum node['etcd']['checksum']
     not_if do
       etcd_nodes.empty? or etcd_nodes.any?(&:empty?)
     end
