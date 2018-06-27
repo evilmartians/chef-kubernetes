@@ -61,18 +61,6 @@ manifests.each do |manifest|
   end
 end
 
-%w(
-  dashboard-sa
-  dashboard-role
-  dashboard-rolebinding
-  dashboard-deployment
-  dashboard-svc
-).each do |srv|
-  template "/etc/kubernetes/addons/#{srv}.yaml" do
-    source "#{srv}.yaml.erb"
-  end
-end
-
 node['kubernetes']['ssl']['keypairs'].each do |keypair|
   %w(public_key private_key).each do |key_type|
     file node['kubernetes']['ssl'][keypair][key_type] do

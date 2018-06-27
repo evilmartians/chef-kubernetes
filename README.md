@@ -597,12 +597,6 @@ Google Kubernetes installer for deb-based distros with docker
     <td>enable coredns log</td>
     <td><tt>false</tt></td>
   </tr>
-  <tr>
-    <td><tt>['kubernetes']['addons']['dashboard']['version']</tt></td>
-    <td>String</td>
-    <td>dashboard version</td>
-    <td><tt>v1.8.3</tt></td>
-  </tr>
 </table>
 
 ###### authorization
@@ -1494,6 +1488,9 @@ docker: {
   'built-in' => false
 }
 ```
+
+### Dashboard
+Starting from release 1.11.0 we are no more ships [kubernetes-dashboard](https://github.com/kubernetes/dashboard/) with cookbook. From now on we recommends to use [helm](https://github.com/kubernetes/helm) and install [kubernetes-dashboard](https://github.com/kubernetes/dashboard/) from [official chart](https://github.com/kubernetes/charts/tree/master/stable/kubernetes-dashboard).
 
 ## License and Authors
 

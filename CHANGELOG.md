@@ -1,3 +1,6 @@
+# UNRELEASED
+- Delete kubernetes dashboard from cookbook
+
 # 1.10.6 (21.06.2018)
 - Return `create` action for etcd recipe
 - Add checksum validation for etcd tarball
