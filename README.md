@@ -535,7 +535,7 @@ Google Kubernetes installer for deb-based distros with docker
     <td><tt>['kubernetes']['addons']['kubedns']['version']</tt></td>
     <td>String</td>
     <td>kubedns version</td>
-    <td><tt>1.14.8</tt></td>
+    <td><tt>1.14.10</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['addons']['kubedns']['limits']['cpu']</tt></td>
