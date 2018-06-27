@@ -37,20 +37,3 @@ if node['init_package'] == 'systemd'
     notifies :restart, 'systemd_unit[kube-service-network-route.service]'
   end
 end
-
-if node['init_package'] == 'init' and node['packages'].key?('upstart')
-
-  template '/etc/init/kube-service-network-route.conf' do
-    source 'kubernetes_services_upstart.conf.erb'
-    owner 'root'
-    group 'root'
-    mode '0644'
-  end
-
-  service 'kube-service-network-route' do
-    action [:start, :enable]
-    provider Chef::Provider::Service::Upstart
-    subscribes :restart, 'template[/etc/init/kube-service-network-route.conf]'
-  end
-
-end

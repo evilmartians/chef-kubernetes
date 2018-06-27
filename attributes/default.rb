@@ -1,7 +1,7 @@
 default['kubernetes']['container_engine']                   = 'docker'
 default['kubernetes']['roles']['master']                    = 'kubernetes_master'
 default['kubernetes']['roles']['node']                      = 'kubernetes_node'
-default['kubernetes']['install_via']                        = 'systemd' # other possible values are: static_pods, upstart
+default['kubernetes']['install_via']                        = 'systemd' # other possible values are: static_pods
 default['kubernetes']['databag']                            = 'kubernetes'
 default['kubernetes']['version']                            = 'v1.11.0-rc.3'
 default['kubernetes']['keep_versions']                      = 3

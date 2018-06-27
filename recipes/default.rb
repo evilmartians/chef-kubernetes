@@ -55,20 +55,6 @@ link '/usr/local/bin/kubelet' do
   to "/opt/kubernetes/#{node['kubernetes']['version']}/bin/kubelet"
 end
 
-template '/etc/init/kubelet.conf' do
-  source 'upstart.conf.erb'
-  owner 'root'
-  group 'root'
-  mode '0644'
-  variables(
-    service_description: 'Kubebernetes workload daemon',
-    cmd: "/usr/local/bin/kubelet #{kubelet_args.join(' ')}"
-  )
-  only_if do
-    node['init_package'] == 'init' and node['packages'].key?('upstart')
-  end
-end
-
 template '/etc/kubernetes/kubeletconfig.yaml' do
   source 'kubeletconfig.yaml.erb'
   mode '0644'
@@ -76,22 +62,7 @@ template '/etc/kubernetes/kubeletconfig.yaml' do
     address: k8s_ip(node), # FIXME
     options: kubelet_yaml(node['kubernetes']['kubelet']['config'])
   )
-  case install_via
-  when 'upstart'
-    notifies :restart, 'service[kubelet]'
-  when 'systemd'
-    notifies :restart, 'systemd_unit[kubelet.service]'
-  end
-end
-
-service 'kubelet' do
-  action [:start, :enable]
-  provider Chef::Provider::Service::Upstart
-  subscribes :restart, 'template[/etc/init/kubelet.conf]'
-  subscribes :restart, 'link[/usr/local/bin/kubelet]'
-  only_if do
-    node['init_package'] == 'init' and node['packages'].key?('upstart')
-  end
+  notifies :restart, 'systemd_unit[kubelet.service]'
 end
 
 systemd_unit 'kubelet.service' do

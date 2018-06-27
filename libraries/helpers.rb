@@ -17,7 +17,6 @@ module Kubernetes
     def install_via(n = node)
       result = n['kubernetes']['install_via']
       unless n['kubernetes']['install_via'] == 'static_pods'
-        result = 'upstart' if n['init_package'] == 'init' and n['packages'].key?('upstart')
         result = 'systemd' if n['init_package'] == 'systemd'
       end
       result

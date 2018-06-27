@@ -17,14 +17,14 @@ require 'fileutils'
   file "/etc/kubernetes/manifests/#{srv}.yaml" do
     action :delete
     only_if do
-      %(systemd upstart).include? node['kubernetes']['install_via']
+      node['kubernetes']['install_via'] == 'systemd'
     end
   end
 
   # Next is needed to prevent resource definition when it is not needed.
   # `only_if` statement blocks notifications which we are sending
   next unless node['init_package'] == 'systemd' and
-    %w(static_pods upstart).include? node['kubernetes']['install_via']
+    node['kubernetes']['install_via'] == 'static_pods'
 
   systemd_unit "kube-#{srv}.service" do
     action [:disable, :stop, :delete]
@@ -143,8 +143,5 @@ end
 ).each do |srv|
   file "/etc/kubernetes/addons/#{srv}.yaml" do
     action :delete
-    only_if do
-      %(systemd upstart).include? node['kubernetes']['install_via']
-    end
   end
 end

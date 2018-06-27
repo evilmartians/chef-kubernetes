@@ -8,7 +8,7 @@ version          '1.10.6'
 
 chef_version     '>= 12.14'
 
-supports         'ubuntu', '>= 14.04'
+supports         'ubuntu', '>= 16.04'
 
 depends          'apt'
 depends          'etcd', '~> 5.5'

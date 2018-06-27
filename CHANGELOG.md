@@ -2,6 +2,7 @@
 - Delete kubernetes dashboard from cookbook
 - Kubernetes: 1.11.0-rc.3
 - KubeDNS: 1.14.10
+- Get rid of upstart (and ubuntu-trusty) support
 
 # 1.10.6 (21.06.2018)
 - Return `create` action for etcd recipe

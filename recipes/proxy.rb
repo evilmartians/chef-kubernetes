@@ -65,27 +65,3 @@ if install_via == 'systemd'
     action [:create, :enable, :start]
   end
 end
-
-if install_via == 'upstart'
-  template '/etc/init/kube-proxy.conf' do
-    source 'upstart.conf.erb'
-    owner 'root'
-    group 'root'
-    mode '0644'
-    variables(
-      service_description: 'Kubernetes proxy daemon',
-      cmd: "/usr/local/bin/kube-proxy #{proxy_args.join(' ')}"
-    )
-  end
-
-  directory "/opt/kubernetes/#{node['kubernetes']['version']}/bin" do
-    recursive true
-  end
-
-  service 'kube-proxy' do
-    action [:start, :enable]
-    provider Chef::Provider::Service::Upstart
-    subscribes :restart, 'link[/usr/local/bin/kube-proxy]'
-    subscribes :restart, "remote_file[/opt/kubernetes/#{node['kubernetes']['version']}/bin/kube-proxy]"
-  end
-end
