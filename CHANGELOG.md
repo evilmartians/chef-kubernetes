@@ -1,5 +1,6 @@
 # UNRELEASED
 - Delete kubernetes dashboard from cookbook
+- Kubernetes: 1.11.0-rc.3
 
 # 1.10.6 (21.06.2018)
 - Return `create` action for etcd recipe

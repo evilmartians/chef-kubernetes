@@ -52,7 +52,7 @@ Google Kubernetes installer for deb-based distros with docker
     <td><tt>['kubernetes']['version']</tt></td>
     <td>String</td>
     <td>kubernetes version</td>
-    <td><tt>v1.10.5</tt></td>
+    <td><tt>v1.11.0-rc.3</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['keep_versions']</tt></td>
