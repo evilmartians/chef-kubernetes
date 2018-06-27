@@ -1,4 +1,4 @@
-# UNRELEASED
+# 1.11.0 (27.06.2018)
 - Delete kubernetes dashboard from cookbook
 - Kubernetes: 1.11.0-rc.3
 - KubeDNS: 1.14.10
