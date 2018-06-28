@@ -54,7 +54,7 @@ if install_via == 'systemd'
         WorkingDirectory: '/',
         Restart: 'on-failure',
         RestartSec: '30s',
-        LimitNOFILE: node['kubernetes']['limits']['nofile']['addon_manager'],
+        LimitNOFILE: node['kubernetes']['limits']['nofile']['proxy'],
       },
       Install: {
         WantedBy: 'multi-user.target',
