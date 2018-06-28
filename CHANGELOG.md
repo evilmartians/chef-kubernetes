@@ -1,3 +1,6 @@
+# UNRELEASED
+- `kubeletconfig`: check for `RotateKubeletServerCertificate` feature gate before enabling server certificates autorotation
+
 # 1.11.1 (28.06.2018)
 - Kubernetes: 1.11.0
 - Feature gates: remove already enabled by default `MountPropagation` and `VolumeScheduling`
