@@ -4,7 +4,7 @@ maintainer_email 'bregor@evilmartians.com'
 license          'MIT'
 description      'Installs/Configures google kubernetes'
 long_description 'Google Kubernetes installer for deb-based distros with docker'
-version          '1.9.6'
+version          '1.9.7'
 
 chef_version '>= 12.14', '< 14'
 

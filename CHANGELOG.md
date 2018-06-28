@@ -1,3 +1,6 @@
+# 1.9.7 (28.06.2018)
+- Templates::Corefile: yaml syntax fix
+
 # 1.9.6 (21.06.2018)
 - [breaking] Upgrade docker from `docker-engine-1.12` to `docker-ce-17.03`
 - Etcd updated to 3.3.8
