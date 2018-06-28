@@ -3,6 +3,7 @@
 - Feature gates: remove already enabled by default `MountPropagation` and `VolumeScheduling`
 - `recipes/proxy`: typo fix in `LimitNOFILE` systemd-unit instruction
 - `kubeletconfig`: fix unexpected camelcase in keys
+- `kubeletconfig`: explicitly add TLS-settings
 
 # 1.11.0 (27.06.2018)
 - Delete kubernetes dashboard from cookbook

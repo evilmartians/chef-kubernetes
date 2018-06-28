@@ -23,3 +23,5 @@ default['kubernetes']['kubelet']['config']['imageGCLowThresholdPercent']        
 default['kubernetes']['kubelet']['config']['imageGCHighThresholdPercent']            = 80
 default['kubernetes']['kubelet']['config']['failSwapOn']                             = false
 default['kubernetes']['kubelet']['config']['readOnlyPort']                           = 10255
+default['kubernetes']['kubelet']['config']['serverTLSBootstrap']                     = true
+default['kubernetes']['kubelet']['config']['rotateCertificates']                     = true
