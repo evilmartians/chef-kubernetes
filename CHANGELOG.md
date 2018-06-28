@@ -1,3 +1,6 @@
+# UNRELEASED
+- Kubernetes: 1.11.0
+
 # 1.11.0 (27.06.2018)
 - Delete kubernetes dashboard from cookbook
 - Kubernetes: 1.11.0-rc.3
