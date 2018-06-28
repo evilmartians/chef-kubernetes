@@ -17,9 +17,9 @@ default['kubernetes']['kubelet']['config']['authentication']['anonymous']['enabl
 default['kubernetes']['kubelet']['config']['authorization']['mode']                  = 'Webhook'
 default['kubernetes']['kubelet']['config']['clusterDNS']                             = node['kubernetes']['cluster_dns']
 default['kubernetes']['kubelet']['config']['featureGates']                           = node['kubernetes']['feature_gates']
-default['kubernetes']['kubelet']['config']['NodeStatusUpdateFrequency']              = '4s'
+default['kubernetes']['kubelet']['config']['nodeStatusUpdateFrequency']              = '4s'
 default['kubernetes']['kubelet']['config']['clusterDomain']                          = node['kubernetes']['cluster_domain']
 default['kubernetes']['kubelet']['config']['imageGCLowThresholdPercent']             = 70
 default['kubernetes']['kubelet']['config']['imageGCHighThresholdPercent']            = 80
 default['kubernetes']['kubelet']['config']['failSwapOn']                             = false
-default['kubernetes']['kubelet']['config']['ReadOnlyPort']                           = 10255
+default['kubernetes']['kubelet']['config']['readOnlyPort']                           = 10255
