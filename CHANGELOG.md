@@ -1,5 +1,5 @@
-# UNRELEASED
-- `kubeletconfig`: fix unexpected camelcase in keys
+# 1.10.7 (28.06.2018)
+- kubeletconfig: fix unexpected camelcase in keys
 - kubelet: enable certificate autorotation
 
 # 1.10.6 (21.06.2018)
