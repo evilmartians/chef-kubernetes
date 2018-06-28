@@ -1,5 +1,6 @@
 # UNRELEASED
 - Kubernetes: 1.11.0
+- Feature gates: remove already enabled by default `MountPropagation` and `VolumeScheduling`
 
 # 1.11.0 (27.06.2018)
 - Delete kubernetes dashboard from cookbook

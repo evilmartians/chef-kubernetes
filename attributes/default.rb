@@ -35,8 +35,6 @@ default['kubernetes']['token_auth_file']                    = '/etc/kubernetes/k
 default['kubernetes']['docker']                             = 'unix:///var/run/docker.sock'
 default['kubernetes']['feature_gates']                      = {
   'RotateKubeletServerCertificate' => true,
-  'MountPropagation' => true,
-  'VolumeScheduling' => true,
 }
 default['kubernetes']['audit']['enabled']                   = true
 default['kubernetes']['audit']['log_file']                  = '/var/log/kubernetes/audit.log'
