@@ -8,6 +8,7 @@ default['kubernetes']['kubelet']['daemon_flags']['network_plugin']              
 default['kubernetes']['kubelet']['daemon_flags']['register_node']                = true
 # default['kubernetes']['kubelet']['daemon_flags']['authentication_token_webhook'] = nil # set nil if key doesn't have a parameters
 default['kubernetes']['kubelet']['daemon_flags']['cadvisor_port']                = 0 # the cadvisor port will be removed entirely in 1.13
+default['kubernetes']['kubelet']['daemon_flags']['rotate_certificates']          = true if node['kubernetes']['feature_gates']['RotateKubeletServerCertificate']
 
 default['kubernetes']['kubelet']['config']['staticPodPath']                          = '/etc/kubernetes/manifests'
 default['kubernetes']['kubelet']['config']['authentication']['x509']['clientCAFile'] = '/etc/kubernetes/ssl/ca.pem'

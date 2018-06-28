@@ -1,5 +1,6 @@
 # UNRELEASED
 - `kubeletconfig`: fix unexpected camelcase in keys
+- kubelet: enable certificate autorotation
 
 # 1.10.6 (21.06.2018)
 - Return `create` action for etcd recipe
