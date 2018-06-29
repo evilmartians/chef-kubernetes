@@ -19,7 +19,7 @@ Google Kubernetes installer for deb-based distros with docker
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['kubernetes']['container_engine']</tt></td>
+    <td><tt>['kubernetes']['container_runtime']</tt></td>
     <td>String</td>
     <td>type of engine</td>
     <td><tt>docker</tt></td>

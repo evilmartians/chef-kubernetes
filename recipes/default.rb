@@ -69,7 +69,7 @@ systemd_unit 'kubelet.service' do
   content(
     Unit: {
       Description: 'Systemd unit for Kubernetes worker service (kubelet)',
-      After: "network.target remote-fs.target #{node['kubernetes']['container_engine']}.service",
+      After: "network.target remote-fs.target #{node['kubernetes']['container_runtime']}.service",
     },
     Service: {
       Type: 'simple',

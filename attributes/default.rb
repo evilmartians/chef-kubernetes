@@ -1,4 +1,4 @@
-default['kubernetes']['container_engine']                   = 'docker'
+default['kubernetes']['container_runtime']                  = 'docker'
 default['kubernetes']['roles']['master']                    = 'kubernetes_master'
 default['kubernetes']['roles']['node']                      = 'kubernetes_node'
 default['kubernetes']['install_via']                        = 'systemd' # other possible values are: static_pods
