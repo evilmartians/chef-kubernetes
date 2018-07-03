@@ -3,6 +3,7 @@
 - Docker moved to separate recipe
 - install CRIO and corresponding binaries
 - Explicitly install aufs-tools if cri-o uses aufs as storage
+- Kubelet: add ability to use custom runtimes
 
 # 1.11.1 (28.06.2018)
 - Kubernetes: 1.11.0

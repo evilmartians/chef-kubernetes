@@ -8,6 +8,7 @@ default['kubernetes']['kubelet']['daemon_flags']['network_plugin']              
 default['kubernetes']['kubelet']['daemon_flags']['register_node']                = true
 # default['kubernetes']['kubelet']['daemon_flags']['authentication_token_webhook'] = nil # set nil if key doesn't have a parameters
 default['kubernetes']['kubelet']['daemon_flags']['cadvisor_port']                = 0 # the cadvisor port will be removed entirely in 1.13
+default['kubernetes']['kubelet']['daemon_flags']['container_runtime']            = node['kubernetes']['container_runtime'] == 'docker' ? 'docker' : 'remote'
 
 default['kubernetes']['kubelet']['config']['staticPodPath']                          = '/etc/kubernetes/manifests'
 default['kubernetes']['kubelet']['config']['authentication']['x509']['clientCAFile'] = '/etc/kubernetes/ssl/ca.pem'

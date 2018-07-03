@@ -26,10 +26,19 @@ module Kubernetes
       a.to_hash.to_yaml.sub(/---\n/, '')
     end
 
+    def container_runtime_endpoint(runtime = node['kubernetes']['container_runtime'])
+      proto    = node['kubernetes'][runtime]['endpoint_proto']
+      endpoint = node['kubernetes'][runtime]['endpoint']
+      proto + endpoint
+    end
+
     def kubelet_args
       options = Hash[node['kubernetes']['kubelet']['daemon_flags'].map { |k, v| [k.tr('_', '-'), v] }]
       options.store('hostname-override', k8s_hostname(node)) #  FIXME
       options.store('node-ip', k8s_ip(node)) # FIXME
+      unless node['kubernetes']['container_runtime'] == 'docker'
+        options.store('container-runtime-endpoint', container_runtime_endpoint)
+      end
       options.sort_by { |k, v| k }.map { |k, v| v.nil? ? "--#{k}" : "--#{k}=#{v}" }
     end
 
