@@ -2,6 +2,7 @@
 - `kubeletconfig`: check for `RotateKubeletServerCertificate` feature gate before enabling server certificates autorotation
 - Docker moved to separate recipe
 - install CRIO and corresponding binaries
+- Buildah installation recipe
 - Explicitly install aufs-tools if cri-o uses aufs as storage
 - Kubelet: add ability to use custom runtimes
 
