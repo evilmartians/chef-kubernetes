@@ -1,5 +1,6 @@
 # UNRELEASED
 - `kubeletconfig`: check for `RotateKubeletServerCertificate` feature gate before enabling server certificates autorotation
+- Docker moved to separate recipe
 
 # 1.11.1 (28.06.2018)
 - Kubernetes: 1.11.0
