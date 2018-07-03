@@ -78,6 +78,29 @@ link '/usr/local/bin/podman' do
   to "/opt/libpod/#{libpod_version}/podman"
 end
 
+directory('/etc/crio') { recursive true }
+directory('/var/lib/crio') { recursive true }
+directory('/etc/containers/oci/hooks.d') { recursive true }
+directory('/usr/share/containers/oci/hooks.d') { recursive true }
+
+file '/etc/containers/policy.json' do
+  content node['kubernetes']['crio']['policies'].to_json
+end
+
+template '/etc/containers/registries.conf' do
+  source 'registries.conf.erb'
+end
+
+template '/etc/containers/storage.conf' do
+  source 'storage.conf.erb'
+end
+
+template '/etc/crio/crio.conf' do
+  source 'crio.conf.erb'
+  variables(stream_address: k8s_ip(node))
+  notifies :restart, 'systemd_unit[crio.service]'
+end
+
 template '/etc/crio/seccomp.json' do
   source 'seccomp.json.erb'
   notifies :restart, 'systemd_unit[crio.service]'
@@ -134,3 +157,11 @@ end
 #   )
 #   action [:create, :enable]
 # end
+
+template '/etc/crictl.yaml' do
+  source 'crictl.yaml.erb'
+  variables(
+    runtime_endpoint: container_runtime_endpoint,
+    image_endpoint: container_runtime_endpoint,
+  )
+end

@@ -1,0 +1,28 @@
+# storage.conf is the configuration file for all tools
+# that share the containers/storage libraries
+# See man 5 containers-storage.conf for more information
+
+# The "container storage" table contains all of the server options.
+[storage]
+
+# Default Storage Driver
+driver = "<%= node['kubernetes']['crio']['config']['storage_driver'] %>"
+
+# Temporary storage location
+runroot = "<%= node['kubernetes']['crio']['config']['runroot'] %>"
+
+# Primary read-write location of container storage
+graphroot = "<%= node['kubernetes']['crio']['config']['root'] %>"
+
+[storage.options]
+# AdditionalImageStores is used to pass paths to additional read-only image stores
+# Must be comma separated list.
+additionalimagestores = [
+]
+
+# Size is used to set a maximum size of the container image.  Only supported by
+# certain container storage drivers (currently overlay, zfs, vfs, btrfs)
+size = ""
+
+# OverrideKernelCheck tells the driver to ignore kernel checks based on kernel version
+override_kernel_check = "true"

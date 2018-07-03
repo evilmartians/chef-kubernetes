@@ -1,0 +1,4 @@
+runtime-endpoint: <%= @runtime_endpoint %>
+image-endpoint: <%= @image_endpoint %>
+timeout: <%= node['kubernetes']['crio']['crictl']['timeout'] %>
+debug: <%= node['kubernetes']['crio']['crictl']['debug'] %>

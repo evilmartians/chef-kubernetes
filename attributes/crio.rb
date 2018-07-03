@@ -1,5 +1,6 @@
 default['kubernetes']['crio']['version']                     = '1.11.0'
 default['kubernetes']['crio']['endpoint']                    = '/var/run/crio/crio.sock'
+default['kubernetes']['crio']['endpoint_proto']              = 'unix://'
 default['kubernetes']['buildah']['version']                  = '1.1'
 default['kubernetes']['libpod']['version']                   = '0.6.5'
 default['kubernetes']['skopeo']['version']                   = '0.1.30'
@@ -15,6 +16,14 @@ default['kubernetes']['checksums']['podman']['xenial']       = 'a00c31cf9fe1c14b
 default['kubernetes']['checksums']['conmon']['xenial']       = 'ffbed55f2c69dcc560bbc54b0e893b7ac2cbfea9b9487adcd96c3bfe6a68120c'
 default['kubernetes']['checksums']['crio']['xenial']         = 'ed8a3a952db9be0f0b9c201756ab869a17699f1b0c54003cd2267c49bcf98714'
 default['kubernetes']['checksums']['buildah']['xenial']      = 'e5b597e90ccd3594d4c07b96121abf941eefb705fcde3921d992a96e1b43b8c0'
+
+default['kubernetes']['crio']['config']['runtime']           = '/usr/local/bin/runc'
+default['kubernetes']['crio']['config']['untrusted_runtime'] = '/usr/local/bin/runsc'
+default['kubernetes']['crio']['config']['conmon']            = '/usr/local/bin/conmon'
+default['kubernetes']['crio']['config']['storage_driver']    = 'aufs'
+default['kubernetes']['crio']['config']['stream_port']       = 10010
+default['kubernetes']['crio']['config']['runroot']           = '/var/run/containers/storage'
+default['kubernetes']['crio']['config']['root']              = '/var/lib/containers/storage'
 
 default['kubernetes']['crio']['config']['runtime']           = '/usr/local/bin/runc'
 default['kubernetes']['crio']['config']['untrusted_runtime'] = '/usr/local/bin/runsc'
