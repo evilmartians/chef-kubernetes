@@ -14,6 +14,7 @@ end
 
 package 'ostree'
 package 'libgpgme11'
+package 'seccomp'
 
 crio_version   = node['kubernetes']['crio']['version']
 crictl_version = node['kubernetes']['crio']['crictl']['version']
@@ -76,3 +77,9 @@ end
 link '/usr/local/bin/podman' do
   to "/opt/libpod/#{libpod_version}/podman"
 end
+
+template '/etc/crio/seccomp.json' do
+  source 'seccomp.json.erb'
+  notifies :restart, 'systemd_unit[crio.service]'
+end
+
