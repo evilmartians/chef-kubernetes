@@ -95,6 +95,10 @@ template '/etc/containers/storage.conf' do
   source 'storage.conf.erb'
 end
 
+template '/etc/containers/libpod.conf' do
+  source 'libpod.conf.erb'
+end
+
 template '/etc/crio/crio.conf' do
   source 'crio.conf.erb'
   variables(stream_address: k8s_ip(node))
