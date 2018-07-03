@@ -83,3 +83,54 @@ template '/etc/crio/seccomp.json' do
   notifies :restart, 'systemd_unit[crio.service]'
 end
 
+systemd_unit 'crio.service' do
+  content(
+    Unit: {
+      Description: 'CRI-O daemon',
+      Documentation: 'https://github.com/kubernetes-incubator/cri-o',
+      After: 'network.target remote-fs.target',
+    },
+    Service: {
+      Type: 'notify',
+      Environment: 'GOTRACEBACK=crash',
+      ExecStart: "/usr/local/bin/crio #{crio_args.join(" \\\n")}",
+      ExecReload: '/bin/kill -HUP $MAINPID',
+      TasksMax: 'infinity',
+      LimitNOFILE: node['kubernetes']['limits']['nofile']['crio'],
+      LimitNPROC: node['kubernetes']['limits']['nproc']['crio'],
+      LimitCORE: node['kubernetes']['limits']['core']['crio'],
+      OOMScoreAdjust: -999,
+      Restart: 'on-abnormal',
+      RestartSec: '10s',
+      TimeoutStartSec: 0,
+    },
+    Install: {
+      WantedBy: 'multi-user.target',
+    }
+  )
+  notifies :restart, 'systemd_unit[crio.service]'
+  action [:create, :enable, :start]
+end
+
+# systemd_unit 'crio-shutdown.service' do
+#   content(
+#     Unit: {
+#       Description: 'Shutdown CRIO containers before shutting down the system',
+#       Wants: 'crio.service',
+#       After: 'crio.service',
+#       Documentation: 'man:crio(8)'
+#     },
+
+#     Service: {
+#       Type: 'oneshot',
+#       ExecStart: '/bin/rm -f /var/lib/crio/crio.shutdown',
+#       ExecStop: '/bin/bash -c "/usr/bin/touch /var/lib/crio/crio.shutdown"',
+#       RemainAfterExit: 'yes'
+#     },
+
+#     Install: {
+#       WantedBy: 'multi-user.target'
+#     }
+#   )
+#   action [:create, :enable]
+# end

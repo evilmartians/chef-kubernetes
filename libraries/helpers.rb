@@ -99,6 +99,12 @@ module Kubernetes
 
       options.sort_by { |k, v| k }.map { |k, v| v.nil? ? "--#{k}" : "--#{k}=#{v}" }
     end
+
+    def crio_args
+      options = Hash[node['kubernetes']['crio']['daemon_flags'].map { |k, v| [k.tr('_', '-'), v] }]
+      options.sort_by { |k, v| k }.map { |k, v| v.nil? ? "--#{k}" : "--#{k}=#{v}" }
+    end
+
   end
 end
 
