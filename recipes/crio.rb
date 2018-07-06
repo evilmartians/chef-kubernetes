@@ -165,3 +165,13 @@ template '/etc/crictl.yaml' do
     image_endpoint: container_runtime_endpoint,
   )
 end
+
+firewall_rule 'crio_monitoring' do
+  port node['kubernetes']['crio']['daemon_flags']['metrics_port']
+  protocol :tcp
+  interface node['kubernetes']['interface']
+  command :allow
+  only_if do
+    node['kubernetes']['enable_firewall']
+  end
+end
