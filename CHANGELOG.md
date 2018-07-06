@@ -1,5 +1,6 @@
 # UNRELEASED
 - `kubeletconfig`: explicitly set cgroup driver
+- CNI plugins: bump to 0.7.1
 
 # 1.10.7 (28.06.2018)
 - kubeletconfig: fix unexpected camelcase in keys
