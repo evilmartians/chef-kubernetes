@@ -222,6 +222,12 @@ Google Kubernetes installer for Ubuntu
     <td><tt>unix:///var/run/docker.sock</tt></td>
   </tr>
   <tr>
+    <td><tt>['kubernetes'][cgroupdriver']</tt></td>
+    <td>String</td>
+    <td>Driver that the kubelet uses to manipulate cgroups on the host.</td>
+    <td><tt>cgroupfs</tt></td>
+  </tr>
+  <tr>
     <td><tt>['kubernetes']['feature_gates']</tt></td>
     <td>Hash</td>
     <td>feature gates</td>

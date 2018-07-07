@@ -5,6 +5,8 @@
 - Buildah installation recipe
 - Explicitly install aufs-tools if cri-o uses aufs as storage
 - Kubelet: add ability to use custom runtimes
+- CNI plugins: bump to 0.7.1
+- `kubeletconfig`: explicitly set cgroup driver
 
 # 1.11.1 (28.06.2018)
 - Kubernetes: 1.11.0

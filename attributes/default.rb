@@ -33,6 +33,7 @@ default['kubernetes']['cluster_signing_key_file']           = '/etc/kubernetes/s
 default['kubernetes']['token_auth']                         = false
 default['kubernetes']['token_auth_file']                    = '/etc/kubernetes/known_tokens.csv'
 default['kubernetes']['docker']                             = 'unix:///var/run/docker.sock'
+default['kubernetes']['cgroupdriver']                       = 'cgroupfs'
 default['kubernetes']['feature_gates']                      = {
   'RotateKubeletServerCertificate' => true,
 }
