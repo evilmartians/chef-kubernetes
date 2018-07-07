@@ -1,3 +1,6 @@
+# UNRELEASED
+- `kubeletconfig`: explicitly set cgroup driver
+
 # 1.10.7 (28.06.2018)
 - kubeletconfig: fix unexpected camelcase in keys
 - kubelet: enable certificate autorotation
