@@ -1,6 +1,7 @@
 # UNRELEASED
 - CNI plugins: bump to 0.7.1
 - podman: 0.7.1
+- cri-o: 1.11.1
 
 # 1.11.2 (07.07.2018)
 - Kubelet: add ability to use custom runtimes
