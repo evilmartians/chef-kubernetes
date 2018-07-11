@@ -1,11 +1,10 @@
-# UNRELEASED
+# 1.11.2 (07.07.2018)
+- Kubelet: add ability to use custom runtimes
 - `kubeletconfig`: check for `RotateKubeletServerCertificate` feature gate before enabling server certificates autorotation
 - Docker moved to separate recipe
 - install CRIO and corresponding binaries
 - Buildah installation recipe
 - Explicitly install aufs-tools if cri-o uses aufs as storage
-- Kubelet: add ability to use custom runtimes
-- CNI plugins: bump to 0.7.1
 - `kubeletconfig`: explicitly set cgroup driver
 
 # 1.11.1 (28.06.2018)

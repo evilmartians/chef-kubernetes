@@ -3,8 +3,8 @@ maintainer       'Maxim Filatov'
 maintainer_email 'bregor@evilmartians.com'
 license          'MIT'
 description      'Installs/Configures google kubernetes'
-long_description 'Google Kubernetes installer for deb-based distros with docker'
-version          '1.11.1'
+long_description 'Google Kubernetes installer for Ubuntu'
+version          '1.11.2'
 
 chef_version     '>= 12.14'
 
