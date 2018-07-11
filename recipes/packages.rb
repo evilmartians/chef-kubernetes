@@ -9,6 +9,10 @@ node['kubernetes']['node']['packages'].each do |pkg, flag|
   package pkg if flag
 end
 
+if node['kubernetes']['crio']['config']['storage_driver'] == 'aufs'
+  package 'aufs-tools'
+end
+
 include_recipe "kubernetes::#{node['kubernetes']['container_runtime']}"
 
 directory "/opt/kubernetes/#{node['kubernetes']['version']}/bin" do
