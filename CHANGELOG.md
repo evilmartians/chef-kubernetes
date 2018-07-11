@@ -1,4 +1,4 @@
-# UNRELEASED
+# 1.11.3 (11.07.2018)
 - CNI plugins: bump to 0.7.1
 - podman: 0.7.1
 - cri-o: 1.11.1
