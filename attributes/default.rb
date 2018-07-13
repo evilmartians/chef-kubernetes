@@ -9,6 +9,7 @@ default['kubernetes']['image']                              = 'gcr.io/google_con
 default['kubernetes']['interface']                          = 'eth1'
 default['kubernetes']['enable_firewall']                    = true
 default['kubernetes']['register_as']                        = 'ip'
+default['kubernetes']['proxy_mode']                         = 'iptables' # other possible values are: ipvs
 default['kubernetes']['use_sdn']                            = true
 default['kubernetes']['sdn']                                = 'weave'
 default['kubernetes']['master']                             = '127.0.0.1'

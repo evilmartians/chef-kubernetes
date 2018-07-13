@@ -84,6 +84,12 @@ Google Kubernetes installer for Ubuntu
     <td><tt>ip</tt></td>
   </tr>
   <tr>
+    <td><tt>['kubernetes']['proxy_mode']</tt></td>
+    <td>String</td>
+    <td>Which proxy mode to use: iptables or ipvs.</td>
+    <td><tt>iptables</tt></td>
+  </tr>
+  <tr>
     <td><tt>['kubernetes']['use_sdn']</tt></td>
     <td>Boolean</td>
     <td>Use sdn</td>
@@ -1312,12 +1318,6 @@ Google Kubernetes installer for Ubuntu
     <td>Hash</td>
     <td>hash of feature gates</td>
     <td><tt>node['kubernetes']['feature_gates']</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['proxy']['proxy_mode']</tt></td>
-    <td>String</td>
-    <td>proxy mode</td>
-    <td><tt>iptables</tt></td>
   </tr>
 </table>
 
