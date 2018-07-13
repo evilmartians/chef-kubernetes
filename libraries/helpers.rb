@@ -43,12 +43,17 @@ module Kubernetes
     end
 
     def proxy_args
-      options = Hash[node['kubernetes']['proxy'].map { |k, v| [k.tr('_', '-'), v] }]
+      options = Hash[node['kubernetes']['proxy']['global'].map { |k, v| [k.tr('_', '-'), v] }]
       options.store('hostname-override', k8s_hostname(node)) #  FIXME
       options.store('bind-address', k8s_ip(node)) # FIXME
       options.store('proxy-mode', node['kubernetes']['proxy_mode'])
       options.store('cluster-cidr', node['kubernetes']['cluster_cidr'])
       options['feature-gates'] = options['feature-gates'].map { |k, v| "#{k}=#{v}" }.join(',')
+      if node['kubernetes']['proxy_mode'] == 'ipvs'
+        Hash[node['kubernetes']['proxy']['ipvs']].each do |k, v|
+          options.store(k.tr('_', '-'), v)
+        end
+      end
       options.sort_by { |k, v| k }.map { |k, v| v.nil? ? "--#{k}" : "--#{k}=#{v}" }
     end
 
