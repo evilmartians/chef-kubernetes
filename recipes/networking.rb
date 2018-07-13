@@ -16,24 +16,24 @@ if node['kubernetes']['use_cluster_dns_systemwide']
   end
 end
 
-if node['init_package'] == 'systemd'
-  systemd_unit 'kube-service-network-route.service' do
-    content(
-      Unit: {
-        Description: 'Kubernetes services network route',
-        After: 'network.target',
-      },
-      Service: {
-        Type: 'oneshot',
-        RemainAfterExit: 'true',
-        ExecStop: "/sbin/ip route del #{node['kubernetes']['api']['service_cluster_ip_range']}",
-        ExecStart: "/sbin/ip route replace #{node['kubernetes']['api']['service_cluster_ip_range']} dev #{node['kubernetes']['interface']}",
-      },
-      Install: {
-        WantedBy: 'multi-user.target kubelet.service',
-      }
-    )
-    action [:create, :enable, :start]
-    notifies :restart, 'systemd_unit[kube-service-network-route.service]'
-  end
+systemd_unit 'kube-service-network-route.service' do
+  content(
+    Unit: {
+      Description: 'Kubernetes services network route',
+      After: 'network.target',
+    },
+    Service: {
+      Type: 'oneshot',
+      RemainAfterExit: 'true',
+      ExecStop: "/sbin/ip route del #{node['kubernetes']['api']['service_cluster_ip_range']}",
+      ExecStart: "/sbin/ip route replace #{node['kubernetes']['api']['service_cluster_ip_range']} dev #{node['kubernetes']['interface']}",
+    },
+    Install: {
+      WantedBy: 'multi-user.target kubelet.service',
+    }
+  )
+  action [:create, :enable, :start]
+  notifies :restart, 'systemd_unit[kube-service-network-route.service]'
+  only_if { node['init_package'] == 'systemd' }
+  only_if { node['kubernetes']['proxy_mode'] == 'iptables' }
 end
