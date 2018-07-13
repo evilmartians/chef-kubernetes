@@ -1,5 +1,6 @@
 # UNRELEASED
 - CoreDNS: 1.2.0
+- kube-proxy: explicitly set cluster-cidr
 
 # 1.11.3 (11.07.2018)
 - CNI plugins: bump to 0.7.1
