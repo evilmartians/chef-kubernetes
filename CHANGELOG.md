@@ -5,6 +5,7 @@
 - Make kubernetes services network route ipvs compatible
 - Packages: install `ipvsadm` and `ipset` for IPVS proxy mode
 - kube-proxy: split attributes to global and ipvs-related
+- sdn canal: calico updated to 3.1
 
 # 1.11.3 (11.07.2018)
 - CNI plugins: bump to 0.7.1

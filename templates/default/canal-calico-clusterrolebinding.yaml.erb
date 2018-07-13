@@ -4,12 +4,12 @@ metadata:
   labels:
     addonmanager.kubernetes.io/mode: Reconcile
     kubernetes.io/cluster-service: "true"
-  name: canal-calico
+  name: calico-node
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: calico
+  name: calico-node
 subjects:
 - kind: ServiceAccount
-  name: canal
+  name: calico-node
   namespace: kube-system

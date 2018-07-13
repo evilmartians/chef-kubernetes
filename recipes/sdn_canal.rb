@@ -11,15 +11,19 @@ include_recipe 'kubernetes::cni_install'
   sa
   calico-clusterrole
   calico-clusterrolebinding
-  flannel-clusterrole
-  flannel-clusterrolebinding
-  bgppeer-crd
-  globalbgpconfigs-crd
-  globalfelixconfigs-crd
+  bgppeers-crd
+  bgpconfigurations-crd
+  hostendpoints-crd
+  clusterinformations-crd
+  felixconfigurations-crd
   globalnetworkpolicies-crd
+  globalnetworksets-crd
+  networkpolicies-crd
   ippools-crd
   configmap
   daemonset
+  typha-service
+  typha-deployment
 ).each do |addon|
   template "/etc/kubernetes/addons/canal-#{addon}.yaml" do
     source "canal-#{addon}.yaml.erb"
