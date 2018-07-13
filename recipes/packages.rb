@@ -13,6 +13,11 @@ if node['kubernetes']['crio']['config']['storage_driver'] == 'aufs'
   package 'aufs-tools'
 end
 
+if node['kubernetes']['proxy_mode'] == 'ipvs'
+  package 'ipvsadm'
+  package 'ipset'
+end
+
 include_recipe "kubernetes::#{node['kubernetes']['container_runtime']}"
 
 directory "/opt/kubernetes/#{node['kubernetes']['version']}/bin" do
