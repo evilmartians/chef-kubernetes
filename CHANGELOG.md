@@ -1,4 +1,4 @@
-# UNRELEASED
+# 1.11.4 (13.07.2018)
 - CoreDNS: 1.2.0
 - kube-proxy: explicitly set cluster-cidr
 - kube-proxy: simplify proxy-mode configuration
