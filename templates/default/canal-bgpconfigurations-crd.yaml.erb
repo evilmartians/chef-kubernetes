@@ -4,12 +4,12 @@ metadata:
   labels:
     addonmanager.kubernetes.io/mode: Reconcile
     kubernetes.io/cluster-service: "true"
-  name: ippools.crd.projectcalico.org
+  name: bgpconfigurations.crd.projectcalico.org
 spec:
   scope: Cluster
   group: crd.projectcalico.org
   version: v1
   names:
-    kind: IPPool
-    plural: ippools
-    singular: ippool
+    kind: BGPConfiguration
+    plural: bgpconfigurations
+    singular: bgpconfiguration

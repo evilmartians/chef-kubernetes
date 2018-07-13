@@ -103,11 +103,18 @@ if node['kubernetes']['sdn'] == 'weave'
     calico-clusterrolebinding
     flannel-clusterrole
     flannel-clusterrolebinding
+    typha-service
+    typha-deployment
+    felixconfigurations-crd
     bgppeer-crd
-    globalbgpconfigs-crd
-    globalfelixconfigs-crd
-    globalnetworkpolicies-crd
+    bgppeers-crd
+    bgpconfigurations-crd
     ippools-crd
+    hostendpoints-crd
+    clusterinformations-crd
+    globalnetworkpolicies-crd
+    globalnetworksets-crd
+    networkpolicies-crd
     configmap
     daemonset
   ).each do |addon|
