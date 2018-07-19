@@ -16,8 +16,8 @@ DEPENDENCIES
 GRAPH
   apt (7.0.0)
   chef-sugar (4.0.0)
-  docker (4.3.0)
-  etcd (5.5.0)
+  docker (4.4.0)
+  etcd (5.5.1)
     docker (>= 0.0.0)
   firewall (2.6.3)
     chef-sugar (>= 0.0.0)

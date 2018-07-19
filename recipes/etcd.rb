@@ -65,9 +65,15 @@ else
 
   service_type = install_via(node)
 
+  extra_unit = node['etcd']['default_service_name'] ? "etcd-#{k8s_ip}" : 'etcd'
+  systemd_unit extra_unit do
+    action [:disable, :stop, :delete]
+  end
+
   etcd_service 'etcd' do
     action %i[create start]
     node_name k8s_ip
+    default_service_name node['etcd']['default_service_name']
     install_method 'binary'
     service_manager service_type
     data_dir node['etcd']['data_dir']
