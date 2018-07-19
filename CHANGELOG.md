@@ -1,5 +1,6 @@
 # UNRELEASED
 - podman upgraded to 0.7.2
+- Kubernetes: 1.11.1
 
 # 1.11.4 (13.07.2018)
 - CoreDNS: 1.2.0
