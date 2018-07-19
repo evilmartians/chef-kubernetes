@@ -1,4 +1,4 @@
-# UNRELEASED
+# 1.11.5 (19.07.2018)
 - podman upgraded to 0.7.2
 - Kubernetes: 1.11.1
 - Etcd systemd unit default name set to `etcd` instead of `etcd-#{node['name']}`
