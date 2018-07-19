@@ -20,3 +20,4 @@ default['etcd']['group']                 = 'etcd'
 default['etcd']['initial_cluster_token'] = 'etcd-cluster'
 default['etcd']['initial_cluster_state'] = 'new'
 default['etcd']['role']                  = 'etcd'
+default['etcd']['default_service_name']  = true

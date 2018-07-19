@@ -847,6 +847,12 @@ Google Kubernetes installer for deb-based distros with docker
     <td>role name</td>
     <td><tt>etcd</tt></td>
   </tr>
+  <tr>
+    <td><tt>['etcd']['default_service_name']</tt></td>
+    <td>Boolean</td>
+    <td>Set default service name like etcd.service</td>
+    <td><tt>true</tt></td>
+  </tr>
 
 </table>
 

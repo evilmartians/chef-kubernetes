@@ -1,4 +1,5 @@
 # UNRELEASED
+- Etcd systemd unit default name set to `etcd` instead of `etcd-#{node['name']}`
 - CoreDNS: 1.2.0
 - `kubeletconfig`: explicitly set cgroup driver
 - CNI plugins: bump to 0.7.1
