@@ -1,3 +1,6 @@
+# UNRELEASED
+- Weave: 2.4.0
+
 # 1.11.5 (19.07.2018)
 - podman upgraded to 0.7.2
 - Kubernetes: 1.11.1
