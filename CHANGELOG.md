@@ -1,4 +1,5 @@
 # UNRELEASED
+- Weave: 2.4.0
 - Etcd systemd unit default name set to `etcd` instead of `etcd-#{node['name']}`
 - CoreDNS: 1.2.0
 - sdn canal: calico updated to 3.1

@@ -915,7 +915,7 @@ Google Kubernetes installer for deb-based distros with docker
     <td><tt>['kubernetes']['weave']['version']</tt></td>
     <td>String</td>
     <td>version</td>
-    <td><tt>2.2.1</tt></td>
+    <td><tt>2.4.0</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['weave']['interface']</tt></td>

@@ -33,3 +33,10 @@ rules:
       - get
       - list
       - watch
+  - apiGroups:
+    - ''
+    resources:
+    - nodes/status
+    verbs:
+    - patch
+    - update

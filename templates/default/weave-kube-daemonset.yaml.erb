@@ -11,6 +11,8 @@ spec:
   selector:
     matchLabels:
       name: weave-net
+  # Wait 5 seconds to let pod connect before rolling next pod
+  minReadySeconds: 5
   template:
     metadata:
       annotations:
@@ -125,5 +127,6 @@ spec:
         - name: xtables-lock
           hostPath:
             path: /run/xtables.lock
+            type: FileOrCreate
   updateStrategy:
     type: <%= node['kubernetes']['weave']['update_strategy']['type'] %>
