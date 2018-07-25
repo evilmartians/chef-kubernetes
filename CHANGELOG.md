@@ -1,4 +1,4 @@
-# UNRELEASED
+# 1.10.8 (25.07.2018)
 - Weave: 2.4.0
 - Etcd systemd unit default name set to `etcd` instead of `etcd-#{node['name']}`
 - CoreDNS: 1.2.0
