@@ -819,7 +819,7 @@ Google Kubernetes installer for Ubuntu
     <td><tt>['etcd']['version']</tt></td>
     <td>String</td>
     <td>version</td>
-    <td><tt>v3.3.7</tt></td>
+    <td><tt>v3.3.9</tt></td>
   </tr>
   <tr>
     <td><tt>['etcd']['image']</tt></td>
