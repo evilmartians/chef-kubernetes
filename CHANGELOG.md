@@ -1,5 +1,6 @@
 # UNRELEASED
 - Etcd: 3.3.9
+- kubernetes: 1.10.6
 
 # 1.10.8 (25.07.2018)
 - Weave: 2.4.0
