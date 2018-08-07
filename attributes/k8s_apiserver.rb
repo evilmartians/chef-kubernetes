@@ -20,6 +20,7 @@ default['kubernetes']['api']['enable_bootstrap_token_auth']             = nil
 default['kubernetes']['api']['tls_cert_file']                           = node['kubernetes']['tls_cert_file']
 default['kubernetes']['api']['tls_private_key_file']                    = node['kubernetes']['tls_private_key_file']
 default['kubernetes']['api']['client_ca_file']                          = node['kubernetes']['client_ca_file']
+default['kubernetes']['api']['requestheader_client_ca_file']            = node['kubernetes']['requestheader_client_ca_file']
 default['kubernetes']['api']['service_account_key_file']                = node['kubernetes']['service_account_key_file']
 default['kubernetes']['api']['log_dir']                                 = '/var/log/kubernetes'
 default['kubernetes']['api']['feature_gates']                           = node['kubernetes']['feature_gates']

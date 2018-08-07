@@ -198,6 +198,12 @@ Google Kubernetes installer for Ubuntu
     <td><tt>/etc/kubernetes/ssl/ca.pem</tt></td>
   </tr>
   <tr>
+    <td><tt>['kubernetes']['requestheader_client_ca_file']</tt></td>
+    <td>String</td>
+    <td>Root certificate bundle to use to verify client certificates on incoming requests before trusting usernames in headers</td>
+    <td><tt>/etc/kubernetes/ssl/ca.pem</tt></td>
+  </tr>
+  <tr>
     <td><tt>['kubernetes']['cluster_signing_cert_file']</tt></td>
     <td>String</td>
     <td>cluster_signing_cert_file path</td>
