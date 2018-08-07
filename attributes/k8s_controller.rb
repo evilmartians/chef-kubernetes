@@ -11,3 +11,9 @@ default['kubernetes']['controller_manager']['feature_gates']                    
 default['kubernetes']['controller_manager']['node_monitor_period']              = '2s'
 default['kubernetes']['controller_manager']['node_monitor_grace_period']        = '16s'
 default['kubernetes']['controller_manager']['pod_eviction_timeout']             = '30s'
+
+default['kubernetes']['controller_manager']['horizontal_pod_autoscaler_downscale_delay']  = '5m0s'
+default['kubernetes']['controller_manager']['horizontal_pod_autoscaler_sync_period']      = '30s'
+default['kubernetes']['controller_manager']['horizontal_pod_autoscaler_tolerance']        = 0.1
+default['kubernetes']['controller_manager']['horizontal_pod_autoscaler_upscale_delay']    = '3m0s'
+default['kubernetes']['controller_manager']['horizontal_pod_autoscaler_use_rest_clients'] = false

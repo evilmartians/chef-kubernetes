@@ -1,5 +1,6 @@
 # UNRELEASED
 - ApiServer: added `--requestheader-client-ca-file` cmdline flag
+- ControllerManager: explicit HPA settings
 
 # 1.11.6 (26.07.2018)
 - Etcd: 3.3.9
