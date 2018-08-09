@@ -1,6 +1,7 @@
 # UNRELEASED
 - ApiServer: added `--requestheader-client-ca-file` cmdline flag
 - ControllerManager: explicit HPA settings
+- [Kubernetes: 1.11.2](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.11.md#changelog-since-v1111)
 
 # 1.11.6 (26.07.2018)
 - Etcd: 3.3.9
