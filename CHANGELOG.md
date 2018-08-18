@@ -5,6 +5,7 @@
 - [cri-o: 1.11.2](https://github.com/kubernetes-incubator/cri-o/releases/tag/v1.11.2)
 - [buildah: 1.3](https://github.com/projectatomic/buildah/releases/tag/v1.3)
 - [podman: 0.8.3](https://github.com/containers/libpod/releases/tag/v0.8.3)
+- [skopeo: 0.1.31](https://github.com/containers/skopeo/releases/tag/v0.1.31)
 
 # 1.11.6 (26.07.2018)
 - Etcd: 3.3.9
