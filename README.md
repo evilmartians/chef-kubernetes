@@ -528,7 +528,7 @@ Google Kubernetes installer for Ubuntu
     <td><tt>['kubernetes']['crio']['version']</tt></td>
     <td>String</td>
     <td>CRIO binary version</td>
-    <td><tt>1.11.0</tt></td>
+    <td><tt>1.11.2</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['crio']['endpoint']</tt></td>
@@ -579,16 +579,16 @@ Google Kubernetes installer for Ubuntu
     <td><tt>/var/lib/containers/storage</tt></td>
   </tr>
   <tr>
+    <td><tt>['kubernetes']['crio']['config']['log_level']</tt></td>
+    <td>String</td>
+    <td>Log messages above specified level: debug, info, warn, error, fatal or panic</td>
+    <td><tt>info</tt></td>
+  </tr>
+  <tr>
     <td><tt>['kubernetes']['crio']['daemon_flags']['log_format']</tt></td>
     <td>String</td>
     <td>Format used by logs</td>
     <td><tt>text</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['crio']['daemon_flags']['log_level']</tt></td>
-    <td>String</td>
-    <td>Log messages above specified level: debug, info, warn, error, fatal or panic</td>
-    <td><tt>info</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['crio']['daemon_flags']['profile']</tt></td>
