@@ -1,7 +1,7 @@
 default['kubernetes']['crio']['version']                     = '1.11.2'
 default['kubernetes']['crio']['endpoint']                    = '/var/run/crio/crio.sock'
 default['kubernetes']['crio']['endpoint_proto']              = 'unix://'
-default['kubernetes']['buildah']['version']                  = '1.1'
+default['kubernetes']['buildah']['version']                  = '1.3'
 default['kubernetes']['libpod']['version']                   = '0.7.2'
 default['kubernetes']['skopeo']['version']                   = '0.1.30'
 
@@ -9,13 +9,13 @@ default['kubernetes']['checksums']['skopeo']['bionic']       = 'ab58c0bba0db5aeb
 default['kubernetes']['checksums']['podman']['bionic']       = '2cdd325bc00653f447a464ae312ebc005fc3706e8f440286c1eddf071446fe70'
 default['kubernetes']['checksums']['conmon']['bionic']       = '8e8bcfa5e7599cba169598fcdb62c05353ddc8a8cca369556bbde590b4593a05'
 default['kubernetes']['checksums']['crio']['bionic']         = 'bc3890032f23ae2c897d4f3d434dd2cd8415ca72f0b85126d7b16fd7f279d9ca'
-default['kubernetes']['checksums']['buildah']['bionic']      = 'a0fa973a5b2cca3dc7e0716e750bf034cea04a77a1a7101a0e08e43a09f81526'
+default['kubernetes']['checksums']['buildah']['bionic']      = 'bbd16dee74e1eac148144e33c2880d4321de0a6732456f795255663e9581cbb7'
 
 default['kubernetes']['checksums']['skopeo']['xenial']       = '9170c1128e0e20e1f39f440f8dc38a4b30ca6ca2131661f97ca50f0a0e7ca709'
 default['kubernetes']['checksums']['podman']['xenial']       = '15ba045a391c578ea66c385873cd6ec73112386f5d36c1ac20423937f28c1d8d'
 default['kubernetes']['checksums']['conmon']['xenial']       = '115a630ec16d8901244c46ef503403ef4512318ce3c4596e3efa1d949b654df9'
 default['kubernetes']['checksums']['crio']['xenial']         = 'a2131217dca4f010046434b06e9ff4a9bef175e48405fc81b8629b3dc7c0e634'
-default['kubernetes']['checksums']['buildah']['xenial']      = 'e5b597e90ccd3594d4c07b96121abf941eefb705fcde3921d992a96e1b43b8c0'
+default['kubernetes']['checksums']['buildah']['xenial']      = 'f3fe005b3386b4c2f11270425c96f6841f52dbbeb75582ac4b78ce5fb3943ad0'
 
 default['kubernetes']['crio']['config']['runtime']           = '/usr/local/bin/runc'
 default['kubernetes']['crio']['config']['untrusted_runtime'] = '/usr/local/bin/runsc'
