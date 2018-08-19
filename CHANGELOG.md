@@ -1,4 +1,4 @@
-# UNRELEASED
+# 1.11.7 (19.08.2018)
 - ApiServer: added `--requestheader-client-ca-file` cmdline flag
 - ControllerManager: explicit HPA settings
 - New addon: [node problem detector](https://github.com/kubernetes/node-problem-detector)
