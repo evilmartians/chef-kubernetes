@@ -152,3 +152,8 @@ end
     action :delete
   end
 end
+
+# Remove node problem detector unless needed
+unless node['kubernetes']['addons']['npd']['enabled']
+  file('/etc/kubernetes/addons/npd.yaml') { action :delete }
+end

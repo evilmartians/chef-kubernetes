@@ -709,6 +709,42 @@ Google Kubernetes installer for Ubuntu
     <td>enable coredns log</td>
     <td><tt>false</tt></td>
   </tr>
+  <tr>
+    <td><tt>['kubernetes']['addons']['npd']['enabled']</tt></td>
+    <td>Boolean</td>
+    <td>enable node problem detector addon</td>
+    <td><tt>false</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['addons']['npd']['version']</tt></td>
+    <td>String</td>
+    <td>node problem detector version</td>
+    <td><tt>0.5.0</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['addons']['npd']['address']</tt></td>
+    <td>String</td>
+    <td>address to bind the node problem detector server</td>
+    <td><tt>0.0.0.0</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['addons']['npd']['port']</tt></td>
+    <td>Fixnum</td>
+    <td>port to bind the node problem detector server</td>
+    <td><tt>20256</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['addons']['npd']['log_level']</tt></td>
+    <td>Fixnum</td>
+    <td>log level for V logs</td>
+    <td><tt>0</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['addons']['npd']['system_log_monitors']</tt></td>
+    <td>Array</td>
+    <td>List of paths to system log monitor config files</td>
+    <td><tt>['/config/kernel-monitor.json', '/config/kernel-monitor-filelog.json', '/config/docker-monitor.json', '/config/docker-monitor-filelog.json']</tt></td>
+  </tr>
 </table>
 
 ###### authorization

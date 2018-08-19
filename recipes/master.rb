@@ -97,6 +97,10 @@ if node['kubernetes']['authorization']['mode'].include? 'RBAC'
   end
 end
 
+if node['kubernetes']['addons']['npd']['enabled']
+  template('/etc/kubernetes/addons/npd.yaml') { source 'npd.yaml.erb' }
+end
+
 if node['kubernetes']['token_auth']
   template node['kubernetes']['token_auth_file'] do
     source 'tokens.csv.erb'
