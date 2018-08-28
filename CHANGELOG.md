@@ -1,5 +1,6 @@
 # UNRELEASED
 - kubernetes: 1.10.7
+- [CoreDNS: 1.2.1](https://coredns.io/2018/08/28/coredns-1.2.1-release/)
 
 # 1.10.9 (26.07.2018)
 - Etcd: 3.3.9
