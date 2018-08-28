@@ -1,5 +1,6 @@
 # UNRELEASED
 - [podman: 0.8.4](https://github.com/containers/libpod/releases/tag/v0.8.4)
+- [CoreDNS: 1.2.1](https://coredns.io/2018/08/28/coredns-1.2.1-release/)
 
 # 1.11.7 (19.08.2018)
 - ApiServer: added `--requestheader-client-ca-file` cmdline flag
