@@ -1,6 +1,6 @@
 # UNRELEASED
 - [podman: 0.9.1](https://github.com/containers/libpod/releases/tag/v0.9.1)
-- [CoreDNS: 1.2.1](https://coredns.io/2018/08/28/coredns-1.2.1-release/)
+- [CoreDNS: 1.2.2](https://coredns.io/2018/08/29/coredns-1.2.2-release/)
 - [Kubernetes: 1.11.3](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.11.md#changelog-since-v1112)
 
 # 1.11.7 (19.08.2018)
