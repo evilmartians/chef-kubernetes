@@ -15,6 +15,7 @@ end
 package 'ostree'
 package 'libgpgme11'
 package 'seccomp'
+package 'libdevmapper1.02.1'
 
 crio_version   = node['kubernetes']['crio']['version']
 crictl_version = node['kubernetes']['crio']['crictl']['version']

@@ -1,5 +1,6 @@
 # UNRELEASED
 - [weave-net: 2.4.1](https://github.com/weaveworks/weave/releases/tag/v2.4.1)
+- [podman: 0.9.2](https://github.com/containers/libpod/releases/tag/v0.9.2)
 
 # 1.11.8 (10.09.2018)
 - [podman: 0.9.1](https://github.com/containers/libpod/releases/tag/v0.9.1)
