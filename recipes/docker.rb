@@ -25,7 +25,7 @@ if node['docker']['built-in']
   end
 
   apt_preference 'docker-ce' do
-    pin          "version #{node['docker']['version']}~#{node['platform']}-#{node['lsb']['codename']}"
+    pin          "version #{node['docker']['version']}"
     pin_priority '700'
   end
 
