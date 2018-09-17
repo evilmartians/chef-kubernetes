@@ -3,6 +3,7 @@
 - [podman: 0.9.2](https://github.com/containers/libpod/releases/tag/v0.9.2)
 - [cri-o: 1.11.4](https://github.com/kubernetes-incubator/cri-o/releases/tag/v1.11.4)
 - Docker: repin daemon version. Fixes https://github.com/evilmartians/chef-kubernetes/issues/14
+- Docker: fix for chef >= 13
 
 # 1.11.8 (10.09.2018)
 - [podman: 0.9.1](https://github.com/containers/libpod/releases/tag/v0.9.1)

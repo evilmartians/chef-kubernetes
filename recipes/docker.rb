@@ -5,8 +5,8 @@
 # Author:: Maxim Filatov <bregor@evilmartians.com>
 #
 
-if node['docker']['built-in']
-  package 'linux-image-extra-virtual' if node['docker']['settings']['storage-driver'] == 'aufs'
+if node['kubernetes']['docker']['built-in']
+  package 'linux-image-extra-virtual' if node['kubernetes']['docker']['settings']['storage-driver'] == 'aufs'
 
   apt_repository 'docker' do
     uri 'https://download.docker.com/linux/ubuntu'
@@ -21,11 +21,11 @@ if node['docker']['built-in']
     owner 'root'
     group 'root'
     mode '0644'
-    content(node['docker']['settings'].to_json)
+    content(node['kubernetes']['docker']['settings'].to_json)
   end
 
   apt_preference 'docker-ce' do
-    pin          "version #{node['docker']['version']}"
+    pin          "version #{node['kubernetes']['docker']['version']}"
     pin_priority '700'
   end
 

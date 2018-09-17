@@ -13,7 +13,7 @@ spec:
     - controller-manager
     - --address=127.0.0.1
     - --leader-elect=true
-    - --docker=<%= node['kubernetes']['docker'] %>
+    - --docker=<%= node['kubernetes']['docker']['endpoint'] %>
     - --cloud-config=<%= node['kubernetes']['cloud_config'] %>
     - --cloud-provider=<%= node['kubernetes']['cloud_provider'] %>
     - --cluster-cidr=<%= node['kubernetes']['api']['service_cluster_ip_range'] %>
