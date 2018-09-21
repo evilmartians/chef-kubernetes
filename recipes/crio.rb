@@ -53,7 +53,7 @@ remote_file "/opt/libpod/#{libpod_version}/podman" do
   checksum node['kubernetes']['checksums']['podman'][codename]
 end
 
-tar_extract "https://github.com/kubernetes-incubator/cri-tools/releases/download/v#{crictl_version}/crictl-v#{crictl_version}-linux-amd64.tar.gz" do
+tar_extract "https://github.com/kubernetes-sigs/cri-tools/releases/download/v#{crictl_version}/crictl-v#{crictl_version}-linux-amd64.tar.gz" do
   creates "/opt/crictl/#{crictl_version}/crictl"
   target_dir "/opt/crictl/#{crictl_version}"
 end
