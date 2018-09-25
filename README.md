@@ -710,6 +710,12 @@ Google Kubernetes installer for Ubuntu
     <td><tt>false</tt></td>
   </tr>
   <tr>
+    <td><tt>['kubernetes']['addons']['coredns']['hosts']</tt></td>
+    <td>Array</td>
+    <td>Enable CoreDNS `hosts` pluging and add array elements as inline host entries</td>
+    <td><tt>[]</tt></td>
+  </tr>
+  <tr>
     <td><tt>['kubernetes']['addons']['npd']['enabled']</tt></td>
     <td>Boolean</td>
     <td>enable node problem detector addon</td>

@@ -14,6 +14,7 @@ default['kubernetes']['addons']['coredns']['requests']['cpu']    = '100m'
 default['kubernetes']['addons']['coredns']['requests']['memory'] = '256Mi'
 default['kubernetes']['addons']['coredns']['log']                = false
 default['kubernetes']['addons']['coredns']['node_selector']      = false
+default['kubernetes']['addons']['coredns']['hosts']              = []
 default['kubernetes']['addons']['npd']['enabled']                = false
 default['kubernetes']['addons']['npd']['version']                = '0.5.0'
 default['kubernetes']['addons']['npd']['address']                = '0.0.0.0'

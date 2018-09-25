@@ -16,6 +16,14 @@ data:
           upstream
           fallthrough in-addr.arpa ip6.arpa
         }
+        <%- unless node['kubernetes']['addons']['coredns']['hosts'].empty? %>
+        hosts {
+          <%- node['kubernetes']['addons']['coredns']['hosts'].each do |l| %>
+          <%= l %>
+          <%- end %>
+          fallthrough
+        }
+        <%- end %>
         proxy . /etc/resolv.conf
         cache 30
         prometheus :9153
