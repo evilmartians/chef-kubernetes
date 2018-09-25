@@ -3,6 +3,7 @@
 - [cri-o: 1.11.5](https://github.com/kubernetes-incubator/cri-o/releases/tag/v1.11.5)
 - [podman: 0.9.3](https://github.com/containers/libpod/releases/tag/v0.9.3)
 - CoreDNS: Corefile template was update with an option to enable hosts plugin for inline host entries
+- Gemfile: update ffi due to [CVE-2018-1000201](https://nvd.nist.gov/vuln/detail/CVE-2018-1000201)
 
 # 1.11.9 (17.09.2018)
 - [weave-net: 2.4.1](https://github.com/weaveworks/weave/releases/tag/v2.4.1)
