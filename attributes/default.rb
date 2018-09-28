@@ -44,7 +44,7 @@ default['kubernetes']['audit']['log_maxbackup']             = 3
 default['kubernetes']['audit']['log_maxsize']               = 10
 default['kubernetes']['audit']['policy_file']               = '/etc/kubernetes/audit-policy.yaml'
 default['kubernetes']['feature_gates']                      = {
-  'RotateKubeletServerCertificate' => true,
+  'VolumeSubpathEnvExpansion' => true,
 }
 default['kubernetes']['packages']['storage_url']            = "https://storage.googleapis.com/kubernetes-release/release/#{node['kubernetes']['version']}/bin/linux/amd64/"
 default['kubernetes']['checksums']['apiserver']             = '94673d7c3f22d136720d8e1664959b8c9062321fefa8ac4c16035f149d090fd2'
