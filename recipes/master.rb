@@ -49,6 +49,12 @@ template node['kubernetes']['api']['experimental_encryption_provider_config'] do
   variables(keys: keys)
 end
 
+if node['kubernetes']['audit']['enabled']
+  template node['kubernetes']['audit']['policy_file'] do
+    source 'audit-policy.yaml.erb'
+  end
+end
+
 # DNS manifests
 manifests = %w(sa cm deploy svc)
 unless node['kubernetes']['addons']['dns']['controller'] == 'kubedns'
@@ -65,9 +71,9 @@ node['kubernetes']['ssl']['keypairs'].each do |keypair|
   %w(public_key private_key).each do |key_type|
     file node['kubernetes']['ssl'][keypair][key_type] do
       content data_bag_item(
-        node['kubernetes']['databag'],
-        "#{keypair}_ssl"
-      )[key_type]
+                node['kubernetes']['databag'],
+                "#{keypair}_ssl"
+              )[key_type]
     end
   end
 end
