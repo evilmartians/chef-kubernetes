@@ -7,6 +7,7 @@
 - Admission plugins: added [Priority](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#priority)
 - [Kubernetes: 1.12.0](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.12.md#changelog-since-v1110)
 - [cri-o: 1.11.6](https://github.com/kubernetes-incubator/cri-o/releases/tag/v1.11.6)
+- [podman: 0.9.3.1](https://github.com/containers/libpod/releases/tag/v0.9.3.1)
 
 # 1.11.10 (25.09.2018)
 - [cri-tools: 1.11.1](https://github.com/kubernetes-sigs/cri-tools/releases/tag/v1.11.1)
