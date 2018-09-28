@@ -539,6 +539,18 @@ Google Kubernetes installer for Ubuntu
     <td>ReadOnlyPort</td>
     <td><tt>10255</tt></td>
   </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['config']['serverTLSBootstrap]</tt></td>
+    <td>Boolean</td>
+    <td>Server certificate bootstrap</td>
+    <td><tt>true</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['config']['rotateCertificates']</tt></td>
+    <td>Boolean</td>
+    <td>Auto rotate the kubelet client certificates by requesting new certificates from the kube-apiserver when the certificate expiration approaches</td>
+    <td><tt>true</tt></td>
+  </tr>
 </table>
 
 ###### crio

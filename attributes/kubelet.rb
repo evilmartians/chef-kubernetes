@@ -26,4 +26,4 @@ default['kubernetes']['kubelet']['config']['failSwapOn']                        
 default['kubernetes']['kubelet']['config']['cgroupDriver']                           = node['kubernetes']['cgroupdriver']
 default['kubernetes']['kubelet']['config']['readOnlyPort']                           = 10255
 default['kubernetes']['kubelet']['config']['serverTLSBootstrap']                     = true
-default['kubernetes']['kubelet']['config']['rotateCertificates']                     = true if node['kubernetes']['feature_gates']['RotateKubeletServerCertificate']
+default['kubernetes']['kubelet']['config']['rotateCertificates']                     = true
