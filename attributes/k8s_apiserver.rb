@@ -31,4 +31,5 @@ default['kubernetes']['api']['enable_admission_plugins']                = %w(
   LimitRanger
   ServiceAccount
   DefaultStorageClass
-  ResourceQuota).join(',')
+  ResourceQuota
+  Priority).join(',')

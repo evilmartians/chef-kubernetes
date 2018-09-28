@@ -1291,7 +1291,7 @@ Google Kubernetes installer for Ubuntu
     <td><tt>['kubernetes']['api']['enable_admission_plugins']</tt></td>
     <td>String</td>
     <td>plugins separated by comma</td>
-    <td><tt>Initializers, NamespaceLifecycle, NodeRestriction, LimitRanger, ServiceAccount, DefaultStorageClass, ResourceQuota</tt></td>
+    <td><tt>Initializers, NamespaceLifecycle, NodeRestriction, LimitRanger, ServiceAccount, DefaultStorageClass, ResourceQuota, Priority</tt></td>
   </tr>
 </table>
 

@@ -4,6 +4,7 @@
 - Kubelet: removed `cadvisor_port`
 - Feature gates: added [VolumeSubpathEnvExpansion](https://kubernetes.io/docs/concepts/storage/volumes/#using-subpath-with-expanded-environment-variables)
 - Apiserver: only etcd3 is available as a storage backend
+- Admission plugins: added [Priority](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#priority)
 
 # 1.11.10 (25.09.2018)
 - [cri-tools: 1.11.1](https://github.com/kubernetes-sigs/cri-tools/releases/tag/v1.11.1)
