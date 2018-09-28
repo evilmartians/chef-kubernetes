@@ -97,8 +97,9 @@ module Kubernetes
       end
 
       if node['kubernetes']['audit']['enabled']
-        options.store('audit-log-maxbackup', node['kubernetes']['audit']['maxbackup'])
-        options.store('audit-log-path', node['kubernetes']['audit']['log_file'])
+        audit_opts = node['kubernetes']['audit'].to_hash
+        audit_opts.delete('enabled')
+        audit_opts.each { |k,v| options.store("audit-#{k.gsub('_','-')}", v) }
       end
 
       options.sort_by { |k, v| k }.map { |k, v| v.nil? ? "--#{k}" : "--#{k}=#{v}" }

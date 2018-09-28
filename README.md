@@ -252,16 +252,41 @@ Google Kubernetes installer for Ubuntu
     <td><tt>true</tt></td>
   </tr>
   <tr>
-    <td><tt>['kubernetes']['audit']['log_file']</tt></td>
+    <td><tt>['kubernetes']['audit']['policy_file']</tt></td>
     <td>String</td>
-    <td>audit logfile</td>
+    <td>Path to the file that defines the audit policy configuration</td>
+    <td><tt>/etc/kubernetes/audit-policy.yaml</tt></td>
+  </tr>
+  <tr>
+  <tr>
+    <td><tt>['kubernetes']['audit']['log_path']</tt></td>
+    <td>String</td>
+    <td>If set, all requests coming to the apiserver will be logged to this file</td>
     <td><tt>/var/log/kubernetes/audit.log</tt></td>
   </tr>
   <tr>
-    <td><tt>['kubernetes']['audit']['maxbackup']</tt></td>
+    <td><tt>['kubernetes']['audit']['log_format']</tt></td>
+    <td>String</td>
+    <td>Format of saved audits. "legacy" indicates 1-line text format for each event. "json" indicates structured json format</td>
+    <td><tt>json</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['audit']['log_mode']</tt></td>
+    <td>String</td>
+    <td>Strategy for sending audit events. Blocking indicates sending events should block server responses. Batch causes the backend to buffer and write events asynchronously</td>
+    <td><tt>blocking</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['audit']['log_maxbackup']</tt></td>
     <td>Int</td>
-    <td>audit maxbackup</td>
+    <td>The maximum number of old audit log files to retain</td>
     <td><tt>3</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['audit']['log_maxsize']</tt></td>
+    <td>Int</td>
+    <td>The maximum size in megabytes of the audit log file before it gets rotated</td>
+    <td><tt>10</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['packages']['storage_url']</tt></td>

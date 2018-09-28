@@ -49,6 +49,12 @@ template node['kubernetes']['api']['experimental_encryption_provider_config'] do
   variables(keys: keys)
 end
 
+if node['kubernetes']['audit']['enabled']
+  template node['kubernetes']['audit']['policy_file'] do
+    source 'audit-policy.yaml.erb'
+  end
+end
+
 # DNS manifests
 manifests = %w(sa cm deploy svc)
 unless node['kubernetes']['addons']['dns']['controller'] == 'kubedns'
