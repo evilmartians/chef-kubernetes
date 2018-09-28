@@ -1,6 +1,7 @@
 # UNRELEASED
 - Reworked API audit options
 - Kubelet: [client certificate rotation](https://kubernetes.io/docs/tasks/tls/certificate-rotation) is now enabled by default
+- Kubelet: removed `cadvisor_port`
 
 # 1.11.10 (25.09.2018)
 - [cri-tools: 1.11.1](https://github.com/kubernetes-sigs/cri-tools/releases/tag/v1.11.1)

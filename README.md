@@ -450,12 +450,6 @@ Google Kubernetes installer for Ubuntu
     <td><tt>true</tt></td>
   </tr>
   <tr>
-    <td><tt>['kubernetes']['kubelet']['daemon_flags']['cadvisor_port']</tt></td>
-    <td>Integer</td>
-    <td>cadvisor port</td>
-    <td><tt>0</tt></td>
-  </tr>
-  <tr>
     <td><tt>['kubernetes']['kubelet']['config']['staticPodPath']</tt></td>
     <td>String</td>
     <td>pod manifests</td>
