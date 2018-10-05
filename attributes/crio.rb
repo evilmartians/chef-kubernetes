@@ -42,7 +42,7 @@ default['kubernetes']['crio']['daemon_flags']['metrics_port']   = 9090
 default['kubernetes']['crio']['policies']['default'] = [{"type"=>"insecureAcceptAnything"}]
 default['kubernetes']['crio']['policies']['transports']['docker-daemon'][''] = [{"type"=>"insecureAcceptAnything"}]
 
-default['kubernetes']['crio']['crictl']['version'] = '1.11.1'
+default['kubernetes']['crio']['crictl']['version'] = '1.12.0'
 default['kubernetes']['crio']['crictl']['timeout'] = 10
 default['kubernetes']['crio']['crictl']['debug']   = false
 
