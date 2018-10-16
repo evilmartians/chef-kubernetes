@@ -4,6 +4,7 @@
 - [CoreDNS: 1.2.4](https://coredns.io/2018/10/16/coredns-1.2.4-release/)
 - [Etcd: 3.3.10](https://github.com/etcd-io/etcd/releases/tag/v3.3.10)
 - [Etcd cookbook: 5.6.0](https://github.com/chef-cookbooks/etcd/blob/master/CHANGELOG.md#560-2018-08-07)
+- [Weave: Morph the livenessProbe into readinessProbe](https://github.com/weaveworks/weave/pull/3421/)
 - Reworked API audit options
 - [cri-o: 1.11.6](https://github.com/kubernetes-incubator/cri-o/releases/tag/v1.11.6)
 
