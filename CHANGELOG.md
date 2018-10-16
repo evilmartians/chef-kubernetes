@@ -1,6 +1,7 @@
 # UNRELEASED
 - [podman: 0.10.1.1](https://github.com/containers/libpod/releases/tag/v0.10.1.1)
 - [buildah: 1.4](https://github.com/containers/buildah/releases/tag/v1.4)
+- [CoreDNS: 1.2.4](https://coredns.io/2018/10/16/coredns-1.2.4-release/)
 - Reworked API audit options
 - [cri-o: 1.11.6](https://github.com/kubernetes-incubator/cri-o/releases/tag/v1.11.6)
 
