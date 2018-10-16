@@ -2,6 +2,7 @@
 - [Kubernetes: 1.12.1](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.12.md#changelog-since-v1120)
 - [cri-tools: 1.12.0](https://github.com/kubernetes-sigs/cri-tools/releases/tag/v1.12.0)
 - [buildah: 1.4](https://github.com/containers/buildah/releases/tag/v1.4)
+- [CoreDNS: 1.2.4](https://coredns.io/2018/10/16/coredns-1.2.4-release/)
 
 # 1.12.1 (05.10.2018)
 - [Kubernetes: 1.12.1](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.12.md#changelog-since-v1120)
