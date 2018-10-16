@@ -1,6 +1,6 @@
 DEPENDENCIES
   apt
-  etcd (~> 5.5)
+  etcd (~> 5.6)
   firewall
   kubernetes
     path: .
@@ -16,8 +16,8 @@ DEPENDENCIES
 GRAPH
   apt (7.0.0)
   chef-sugar (4.0.0)
-  docker (4.4.0)
-  etcd (5.5.1)
+  docker (4.6.7)
+  etcd (5.6.0)
     docker (>= 0.0.0)
   firewall (2.6.3)
     chef-sugar (>= 0.0.0)
