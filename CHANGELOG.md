@@ -6,6 +6,7 @@
 - [Etcd: 3.3.10](https://github.com/etcd-io/etcd/releases/tag/v3.3.10)
 - [Etcd cookbook: 5.6.0](https://github.com/chef-cookbooks/etcd/blob/master/CHANGELOG.md#560-2018-08-07)
 - [podman: 0.10.1.1](https://github.com/containers/libpod/releases/tag/v0.10.1.1)
+- [Weave: Morph the livenessProbe into readinessProbe](https://github.com/weaveworks/weave/pull/3421/)
 
 # 1.12.1 (05.10.2018)
 - [Kubernetes: 1.12.1](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.12.md#changelog-since-v1120)
