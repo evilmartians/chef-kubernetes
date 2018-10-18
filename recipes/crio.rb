@@ -106,7 +106,7 @@ template '/etc/crio/crio.conf' do
   notifies :restart, 'systemd_unit[crio.service]'
 end
 
-template '/etc/crio/seccomp.json' do
+template node['kubernetes']['crio']['config']['seccomp_profile'] do
   source 'seccomp.json.erb'
   notifies :restart, 'systemd_unit[crio.service]'
 end

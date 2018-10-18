@@ -559,7 +559,7 @@ Google Kubernetes installer for Ubuntu
     <td><tt>['kubernetes']['crio']['version']</tt></td>
     <td>String</td>
     <td>CRIO binary version</td>
-    <td><tt>1.11.2</tt></td>
+    <td><tt>1.12.0</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['crio']['endpoint']</tt></td>

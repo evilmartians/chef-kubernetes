@@ -6,8 +6,8 @@ image_default_transport = "docker://"
 
 # Paths to look for a valid OCI runtime (runc, runv, etc)
 runtime_path = [
-	     "<%= node['kubernetes']['crio']['config']['runtime'] %>",
-	     "<%= node['kubernetes']['crio']['config']['untrusted_runtime'] %>"
+	     "<%= node['kubernetes']['crio']['config']['runtimes']['trusted'] %>",
+	     "<%= node['kubernetes']['crio']['config']['runtimes']['untrusted'] %>"
 ]
 
 # Paths to look for the Conmon container manager binary
