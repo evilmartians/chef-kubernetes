@@ -1,3 +1,6 @@
+# UNRELEASED
+- [CoreDNS: 1.2.5](https://coredns.io/2018/10/24/coredns-1.2.5-release/)
+
 # 1.11.11
 - [podman: 0.10.1.1](https://github.com/containers/libpod/releases/tag/v0.10.1.1)
 - [buildah: 1.4](https://github.com/containers/buildah/releases/tag/v1.4)
