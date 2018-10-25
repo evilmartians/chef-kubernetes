@@ -2,7 +2,7 @@
 - [Kubernetes: 1.12.1](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.12.md#changelog-since-v1120)
 - [cri-tools: 1.12.0](https://github.com/kubernetes-sigs/cri-tools/releases/tag/v1.12.0)
 - [buildah: 1.4](https://github.com/containers/buildah/releases/tag/v1.4)
-- [CoreDNS: 1.2.4](https://coredns.io/2018/10/16/coredns-1.2.4-release/)
+- [CoreDNS: 1.2.5](https://coredns.io/2018/10/24/coredns-1.2.5-release/)
 - [Etcd: 3.3.10](https://github.com/etcd-io/etcd/releases/tag/v3.3.10)
 - [Etcd cookbook: 5.6.0](https://github.com/chef-cookbooks/etcd/blob/master/CHANGELOG.md#560-2018-08-07)
 - [podman: 0.10.1.3](https://github.com/containers/libpod/releases/tag/v0.10.1.3)
