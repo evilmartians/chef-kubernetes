@@ -9,6 +9,7 @@
 - [Weave: Morph the livenessProbe into readinessProbe](https://github.com/weaveworks/weave/pull/3421/)
 - [cri-o: 1.12.0](https://github.com/kubernetes-incubator/cri-o/releases/tag/v1.12.0)
 - [Audit Policy](https://kubernetes.io/docs/tasks/debug-application-cluster/audit/#audit-policy) apiVersion set to `v1`
+- Gemfile: chef updated to [14.6.47](https://github.com/chef/chef/blob/master/CHANGELOG.md#v14647-2018-10-26)
 
 # 1.12.1 (05.10.2018)
 - [Kubernetes: 1.12.1](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.12.md#changelog-since-v1120)
