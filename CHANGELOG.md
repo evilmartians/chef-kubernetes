@@ -1,6 +1,9 @@
 # UNRELEASED
 - [Kubernetes: 1.12.1](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.12.md#changelog-since-v1120)
 
+# 1.12.1 (05.10.2018)
+- [Kubernetes: 1.12.1](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.12.md#changelog-since-v1120)
+
 # 1.12.0 (28.09.2018)
 - Reworked API audit options
 - Kubelet: [client certificate rotation](https://kubernetes.io/docs/tasks/tls/certificate-rotation) is now enabled by default
