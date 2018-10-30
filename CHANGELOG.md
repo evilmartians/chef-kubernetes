@@ -1,5 +1,6 @@
 # UNRELEASED
 - Weave: preserve the client source IP address
+- Weave: don't mount cni-conf directory when portmap is used
 - [CoreDNS: 1.2.5](https://coredns.io/2018/10/24/coredns-1.2.5-release/)
 
 # 1.11.11
