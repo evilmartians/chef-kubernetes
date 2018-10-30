@@ -30,6 +30,10 @@ spec:
             - --status-addr=$(LISTEN_ON):<%= node['kubernetes']['weave']['status_port'] %>
             - --metrics-addr=$(LISTEN_ON):<%= node['kubernetes']['weave']['metrics_port'] %>
           env:
+            <% if !!node['kubernetes']['weave']['no_masq_local'] %>
+            - name: NO_MASQ_LOCAL
+              value: "true"
+            <% end %>
             - name: IPALLOC_RANGE
               value: <%= node['kubernetes']['cluster_cidr'] %>
             - name: LISTEN_ON

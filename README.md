@@ -1103,6 +1103,12 @@ Google Kubernetes installer for Ubuntu
     <td><tt>true</tt></td>
   </tr>
   <tr>
+    <td><tt>['kubernetes']['weave'][no_masq_local]</tt></td>
+    <td>Boolean</td>
+    <td>preserve the client source IP address when accessing Services</td>
+    <td><tt>true</tt></td>
+  </tr>
+  <tr>
     <td><tt>['kubernetes']['weave']['update_strategy']['type']</tt></td>
     <td>String</td>
     <td>update_strategy</td>
