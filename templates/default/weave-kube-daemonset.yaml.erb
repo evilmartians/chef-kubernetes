@@ -65,8 +65,10 @@ spec:
               mountPath: /host/opt
             - name: cni-bin2
               mountPath: /host/home
+            <% unless node['kubernetes']['weave']['use_portmap'] %>
             - name: cni-conf
               mountPath: /host/etc
+            <% end %>
             - name: dbus
               mountPath: /host/var/lib/dbus
             - name: lib-modules
@@ -118,9 +120,11 @@ spec:
         - name: cni-bin2
           hostPath:
             path: /home
+        <% unless node['kubernetes']['weave']['use_portmap'] %>
         - name: cni-conf
           hostPath:
             path: /etc
+        <% end %>
         - name: dbus
           hostPath:
             path: /var/lib/dbus
