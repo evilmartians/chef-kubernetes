@@ -1,3 +1,6 @@
+# UNRELEASED
+- Weave: preserve the client source IP address
+
 # 1.12.2 (28.10.2018)
 - [Kubernetes: 1.12.2](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.12.md#changelog-since-v1121)
 - [cri-tools: 1.12.0](https://github.com/kubernetes-sigs/cri-tools/releases/tag/v1.12.0)
