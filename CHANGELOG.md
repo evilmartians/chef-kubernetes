@@ -4,6 +4,7 @@
 - [CoreDNS: 1.2.5](https://coredns.io/2018/10/24/coredns-1.2.5-release/)
 - [podman: 0.10.1.3](https://github.com/containers/libpod/releases/tag/v0.10.1.3)
 - [Kubernetes: 1.11.4](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.11.md/#changelog-since-v1113)
+- [Addon manager: 8.9](https://github.com/kubernetes/kubernetes/blob/master/cluster/addons/addon-manager/CHANGELOG.md#version-89--fri-october-19-2018-jeff-grafton-jgraftongooglecom)
 
 # 1.11.11
 - [podman: 0.10.1.1](https://github.com/containers/libpod/releases/tag/v0.10.1.1)
