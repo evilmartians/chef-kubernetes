@@ -32,4 +32,5 @@ default['kubernetes']['api']['enable_admission_plugins']                = %w(
   ServiceAccount
   DefaultStorageClass
   ResourceQuota
-  Priority).join(',')
+  Priority
+  PodNodeSelector).join(',')
