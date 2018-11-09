@@ -1,6 +1,7 @@
 # UNRELEASED
 - Weave: preserve the client source IP address
 - Weave: don't mount cni-conf directory when portmap is used
+- [Weave Net: 2.5.0](https://github.com/weaveworks/weave/releases/tag/v2.5.0)
 - [Addon manager: 8.9](https://github.com/kubernetes/kubernetes/blob/master/cluster/addons/addon-manager/CHANGELOG.md#version-89--fri-october-19-2018-jeff-grafton-jgraftongooglecom)
 - Apiserver: added [PodNodeSelector](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#podnodeselector) to the list of admission controllers
 
