@@ -1,3 +1,6 @@
+# UNRELEASED
+- [Weave Net: 2.5.0](https://github.com/weaveworks/weave/releases/tag/v2.5.0)
+
 # 1.11.12 (01.11.2018)
 - Weave: preserve the client source IP address
 - Weave: don't mount cni-conf directory when portmap is used
