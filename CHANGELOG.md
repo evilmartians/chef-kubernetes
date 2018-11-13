@@ -5,6 +5,7 @@
 - [Addon manager: 8.9](https://github.com/kubernetes/kubernetes/blob/master/cluster/addons/addon-manager/CHANGELOG.md#version-89--fri-october-19-2018-jeff-grafton-jgraftongooglecom)
 - Apiserver: added [PodNodeSelector](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#podnodeselector) to the list of admission controllers
 - [cri-o: 1.12.1](https://github.com/kubernetes-incubator/cri-o/releases/tag/v1.12.1)
+- [skopeo: 0.1.32](https://github.com/containers/skopeo/releases/tag/v0.1.32)
 
 
 # 1.12.2 (28.10.2018)
