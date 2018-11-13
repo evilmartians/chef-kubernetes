@@ -6,6 +6,7 @@
 - Apiserver: added [PodNodeSelector](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#podnodeselector) to the list of admission controllers
 - [cri-o: 1.12.1](https://github.com/kubernetes-incubator/cri-o/releases/tag/v1.12.1)
 - [skopeo: 0.1.32](https://github.com/containers/skopeo/releases/tag/v0.1.32)
+- [podman: 0.11.1](https://github.com/containers/libpod/releases/tag/v0.11.1)
 
 
 # 1.12.2 (28.10.2018)
