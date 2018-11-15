@@ -1,5 +1,6 @@
 # UNRELEASED
 - [Weave Net: 2.5.0](https://github.com/weaveworks/weave/releases/tag/v2.5.0)
+- Gemfile.lock: fix [CVE-2018-16471](https://nvd.nist.gov/vuln/detail/CVE-2018-16471) and [CVE-2018-16470](https://nvd.nist.gov/vuln/detail/CVE-2018-16470)
 
 # 1.11.12 (01.11.2018)
 - Weave: preserve the client source IP address
