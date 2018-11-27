@@ -1,4 +1,4 @@
-# UNRELEASED
+# 1.12.4 (27.11.2018)
 - [Kubernetes: 1.12.3](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.12.md#changelog-since-v1122)
 - [cri-o: 1.12.3](https://github.com/kubernetes-incubator/cri-o/releases/tag/v1.12.3)
 - [CoreDNS: 1.2.6](https://coredns.io/2018/11/05/coredns-1.2.6-release/)
