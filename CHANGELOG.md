@@ -2,6 +2,7 @@
 - [Kubernetes: 1.12.3](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.12.md#changelog-since-v1122)
 - [cri-o: 1.12.3](https://github.com/kubernetes-incubator/cri-o/releases/tag/v1.12.3)
 - [CoreDNS: 1.2.6](https://coredns.io/2018/11/05/coredns-1.2.6-release/)
+- [podman: 0.11.1.1](https://github.com/containers/libpod/releases/tag/v0.11.1.1)
 
 # 1.12.3 (20.11.2018)
 - Weave: preserve the client source IP address
