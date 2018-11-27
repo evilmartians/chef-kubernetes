@@ -1,3 +1,6 @@
+# UNRELEASED
+- [Kubernetes: 1.12.3](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.12.md#changelog-since-v1122)
+
 # 1.12.3 (20.11.2018)
 - Weave: preserve the client source IP address
 - Weave: don't mount cni-conf directory when portmap is used
