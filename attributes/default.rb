@@ -45,6 +45,7 @@ default['kubernetes']['audit']['log_maxsize']               = 10
 default['kubernetes']['audit']['policy_file']               = '/etc/kubernetes/audit-policy.yaml'
 default['kubernetes']['feature_gates']                      = {
   'VolumeSubpathEnvExpansion' => true,
+  'NodeLease'                 => true,
 }
 default['kubernetes']['packages']['storage_url']            = "https://storage.googleapis.com/kubernetes-release/release/#{node['kubernetes']['version']}/bin/linux/amd64/"
 default['kubernetes']['checksums']['apiserver']             = '35435acba70dcd08c932da7bff1ae7496271408d9f0b9185d40b8778e4cf5316'

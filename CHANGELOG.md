@@ -6,6 +6,7 @@
 - [Kubernetes: 1.13.0](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.13.md/#kubernetes-113-release-notes)
 - CoreDNS: security context
 - CoreDNS: added plugins: loop, reload, loadbalance
+- FeatureGates: added [NodeLease](https://github.com/kubernetes/enhancements/blob/master/keps/sig-node/0009-node-heartbeat.md)
 
 # 1.12.4 (27.11.2018)
 - [Kubernetes: 1.12.3](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.12.md#changelog-since-v1122)
