@@ -1311,10 +1311,10 @@ Google Kubernetes installer for Ubuntu
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['kubernetes']['controller_manager']['address']</tt></td>
-    <td>String</td>
-    <td>address</td>
-    <td><tt>127.0.0.1</tt></td>
+    <td><tt>['kubernetes']['controller_manager']['secure_port'] </tt></td>
+    <td>Fixnum</td>
+    <td>The port on which to serve HTTPS with authentication and authorization.If 0, don't serve HTTPS at all.</td>
+    <td><tt>10257</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['controller_manager']['leader_elect']</tt></td>

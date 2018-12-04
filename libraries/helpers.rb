@@ -109,6 +109,7 @@ module Kubernetes
     def controller_manager_args
       options = Hash[node['kubernetes']['controller_manager'].map { |k, v| [k.tr('_', '-'), v] }]
       options['feature-gates'] = options['feature-gates'].map { |k, v| "#{k}=#{v}" }.join(',')
+      options.store('bind-address', k8s_ip(node))
 
       if node['kubernetes']['sdn'] == 'canal'
         options.store('allocate-node-cidrs', nil)

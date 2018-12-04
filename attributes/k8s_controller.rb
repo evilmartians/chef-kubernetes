@@ -1,4 +1,4 @@
-default['kubernetes']['controller_manager']['address']                          = '127.0.0.1'
+default['kubernetes']['controller_manager']['secure_port']                      = 10257
 default['kubernetes']['controller_manager']['leader_elect']                     = true
 default['kubernetes']['controller_manager']['cluster_cidr']                     = node['kubernetes']['cluster_cidr']
 default['kubernetes']['controller_manager']['cluster_name']                     = node['kubernetes']['cluster_name']
