@@ -1389,12 +1389,6 @@ Google Kubernetes installer for Ubuntu
     <td><tt>30s</tt></td>
   </tr>
   <tr>
-    <td><tt>['kubernetes']['controller_manager']['horizontal_pod_autoscaler_downscale_delay']</tt></td>
-    <td>String</td>
-    <td>The period since last downscale, before another downscale can be performed in horizontal pod autoscaler</td>
-    <td><tt>5m0s</tt></td>
-  </tr>
-  <tr>
     <td><tt>['kubernetes']['controller_manager']['horizontal_pod_autoscaler_sync_period']</tt></td>
     <td>String</td>
     <td>The period for syncing the number of pods in horizontal pod autoscaler</td>
@@ -1405,18 +1399,6 @@ Google Kubernetes installer for Ubuntu
     <td>Float</td>
     <td>The minimum change (from 1.0) in the desired-to-actual metrics ratio for the horizontal pod autoscaler to consider scaling</td>
     <td><tt>0.1</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['controller_manager']['horizontal_pod_autoscaler_upscale_delay']</tt></td>
-    <td>String</td>
-    <td>The period since last upscale, before another upscale can be performed in horizontal pod autoscaler</td>
-    <td><tt>3m0s</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['controller_manager']['horizontal_pod_autoscaler_use_rest_clients']</tt></td>
-    <td>Boolean</td>
-    <td>If set to true, causes the horizontal pod autoscaler controller to use REST clients through the kube-aggregator, instead of using the legacy metrics client through the API server proxy.  This is required for custom metrics support in the horizontal pod autoscaler</td>
-    <td><tt>false</tt></td>
   </tr>
 </table>
 
