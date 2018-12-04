@@ -4,6 +4,7 @@
 - Controller manager: listen on secure port cluster-wide
 - Apiserver: etcd2 support removed, so no more remark about application/json media type
 - [Kubernetes: 1.13.0](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.13.md/#kubernetes-113-release-notes)
+- CoreDNS: security context
 
 # 1.12.4 (27.11.2018)
 - [Kubernetes: 1.12.3](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.12.md#changelog-since-v1122)
