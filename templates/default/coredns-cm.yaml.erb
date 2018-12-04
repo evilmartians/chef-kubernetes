@@ -27,6 +27,9 @@ data:
         proxy . /etc/resolv.conf
         cache 30
         prometheus :9153
+        loop
+        reload
+        loadbalance
         <% if node['kubernetes']['addons']['coredns']['log'] %>
         log <%= node['kubernetes']['addons']['coredns']['log'] %>
         <% end %>
