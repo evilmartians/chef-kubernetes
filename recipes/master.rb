@@ -44,7 +44,7 @@ keys.map! do |k|
 end
 keys.sort_by! { |key| key['name'] }
 
-template node['kubernetes']['api']['experimental_encryption_provider_config'] do
+template node['kubernetes']['api']['encryption_provider_config'] do
   source 'encryption-config.yaml.erb'
   variables(keys: keys)
 end

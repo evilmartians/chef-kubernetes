@@ -1198,9 +1198,9 @@ Google Kubernetes installer for Ubuntu
     <td><tt>/etc/kubernetes/ssl/ca.pem</tt></td>
   </tr>
   <tr>
-    <td><tt>['kubernetes']['api']['experimental_encryption_provider_config']</tt></td>
+    <td><tt>['kubernetes']['api'][encryption_provider_config']</tt></td>
     <td>String</td>
-    <td>experimental_encryption_provider_config</td>
+    <td>The file containing configuration for encryption providers to be used for storing secrets in etcd</td>
     <td><tt>/etc/kubernetes/encryption-config.yaml</tt></td>
   </tr>
   <tr>
