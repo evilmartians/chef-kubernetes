@@ -60,6 +60,7 @@ module Kubernetes
     def scheduler_args
       options = Hash[node['kubernetes']['scheduler'].map { |k, v| [k.tr('_', '-'), v] }]
       options['feature-gates'] = options['feature-gates'].map { |k, v| "#{k}=#{v}" }.join(',')
+      options.store('bind-address', k8s_ip(node))
       options.sort_by { |k, v| k }.map { |k, v| v.nil? ? "--#{k}" : "--#{k}=#{v}" }
     end
 

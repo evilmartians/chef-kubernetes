@@ -128,6 +128,17 @@ firewall_rule 'kube_apiserver' do
   end
 end
 
+
+firewall_rule 'kube_scheduler' do
+  port node['kubernetes']['scheduler']['secure_port']
+  protocol :tcp
+  interface node['kubernetes']['interface']
+  command :allow
+  only_if do
+    node['kubernetes']['enable_firewall']
+  end
+end
+
 include_recipe "kubernetes::master_#{install_via}"
 include_recipe 'kubernetes::haproxy' if node['kubernetes']['multimaster']['access_via'] == 'haproxy'
 include_recipe 'kubernetes::proxy'

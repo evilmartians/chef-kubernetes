@@ -1,5 +1,6 @@
 # UNRELEASED
 - Apiserver: encryption provider config is no more experimental
+- Scheduler: listen on secure port cluster-wide
 
 # 1.12.4 (27.11.2018)
 - [Kubernetes: 1.12.3](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.12.md#changelog-since-v1122)
