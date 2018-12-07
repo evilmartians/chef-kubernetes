@@ -1,4 +1,4 @@
-# UNRELEASED
+# 1.13.0 (07.12.2018)
 - Apiserver: encryption provider config is no more experimental
 - Scheduler: listen on secure port cluster-wide
 - Controller manager: listen on secure port cluster-wide
