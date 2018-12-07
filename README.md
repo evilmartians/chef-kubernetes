@@ -243,7 +243,7 @@ Google Kubernetes installer for Ubuntu
     <td><tt>['kubernetes']['feature_gates']</tt></td>
     <td>Hash</td>
     <td>feature gates</td>
-    <td><tt>'VolumeSubpathEnvExpansion' => true, 'NodeLease' => true</tt></td>
+    <td><tt>'VolumeSubpathEnvExpansion' => true, 'NodeLease' => true, 'TTLAfterFinished' => true</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['audit']['enabled']</tt></td>
