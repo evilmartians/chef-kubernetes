@@ -12,10 +12,12 @@ apt_repository 'ostree' do
   distribution node['lsb']['codename']
 end
 
-package 'ostree'
-package 'libgpgme11'
-package 'seccomp'
-package 'libdevmapper1.02.1'
+package %w[
+  ostree
+  libgpgme11
+  seccomp
+  libdevmapper1.02.1
+]
 
 crio_version   = node['kubernetes']['crio']['version']
 crictl_version = node['kubernetes']['crio']['crictl']['version']
@@ -31,25 +33,25 @@ codename = node['lsb']['codename']
 
 remote_file "/opt/crio/#{crio_version}/crio" do
   source "https://s3-eu-west-1.amazonaws.com/crio-binaries/#{codename}/cri-o/v#{crio_version}/crio"
-  mode 0755
+  mode '0755'
   checksum node['kubernetes']['checksums']['crio'][codename]
 end
 
 remote_file "/opt/crio/#{crio_version}/conmon" do
   source "https://s3-eu-west-1.amazonaws.com/crio-binaries/#{codename}/cri-o/v#{crio_version}/conmon"
-  mode 0755
+  mode '0755'
   checksum node['kubernetes']['checksums']['conmon'][codename]
 end
 
 remote_file "/opt/skopeo/#{skopeo_version}/skopeo" do
   source "https://s3-eu-west-1.amazonaws.com/crio-binaries/#{codename}/skopeo/v#{skopeo_version}/skopeo"
-  mode 0755
+  mode '0755'
   checksum node['kubernetes']['checksums']['skopeo'][codename]
 end
 
 remote_file "/opt/libpod/#{libpod_version}/podman" do
   source "https://s3-eu-west-1.amazonaws.com/crio-binaries/#{codename}/libpod/v#{libpod_version}/podman"
-  mode 0755
+  mode '0755'
   checksum node['kubernetes']['checksums']['podman'][codename]
 end
 
@@ -137,7 +139,7 @@ systemd_unit 'crio.service' do
     }
   )
   notifies :restart, 'systemd_unit[crio.service]'
-  action [:create, :enable, :start]
+  action %i[create enable start]
 end
 
 # systemd_unit 'crio-shutdown.service' do
