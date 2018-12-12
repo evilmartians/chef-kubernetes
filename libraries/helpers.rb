@@ -32,6 +32,10 @@ module Kubernetes
       proto + endpoint
     end
 
+    def container_runtime_endpoint_proto(runtime = node['kubernetes']['container_runtime'])
+      node['kubernetes'][runtime]['endpoint_proto'].empty? ? 'unix://' : node['kubernetes'][runtime]['endpoint_proto']
+    end
+
     def kubelet_args
       options = Hash[node['kubernetes']['kubelet']['daemon_flags'].map { |k, v| [k.tr('_', '-'), v] }]
       options.store('hostname-override', k8s_hostname(node)) #  FIXME

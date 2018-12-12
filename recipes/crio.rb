@@ -170,6 +170,7 @@ template '/etc/crictl.yaml' do
   variables(
     runtime_endpoint: container_runtime_endpoint,
     image_endpoint: container_runtime_endpoint,
+    endpoint_proto: container_runtime_endpoint_proto,
   )
 end
 
