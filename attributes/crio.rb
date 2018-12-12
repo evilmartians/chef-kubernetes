@@ -1,6 +1,6 @@
 default['kubernetes']['crio']['version']                     = '1.13.0'
 default['kubernetes']['crio']['endpoint']                    = '/var/run/crio/crio.sock'
-default['kubernetes']['crio']['endpoint_proto']              = 'unix://'
+default['kubernetes']['crio']['endpoint_proto']              = ''
 default['kubernetes']['buildah']['version']                  = '1.5'
 default['kubernetes']['libpod']['version']                   = '0.12.1'
 default['kubernetes']['skopeo']['version']                   = '0.1.32'
