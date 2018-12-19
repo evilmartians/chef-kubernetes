@@ -1,6 +1,7 @@
 # UNRELEASED
 - [runc: 1.0.0-rc6](https://github.com/opencontainers/runc/releases/tag/v1.0.0-rc6)
 - runsc: 2018-12-14
+- [skopeo: 0.1.33](https://github.com/containers/skopeo/releases/tag/v0.1.33)
 
 # 1.13.1 (13.12.2018)
 - fix file modes arguments and some more minor syntax issues
