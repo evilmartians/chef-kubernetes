@@ -3,6 +3,7 @@
 - runsc: 2018-12-14
 - [skopeo: 0.1.33](https://github.com/containers/skopeo/releases/tag/v0.1.33)
 - [podman: 0.12.1.2](https://github.com/containers/libpod/releases/tag/v0.12.1.2)
+- [CoreDNS: 1.3.0](https://coredns.io/2018/12/15/coredns-1.3.0-release/)
 
 # 1.13.1 (13.12.2018)
 - fix file modes arguments and some more minor syntax issues
