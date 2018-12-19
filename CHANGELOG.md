@@ -1,4 +1,4 @@
-# UNRELEASED
+# 1.12.5 (19.12.2018)
 - fix file modes arguments and some more minor syntax issues
 - kubelet: fixed warning "failed to get imageFs info: no imagefs label for configured runtime"
 - docker version set to 18.06 accordingly to [external dependencies](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.12.md#external-dependencies)
