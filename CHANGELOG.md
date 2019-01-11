@@ -1,7 +1,7 @@
 # UNRELEASED
 - [runc: 1.0.0-rc6](https://github.com/opencontainers/runc/releases/tag/v1.0.0-rc6)
 - runsc: 2018-12-14
-- [skopeo: 0.1.33](https://github.com/containers/skopeo/releases/tag/v0.1.33)
+- [skopeo: 0.1.34](https://github.com/containers/skopeo/releases/tag/v0.1.34)
 - [podman: 0.12.1.2](https://github.com/containers/libpod/releases/tag/v0.12.1.2)
 - [CoreDNS: 1.3.0](https://coredns.io/2018/12/15/coredns-1.3.0-release/)
 
