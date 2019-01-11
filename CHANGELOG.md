@@ -5,6 +5,7 @@
 - [podman: 1.0.0](https://github.com/containers/libpod/releases/tag/v1.0.0)
 - [CoreDNS: 1.3.0](https://coredns.io/2018/12/15/coredns-1.3.0-release/)
 - [Etcd: 3.3.11](https://github.com/etcd-io/etcd/releases/tag/v3.3.11)
+- [Kubernetes: 1.13.2](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.13.md#changelog-since-v1131)
 
 # 1.13.1 (13.12.2018)
 - fix file modes arguments and some more minor syntax issues
