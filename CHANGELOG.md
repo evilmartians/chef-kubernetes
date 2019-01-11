@@ -1,4 +1,4 @@
-# UNRELEASED
+# 1.13.2 (11.01.2019)
 - [runc: 1.0.0-rc6](https://github.com/opencontainers/runc/releases/tag/v1.0.0-rc6)
 - runsc: 2018-12-14
 - [skopeo: 0.1.34](https://github.com/containers/skopeo/releases/tag/v0.1.34)
