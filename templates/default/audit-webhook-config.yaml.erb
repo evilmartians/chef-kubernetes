@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Config
+clusters:
+- name: <%= node['kubernetes']['cluster_name'] %>
+  cluster:
+    server: <%= node['kubernetes']['master'] %>
+contexts:
+- context:
+    cluster: <%= node['kubernetes']['cluster_name'] %>
+  name: audit-context
+current-context: audit-context

@@ -119,6 +119,12 @@ if node['kubernetes']['token_auth']
   end
 end
 
+if node['kubernetes']['audit_webhook']['enabled']
+  template node['kubernetes']['audit_webhook']['config_file'] do
+    source 'audit-webhook-config.yaml.erb'
+  end
+end
+
 firewall_rule 'kube_apiserver' do
   port node['kubernetes']['api']['secure_port']
   protocol :tcp
