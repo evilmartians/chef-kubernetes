@@ -107,6 +107,12 @@ module Kubernetes
         audit_opts.each { |k,v| options.store("audit-#{k.gsub('_','-')}", v) }
       end
 
+      if node['kubernetes']['audit_webhook']['enabled']
+        audit_opts = node['kubernetes']['audit_webhook'].to_hash
+        audit_opts.delete('enabled')
+        audit_opts.each { |k,v| options.store("audit-webhook-#{k.gsub('_','-')}", v) }
+      end
+
       options.sort_by { |k, v| k }.map { |k, v| v.nil? ? "--#{k}" : "--#{k}=#{v}" }
     end
 

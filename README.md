@@ -289,6 +289,42 @@ Google Kubernetes installer for Ubuntu
     <td><tt>10</tt></td>
   </tr>
   <tr>
+    <td><tt>['kubernetes']['audit_webhook']['enabled']</tt></td>
+    <td>Boolean</td>
+    <td>enable [audit webhook backend](https://kubernetes.io/docs/tasks/debug-application-cluster/audit/#webhook-backend)</td>
+    <td><tt>false</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['audit_webhook']['config_file']</tt></td>
+    <td>String</td>
+    <td>Path to a kubeconfig formatted file that defines the audit webhook configuration.</td>
+    <td><tt>/etc/kubernetes/audit-webhook.yaml</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['audit_webhook']['initial_backoff']</tt></td>
+    <td>String</td>
+    <td>The amount of time to wait before retrying the first failed request.</td>
+    <td><tt>10s</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['audit_webhook']['version']</tt></td>
+    <td>String</td>
+    <td>API group and version used for serializing audit events written to webhook.</td>
+    <td><tt>audit.k8s.io/v1</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['audit_webhook']['mode']</tt></td>
+    <td>String</td>
+    <td>Strategy for sending audit events. Blocking indicates sending events should block server responses. Batch causes the backend to buffer and write events asynchronously. Known modes are batch,blocking,blocking-strict.</td>
+    <td><tt>batch</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['audit_webhook_config']['server']</tt></td>
+    <td>String</td>
+    <td>Audit server URL.</td>
+    <td><tt>''</tt></td>
+  </tr>
+  <tr>
     <td><tt>['kubernetes']['packages']['storage_url']</tt></td>
     <td>String</td>
     <td>packages storage</td>

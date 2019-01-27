@@ -6,6 +6,7 @@
 - Gemfile.lock: fix [CVE-2018-14404](https://nvd.nist.gov/vuln/detail/CVE-2018-14404)
 - [Haproxy: 1.9](https://www.haproxy.com/blog/haproxy-1-9-has-arrived/)
 - [Kubernetes: 1.13.3](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.13.md#changelog-since-v1132)
+- WIP: [Audit webhook](https://kubernetes.io/docs/tasks/debug-application-cluster/audit/#webhook-backend) initial implementation
 
 
 # 1.13.2 (11.01.2019)

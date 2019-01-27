@@ -119,6 +119,20 @@ if node['kubernetes']['token_auth']
   end
 end
 
+if node['kubernetes']['audit_webhook']['enabled']
+  if node['kubernetes']['audit_webhook_config']['server'].empty?
+    server = "http://#{IPAddress(node['kubernetes']['api']['service_cluster_ip_range']).last.address}"
+  else
+    server = node['kubernetes']['audit_webhook_config']['server']
+  end
+  template node['kubernetes']['audit_webhook']['config_file'] do
+    source 'audit-webhook-config.yaml.erb'
+    variables(
+      server: server
+    )
+  end
+end
+
 firewall_rule 'kube_apiserver' do
   port node['kubernetes']['api']['secure_port']
   protocol :tcp
