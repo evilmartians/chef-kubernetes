@@ -1,4 +1,4 @@
-default['kubernetes']['weave']['version']                 = '2.5.0'
+default['kubernetes']['weave']['version']                 = '2.5.1'
 default['kubernetes']['weave']['interface']               = 'weave'
 default['kubernetes']['weave']['use_scope']               = true
 default['kubernetes']['weave']['use_portmap']             = true
