@@ -334,7 +334,7 @@ Google Kubernetes installer for Ubuntu
     <td><tt>['kubernetes']['addon_manager']['version']</tt></td>
     <td>String</td>
     <td>addon_manager version</td>
-    <td><tt>v6.5</tt></td>
+    <td><tt>v9.0</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['multimaster']['access_via']</tt></td>
