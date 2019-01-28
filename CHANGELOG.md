@@ -1,6 +1,6 @@
 # UNRELEASED
 - [Weave Net: 2.5.1](https://github.com/weaveworks/weave/releases/tag/v2.5.1)
-
+- [CoreDNS: 1.3.1](https://coredns.io/2019/01/13/coredns-1.3.1-release/)
 
 # 1.13.2 (11.01.2019)
 - [runc: 1.0.0-rc6](https://github.com/opencontainers/runc/releases/tag/v1.0.0-rc6)
