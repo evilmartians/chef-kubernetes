@@ -4,6 +4,7 @@
 - [buildah: 1.6](https://github.com/containers/buildah/releases/tag/v1.6)
 - [Addon manager: 9.0](https://github.com/kubernetes/kubernetes/blob/master/cluster/addons/addon-manager/CHANGELOG.md#version-90--wed-january-16-2019-jordan-liggitt-liggittgooglecom)
 - Gemfile.lock: fix [CVE-2018-14404](https://nvd.nist.gov/vuln/detail/CVE-2018-14404)
+- [Haproxy: 1.9](https://www.haproxy.com/blog/haproxy-1-9-has-arrived/)
 
 
 # 1.13.2 (11.01.2019)
