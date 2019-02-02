@@ -1,4 +1,4 @@
-# UNRELEASED
+# 1.13.3 (02.02.2019)
 - [Weave Net: 2.5.1](https://github.com/weaveworks/weave/releases/tag/v2.5.1)
 - [CoreDNS: 1.3.1](https://coredns.io/2019/01/13/coredns-1.3.1-release/)
 - [buildah: 1.6](https://github.com/containers/buildah/releases/tag/v1.6)
