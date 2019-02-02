@@ -5,6 +5,7 @@
 - [Addon manager: 9.0](https://github.com/kubernetes/kubernetes/blob/master/cluster/addons/addon-manager/CHANGELOG.md#version-90--wed-january-16-2019-jordan-liggitt-liggittgooglecom)
 - Gemfile.lock: fix [CVE-2018-14404](https://nvd.nist.gov/vuln/detail/CVE-2018-14404)
 - [Haproxy: 1.9](https://www.haproxy.com/blog/haproxy-1-9-has-arrived/)
+- [Kubernetes: 1.13.3](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.13.md#changelog-since-v1132)
 
 
 # 1.13.2 (11.01.2019)
