@@ -31,6 +31,7 @@ if node['kubernetes']['docker']['built-in']
 
   package 'docker-ce' do
     options '-o Dpkg::Options::="--force-confold"'
+    action :upgrade
   end
 
   bash 'install_nsenter' do
