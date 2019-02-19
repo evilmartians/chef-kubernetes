@@ -1,3 +1,6 @@
+# UNRELEASED
+- [Docker CE: 18.06.2](https://github.com/docker/docker-ce/releases/tag/v18.06.2-ce) Fixing [CVE-2019-5736](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-5736)
+
 # 1.13.3 (02.02.2019)
 - [Weave Net: 2.5.1](https://github.com/weaveworks/weave/releases/tag/v2.5.1)
 - [CoreDNS: 1.3.1](https://coredns.io/2019/01/13/coredns-1.3.1-release/)
