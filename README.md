@@ -1459,6 +1459,12 @@ Google Kubernetes installer for Ubuntu
     <td>hash of feature gates</td>
     <td><tt>node['kubernetes']['feature_gates']</tt></td>
   </tr>
+  <tr>
+    <td><tt>['kubernetes']['proxy']['global']['metrics_port']</tt></td>
+    <td>Fixnum</td>
+    <td>The port to bind the metrics server. Use 0 to disable</td>
+    <td><tt>10249</tt></td>
+  </tr>
 </table>
 
 ###### scheduler
