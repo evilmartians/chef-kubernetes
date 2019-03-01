@@ -3,6 +3,7 @@
 - Recipes::Docker: set default action for package `docker-ce` to `:upgrade`
 - [Kubernetes: 1.13.4](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.13.md#changelog-since-v1133)
 - Kube-proxy: add `metrics-port` and `metrics-bind-address` to cmd flags
+- [cri-o: 1.13.1](https://github.com/kubernetes-sigs/cri-o/releases/tag/v1.13.1)
 
 # 1.13.3 (02.02.2019)
 - [Weave Net: 2.5.1](https://github.com/weaveworks/weave/releases/tag/v2.5.1)
