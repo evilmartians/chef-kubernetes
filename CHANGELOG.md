@@ -1,4 +1,4 @@
-# UNRELEASED
+# 1.13.4 (01.03.2019)
 - [Docker CE: 18.06.2](https://github.com/docker/docker-ce/releases/tag/v18.06.2-ce) Fixing [CVE-2019-5736](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-5736)
 - Recipes::Docker: set default action for package `docker-ce` to `:upgrade`
 - [Kubernetes: 1.13.4](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.13.md#changelog-since-v1133)
