@@ -5,6 +5,7 @@
 - Kube-proxy: add `metrics-port` and `metrics-bind-address` to cmd flags
 - [cri-o: 1.13.1](https://github.com/kubernetes-sigs/cri-o/releases/tag/v1.13.1)
 - [buildah: 1.7.1](https://github.com/containers/buildah/releases/tag/v1.7.1)
+- [Etcd: 3.3.12](https://github.com/etcd-io/etcd/releases/tag/v3.3.12)
 
 # 1.13.3 (02.02.2019)
 - [Weave Net: 2.5.1](https://github.com/weaveworks/weave/releases/tag/v2.5.1)
