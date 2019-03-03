@@ -1,6 +1,7 @@
 # UNRELEASED
 - [podman: 1.1.1](https://github.com/containers/libpod/releases/tag/v1.1.1)
 - [CoreDNS: 1.4.0](https://coredns.io/2019/03/03/coredns-1.4.0-release/)
+- CoreDNS: change deprecated [proxy](https://coredns.io/plugins/proxy/) plugin to [forward](https://coredns.io/plugins/forward/)
 
 # 1.13.4 (01.03.2019)
 - [Docker CE: 18.06.2](https://github.com/docker/docker-ce/releases/tag/v18.06.2-ce) Fixing [CVE-2019-5736](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-5736)

@@ -24,7 +24,7 @@ data:
           fallthrough
         }
         <%- end %>
-        proxy . /etc/resolv.conf
+        forward . /etc/resolv.conf
         cache 30
         prometheus :9153
         loop
