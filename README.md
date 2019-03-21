@@ -1253,6 +1253,12 @@ Google Kubernetes installer for Ubuntu
     <td><tt>/etc/kubernetes/ssl/apiserver-key.pem</tt></td>
   </tr>
   <tr>
+    <td><tt>['kubernetes']['api']['kubelet_preferred_address_types']</tt></td>
+    <td>String</td>
+    <td>List of the preferred NodeAddressTypes to use for kubelet connections.</td>
+    <td><tt>InternalIP,ExternalIP,InternalDNS,ExternalDNS,Hostname</tt></td>
+  </tr>
+  <tr>
     <td><tt>['kubernetes']['api']['endpoint_reconciler_type']</tt></td>
     <td>String</td>
     <td>endpoint_reconciler_type</td>

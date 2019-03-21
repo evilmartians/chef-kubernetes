@@ -10,6 +10,7 @@ default['kubernetes']['api']['kubelet_certificate_authority']           = '/etc/
 default['kubernetes']['api']['encryption_provider_config']              = '/etc/kubernetes/encryption-config.yaml'
 default['kubernetes']['api']['kubelet_client_certificate']              = '/etc/kubernetes/ssl/apiserver.pem'
 default['kubernetes']['api']['kubelet_client_key']                      = '/etc/kubernetes/ssl/apiserver-key.pem'
+default['kubernetes']['api']['kubelet_preferred_address_types']         = 'InternalIP,ExternalIP,InternalDNS,ExternalDNS,Hostname'
 default['kubernetes']['api']['endpoint_reconciler_type']                = 'lease' # Other possible values: 'master-count', 'none'
 default['kubernetes']['api']['etcd_certfile']                           = node['etcd']['cert_file']
 default['kubernetes']['api']['etcd_keyfile']                            = node['etcd']['key_file']

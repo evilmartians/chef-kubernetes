@@ -2,6 +2,8 @@
 - [podman: 1.1.1](https://github.com/containers/libpod/releases/tag/v1.1.1)
 - [CoreDNS: 1.4.0](https://coredns.io/2019/03/03/coredns-1.4.0-release/)
 - CoreDNS: change deprecated [proxy](https://coredns.io/plugins/proxy/) plugin to [forward](https://coredns.io/plugins/forward/)
+- ApiServer <=> Kubelet communications: `--kubelet-preferred-address-types` apiserver key now explicitly points to `InternalIP,ExternalIP,InternalDNS,ExternalDNS,Hostname`; this way you are free to use hostname (or any other name) for your kubelets, just make sure your kubelet has proper NodeAddressType: `InternalIP` or `ExternalIP` and so on.
+  You can check it like this: `$ kubectl get no <node> -o jsonpath='{.status.addresses[?(@.type=="InternalIP")].address}'`
 
 # 1.13.4 (01.03.2019)
 - [Docker CE: 18.06.2](https://github.com/docker/docker-ce/releases/tag/v18.06.2-ce) Fixing [CVE-2019-5736](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-5736)

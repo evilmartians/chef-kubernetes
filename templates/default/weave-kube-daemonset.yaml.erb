@@ -40,7 +40,7 @@ spec:
               valueFrom:
                 fieldRef:
                   apiVersion: v1
-                  fieldPath: spec.nodeName
+                  fieldPath: status.hostIP
             - name: HOSTNAME
               valueFrom:
                 fieldRef:
@@ -84,7 +84,7 @@ spec:
               valueFrom:
                 fieldRef:
                   apiVersion: v1
-                  fieldPath: spec.nodeName
+                  fieldPath: status.hostIP
             - name: HOSTNAME
               valueFrom:
                 fieldRef:
