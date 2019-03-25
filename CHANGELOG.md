@@ -5,6 +5,7 @@
 - ApiServer <=> Kubelet communications: `--kubelet-preferred-address-types` apiserver key now explicitly points to `InternalIP,ExternalIP,InternalDNS,ExternalDNS,Hostname`; this way you are free to use hostname (or any other name) for your kubelets, just make sure your kubelet has proper NodeAddressType: `InternalIP` or `ExternalIP` and so on.
   You can check it like this: `$ kubectl get no <node> -o jsonpath='{.status.addresses[?(@.type=="InternalIP")].address}'`
 - [CNI/plugins: 0.7.5](https://github.com/containernetworking/plugins/releases/tag/v0.7.5)
+- [Kubernetes: 1.13.5](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.13.md#changelog-since-v1134)
 
 # 1.13.4 (01.03.2019)
 - [Docker CE: 18.06.2](https://github.com/docker/docker-ce/releases/tag/v18.06.2-ce) Fixing [CVE-2019-5736](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-5736)
