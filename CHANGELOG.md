@@ -1,5 +1,6 @@
 # UNRELEASED
 - [Kubernetes: 1.14.0](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.14.md#kubernetes-v114-release-notes)
+- [Docker CE: 18.09.3](https://docs.docker.com/engine/release-notes/#18093)
 
 # 1.13.5 (25.03.2019)
 - [podman: 1.1.1](https://github.com/containers/libpod/releases/tag/v1.1.1)
