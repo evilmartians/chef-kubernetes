@@ -52,7 +52,7 @@ Google Kubernetes installer for Ubuntu
     <td><tt>['kubernetes']['version']</tt></td>
     <td>String</td>
     <td>kubernetes version</td>
-    <td><tt>v1.13.5</tt></td>
+    <td><tt>v1.14.0</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['keep_versions']</tt></td>
@@ -244,7 +244,7 @@ Google Kubernetes installer for Ubuntu
     <td><tt>['kubernetes']['feature_gates']</tt></td>
     <td>Hash</td>
     <td>feature gates</td>
-    <td><tt>'VolumeSubpathEnvExpansion' => true, 'NodeLease' => true, 'TTLAfterFinished' => true</tt></td>
+    <td><tt>'VolumeSubpathEnvExpansion' => true, 'TTLAfterFinished' => true</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['audit']['enabled']</tt></td>
@@ -1340,7 +1340,7 @@ Google Kubernetes installer for Ubuntu
     <td><tt>['kubernetes']['api']['enable_admission_plugins']</tt></td>
     <td>String</td>
     <td>plugins separated by comma</td>
-    <td><tt>Initializers, NamespaceLifecycle, NodeRestriction, LimitRanger, ServiceAccount, DefaultStorageClass, ResourceQuota, Priority, PodNodeSelector</tt></td>
+    <td><tt>DefaultStorageClass, DefaultTolerationSeconds, LimitRanger, MutatingAdmissionWebhook, NamespaceLifecycle, NodeRestriction, PersistentVolumeClaimResize, Priority, ResourceQuota, ServiceAccount, TaintNodesByCondition, ValidatingAdmissionWebhook</tt></td>
   </tr>
 </table>
 

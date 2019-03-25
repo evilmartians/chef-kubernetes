@@ -26,12 +26,15 @@ default['kubernetes']['api']['service_account_key_file']                = node['
 default['kubernetes']['api']['log_dir']                                 = '/var/log/kubernetes'
 default['kubernetes']['api']['feature_gates']                           = node['kubernetes']['feature_gates']
 default['kubernetes']['api']['enable_admission_plugins']                = %w(
-  Initializers
+  DefaultStorageClass
+  DefaultTolerationSeconds
+  LimitRanger
+  MutatingAdmissionWebhook
   NamespaceLifecycle
   NodeRestriction
-  LimitRanger
-  ServiceAccount
-  DefaultStorageClass
-  ResourceQuota
+  PersistentVolumeClaimResize
   Priority
-  PodNodeSelector).join(',')
+  ResourceQuota
+  ServiceAccount
+  TaintNodesByCondition
+  ValidatingAdmissionWebhook).join(',')
