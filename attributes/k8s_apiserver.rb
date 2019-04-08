@@ -33,6 +33,7 @@ default['kubernetes']['api']['enable_admission_plugins']                = %w(
   NamespaceLifecycle
   NodeRestriction
   PersistentVolumeClaimResize
+  PodSecurityPolicy
   Priority
   ResourceQuota
   ServiceAccount

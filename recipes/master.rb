@@ -166,3 +166,4 @@ include_recipe "kubernetes::master_#{install_via}"
 include_recipe 'kubernetes::haproxy' if node['kubernetes']['multimaster']['access_via'] == 'haproxy'
 include_recipe 'kubernetes::proxy'
 include_recipe 'kubernetes::cleaner'
+include_recipe 'kubernetes::psp' if node['kubernetes']['api']['enable_admission_plugins'].include?('PodSecurityPolicy')

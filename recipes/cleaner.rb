@@ -157,3 +157,12 @@ end
 unless node['kubernetes']['addons']['npd']['enabled']
   file('/etc/kubernetes/addons/npd.yaml') { action :delete }
 end
+
+unless node['kubernetes']['api']['enable_admission_plugins'].include?('PodSecurityPolicy')
+  %w(default).each do |name|
+    file("/etc/kubernetes/addons/#{name}-psp.yaml") { action :delete }
+    %w(clusterrole clusterrolebinding).each do |kind|
+      file("/etc/kubernetes/addons/#{name}-psp-#{kind}.yaml") { action :delete }
+    end
+  end
+end
