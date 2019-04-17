@@ -1,4 +1,5 @@
 # UNRELEASED
+- [cri-o: 1.13.4](https://github.com/kubernetes-sigs/cri-o/releases/tag/v1.13.4)
 - [podman: 1.2.0](https://github.com/containers/libpod/releases/tag/v1.2.0)
 - [skopeo: 0.1.35](https://github.com/containers/skopeo/releases/tag/v0.1.35)
 - [runc: 1.0-rc7](https://github.com/opencontainers/runc/releases/tag/v1.0.0-rc7)
