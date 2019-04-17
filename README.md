@@ -895,7 +895,7 @@ Google Kubernetes installer for Ubuntu
     <td><tt>['docker']['version']</tt></td>
     <td>String</td>
     <td>default daemon version</td>
-    <td><tt>18.06.2~ce~3-0~ubuntu</tt></td>
+    <td><tt>18.06.3~ce~3-0~ubuntu</tt></td>
   </tr>
   <tr>
     <td><tt>['docker']['settings']['storage-driver']</tt></td>

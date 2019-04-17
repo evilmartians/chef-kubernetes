@@ -1,4 +1,5 @@
 # UNRELEASED
+- [Docker CE: 18.06.3](https://github.com/docker/docker-ce/releases/tag/v18.06.3-ce)
 - [CoreDNS: 1.5.0](https://coredns.io/2019/04/06/coredns-1.5.0-release/)
 - [buildah: 1.7.3](https://github.com/containers/buildah/releases/tag/v1.7.3)
 - [cri-o: 1.13.4](https://github.com/kubernetes-sigs/cri-o/releases/tag/v1.13.4)
