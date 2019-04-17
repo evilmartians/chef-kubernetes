@@ -1,4 +1,5 @@
 # UNRELEASED
+- [skopeo: 0.1.35](https://github.com/containers/skopeo/releases/tag/v0.1.35)
 - [runc: 1.0-rc7](https://github.com/opencontainers/runc/releases/tag/v1.0.0-rc7)
 
 # 1.13.5 (25.03.2019)
