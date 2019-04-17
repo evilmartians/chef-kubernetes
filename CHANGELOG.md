@@ -1,4 +1,5 @@
 # UNRELEASED
+- [CoreDNS: 1.5.0](https://coredns.io/2019/04/06/coredns-1.5.0-release/)
 - [buildah: 1.7.3](https://github.com/containers/buildah/releases/tag/v1.7.3)
 - [cri-o: 1.13.4](https://github.com/kubernetes-sigs/cri-o/releases/tag/v1.13.4)
 - [podman: 1.2.0](https://github.com/containers/libpod/releases/tag/v1.2.0)
