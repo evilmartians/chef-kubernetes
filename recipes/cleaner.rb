@@ -157,3 +157,6 @@ end
 unless node['kubernetes']['addons']['npd']['enabled']
   file('/etc/kubernetes/addons/npd.yaml') { action :delete }
 end
+
+# Remove ancient jpetazzo/nsenter
+file('/usr/local/bin/nsenter') { action :delete }
