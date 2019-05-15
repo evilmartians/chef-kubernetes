@@ -1,4 +1,5 @@
 # UNRELEASED
+- make dns bionic compatible
 - docker: remove ancient jpetazzo/nsenter
 - [CNI/plugins: 0.8.0](https://github.com/containernetworking/plugins/releases/tag/v0.8.0)
 

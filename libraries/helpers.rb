@@ -23,7 +23,11 @@ module Kubernetes
     end
 
     def kubelet_yaml(a = atts)
-      a.to_hash.to_yaml.sub(/---\n/, '')
+      attributes = a.to_hash
+      if File.exist?('/run/systemd/resolve/resolv.conf')
+        attributes['resolvConf'] = '/run/systemd/resolve/resolv.conf'
+      end
+      attributes.to_yaml.sub(/---\n/, '')
     end
 
     def container_runtime_endpoint(runtime = node['kubernetes']['container_runtime'])
