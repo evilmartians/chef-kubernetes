@@ -31,7 +31,7 @@ end
   end
 end
 
-tar_extract "https://github.com/containernetworking/plugins/releases/download/v#{plugins_version}/cni-plugins-amd64-v#{plugins_version}.tgz" do
+tar_extract "https://github.com/containernetworking/plugins/releases/download/v#{plugins_version}/cni-plugins-linux-amd64-v#{plugins_version}.tgz" do
   target_dir "/opt/cni/plugins/#{plugins_version}"
   creates "/opt/cni/plugins/#{plugins_version}/portmap"
 end

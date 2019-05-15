@@ -413,7 +413,7 @@ Google Kubernetes installer for Ubuntu
     <td><tt>['kubernetes']['cni']['plugins_version']</tt></td>
     <td>String</td>
     <td>cni plugins version</td>
-    <td><tt>0.7.5</tt></td>
+    <td><tt>0.8.0</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['encryption']</tt></td>

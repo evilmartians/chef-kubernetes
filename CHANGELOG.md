@@ -1,4 +1,5 @@
 # UNRELEASED
+- [CNI/plugins: 0.8.0](https://github.com/containernetworking/plugins/releases/tag/v0.8.0)
 
 # 1.14.1 (17.04.2019)
 - [Kubernetes: 1.14.1](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.14.md#changelog-since-v1140)
