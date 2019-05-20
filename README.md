@@ -398,12 +398,6 @@ Google Kubernetes installer for Ubuntu
     <td><tt></tt></td>
   </tr>
   <tr>
-    <td><tt>['kubernetes']['cni']['version']</tt></td>
-    <td>String</td>
-    <td>cni version</td>
-    <td><tt>0.6.0</tt></td>
-  </tr>
-  <tr>
     <td><tt>['kubernetes']['cni']['plugins']</tt></td>
     <td>Hash</td>
     <td>cni plugins</td>

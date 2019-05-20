@@ -1,4 +1,5 @@
 # UNRELEASED
+- CNI: binaries `cnitool` and `noop` are not needed on production hosts
 - [Docker CE: 18.09.6](https://docs.docker.com/engine/release-notes/#18096)
 - docker version: dynamic codename
 - make dns bionic compatible

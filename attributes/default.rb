@@ -66,7 +66,6 @@ default['kubernetes']['multimaster']['haproxy_url']         = '127.0.0.1'
 default['kubernetes']['multimaster']['haproxy_port']        = 6443
 default['kubernetes']['multimaster']['dns_name']            = ''
 default['kubernetes']['encryption']                         = 'aescbc'
-default['kubernetes']['cni']['version']                     = '0.6.0'
 default['kubernetes']['cni']['plugins_version']             = '0.8.0'
 default['kubernetes']['cni']['plugins'] = {
   'bridge'	=> true,
