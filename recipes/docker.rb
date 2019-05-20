@@ -24,8 +24,12 @@ if node['kubernetes']['docker']['built-in']
     content(node['kubernetes']['docker']['settings'].to_json)
   end
 
+  version = "#{node['kubernetes']['docker']['version']}~#{node['lsb']['id'].downcase}-#{node['lsb']['codename']}"
+  deb_version = node['kubernetes']['docker']['deb_version']
+  version = [deb_version, version].join(':') unless deb_version.empty?
+
   apt_preference 'docker-ce' do
-    pin          "version #{node['kubernetes']['docker']['version']}"
+    pin          "version #{version}"
     pin_priority '700'
   end
 
