@@ -41,6 +41,15 @@ if install_via == 'systemd'
     recursive true
   end
 
+  exec_start_pre = ''
+  if node['lsb']['release'].to_i >= 18
+    exec_start_pre = "/bin/sh -c " \
+                     "'/sbin/iptables -C POSTROUTING -t nat -d 127.0.0.53 -o lo -m comment --comment \"SNAT for systemd-resolved\" " \
+                     "-j SNAT --to-source 127.0.0.1 || " \
+                     "/sbin/iptables -I POSTROUTING -t nat -d 127.0.0.53 -o lo -m comment --comment \"SNAT for systemd-resolved\" " \
+                     "-j SNAT --to-source 127.0.0.1'"
+  end
+
   systemd_unit 'kube-proxy.service' do
     content(
       Unit: {
@@ -49,6 +58,7 @@ if install_via == 'systemd'
       },
       Service: {
         Type: 'simple',
+        ExecStartPre: exec_start_pre,
         ExecStart: "/usr/local/bin/kube-proxy #{proxy_args.join(" \\\n")}",
         ExecReload: '/bin/kill -HUP $MAINPID',
         WorkingDirectory: '/',
