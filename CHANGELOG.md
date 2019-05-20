@@ -1,4 +1,7 @@
 # UNRELEASED
+
+# 1.14.2 (20.05.2019)
+- [Etcd: 3.3.13](https://github.com/etcd-io/etcd/releases/tag/v3.3.13)
 - [Kubernetes: 1.14.2](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.14.md#changelog-since-v1141)
 - [buildah: 1.8.2](https://github.com/containers/buildah/releases/tag/v1.8.2)
 - [podman: 1.3.1](https://github.com/containers/libpod/releases/tag/v1.3.1)
