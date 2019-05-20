@@ -1,4 +1,5 @@
 # UNRELEASED
+- [Weave Net: 2.5.2](https://github.com/weaveworks/weave/releases/tag/v2.5.2)
 - KubeProxy: make bionic compatible
 - CNI: binaries `cnitool` and `noop` are not needed on production hosts
 - [Docker CE: 18.09.6](https://docs.docker.com/engine/release-notes/#18096)
