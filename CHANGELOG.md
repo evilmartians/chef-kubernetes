@@ -1,4 +1,5 @@
 # UNRELEASED
+- [buildah: 1.8.2](https://github.com/containers/buildah/releases/tag/v1.8.2)
 - [podman: 1.3.1](https://github.com/containers/libpod/releases/tag/v1.3.1)
 - [skopeo: 0.1.36](https://github.com/containers/skopeo/releases/tag/v0.1.36)
 - [cri-o: 1.14.1](https://github.com/kubernetes-sigs/cri-o/releases/tag/v1.14.1)
