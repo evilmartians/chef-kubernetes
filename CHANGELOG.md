@@ -1,4 +1,5 @@
 # UNRELEASED
+- [skopeo: 0.1.36](https://github.com/containers/skopeo/releases/tag/v0.1.36)
 - [cri-o: 1.14.1](https://github.com/kubernetes-sigs/cri-o/releases/tag/v1.14.1)
 - [Weave Net: 2.5.2](https://github.com/weaveworks/weave/releases/tag/v2.5.2)
 - KubeProxy: make bionic compatible
