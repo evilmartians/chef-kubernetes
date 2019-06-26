@@ -1,4 +1,5 @@
 # UNRELEASED
+- [cri-o: 1.14.4](https://github.com/kubernetes-sigs/cri-o/releases/tag/v1.14.4)
 
 # 1.14.3 (07.06.2019)
 - [runc: 1.0-rc8](https://github.com/opencontainers/runc/releases/tag/v1.0.0-rc8)
