@@ -1,4 +1,5 @@
 # UNRELEASED
+- kubelet: remove flag `--allow_privileged`
 - [cri-o: 1.14.5](https://github.com/kubernetes-sigs/cri-o/releases/tag/v1.14.5)
 - [CoreDNS: 1.5.1](https://coredns.io/2019/06/26/coredns-1.5.1-release/)
 - [skopeo: 0.1.37](https://github.com/containers/skopeo/releases/tag/v0.1.37)
