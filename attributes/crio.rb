@@ -3,15 +3,15 @@ default['kubernetes']['crio']['endpoint']                    = '/var/run/crio/cr
 default['kubernetes']['crio']['endpoint_proto']              = ''
 default['kubernetes']['buildah']['version']                  = '1.8.4'
 default['kubernetes']['libpod']['version']                   = '1.4.3'
-default['kubernetes']['skopeo']['version']                   = '0.1.36'
+default['kubernetes']['skopeo']['version']                   = '0.1.37'
 
-default['kubernetes']['checksums']['skopeo']['bionic']       = '59d9fb0cb687fe5882e643014d4324a1183035c6a3b3df7d225040817327bd75'
+default['kubernetes']['checksums']['skopeo']['bionic']       = '3e37fd8760fa183416d14de3e4c02da2cd8436db5d7e387c5077f30f5f681f32'
 default['kubernetes']['checksums']['podman']['bionic']       = '9c4e6e1df78b2399d7ffa76f4a7eff7262e6f125c7c1d9880e3e43419b23dc74'
 default['kubernetes']['checksums']['conmon']['bionic']       = '278a276e10963a1dd190348ee451acb937589c33bd9d8be7490abb108d735906'
 default['kubernetes']['checksums']['crio']['bionic']         = 'fddd9ad19a7d4bc0b86435465edc4ed88d46a77be32b029b11db31cbe7247802'
 default['kubernetes']['checksums']['buildah']['bionic']      = 'bcec52628c4a76d53552dc1d24b2bc2327fb3c18d29bded4a5e933f40a191e34'
 
-default['kubernetes']['checksums']['skopeo']['xenial']       = '97772c2dd311c0e3d163045536f4713e6a84884c3841fada7fb7494bf8d4e521'
+default['kubernetes']['checksums']['skopeo']['xenial']       = '76dd2080aabd2d57838b219616d2bb1e431071f184ef33fb64a990df4e6194a8'
 default['kubernetes']['checksums']['podman']['xenial']       = '5221a3ba0501f495deda3b27b56f526d72d9ee92ff8dd11504cb24083b66cf01'
 default['kubernetes']['checksums']['conmon']['xenial']       = '83824cbb54b2b73a89ef54a3cd083671fd9be7fef66be48249867abc6bc392a5'
 default['kubernetes']['checksums']['crio']['xenial']         = 'b151a972883dcb22e4be31e0ade90680267885a072db918800317f55a153721d'
