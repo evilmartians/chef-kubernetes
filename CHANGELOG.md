@@ -1,4 +1,5 @@
 # UNRELEASED
+- [CoreDNS: 1.5.1](https://coredns.io/2019/06/26/coredns-1.5.1-release/)
 - [skopeo: 0.1.37](https://github.com/containers/skopeo/releases/tag/v0.1.37)
 - [podman: 1.4.3](https://github.com/containers/libpod/releases/tag/v1.4.3)
 - [buildah: 1.8.4](https://github.com/containers/buildah/releases/tag/v1.8.4)
