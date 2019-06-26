@@ -2,7 +2,6 @@ default['kubernetes']['kubelet']['daemon_flags']['config']                      
 default['kubernetes']['kubelet']['daemon_flags']['bootstrap_kubeconfig']         = '/etc/kubernetes/kubeconfig-bootstrap.yaml'
 default['kubernetes']['kubelet']['daemon_flags']['cert_dir']                     = '/etc/kubernetes/ssl'
 default['kubernetes']['kubelet']['daemon_flags']['kubeconfig']                   = '/etc/kubernetes/kubelet.yaml'
-default['kubernetes']['kubelet']['daemon_flags']['allow_privileged']             = true
 default['kubernetes']['kubelet']['daemon_flags']['v']                            = 2
 default['kubernetes']['kubelet']['daemon_flags']['network_plugin']               = 'cni'
 default['kubernetes']['kubelet']['daemon_flags']['register_node']                = true

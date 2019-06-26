@@ -1,4 +1,5 @@
 # UNRELEASED
+- kubelet: remove flag `--allow_privileged`
 - [Docker CE: 18.09.7](https://docs.docker.com/engine/release-notes/#18097)
 - [cri-o: 1.14.5](https://github.com/kubernetes-sigs/cri-o/releases/tag/v1.14.5)
 - [CoreDNS: 1.5.1](https://coredns.io/2019/06/26/coredns-1.5.1-release/)
