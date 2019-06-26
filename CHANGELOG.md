@@ -1,4 +1,6 @@
 # UNRELEASED
+
+# 1.15.0 (26.06.2019)
 - [Kubernetes: 1.15.0](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.15.md#kubernetes-v115-release-notes)
 - kubelet: remove flag `--allow_privileged`
 - [cri-o: 1.14.5](https://github.com/kubernetes-sigs/cri-o/releases/tag/v1.14.5)
