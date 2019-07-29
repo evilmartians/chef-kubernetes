@@ -1,4 +1,5 @@
 # UNRELEASED
+- [CoreDNS: 1.6.0](https://coredns.io/2019/07/28/coredns-1.6.0-release/)
 - DockerCE: pin cli version with daemon version
 - [Haproxy: 2.0](https://www.haproxy.com/blog/haproxy-2-0-and-beyond/)
 - [Docker CE: 18.09.8](https://docs.docker.com/engine/release-notes/#18098)
