@@ -1,4 +1,5 @@
 # UNRELEASED
+- [Haproxy: 2.0](https://www.haproxy.com/blog/haproxy-2-0-and-beyond/)
 - [Docker CE: 18.09.8](https://docs.docker.com/engine/release-notes/#18098)
 - [podman: 1.4.4](https://github.com/containers/libpod/releases/tag/v1.4.4)
 - [buildah: 1.9.2](https://github.com/containers/buildah/releases/tag/v1.9.2)

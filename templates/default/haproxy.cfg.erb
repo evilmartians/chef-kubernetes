@@ -1,6 +1,5 @@
 global
-	log /dev/log	local0 debug
-	log /dev/log	local1 notice
+	log stdout local0
 	chroot /var/lib/haproxy
 	stats socket /run/haproxy/admin.sock mode 660 level admin
 	stats timeout 30s
