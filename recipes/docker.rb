@@ -28,14 +28,16 @@ if node['kubernetes']['docker']['built-in']
   deb_version = node['kubernetes']['docker']['deb_version']
   version = [deb_version, version].join(':') unless deb_version.empty?
 
-  apt_preference 'docker-ce' do
-    pin          "version #{version}"
-    pin_priority '700'
-  end
+  %w(docker-ce docker-ce-cli).each do |pkg|
+    apt_preference pkg do
+      pin          "version #{version}"
+      pin_priority '700'
+    end
 
-  package 'docker-ce' do
-    options '-o Dpkg::Options::="--force-confold"'
-    action :upgrade
+    package pkg do
+      options '-o Dpkg::Options::="--force-confold"'
+      action :upgrade
+    end
   end
 
 end
