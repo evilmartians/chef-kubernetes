@@ -1,4 +1,5 @@
 # UNRELEASED
+- [buildah: 1.9.2](https://github.com/containers/buildah/releases/tag/v1.9.2)
 - [cri-o: 1.15.0](https://github.com/kubernetes-sigs/cri-o/releases/tag/v1.15.0)
 
 # 1.15.0 (26.06.2019)
