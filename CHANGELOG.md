@@ -1,4 +1,5 @@
 # UNRELEASED
+- [Kubernetes: 1.15.1](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.15.md#changelog-since-v1150)
 - [CoreDNS: 1.6.0](https://coredns.io/2019/07/28/coredns-1.6.0-release/)
 - DockerCE: pin cli version with daemon version
 - [Haproxy: 2.0](https://www.haproxy.com/blog/haproxy-2-0-and-beyond/)
