@@ -1,4 +1,5 @@
 # UNRELEASED
+- [skopeo: 0.1.39](https://github.com/containers/skopeo/releases/tag/v0.1.39)
 - [buildah: 1.10.0](https://github.com/containers/buildah/releases/tag/v1.10.0)
 
 # 1.15.1 (29.07.2019)
