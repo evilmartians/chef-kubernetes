@@ -1,4 +1,5 @@
 # UNRELEASED
+- [Addon manager: 9.0.2](https://github.com/kubernetes/kubernetes/blob/master/cluster/addons/addon-manager/CHANGELOG.md#version-902--thu-august-1-2019-maciej-borsz-maciejborszgooglecom)
 - [CoreDNS: 1.6.1](https://coredns.io/2019/08/01/coredns-1.6.1-release/)
 - [skopeo: 0.1.39](https://github.com/containers/skopeo/releases/tag/v0.1.39)
 - [buildah: 1.10.0](https://github.com/containers/buildah/releases/tag/v1.10.0)
