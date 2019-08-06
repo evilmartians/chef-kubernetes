@@ -4,7 +4,7 @@ maintainer_email 'bregor@evilmartians.com'
 license          'MIT'
 description      'Installs/Configures google kubernetes'
 long_description 'Google Kubernetes installer for Ubuntu'
-version          '1.15.1'
+version          '1.15.2'
 
 chef_version     '>= 12.14'
 
