@@ -1,7 +1,7 @@
 default['kubernetes']['crio']['version']                     = '1.15.0'
 default['kubernetes']['crio']['endpoint']                    = '/var/run/crio/crio.sock'
 default['kubernetes']['crio']['endpoint_proto']              = ''
-default['kubernetes']['buildah']['version']                  = '1.10.0'
+default['kubernetes']['buildah']['version']                  = '1.10.1'
 default['kubernetes']['libpod']['version']                   = '1.4.4'
 default['kubernetes']['skopeo']['version']                   = '0.1.39'
 
@@ -9,13 +9,13 @@ default['kubernetes']['checksums']['skopeo']['bionic']       = '79c473d5c522578d
 default['kubernetes']['checksums']['podman']['bionic']       = '683202cb21346ad115f4f911730a258d21dc95f032b41ce8756a16105d60c9be'
 default['kubernetes']['checksums']['conmon']['bionic']       = '66caa33cb1e0d28dd55c3bf49a207ce489c59bd4f94aebab68f7376b46443d09'
 default['kubernetes']['checksums']['crio']['bionic']         = '6f2335470e1e5357e3d2df305de98ba2b0c1f00710549da68a0957d010ae23e1'
-default['kubernetes']['checksums']['buildah']['bionic']      = 'fe3c43a131257220441a111d6ca4f9c1c5a0a9ae7e3159d4abd9b506413b259d'
+default['kubernetes']['checksums']['buildah']['bionic']      = 'd60404cd0b96d4215bed5af7ee92d2b8913edb85a9b0b32e61989babdada0bf8'
 
 default['kubernetes']['checksums']['skopeo']['xenial']       = '009082a890fceaa1badba7da254acc56e8d35466bcc62852481017eb03abbe68'
 default['kubernetes']['checksums']['podman']['xenial']       = '05f5ae4c831f3752d7d6f8e904b99028766cd3cb71d581793d7693f862ca1400'
 default['kubernetes']['checksums']['conmon']['xenial']       = '05e4618cd5bab745b2aa6a201e201ad3c6cfd05af279119101deaf5879dbc903'
 default['kubernetes']['checksums']['crio']['xenial']         = '06d0e6b485b7f361bd89c91be59665f0ba25837d820de572f9295dbe37f10f36'
-default['kubernetes']['checksums']['buildah']['xenial']      = '76086ec172b71ed1b270341116c4806065e85c5e654051569c446a7b005193e1'
+default['kubernetes']['checksums']['buildah']['xenial']      = '4e861588b1c8844bf4d42af9d9748741b768fad54273acf24d4933802787f50a'
 
 default['kubernetes']['crio']['config']['conmon']            = '/usr/local/bin/conmon'
 default['kubernetes']['crio']['config']['storage_driver']    = 'overlay'
