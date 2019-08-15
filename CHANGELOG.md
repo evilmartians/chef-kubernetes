@@ -1,4 +1,5 @@
 # UNRELEASED
+- [CNI/plugins: 0.8.2](https://github.com/containernetworking/plugins/releases/tag/v0.8.2)
 - [podman: 1.5.0](https://github.com/containers/libpod/releases/tag/v1.5.0)
 - [buildah: 1.10.1](https://github.com/containers/buildah/releases/tag/v1.10.1)
 
