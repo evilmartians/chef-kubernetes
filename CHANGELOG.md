@@ -1,4 +1,5 @@
 # UNRELEASED
+- [Etcd: 3.3.15](https://github.com/etcd-io/etcd/releases/tag/v3.3.15)
 - [CoreDNS: 1.6.2](https://coredns.io/2019/08/13/coredns-1.6.2-release/)
 - [CNI/plugins: 0.8.2](https://github.com/containernetworking/plugins/releases/tag/v0.8.2)
 - [podman: 1.5.0](https://github.com/containers/libpod/releases/tag/v1.5.0)
