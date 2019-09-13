@@ -24,6 +24,10 @@ include_recipe 'firewall' if node['kubernetes']['enable_firewall']
   end
 end
 
+directory(node['kubernetes']['kubelet']['daemon_flags']['cni_cache_dir']) do
+  recursive true
+end
+
 ca_file = data_bag_item(node['kubernetes']['databag'], 'ca_ssl')['public_key']
 
 file node['kubernetes']['client_ca_file'] do

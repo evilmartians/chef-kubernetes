@@ -481,6 +481,12 @@ Google Kubernetes installer for Ubuntu
     <td><tt>true</tt></td>
   </tr>
   <tr>
+    <td><tt>['kubernetes']['kubelet']['daemon_flags']['cni_cache_dir']</tt></td>
+    <td>String</td>
+    <td>The full path of the directory in which CNI should store cache files.</td>
+    <td><tt>/var/lib/cni/cache</tt></td>
+  </tr>
+  <tr>
     <td><tt>['kubernetes']['kubelet']['config']['staticPodPath']</tt></td>
     <td>String</td>
     <td>pod manifests</td>

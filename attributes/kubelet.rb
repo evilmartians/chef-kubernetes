@@ -5,6 +5,7 @@ default['kubernetes']['kubelet']['daemon_flags']['kubeconfig']                  
 default['kubernetes']['kubelet']['daemon_flags']['v']                            = 2
 default['kubernetes']['kubelet']['daemon_flags']['network_plugin']               = 'cni'
 default['kubernetes']['kubelet']['daemon_flags']['register_node']                = true
+default['kubernetes']['kubelet']['daemon_flags']['cni_cache_dir']                = '/var/lib/cni/cache'
 # default['kubernetes']['kubelet']['daemon_flags']['authentication_token_webhook'] = nil # set nil if key doesn't have a parameters
 default['kubernetes']['kubelet']['daemon_flags']['container_runtime']            = node['kubernetes']['container_runtime'] == 'docker' ? 'docker' : 'remote'
 
