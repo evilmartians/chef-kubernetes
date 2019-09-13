@@ -1,4 +1,5 @@
 # UNRELEASED
+- FeatureGates: `VolumeSubpathEnvExpansion` is beta now and enabled by default
 - Kubelet: `--cni-cache-dir` option, which defaults to `/var/lib/cni/cache`
 - [podman: 1.6.2](https://github.com/containers/libpod/releases/tag/v1.6.2)
 
