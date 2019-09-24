@@ -1,4 +1,5 @@
 # UNRELEASED
+- [Kubernetes: 1.15.4](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.15.md#changelog-since-v1153)
 - [cri-o: 1.15.2](https://github.com/kubernetes-sigs/cri-o/releases/tag/v1.15.2)
 - [buildah: 1.11.2](https://github.com/containers/buildah/releases/tag/v1.11.2)
 - [CoreDNS: 1.6.3](https://coredns.io/2019/08/31/coredns-1.6.3-release/)
