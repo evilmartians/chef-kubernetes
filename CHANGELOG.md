@@ -1,4 +1,5 @@
 # UNRELEASED
+- [buildah: 1.11.2](https://github.com/containers/buildah/releases/tag/v1.11.2)
 - [CoreDNS: 1.6.3](https://coredns.io/2019/08/31/coredns-1.6.3-release/)
 
 # 1.15.3 (19.08.2019)
