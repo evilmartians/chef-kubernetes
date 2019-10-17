@@ -1,4 +1,5 @@
 # UNRELEASED
+- [podman: 1.6.0](https://github.com/containers/libpod/releases/tag/v1.6.0)
 - [buildah: 1.11.3](https://github.com/containers/buildah/releases/tag/v1.11.3)
 - [CoreDNS: 1.6.4](https://coredns.io/2019/09/27/coredns-1.6.4-release/)
 
