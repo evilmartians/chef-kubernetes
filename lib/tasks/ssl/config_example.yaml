@@ -28,12 +28,18 @@ names:
   apiserver:
     O: Kubernetes
     OU: Cluster
+  front-proxy-client:
+    O: Kubernetes
+    OU: Cluster
 accounts:
   admin:
     cn: admin
     hosts: []
   proxy:
     cn: system:kube-proxy
+    hosts: []
+  front-proxy-client:
+    cn: front-proxy-client
     hosts: []
   apiserver:
     cn: kubernetes
