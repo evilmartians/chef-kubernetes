@@ -1,4 +1,5 @@
 # UNRELEASED
+- Configure the Aggregation Layer
 - [skopeo: 0.1.40](https://github.com/containers/skopeo/releases/tag/v0.1.40)
 - [buildah: 1.11.4](https://github.com/containers/buildah/releases/tag/v1.11.4)
 
