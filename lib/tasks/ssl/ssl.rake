@@ -84,10 +84,10 @@ def gencsr(name, cn, hosts = [])
 end
 
 def gencsr!(name, cn, hosts)
-  LOGGER.info "Generating ca-csr.json with algo #{CONFIG['csr']['key']['algo']} and size #{CONFIG['csr']['key']['size']}"
+  LOGGER.info "Generating #{name}-csr.json with algo #{CONFIG['csr']['key']['algo']} and size #{CONFIG['csr']['key']['size']}"
   names = CONFIG['names']['common'].merge(CONFIG['names'][name])
   content = CONFIG['csr'].merge('hosts' => hosts, 'CN' => cn, 'names' => [names])
-  LOGGER.debug "ca-csr.json: #{content.to_json}"
+  LOGGER.debug "#{name}-csr.json: #{content.to_json}"
   write_file("#{name}-csr", content)
 end
 
