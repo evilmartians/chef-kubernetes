@@ -745,7 +745,7 @@ Google Kubernetes installer for Ubuntu
     <td><tt>['kubernetes']['addons']['coredns']['version']</tt></td>
     <td>String</td>
     <td>coredns version</td>
-    <td><tt>'1.6.4'</tt></td>
+    <td><tt>'1.6.5'</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['addons']['coredns']['limits']['cpu']</tt></td>
