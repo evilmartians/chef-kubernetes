@@ -1,4 +1,6 @@
 # UNRELEASED
+
+# 1.15.6 (04.12.2019)
 - [Kubernetes: 1.15.6](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.15.md#changelog-since-v1155)
 - [podman: 1.6.3](https://github.com/containers/libpod/releases/tag/v1.6.3)
 - [buildah: 1.11.6](https://github.com/containers/buildah/releases/tag/v1.11.6)
