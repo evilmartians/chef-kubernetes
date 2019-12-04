@@ -1,4 +1,5 @@
 # UNRELEASED
+- [buildah: 1.11.6](https://github.com/containers/buildah/releases/tag/v1.11.6)
 - [CoreDNS: 1.6.5](https://coredns.io/2019/11/05/coredns-1.6.5-release/)
 - [CNI/plugins: 0.8.3](https://github.com/containernetworking/plugins/releases/tag/v0.8.3)
 - [Weave Net: 2.6.0](https://github.com/weaveworks/weave/releases/tag/v2.6.0)
