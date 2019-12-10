@@ -1,4 +1,5 @@
 # UNRELEASED
+- [Kubernetes: 1.16.3](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.16.md/#v1163)
 - [podman: 1.6.3](https://github.com/containers/libpod/releases/tag/v1.6.3)
 - [buildah: 1.11.6](https://github.com/containers/buildah/releases/tag/v1.11.6)
 - [CoreDNS: 1.6.5](https://coredns.io/2019/11/05/coredns-1.6.5-release/)
