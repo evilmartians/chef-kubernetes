@@ -9,7 +9,7 @@
   apt-transport-https
   conntrack
   linux-image-extra-virtual
-  docker-engine
+  docker-ce
 ).each do |package_name|
   describe package(package_name) do
     it { should be_installed }

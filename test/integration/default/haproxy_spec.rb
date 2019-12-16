@@ -1,6 +1,6 @@
 describe package('haproxy') do
   it { should be_installed }
-  its('version') { should cmp >= '1.8' }
+  its('version') { should cmp >= '2.0' }
 end
 
 describe command('haproxy -c -V -f /etc/haproxy/haproxy.cfg') do

@@ -1,11 +1,11 @@
 {
-  "id": "default-bento-ubuntu-1604",
+  "id": "default-bento-ubuntu-1804",
   "chef_environment": "_default",
   "automatic": {
     "roles": ["etcd"],
     "network": {
       "interfaces": {
-        "enp0s3": {
+        "eth0": {
           "addresses": {
             "10.0.2.15": {
               "family": "inet"
@@ -15,11 +15,11 @@
       }
     },
     "platform": "ubuntu",
-    "fqdn": "default-bento-ubuntu-1604.vagrantup.com"
+    "fqdn": "default-bento-ubuntu-1804.vagrantup.com"
   },
   "default": {
     "kubernetes": {
-      "interface": "enp0s3"
+      "interface": "eth0"
     }
   },
   "run_list": [
