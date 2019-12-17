@@ -61,14 +61,3 @@ template '/etc/haproxy/haproxy.cfg' do
   )
   notifies :reload, 'service[haproxy]'
 end
-
-firewall_rule 'deis_builder' do
-  port 2222
-  protocol :tcp
-  command :allow
-  only_if do
-    node['kubernetes']['enable_firewall'] and
-      node['kubernetes']['deis']['enabled'] and
-      node['kubernetes']['deis']['route_via'] == 'haproxy'
-  end
-end

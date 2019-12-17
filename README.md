@@ -849,34 +849,6 @@ Google Kubernetes installer for Ubuntu
   </tr>
 </table>
 
-###### deis
-<table>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['deis']['enabled']</tt></td>
-    <td>Boolean</td>
-    <td>enable deis</td>
-    <td><tt>false</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['deis']['route_via']</tt></td>
-    <td>String</td>
-    <td>route</td>
-    <td><tt>haproxy</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['deis']['builder']['port']</tt></td>
-    <td>Int</td>
-    <td>builder port</td>
-    <td><tt>2222</tt></td>
-  </tr>
-</table>
-
 ###### docker
 <table>
   <tr>
