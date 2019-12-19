@@ -10,7 +10,7 @@ default['kubernetes']['kubelet']['daemon_flags']['cni_cache_dir']               
 default['kubernetes']['kubelet']['daemon_flags']['container_runtime']            = node['kubernetes']['container_runtime'] == 'docker' ? 'docker' : 'remote'
 
 default['kubernetes']['kubelet']['config']['staticPodPath']                          = '/etc/kubernetes/manifests'
-default['kubernetes']['kubelet']['config']['authentication']['x509']['clientCAFile'] = '/etc/kubernetes/ssl/ca.pem'
+default['kubernetes']['kubelet']['config']['authentication']['x509']['clientCAFile'] = node['kubernetes']['client_ca_file']
 default['kubernetes']['kubelet']['config']['authentication']['webhook']['enabled']   = true
 default['kubernetes']['kubelet']['config']['authentication']['webhook']['cacheTTL']  = '2m0s'
 default['kubernetes']['kubelet']['config']['authentication']['anonymous']['enabled'] = false

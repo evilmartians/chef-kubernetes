@@ -6,6 +6,9 @@ ca_config:
       kubernetes:
         usages: ["signing", "key encipherment", "server auth", "client auth"]
         expiry: 8760h
+      kubernetes_longplay:
+        usages: ["signing", "key encipherment", "server auth", "client auth"]
+        expiry: 87600h
 csr:
   key:
     algo: rsa
@@ -28,21 +31,75 @@ names:
   apiserver:
     O: Kubernetes
     OU: Cluster
-  front-proxy-client:
+  front_proxy_client:
     O: Kubernetes
     OU: Cluster
+  service_account:
+    O: Kubernetes
+    OU: Cluster
+  kubelet_client:
+    O: system:masters
+    OU: Cluster
+  ca-cluster_signing:
+    O: Kubernetes
+    OU: Cluster
+  ca-requestheader:
+    O: Kubernetes
+    OU: Cluster
+  ca-etcd_server:
+    O: Kubernetes
+    OU: Cluster
+  ca-etcd_peer:
+    O: Kubernetes
+    OU: Cluster
+  etcd_server:
+    O: Kubernetes
+    OU: Cluster
+  etcd_peer:
+    O: Kubernetes
+    OU: Cluster
+ca:
+  - cluster_signing
+  - requestheader
+  - etcd_server
+  - etcd_peer
 accounts:
   admin:
     cn: admin
+    ca: cluster_signing
     hosts: []
   proxy:
     cn: system:kube-proxy
+    ca: cluster_signing
     hosts: []
-  front-proxy-client:
-    cn: front-proxy-client
+  front_proxy_client:
+    cn: front_proxy_client
+    ca: requestheader
     hosts: []
+  kubelet_client:
+    cn: kube-apiserver-kubelet-client
+    ca: cluster_signing
+    hosts: []
+  service_account:
+    cn: ""
+    ca: cluster_signing
+    hosts: []
+    profile: kubernetes_longplay
+  etcd_server:
+    cn: etcd
+    ca: etcd_server
+    hosts:
+    - 127.0.0.1
+    - etcd
+  etcd_peer:
+    cn: etcd
+    ca: etcd_peer
+    hosts:
+    - 127.0.0.1
+    - etcd
   apiserver:
     cn: kubernetes
+    ca: cluster_signing
     hosts:
     - 127.0.0.1
     - 10.222.0.1

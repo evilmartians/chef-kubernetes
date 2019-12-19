@@ -1,4 +1,88 @@
 # UNRELEASED
+
+## Urgent Upgrade Notes
+
+### BEFORE upgrade
+
+#### Keypairs
+
+- actualize your `lib/tasks/ssl/config.yaml` with `lib/tasks/ssl/config_example.yaml`
+- add list of dns names and/or ip addresses to `.accounts.etcd_peer` and `.accounts.etcd_server` sections
+- set necessary environment variables, like:
+
+        export CHEF_SECRET_FILE=../../.chef/secret.pem
+        export CHEF_DIR=../../.chef
+
+- regenerate all the things with `$ rake encrypt_all`
+- move databag items to databags directory
+
+        $ mv ssl/{ca-cluster_signing,ca-requestheader,ca-etcd_server,ca-etcd_peer,admin,proxy,front_proxy_client,kubelet_client,service_account,etcd_server,etcd_peer,apiserver}_ssl.json \
+		../../data_bags/kubernetes
+
+- upload new items to the chef server
+
+        $ for i in ca-cluster_signing ca-requestheader ca-etcd_server \
+		ca-etcd_peer admin proxy front_proxy_client kubelet_client \
+		service_account etcd_server etcd_peer apiserver
+		do knife data bag from file kubernetes ${i}_ssl.json
+		done
+
+#### Etcd
+
+- go to any node with etcd peer
+- set `ETCDCTL_API` environment variable equal to `3`
+- get list of all members with `$ etcdctl member list`
+  we will use the following list as an example:
+
+        8f3ebeda27935ffc, started, 10.135.130.52, http://10.135.130.52:2380, http://10.135.130.52:2379
+        9d2e8736041a9a71, started, 10.135.128.188, http://10.135.128.188:2380, http://10.135.128.188:2379
+
+  for now we're on host with peer `8f3ebeda27935ffc` so it will be last in line
+- upgrade all members one by one with the last the one you're on the host with
+
+        $ etcdctl member update 9d2e8736041a9a71 --peer-urls="https://10.135.128.188:2380" --insecure-skip-tls-verify
+        $ etcdctl member update 8f3ebeda27935ffc --peer-urls="https://10.135.130.52:2380" --insecure-skip-tls-verify
+
+  **BE AWARE!** Your apiservers will be **unresponsive** from that time till
+  upgrade to finish
+
+#### Workers
+
+- remove all keypairs retrieved by kubelets
+
+        $ knife ssh "roles:kubernetes_node" "sudo unlink /etc/kubernetes/ssl/kubelet-client-current.pem"
+        $ knife ssh "roles:kubernetes_node" "sudo unlink /etc/kubernetes/ssl/kubelet-server-current.pem"
+
+### Upgrade procedure
+
+- Etcd
+  upgrade and restart all instances
+
+        $ knife ssh "roles:etcd" "sudo chef-client"
+        $ knife ssh "roles:etcd" "sudo systemctl restart etcd"
+
+- Api servers
+  upgrade and restart all instances
+
+        $ knife ssh "roles:kubernetes_master" "sudo chef-client"
+        $ knife ssh "roles:kubernetes_master" "sudo systemctl restart kube-apiserver"
+
+- Workers
+  upgrade and restart all instances
+
+        $ knife ssh "roles:kubernetes_node" "sudo chef-client"
+        $ knife ssh "roles:kubernetes_node" "sudo systemctl restart kubelet"
+
+---
+
+- SSL: etcd CAs and keypairs
+- SSL: separate cluster signing CA instead of one CA to rule them all
+- SSL: kubelet_client keypair
+- SSL: service account keypair
+- SSL: requestheader CA and keypair
+- SSL: keypair generation procedure should get CN and profile from keypair properties
+- SSL: ability to generate and use multiple CAs
+- SSL: added profile for long living keypairs
 - [CVE-2019-16782](https://github.com/advisories/GHSA-hrqr-hxpp-chr3)
 - Remove deis from cookbook
 
