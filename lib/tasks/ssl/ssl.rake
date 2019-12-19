@@ -83,14 +83,18 @@ def account_files(name)
   ).map { |ext| Pathname.new("#{WORK_DIR}/#{name}#{ext}") }
 end
 
-def gencsr(name, cn, hosts = [])
-  gencsr!(name, cn, hosts) unless valid?(name)
+def gencsr(name, data = {})
+  gencsr!(name, data) unless valid?(name)
 end
 
-def gencsr!(name, cn, hosts)
+def gencsr!(name, data)
   LOGGER.info "Generating #{name}-csr.json with algo #{CONFIG['csr']['key']['algo']} and size #{CONFIG['csr']['key']['size']}"
   names = CONFIG['names']['common'].merge(CONFIG['names'][name])
-  content = CONFIG['csr'].merge('hosts' => hosts, 'CN' => cn, 'names' => [names])
+  content = CONFIG['csr'].merge(
+    'hosts'   => data['hosts'],
+    'CN'      => data['cn'],
+    'names'   => [data['names']],
+    'profile' => data.fetch('profile', 'kubernetes'))
   LOGGER.debug "#{name}-csr.json: #{content.to_json}"
   write_file("#{name}-csr", content)
 end
@@ -112,7 +116,8 @@ end
 
 def generate!(name)
   LOGGER.info "Generating the #{name} client certificate and private key..."
-  system("cfssl gencert -ca=#{WORK_DIR}/ca-#{get_ca_for(name)}.pem -ca-key=#{WORK_DIR}/ca-#{get_ca_for(name)}-key.pem -config=#{WORK_DIR}/ca-config.json -profile=kubernetes #{WORK_DIR}/#{name}-csr.json | cfssljson -bare #{WORK_DIR}/#{name}")
+  profile = CONFIG['accounts'][name].fetch('profile', 'kubernetes')
+  system("cfssl gencert -ca=#{WORK_DIR}/ca-#{get_ca_for(name)}.pem -ca-key=#{WORK_DIR}/ca-#{get_ca_for(name)}-key.pem -config=#{WORK_DIR}/ca-config.json -profile=#{profile} #{WORK_DIR}/#{name}-csr.json | cfssljson -bare #{WORK_DIR}/#{name}")
 rescue => e
   LOGGER.fatal "Command #{command} failed with #{e.message}"
   exit 1
