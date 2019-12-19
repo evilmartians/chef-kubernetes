@@ -31,7 +31,10 @@ names:
   apiserver:
     O: Kubernetes
     OU: Cluster
-  front-proxy-client:
+  front_proxy_client:
+    O: Kubernetes
+    OU: Cluster
+  ca-requestheader:
     O: Kubernetes
     OU: Cluster
 ca:
@@ -43,9 +46,10 @@ accounts:
     hosts: []
   proxy:
     cn: system:kube-proxy
+  front_proxy_client:
+    cn: front_proxy_client
+    ca: requestheader
     hosts: []
-  front-proxy-client:
-    cn: front-proxy-client
     hosts: []
   apiserver:
     cn: kubernetes
