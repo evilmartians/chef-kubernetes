@@ -37,6 +37,9 @@ names:
   service_account:
     O: Kubernetes
     OU: Cluster
+  kubelet_client:
+    O: system:masters
+    OU: Cluster
   ca-requestheader:
     O: Kubernetes
     OU: Cluster
@@ -52,6 +55,10 @@ accounts:
   front_proxy_client:
     cn: front_proxy_client
     ca: requestheader
+    hosts: []
+  kubelet_client:
+    cn: kube-apiserver-kubelet-client
+    ca: cluster_signing
     hosts: []
   service_account:
     cn: ""
