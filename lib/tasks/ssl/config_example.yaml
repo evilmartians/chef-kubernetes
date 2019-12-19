@@ -34,6 +34,9 @@ names:
   front-proxy-client:
     O: Kubernetes
     OU: Cluster
+ca:
+  - cluster_signing
+  - requestheader
 accounts:
   admin:
     cn: admin

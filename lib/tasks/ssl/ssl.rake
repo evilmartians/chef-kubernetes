@@ -59,15 +59,19 @@ def ca?(crt)
   usage.include?('CA:TRUE')
 end
 
-def valid?(name, ca = "#{WORK_DIR}/ca.pem")
+def valid?(name)
   return false unless account_files(name).all?(&:exist?)
   return false unless crt = cert(name)
   return false unless active?(crt)
-  return false unless verified_by_ca?(crt, ca)
   return true if      ca?(crt)
+  return false unless verified_by_ca?(crt, "#{WORK_DIR}/ca-#{get_ca_for(name)}.pem")
   return false unless subject_alt_names(crt).sort.uniq == CONFIG['accounts'][name]['hosts'].sort.uniq
   return false unless common_name(crt) == CONFIG['accounts'][name]['cn']
   true
+end
+
+def get_ca_for(name)
+  "#{CONFIG['accounts'][name]['ca']}"
 end
 
 def account_files(name)
@@ -108,7 +112,7 @@ end
 
 def generate!(name)
   LOGGER.info "Generating the #{name} client certificate and private key..."
-  system("cfssl gencert -ca=#{WORK_DIR}/ca.pem -ca-key=#{WORK_DIR}/ca-key.pem -config=#{WORK_DIR}/ca-config.json -profile=kubernetes #{WORK_DIR}/#{name}-csr.json | cfssljson -bare #{WORK_DIR}/#{name}")
+  system("cfssl gencert -ca=#{WORK_DIR}/ca-#{get_ca_for(name)}.pem -ca-key=#{WORK_DIR}/ca-#{get_ca_for(name)}-key.pem -config=#{WORK_DIR}/ca-config.json -profile=kubernetes #{WORK_DIR}/#{name}-csr.json | cfssljson -bare #{WORK_DIR}/#{name}")
 rescue => e
   LOGGER.fatal "Command #{command} failed with #{e.message}"
   exit 1
@@ -136,12 +140,12 @@ def encrypt(name, secret)
 end
 
 desc 'Generate all the keys'
-task default: ['ca:generate'] + CONFIG['accounts'].map { |name, _data| "#{name}:generate" }
+task default: CONFIG['ca'].map { |name| "ca:#{name}:generate" } + CONFIG['accounts'].map { |name, _data| "#{name}:generate" }
 
 desc 'Generate all the keys and format encrypted databags'
-task encrypt_all: ['ca:encrypt'] + CONFIG['accounts'].map { |name, _data| "#{name}:encrypt" } do
+task encrypt_all: CONFIG['ca'].map { |name| "ca:#{name}:encrypt" } + CONFIG['accounts'].map { |name, _data| "#{name}:encrypt" } do
   accounts = CONFIG['accounts'].map { |name, _data| name }.join(',')
-  LOGGER.info "Now move #{WORK_DIR}/{ca,#{accounts}}_ssl.json to $chef_databags_folder/kubernetes"
+  LOGGER.info "Now move #{WORK_DIR}/{#{CONFIG['ca'].map { |name| "ca-"+name}.join(',')},#{accounts}}_ssl.json to $chef_databags_folder/kubernetes"
 end
 
 namespace :ca do
@@ -154,39 +158,43 @@ namespace :ca do
     LOGGER.debug "ca_config.json: #{ca_config.to_json}"
     write_file('ca-config', ca_config)
   end
+end
 
-  desc 'Certification authority CSR'
-  task :csr => :config do
-    gencsr('ca', 'Kubernetes')
-  end
+CONFIG['ca'].each do |name|
+  namespace "ca:#{name}" do
+    desc 'Certification authority CSR'
+    task :csr => "ca:config" do
+      gencsr("ca-#{name}", {'cn' =>'Kubernetes'})
+    end
 
-  desc 'Generate a CA certificate and private key'
-  task :generate => :csr do
-    cert_file = "#{WORK_DIR}/ca.pem"
-    key_file = "#{WORK_DIR}/ca-key.pem"
+    desc 'Generate a CA certificate and private key'
+    task :generate => :csr do
+      cert_file = "#{WORK_DIR}/ca-#{name}.pem"
+      key_file = "#{WORK_DIR}/ca-#{name}-key.pem"
 
-    next if File.exist?(key_file) && File.exist?(cert_file)
+      next if File.exist?(key_file) && File.exist?(cert_file)
 
-    LOGGER.info 'Initializing bare CA'
-    system("cfssl gencert -initca #{WORK_DIR}/ca-csr.json | cfssljson -bare #{WORK_DIR}/ca")
-  end
+      LOGGER.info "Initializing bare CA for #{name}"
+      system("cfssl gencert -initca #{WORK_DIR}/ca-#{name}-csr.json | cfssljson -bare #{WORK_DIR}/ca-#{name}")
+    end
 
-  desc 'Generate encrypted CA data bag'
-  task :encrypt => :generate do
-    LOGGER.info('Generating encrypted data bag for CA...')
+    desc "Generate encrypted CA #{name} data bag"
+    task :encrypt => :generate do
+      LOGGER.info("Generating encrypted data bag for CA #{name}...")
 
-    write_file(
-      'ca_ssl',
-      encrypt('ca', chef_secret(CHEF_SECRET_FILE))
-    )
+      write_file(
+        "ca-#{name}_ssl",
+        encrypt("ca-#{name}", chef_secret(CHEF_SECRET_FILE))
+      )
+    end
   end
 end
 
 CONFIG['accounts'].each do |name, data|
   namespace name.to_sym do
     desc "Create the #{name} client certificate signing request"
-    task :csr do
-      gencsr(name, data['cn'], data['hosts'])
+    task :csr => "ca:#{get_ca_for(name)}:generate" do
+      gencsr(name, data)
     end
 
     desc "Generate the #{name} client certificate and private key"

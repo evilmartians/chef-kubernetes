@@ -68,13 +68,12 @@ manifests.each do |manifest|
 end
 
 node['kubernetes']['ssl']['keypairs'].each do |keypair|
-  %w(public_key private_key).each do |key_type|
-    file node['kubernetes']['ssl'][keypair][key_type] do
-      content data_bag_item(
-        node['kubernetes']['databag'],
-        "#{keypair}_ssl"
-      )[key_type]
-    end
+  files = data_bag_item(node['kubernetes']['databag'], "#{keypair}_ssl")
+  file "/etc/kubernetes/ssl/#{keypair}.pem" do
+    content files['public_key']
+  end
+  file "/etc/kubernetes/ssl/#{keypair}-key.pem" do
+    content files['private_key']
   end
 end
 
