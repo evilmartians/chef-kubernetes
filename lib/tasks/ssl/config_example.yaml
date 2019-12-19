@@ -40,6 +40,9 @@ names:
   kubelet_client:
     O: system:masters
     OU: Cluster
+  ca-cluster_signing:
+    O: Kubernetes
+    OU: Cluster
   ca-requestheader:
     O: Kubernetes
     OU: Cluster
@@ -49,9 +52,12 @@ ca:
 accounts:
   admin:
     cn: admin
+    ca: cluster_signing
     hosts: []
   proxy:
     cn: system:kube-proxy
+    ca: cluster_signing
+    hosts: []
   front_proxy_client:
     cn: front_proxy_client
     ca: requestheader
@@ -67,6 +73,7 @@ accounts:
     profile: kubernetes_longplay
   apiserver:
     cn: kubernetes
+    ca: cluster_signing
     hosts:
     - 127.0.0.1
     - 10.222.0.1
