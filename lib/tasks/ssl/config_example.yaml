@@ -34,6 +34,9 @@ names:
   front_proxy_client:
     O: Kubernetes
     OU: Cluster
+  service_account:
+    O: Kubernetes
+    OU: Cluster
   ca-requestheader:
     O: Kubernetes
     OU: Cluster
@@ -50,7 +53,11 @@ accounts:
     cn: front_proxy_client
     ca: requestheader
     hosts: []
+  service_account:
+    cn: ""
+    ca: cluster_signing
     hosts: []
+    profile: kubernetes_longplay
   apiserver:
     cn: kubernetes
     hosts:
