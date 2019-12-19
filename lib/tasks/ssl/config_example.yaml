@@ -6,6 +6,9 @@ ca_config:
       kubernetes:
         usages: ["signing", "key encipherment", "server auth", "client auth"]
         expiry: 8760h
+      kubernetes_longplay:
+        usages: ["signing", "key encipherment", "server auth", "client auth"]
+        expiry: 87600h
 csr:
   key:
     algo: rsa
