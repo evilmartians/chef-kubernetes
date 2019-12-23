@@ -12,8 +12,8 @@ etcd_nodes = search(
 
 initial_cluster_string =
   etcd_nodes.map do |addr|
-    "#{addr}=#{node['etcd']['proto']}://#{addr}:#{node['etcd']['server_port']}"
-  end.join ','
+  "#{addr}=#{node['etcd']['proto']}://#{addr}:#{node['etcd']['server_port']}"
+end.join ','
 
 group node['etcd']['group'] do
   not_if { node['kubernetes']['install_via'] == 'static_pods' }
@@ -70,21 +70,39 @@ else
     action [:disable, :stop, :delete]
   end
 
+  %w(ca-etcd_server ca-etcd_peer etcd_server etcd_peer).each do |keypair|
+    files = data_bag_item(node['kubernetes']['databag'], "#{keypair}_ssl")
+    file "/etc/kubernetes/ssl/#{keypair}.pem" do
+      content files['public_key']
+    end
+    file "/etc/kubernetes/ssl/#{keypair}-key.pem" do
+      content files['private_key']
+    end
+  end
+
   etcd_service 'etcd' do
     action %i[create start]
     node_name k8s_ip
     default_service_name node['etcd']['default_service_name']
     install_method 'binary'
     service_manager service_type
-    data_dir node['etcd']['data_dir']
-    wal_dir node['etcd']['wal_dir']
-    initial_advertise_peer_urls "#{node['etcd']['proto']}://#{k8s_ip}:#{node['etcd']['server_port']}"
-    listen_peer_urls "#{node['etcd']['proto']}://#{k8s_ip}:#{node['etcd']['server_port']},http://127.0.0.1:2380"
-    listen_client_urls "#{node['etcd']['proto']}://#{k8s_ip}:#{node['etcd']['client_port']},http://127.0.0.1:2379"
     advertise_client_urls "#{node['etcd']['proto']}://#{k8s_ip}:#{node['etcd']['client_port']}"
-    initial_cluster_token node['etcd']['initial_cluster_token']
+    cert_file node['etcd']['cert_file']
+    client_cert_auth node['etcd']['client_cert_auth']
+    data_dir node['etcd']['data_dir']
+    initial_advertise_peer_urls "#{node['etcd']['proto']}://#{k8s_ip}:#{node['etcd']['server_port']}"
     initial_cluster initial_cluster_string
     initial_cluster_state node['etcd']['initial_cluster_state']
+    initial_cluster_token node['etcd']['initial_cluster_token']
+    key_file node['etcd']['key_file']
+    listen_client_urls "#{node['etcd']['proto']}://#{k8s_ip}:#{node['etcd']['client_port']},http://127.0.0.1:2379"
+    listen_peer_urls "#{node['etcd']['proto']}://#{k8s_ip}:#{node['etcd']['server_port']},http://127.0.0.1:2380"
+    peer_cert_file node['etcd']['peer_cert_file']
+    peer_client_cert_auth node['etcd']['peer_client_cert_auth']
+    peer_key_file node['etcd']['peer_key_file']
+    peer_trusted_ca_file node['etcd']['peer_trusted_ca_file']
+    trusted_ca_file node['etcd']['trusted_ca_file']
+    wal_dir node['etcd']['wal_dir']
     version node['etcd']['version'].tr('A-z', '')
     checksum node['etcd']['checksum']
     not_if do
