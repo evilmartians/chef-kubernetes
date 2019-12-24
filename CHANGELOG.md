@@ -1,4 +1,5 @@
 # UNRELEASED
+- [CVE-2019-16782](https://github.com/advisories/GHSA-hrqr-hxpp-chr3)
 - Remove deis from cookbook
 
 # 1.16.4 (12.12.2019)
