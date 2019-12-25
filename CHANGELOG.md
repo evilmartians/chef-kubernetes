@@ -75,6 +75,7 @@
 
 ---
 
+- [Kubernetes: 1.17.0](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.17.md#changes)
 - FeatureGates: added [ServiceTopology](https://kubernetes.io/docs/concepts/services-networking/service-topology/)
 - [etcd: 3.4.3](https://github.com/etcd-io/etcd/releases/tag/v3.4.3)
 - SSL: etcd CAs and keypairs
