@@ -59,6 +59,7 @@ default['kubernetes']['audit_webhook']['mode']              = 'batch' # Known mo
 default['kubernetes']['audit_webhook_config']['server']     = ''
 default['kubernetes']['feature_gates']                      = {
   'TTLAfterFinished'          => true,
+  'ServiceTopology'           => true,
 }
 default['kubernetes']['packages']['storage_url']            = "https://storage.googleapis.com/kubernetes-release/release/#{node['kubernetes']['version']}/bin/linux/amd64/"
 default['kubernetes']['checksums']['apiserver']             = '5eceff3e08a0281480f75e030c1e7b3880ff5d52f83ccf080fbb95c280bec8c0'
