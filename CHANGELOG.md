@@ -1,5 +1,7 @@
 # UNRELEASED
 
+# 1.17.0 (25.12.2019)
+
 ## Urgent Upgrade Notes
 
 ### BEFORE upgrade
