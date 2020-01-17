@@ -1,6 +1,7 @@
 # UNRELEASED
 - [CVE-2019-16782](https://github.com/advisories/GHSA-hrqr-hxpp-chr3)
 - Remove deis from cookbook
+- Add additional firewall rules restrictions for prometheus-operator
 
 # 1.16.4 (12.12.2019)
 - [Kubernetes: 1.16.4](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.16.md/#v1164)

@@ -103,4 +103,15 @@ firewall_rule 'kubelet' do
   end
 end
 
+firewall_rule 'prometheus-operator' do
+  port [10_252, 9100]
+  protocol :tcp
+  interface node['kubernetes']['interface']
+  command :allow
+  only_if do
+    node['kubernetes']['prometheus_operator_firewall']
+  end
+end
+
+
 include_recipe 'kubernetes::cleaner'

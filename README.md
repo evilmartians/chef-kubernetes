@@ -79,6 +79,12 @@ Google Kubernetes installer for Ubuntu
     <td><tt>true</tt></td>
   </tr>
   <tr>
+    <td><tt>['kubernetes']['prometheus_operator_firewall']</tt></td>
+    <td>Boolean</td>
+    <td>Enable firewall rules for prometheus-operator</td>
+    <td><tt>false</tt></td>
+  </tr>
+  <tr>
     <td><tt>['kubernetes']['register_as']</tt></td>
     <td>String</td>
     <td></td>
