@@ -1,4 +1,5 @@
 # UNRELEASED
+- [Kubernetes: 1.15.8](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.15.md#changelog-since-v1157)
 - [CVE-2019-16782](https://github.com/advisories/GHSA-hrqr-hxpp-chr3)
 
 # 1.15.7 (12.12.2019)
