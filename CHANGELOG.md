@@ -1,5 +1,6 @@
 # UNRELEASED
 
+- [CNI/plugins: 0.8.5](https://github.com/containernetworking/plugins/releases/tag/v0.8.5)
 - [CoreDNS: 1.6.7](https://coredns.io/2020/01/28/coredns-1.6.7-release/)
 - [CVE-2019-16782](https://github.com/advisories/GHSA-hrqr-hxpp-chr3)
 - Remove deis from cookbook
