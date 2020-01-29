@@ -34,13 +34,15 @@ names:
   front_proxy_client:
     O: Kubernetes
     OU: Cluster
-  service_account:
     O: Kubernetes
     OU: Cluster
   kubelet_client:
     O: system:masters
     OU: Cluster
   ca-cluster_signing:
+    O: Kubernetes
+    OU: Cluster
+  ca-service_account:
     O: Kubernetes
     OU: Cluster
   ca-requestheader:
@@ -60,6 +62,7 @@ names:
     OU: Cluster
 ca:
   - cluster_signing
+  - service_account
   - requestheader
   - etcd_server
   - etcd_peer
@@ -80,11 +83,6 @@ accounts:
     cn: kube-apiserver-kubelet-client
     ca: cluster_signing
     hosts: []
-  service_account:
-    cn: ""
-    ca: cluster_signing
-    hosts: []
-    profile: kubernetes_longplay
   etcd_server:
     cn: etcd
     ca: etcd_server
