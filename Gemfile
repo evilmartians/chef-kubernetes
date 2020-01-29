@@ -16,4 +16,4 @@ gem 'berkshelf'
 
 gem 'thor-foodcritic'
 
-gem 'chef', '>12'
+gem 'chef', '>12', '<15'
