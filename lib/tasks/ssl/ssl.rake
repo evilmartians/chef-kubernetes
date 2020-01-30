@@ -158,7 +158,7 @@ namespace :ca do
   task :config do
     filename = "#{WORK_DIR}/ca-config.json"
     next if File.exist?(filename)
-    LOGGER.info "Generating ca-config.json with expiration period #{CONFIG['ca_config']['signing']['default']['expiry']}"
+    LOGGER.info "Generating ca-config.json with expiration period #{CONFIG['ca_config']['signing']['profiles']['ca']['expiry']}"
     ca_config = CONFIG['ca_config']
     LOGGER.debug "ca_config.json: #{ca_config.to_json}"
     write_file('ca-config', ca_config)
@@ -169,7 +169,7 @@ CONFIG['ca'].each do |name|
   namespace "ca:#{name}" do
     desc 'Certification authority CSR'
     task :csr => "ca:config" do
-      gencsr("ca-#{name}", {'cn' =>'Kubernetes'})
+      gencsr("ca-#{name}", {'cn' =>'Kubernetes', 'profile' => 'ca'})
     end
 
     desc 'Generate a CA certificate and private key'

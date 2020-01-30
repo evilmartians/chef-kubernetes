@@ -1,4 +1,5 @@
 # UNRELEASED
+- SSL: Certification authorities should have their own csr profile
 - Recipes::Master: configuration files for scheduler and controller-manager
 - SSL: scheduler and controller_manager should have their own keypairs
 - [CNI/plugins: 0.8.5](https://github.com/containernetworking/plugins/releases/tag/v0.8.5)

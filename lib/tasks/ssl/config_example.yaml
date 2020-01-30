@@ -6,6 +6,8 @@ ca_config:
       kubernetes:
         usages: ["signing", "key encipherment", "server auth", "client auth"]
         expiry: 8760h
+      ca:
+        usages: ["cert sign", "key encipherment", "digital signature"]
       scheduler:
         usages: ["server auth", "key encipherment", "digital signature"]
       controller_manager:
