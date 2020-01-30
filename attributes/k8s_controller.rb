@@ -8,6 +8,7 @@ default['kubernetes']['controller_manager']['cluster_signing_key_file']         
 default['kubernetes']['controller_manager']['root_ca_file']                     = node['kubernetes']['client_ca_file']
 default['kubernetes']['controller_manager']['tls_cert_file']                    = node['kubernetes']['controller_manager_cert_file']
 default['kubernetes']['controller_manager']['tls_private_key_file']             = node['kubernetes']['controller_manager_key_file']
+default['kubernetes']['controller_manager']['requestheader_client_ca_file']     = node['kubernetes']['requestheader_client_ca_file']
 default['kubernetes']['controller_manager']['feature_gates']                    = node['kubernetes']['feature_gates']
 default['kubernetes']['controller_manager']['node_monitor_period']              = '2s'
 default['kubernetes']['controller_manager']['node_monitor_grace_period']        = '16s'

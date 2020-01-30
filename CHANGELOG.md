@@ -1,4 +1,5 @@
 # UNRELEASED
+- Controller manager: add requestheader client ca file
 - Apiserver: no more insecure ports
 - SSL: etcd client keypair
 - SSL: keypair generator should log cfssl command before apply
