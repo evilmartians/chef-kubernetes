@@ -1,6 +1,4 @@
 default['kubernetes']['api']['bind_address']                            = '0.0.0.0'
-default['kubernetes']['api']['insecure_bind_address']                   = '127.0.0.1'
-default['kubernetes']['api']['insecure_port']                           = 8080
 default['kubernetes']['api']['secure_port']                             = 8443
 default['kubernetes']['api']['service_cluster_ip_range']                = '10.222.0.0/16'
 default['kubernetes']['api']['storage_backend']                         = 'etcd3'

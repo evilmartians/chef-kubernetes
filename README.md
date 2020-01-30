@@ -1165,18 +1165,6 @@ Google Kubernetes installer for Ubuntu
     <td><tt>0.0.0.0</tt></td>
   </tr>
   <tr>
-    <td><tt>['kubernetes']['api']['insecure_bind_address']</tt></td>
-    <td>String</td>
-    <td>insecure_bind_address</td>
-    <td><tt>127.0.0.1</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['kubernetes']['api']['insecure_port']</tt></td>
-    <td>Integer</td>
-    <td>insecure_port</td>
-    <td><tt>8080</tt></td>
-  </tr>
-  <tr>
     <td><tt>['kubernetes']['api']['secure_port']</tt></td>
     <td>Integer</td>
     <td>secure_port</td>

@@ -1,4 +1,5 @@
 # UNRELEASED
+- Apiserver: no more insecure ports
 - SSL: etcd client keypair
 - SSL: keypair generator should log cfssl command before apply
 - SSL: each keypair has its own profile by default
