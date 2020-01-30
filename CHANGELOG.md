@@ -1,4 +1,5 @@
 # UNRELEASED
+- Controller manager: use service account credentials
 - Controller manager: add bootstrapsigner and tokencleaner controllers
 - Controller manager: add requestheader client ca file
 - Apiserver: no more insecure ports
