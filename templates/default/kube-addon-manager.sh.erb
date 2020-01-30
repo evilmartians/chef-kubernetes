@@ -27,7 +27,7 @@
 #    logged)
 
 KUBECTL=${KUBECTL_BIN:-/usr/local/bin/kubectl}
-KUBECTL_OPTS=${KUBECTL_OPTS:-"--server=http://<%= node['kubernetes']['api']['insecure_bind_address'] %>:<%= node['kubernetes']['api']['insecure_port'] %>"}
+KUBECTL_OPTS=${KUBECTL_OPTS:-"--kubeconfig=/etc/kubernetes/addon-manager-config.yaml"}
 # KUBECTL_PRUNE_WHITELIST is a list of resources whitelisted by
 # default.
 # This is currently the same with the default in:

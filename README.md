@@ -1592,11 +1592,27 @@ Then add next files:
       ]
     },
     {
-      "name": "scheduler",
+      "name": "system:kube-scheduler",
       "token": "MoN7ohz2Aebeep2eeneGhie5Hikop9iroSahyezohchuthi8Iu1iVaetae5xaj3W",
       "uid": "10103",
       "groups": [
-        "scheduler"
+        "system:kube-scheduler"
+      ]
+    },
+    {
+      "name": "system:kube-controller-manager",
+      "token": "waiKahbeegh3ooco0oa2oodi7mei5Sahboomahdaedu2ieha2queen0Aiwera7ui",
+      "uid": "10104",
+      "groups": [
+        "system:kube-controller-manager"
+      ]
+    },
+    {
+      "name": "evlms:addon-manager",
+      "token": "heiyais8Dolee8ma5toh8meetee8Ooyaecixoobai3quoo0phu2iife5ahkoo0ei",
+      "uid": "10105",
+      "groups": [
+        "system:masters"
       ]
     }
   ]

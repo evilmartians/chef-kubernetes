@@ -132,6 +132,40 @@ if node['kubernetes']['audit_webhook']['enabled']
   end
 end
 
+require 'base64'
+
+ca_file = data_bag_item(node['kubernetes']['databag'], 'ca-cluster_signing_ssl')['public_key']
+
+%w(scheduler controller-manager).each do |name|
+  template "/etc/kubernetes/#{name}-config.yaml" do
+    source 'kubeconfig.yaml.erb'
+    if node['kubernetes']['token_auth']
+      users_data = data_bag_item(node['kubernetes']['databag'], 'users')['users']
+      token = users_data.find { |user| user['name'] == "system:kube-#{name}" }['token']
+
+      variables(
+        token: token,
+        ca_file: Base64.encode64(ca_file).delete("\n"),
+        user: "system:kube-#{name}"
+      )
+    end
+  end
+end
+
+template '/etc/kubernetes/addon-manager-config.yaml' do
+  source 'kubeconfig.yaml.erb'
+  if node['kubernetes']['token_auth']
+    users_data = data_bag_item(node['kubernetes']['databag'], 'users')['users']
+    token = users_data.find { |user| user['name'] == "evlms:addon-manager" }['token']
+
+    variables(
+      token: token,
+      ca_file: Base64.encode64(ca_file).delete("\n"),
+      user: "evlms:addon-manager"
+    )
+  end
+end
+
 firewall_rule 'kube_apiserver' do
   port node['kubernetes']['api']['secure_port']
   protocol :tcp
