@@ -1,5 +1,5 @@
 # UNRELEASED
-
+- [Kubernetes: 1.17.2](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.17.md#v1172)
 - SSL: fix subject generation
 - SSL: rebuild profiles section to be more universal
 - Controller manager: use service account credentials
