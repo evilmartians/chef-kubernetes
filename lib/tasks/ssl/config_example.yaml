@@ -1,26 +1,18 @@
 ca_config:
   signing:
-    default:
-      expiry: 87600h
     profiles:
       ca:
         usages: ["cert sign", "key encipherment", "digital signature"]
-      apiserver:
+        expiry: 87600h
+      server:
         usages: ["server auth", "key encipherment", "digital signature"]
-      scheduler:
-        usages: ["server auth", "key encipherment", "digital signature"]
-      controller_manager:
-        usages: ["server auth", "key encipherment", "digital signature"]
-      front_proxy_client:
+        expiry: 87600h
+      client:
         usages: ["client auth", "key encipherment", "digital signature"]
-      kubelet_client:
-        usages: ["client auth", "key encipherment", "digital signature"]
-      etcd_client:
-        usages: ["client auth", "key encipherment", "digital signature"]
-      etcd_server:
-        usages: ["server auth", "key encipherment", "digital signature"]
-      etcd_peer:
-        usages: ["server auth", "key encipherment", "digital signature"]
+        expiry: 87600h
+      client_server:
+        usages: ["client auth", "server auth", "key encipherment", "digital signature"]
+        expiry: 87600h
 csr:
   key:
     algo: rsa
@@ -91,38 +83,46 @@ accounts:
   admin:
     cn: admin
     ca: cluster_signing
+    profile: client
     hosts: []
   proxy:
     cn: system:kube-proxy
     ca: cluster_signing
+    profile: client
     hosts: []
   front_proxy_client:
-    cn: front_proxy_client
+    cn: front-proxy-client
     ca: requestheader
+    profile: client
     hosts: []
   kubelet_client:
     cn: kube-apiserver-kubelet-client
     ca: cluster_signing
+    profile: client
     hosts: []
   etcd_client:
     cn: kube-apiserver-etcd-client
     ca: etcd_server
+    profile: client
     hosts: []
   etcd_server:
     cn: etcd
     ca: etcd_server
+    profile: client_server
     hosts:
     - 127.0.0.1
     - etcd
   etcd_peer:
     cn: etcd
     ca: etcd_peer
+    profile: client_server
     hosts:
     - 127.0.0.1
     - etcd
   apiserver:
     cn: kubernetes
     ca: cluster_signing
+    profile: server
     hosts:
     - 127.0.0.1
     - 10.222.0.1
@@ -134,15 +134,17 @@ accounts:
   scheduler:
     cn: kubernetes
     ca: cluster_signing
-    bundle: true
+    profile: server
     hosts:
     - 127.0.0.1
   controller_manager:
     cn: kubernetes
     ca: cluster_signing
+    profile: server
     hosts:
     - 127.0.0.1
   addon_manager:
     cn: evlms:addon-manager
     ca: cluster_signing
+    profile: client
     hosts: []

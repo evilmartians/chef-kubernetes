@@ -1,4 +1,5 @@
 # UNRELEASED
+- SSL: rebuild profiles section to be more universal
 - Controller manager: use service account credentials
 - Controller manager: add bootstrapsigner and tokencleaner controllers
 - Controller manager: add requestheader client ca file
