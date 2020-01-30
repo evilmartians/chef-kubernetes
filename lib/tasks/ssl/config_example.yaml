@@ -6,6 +6,10 @@ ca_config:
       kubernetes:
         usages: ["signing", "key encipherment", "server auth", "client auth"]
         expiry: 8760h
+      scheduler:
+        usages: ["server auth", "key encipherment", "digital signature"]
+      controller_manager:
+        usages: ["server auth", "key encipherment", "digital signature"]
       kubernetes_longplay:
         usages: ["signing", "key encipherment", "server auth", "client auth"]
         expiry: 87600h
@@ -32,6 +36,10 @@ names:
     O: Kubernetes
     OU: Cluster
   front_proxy_client:
+  scheduler:
+    O: Kubernetes
+    OU: Cluster
+  controller_manager:
     O: Kubernetes
     OU: Cluster
     O: Kubernetes
@@ -59,6 +67,9 @@ names:
     OU: Cluster
   etcd_peer:
     O: Kubernetes
+    OU: Cluster
+  addon_manager:
+    O: system:masters
     OU: Cluster
 ca:
   - cluster_signing
@@ -106,3 +117,18 @@ accounts:
     - kubernetes.default.svc
     - kubernetes.local
     - kubernetes.default.svc.kubernetes.local
+  scheduler:
+    cn: kubernetes
+    ca: cluster_signing
+    bundle: true
+    hosts:
+    - 127.0.0.1
+  controller_manager:
+    cn: kubernetes
+    ca: cluster_signing
+    hosts:
+    - 127.0.0.1
+  addon_manager:
+    cn: evlms:addon-manager
+    ca: cluster_signing
+    hosts: []
