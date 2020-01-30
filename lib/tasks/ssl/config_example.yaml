@@ -3,23 +3,26 @@ ca_config:
     default:
       expiry: 87600h
     profiles:
-      kubernetes:
-        usages: ["signing", "key encipherment", "server auth", "client auth"]
-        expiry: 8760h
       ca:
         usages: ["cert sign", "key encipherment", "digital signature"]
+      apiserver:
+        usages: ["server auth", "key encipherment", "digital signature"]
       scheduler:
         usages: ["server auth", "key encipherment", "digital signature"]
       controller_manager:
         usages: ["server auth", "key encipherment", "digital signature"]
-      kubernetes_longplay:
-        usages: ["signing", "key encipherment", "server auth", "client auth"]
-        expiry: 87600h
+      front_proxy_client:
+        usages: ["client auth", "key encipherment", "digital signature"]
+      kubelet_client:
+        usages: ["client auth", "key encipherment", "digital signature"]
+      etcd_server:
+        usages: ["server auth", "key encipherment", "digital signature"]
+      etcd_peer:
+        usages: ["server auth", "key encipherment", "digital signature"]
 csr:
   key:
     algo: rsa
     size: 2048
-  profile: kubernetes
 names:
   common:
     C: RU
@@ -37,13 +40,13 @@ names:
   apiserver:
     O: Kubernetes
     OU: Cluster
-  front_proxy_client:
   scheduler:
     O: Kubernetes
     OU: Cluster
   controller_manager:
     O: Kubernetes
     OU: Cluster
+  front_proxy_client:
     O: Kubernetes
     OU: Cluster
   kubelet_client:

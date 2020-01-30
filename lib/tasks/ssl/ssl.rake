@@ -94,7 +94,7 @@ def gencsr!(name, data)
     'hosts'   => data['hosts'],
     'CN'      => data['cn'],
     'names'   => [data['names']],
-    'profile' => data.fetch('profile', 'kubernetes'))
+    'profile' => data.fetch('profile', name))
   LOGGER.debug "#{name}-csr.json: #{content.to_json}"
   write_file("#{name}-csr", content)
 end
@@ -116,8 +116,8 @@ end
 
 def generate!(name)
   LOGGER.info "Generating the #{name} client certificate and private key..."
-  profile = CONFIG['accounts'][name].fetch('profile', 'kubernetes')
   system("cfssl gencert -ca=#{WORK_DIR}/ca-#{get_ca_for(name)}.pem -ca-key=#{WORK_DIR}/ca-#{get_ca_for(name)}-key.pem -config=#{WORK_DIR}/ca-config.json -profile=#{profile} #{WORK_DIR}/#{name}-csr.json | cfssljson -bare #{WORK_DIR}/#{name}")
+  profile = CONFIG['accounts'][name].fetch('profile', name)
 rescue => e
   LOGGER.fatal "Command #{command} failed with #{e.message}"
   exit 1
