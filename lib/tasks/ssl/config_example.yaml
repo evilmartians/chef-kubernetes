@@ -15,6 +15,8 @@ ca_config:
         usages: ["client auth", "key encipherment", "digital signature"]
       kubelet_client:
         usages: ["client auth", "key encipherment", "digital signature"]
+      etcd_client:
+        usages: ["client auth", "key encipherment", "digital signature"]
       etcd_server:
         usages: ["server auth", "key encipherment", "digital signature"]
       etcd_peer:
@@ -73,6 +75,9 @@ names:
   etcd_peer:
     O: Kubernetes
     OU: Cluster
+  etcd_client:
+    O: Kubernetes
+    OU: Cluster
   addon_manager:
     O: system:masters
     OU: Cluster
@@ -98,6 +103,10 @@ accounts:
   kubelet_client:
     cn: kube-apiserver-kubelet-client
     ca: cluster_signing
+    hosts: []
+  etcd_client:
+    cn: kube-apiserver-etcd-client
+    ca: etcd_server
     hosts: []
   etcd_server:
     cn: etcd
