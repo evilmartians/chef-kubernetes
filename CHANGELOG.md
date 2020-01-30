@@ -1,4 +1,5 @@
 # UNRELEASED
+- SSL: keypair generator should log cfssl command before apply
 - SSL: each keypair has its own profile by default
 - SSL: Certification authorities should have their own csr profile
 - Recipes::Master: configuration files for scheduler and controller-manager

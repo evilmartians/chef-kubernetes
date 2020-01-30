@@ -116,8 +116,15 @@ end
 
 def generate!(name)
   LOGGER.info "Generating the #{name} client certificate and private key..."
-  system("cfssl gencert -ca=#{WORK_DIR}/ca-#{get_ca_for(name)}.pem -ca-key=#{WORK_DIR}/ca-#{get_ca_for(name)}-key.pem -config=#{WORK_DIR}/ca-config.json -profile=#{profile} #{WORK_DIR}/#{name}-csr.json | cfssljson -bare #{WORK_DIR}/#{name}")
   profile = CONFIG['accounts'][name].fetch('profile', name)
+  gencmd = "cfssl gencert -ca=#{WORK_DIR}/ca-#{get_ca_for(name)}.pem" +
+           " -ca-key=#{WORK_DIR}/ca-#{get_ca_for(name)}-key.pem" +
+           " -config=#{WORK_DIR}/ca-config.json" +
+           " -profile=#{profile}" +
+           " #{WORK_DIR}/#{name}-csr.json" +
+           "| cfssljson -bare #{WORK_DIR}/#{name}"
+  LOGGER.info("... with #{gencmd}")
+  system(gencmd)
 rescue => e
   LOGGER.fatal "Command #{command} failed with #{e.message}"
   exit 1
