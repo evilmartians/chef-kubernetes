@@ -70,6 +70,7 @@ else
     action [:disable, :stop, :delete]
   end
 
+  directory('/etc/kubernetes/ssl') { recursive true }
   %w(ca-etcd_server ca-etcd_peer etcd_server etcd_peer).each do |keypair|
     files = data_bag_item(node['kubernetes']['databag'], "#{keypair}_ssl")
     file "/etc/kubernetes/ssl/#{keypair}.pem" do
