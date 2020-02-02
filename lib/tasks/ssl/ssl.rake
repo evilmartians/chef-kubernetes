@@ -93,7 +93,7 @@ def gencsr!(name, data)
   content = CONFIG['csr'].merge(
     'hosts'   => data['hosts'],
     'CN'      => data['cn'],
-    'names'   => [data['names']],
+    'names'   => [names],
     'profile' => data.fetch('profile', name))
   LOGGER.debug "#{name}-csr.json: #{content.to_json}"
   write_file("#{name}-csr", content)

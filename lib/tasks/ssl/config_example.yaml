@@ -22,57 +22,25 @@ names:
     C: RU
     L: Moscow
     ST: Moscow
-  ca:
-    O: Kubernetes
-    OU: CA
+  ca: {}
   admin:
     O: system:masters
-    OU: Cluster
   proxy:
     O: system:node-proxier
-    OU: Cluster
-  apiserver:
-    O: Kubernetes
-    OU: Cluster
-  scheduler:
-    O: Kubernetes
-    OU: Cluster
-  controller_manager:
-    O: Kubernetes
-    OU: Cluster
-  front_proxy_client:
-    O: Kubernetes
-    OU: Cluster
+  apiserver: {}
+  scheduler: {}
+  controller_manager: {}
+  front_proxy_client: {}
   kubelet_client:
     O: system:masters
-    OU: Cluster
-  ca-cluster_signing:
-    O: Kubernetes
-    OU: Cluster
-  ca-service_account:
-    O: Kubernetes
-    OU: Cluster
-  ca-requestheader:
-    O: Kubernetes
-    OU: Cluster
-  ca-etcd_server:
-    O: Kubernetes
-    OU: Cluster
-  ca-etcd_peer:
-    O: Kubernetes
-    OU: Cluster
-  etcd_server:
-    O: Kubernetes
-    OU: Cluster
-  etcd_peer:
-    O: Kubernetes
-    OU: Cluster
-  etcd_client:
-    O: Kubernetes
-    OU: Cluster
-  addon_manager:
-    O: system:masters
-    OU: Cluster
+  ca-cluster_signing: {}
+  ca-service_account: {}
+  ca-requestheader: {}
+  ca-etcd_server: {}
+  ca-etcd_peer: {}
+  etcd_server: {}
+  etcd_peer: {}
+  etcd_client: {}
 ca:
   - cluster_signing
   - service_account

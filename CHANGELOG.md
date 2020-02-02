@@ -1,4 +1,6 @@
 # UNRELEASED
+
+- SSL: fix subject generation
 - SSL: rebuild profiles section to be more universal
 - Controller manager: use service account credentials
 - Controller manager: add bootstrapsigner and tokencleaner controllers
