@@ -1,4 +1,5 @@
 # UNRELEASED
+- [Kubernetes: addon_manager v9.0.2](https://github.com/kubernetes/kubernetes/blob/master/cluster/addons/addon-manager/CHANGELOG.md)
 - Gemfile: actualization
 
 # 1.17.2 (30.01.2020)
