@@ -1,4 +1,5 @@
 # UNRELEASED
+- Gemfile: actualization
 
 # 1.17.2 (30.01.2020)
 - [Kubernetes: 1.17.2](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.17.md#v1172)
