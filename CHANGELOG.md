@@ -1,4 +1,6 @@
 # UNRELEASED
+
+# 1.17.4 (20.03.2020)
 - [Kubernetes: 1.17.4](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.17.md#v1174)
 - [CoreDNS: 1.6.9](https://coredns.io/2020/03/24/coredns-1.6.9-release/)
 - [Weave Net: 2.6.2](https://github.com/weaveworks/weave/releases/tag/v2.6.2)
