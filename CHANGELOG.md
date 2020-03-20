@@ -1,4 +1,5 @@
 # UNRELEASED
+- [Weave Net: 2.6.2](https://github.com/weaveworks/weave/releases/tag/v2.6.2)
 - [etcd: 3.4.5](https://github.com/etcd-io/etcd/releases/tag/v3.4.5)
 
 # 1.17.3 (14.02.2020)
