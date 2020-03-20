@@ -1,4 +1,5 @@
 # UNRELEASED
+- [etcd: 3.4.5](https://github.com/etcd-io/etcd/releases/tag/v3.4.5)
 
 # 1.17.3 (14.02.2020)
 - [Kubernetes: 1.17.3](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.17.md#v1173)
