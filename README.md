@@ -1437,6 +1437,12 @@ Google Kubernetes installer for Ubuntu
     <td>The port to bind the metrics server. Use 0 to disable</td>
     <td><tt>10249</tt></td>
   </tr>
+  <tr>
+    <td><tt>['kubernetes']['proxy']['global']['detect_local_mode']</tt></td>
+    <td>String</td>
+    <td>Mode to use to detect local traffic</td>
+    <td><tt>10249</tt></td>
+  </tr>
 </table>
 
 ###### scheduler

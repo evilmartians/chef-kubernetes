@@ -1,4 +1,5 @@
 # UNRELEASED
+- KubeProxy: added flag [detect-local-mode](https://github.com/kubernetes/kubernetes/pull/87748/)
 - KubeProxy: separate `metrics-bind-address` and `metrics-port` flags merged to single [metrics-bind-address](https://github.com/kubernetes/kubernetes/pull/88512/commits) flag with datatype `ipport`
 - FeatureGates: added [ImmutableEphemeralVolumes](https://github.com/kubernetes/kubernetes/pull/86377)
 - FeatureGates: added [ServiceAppProtocol](https://github.com/kubernetes/enhancements/blob/master/keps/sig-network/20191227-app-protocol.md)
