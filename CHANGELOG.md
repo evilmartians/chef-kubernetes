@@ -1,4 +1,5 @@
 # UNRELEASED
+- [Kubernetes: 1.18.1](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.18.md#v1181)
 - KubeProxy: use config file instead of thousands cmdline flags
 - [Docker CE: 19.03.8](https://docs.docker.com/engine/release-notes/#19038)
 - KubeProxy: added flag [detect-local-mode](https://github.com/kubernetes/kubernetes/pull/87748/)
