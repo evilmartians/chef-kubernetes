@@ -56,7 +56,7 @@ module Kubernetes
       options.store('bind-address', k8s_ip(node)) # FIXME
       options.store('proxy-mode', node['kubernetes']['proxy_mode'])
       options.store('cluster-cidr', node['kubernetes']['cluster_cidr'])
-      options.store('metrics-bind-address', k8s_ip(node))
+      options.store('metrics-bind-address', "#{k8s_ip(node)}:#{node['kubernetes']['proxy']['metrics_port']}")
       options['feature-gates'] = options['feature-gates'].map { |k, v| "#{k}=#{v}" }.join(',')
       if node['kubernetes']['proxy_mode'] == 'ipvs'
         Hash[node['kubernetes']['proxy']['ipvs']].each do |k, v|

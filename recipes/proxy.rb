@@ -77,7 +77,7 @@ if install_via == 'systemd'
 end
 
 firewall_rule 'kube_proxy' do
-  port node['kubernetes']['proxy']['global']['metrics_port']
+  port node['kubernetes']['proxy']['metrics_port']
   protocol :tcp
   interface node['kubernetes']['interface']
   command :allow
