@@ -1,4 +1,5 @@
 # UNRELEASED
+- [Docker CE: 19.03.8](https://docs.docker.com/engine/release-notes/#19038)
 - KubeProxy: added flag [detect-local-mode](https://github.com/kubernetes/kubernetes/pull/87748/)
 - KubeProxy: separate `metrics-bind-address` and `metrics-port` flags merged to single [metrics-bind-address](https://github.com/kubernetes/kubernetes/pull/88512/commits) flag with datatype `ipport`
 - FeatureGates: added [ImmutableEphemeralVolumes](https://github.com/kubernetes/kubernetes/pull/86377)
