@@ -1,4 +1,5 @@
 # UNRELEASED
+- FeatureGates: added [ServiceAppProtocol](https://github.com/kubernetes/enhancements/blob/master/keps/sig-network/20191227-app-protocol.md)
 - FeatureGates: added [ConfigurableFSGroupPolicy](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#configure-volume-permission-and-ownership-change-policy-for-pods)
 - FeatureGates: added [EndpointSliceProxying](https://kubernetes.io/docs/tasks/administer-cluster/enabling-endpointslices/)
 - [etcd: 3.4.7](https://github.com/etcd-io/etcd/releases/tag/v3.4.7)
