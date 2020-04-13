@@ -66,6 +66,7 @@ default['kubernetes']['audit_webhook_config']['server']     = ''
 default['kubernetes']['feature_gates']                      = {
   'TTLAfterFinished'          => true,
   'ServiceTopology'           => true,
+  'EndpointSliceProxying'     => true,
 }
 default['kubernetes']['packages']['storage_url']            = "https://storage.googleapis.com/kubernetes-release/release/#{node['kubernetes']['version']}/bin/linux/amd64/"
 default['kubernetes']['checksums']['apiserver']             = '1df7d178f1eef98a7298acb73d036915c604214dc67d923506d25d492dc562af'
