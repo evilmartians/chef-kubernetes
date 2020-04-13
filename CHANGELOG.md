@@ -1,4 +1,5 @@
 # UNRELEASED
+- FeatureGates: added [ImmutableEphemeralVolumes](https://github.com/kubernetes/kubernetes/pull/86377)
 - FeatureGates: added [ServiceAppProtocol](https://github.com/kubernetes/enhancements/blob/master/keps/sig-network/20191227-app-protocol.md)
 - FeatureGates: added [ConfigurableFSGroupPolicy](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#configure-volume-permission-and-ownership-change-policy-for-pods)
 - FeatureGates: added [EndpointSliceProxying](https://kubernetes.io/docs/tasks/administer-cluster/enabling-endpointslices/)
