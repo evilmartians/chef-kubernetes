@@ -1,0 +1,41 @@
+apiVersion: kubeproxy.config.k8s.io/v1alpha1
+kind: KubeProxyConfiguration
+bindAddress: <%= k8s_ip(node) %>
+clientConnection:
+  acceptContentTypes: <%= node['kubernetes']['proxy']['client_connection']['accept_content_types'] %>
+  burst: <%= node['kubernetes']['proxy']['client_connection']['burst'] %>
+  contentType: <%= node['kubernetes']['proxy']['client_connection']['content_type'] %>
+  kubeconfig: <%= node['kubernetes']['proxy']['client_connection']['kubeconfig'] %>
+  qps: <%= node['kubernetes']['proxy']['client_connection']['qps'] %>
+clusterCIDR: <%= node['kubernetes']['cluster_cidr'] %>
+configSyncPeriod: <%= node['kubernetes']['proxy']['config_sync_period'] %>
+conntrack:
+  maxPerCore: <%= node['kubernetes']['proxy']['conntrack']['max_per_core'] %>
+  min: <%= node['kubernetes']['proxy']['conntrack']['min'] %>
+  tcpCloseWaitTimeout: <%= node['kubernetes']['proxy']['conntrack']['tcp_close_wait_timeout'] %>
+  tcpEstablishedTimeout: <%= node['kubernetes']['proxy']['conntrack']['tcp_established_timeout'] %>
+detectLocalMode: <%= node['kubernetes']['proxy']['detect_local_mode'] %>
+enableProfiling: <%= node['kubernetes']['proxy']['enable_profiling'] %>
+healthzBindAddress: <%= k8s_ip(node) %>:<%= node['kubernetes']['proxy']['healthz_port'] %>
+hostnameOverride: <%= k8s_hostname(node) %>
+iptables:
+  masqueradeAll: <%= node['kubernetes']['proxy']['iptables']['masquerade_all'] %>
+  masqueradeBit: <%= node['kubernetes']['proxy']['iptables']['masquerade_bit'] %>
+  minSyncPeriod: <%= node['kubernetes']['proxy']['iptables']['min_sync_period'] %>
+  syncPeriod: <%= node['kubernetes']['proxy']['iptables']['sync_period'] %>
+ipvs:
+  excludeCIDRs: <%= node['kubernetes']['proxy']['ipvs']['exclude_cidrs'] %>
+  minSyncPeriod: <%= node['kubernetes']['proxy']['ipvs']['min_sync_period'] %>
+  scheduler: <%= node['kubernetes']['proxy']['ipvs']['scheduler'] %>
+  strictARP: <%= node['kubernetes']['proxy']['ipvs']['strict_arp'] %>
+  syncPeriod: <%= node['kubernetes']['proxy']['ipvs']['sync_period'] %>
+  tcpFinTimeout: <%= node['kubernetes']['proxy']['ipvs']['tcp_fin_timeout'] %>
+  tcpTimeout: <%= node['kubernetes']['proxy']['ipvs']['tcp_timeout'] %>
+  udpTimeout: <%= node['kubernetes']['proxy']['ipvs']['udp_timeout'] %>
+metricsBindAddress: <%= k8s_ip(node) %>:<%= node['kubernetes']['proxy']['metrics_port'] %>
+mode: <%= node['kubernetes']['proxy_mode'] %>
+nodePortAddresses: <%= node['kubernetes']['proxy']['node_port_addresses'] %>
+oomScoreAdj: <%= node['kubernetes']['proxy']['oom_score_adj'] %>
+portRange: <%= node['kubernetes']['proxy']['port_range'] %>
+showHiddenMetricsForVersion: <%= node['kubernetes']['proxy']['show_hidden_metrics_for_version'] %>
+udpIdleTimeout: <%= node['kubernetes']['proxy']['udp_idle_timeout'] %>

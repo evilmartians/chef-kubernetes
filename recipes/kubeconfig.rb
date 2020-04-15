@@ -13,7 +13,7 @@ file node['kubernetes']['client_ca_file'] do
   content ca_file
 end
 
-template '/etc/kubernetes/system:kube-proxy_config.yaml' do
+template node['kubernetes']['proxy']['client_connection']['kubeconfig'] do
   source 'kubeconfig.yaml.erb'
   if node['kubernetes']['token_auth']
     users_data = data_bag_item(node['kubernetes']['databag'], 'users')['users']

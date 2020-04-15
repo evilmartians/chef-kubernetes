@@ -74,10 +74,26 @@ if install_via == 'systemd'
     subscribes :restart, "remote_file[/opt/kubernetes/#{node['kubernetes']['version']}/bin/kube-proxy]"
     action [:create, :enable, :start]
   end
+
+  template node['kubernetes']['proxy']['global']['config'] do
+    source 'kube-proxy-config.yaml.erb'
+    helpers(Kubernetes::Helpers)
+    notifies :restart, 'systemd_unit[kube-proxy.service]'
+  end
 end
 
-firewall_rule 'kube_proxy' do
+firewall_rule 'kube_proxy_metrics' do
   port node['kubernetes']['proxy']['metrics_port']
+  protocol :tcp
+  interface node['kubernetes']['interface']
+  command :allow
+  only_if do
+    node['kubernetes']['enable_firewall']
+  end
+end
+
+firewall_rule 'kube_proxy_healthz' do
+  port node['kubernetes']['proxy']['healthz_port']
   protocol :tcp
   interface node['kubernetes']['interface']
   command :allow
