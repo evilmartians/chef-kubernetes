@@ -1,4 +1,5 @@
 # UNRELEASED
+- [Kubernetes: 1.18.2](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.18.md#changelog-since-v1181)
 
 # 1.18.1 (16.04.2020)
 - [Kubernetes: 1.18.1](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.18.md#v1181)
