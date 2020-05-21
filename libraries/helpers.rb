@@ -10,6 +10,13 @@ module Kubernetes
       '127.0.0.1'
     end
 
+    def etcd_ip(n = node)
+      n['network']['interfaces'][n['etcd']['interface']]['addresses']
+        .find { |_addr, data| data['family'] == 'inet' }.first
+    rescue
+      '127.0.0.1'
+    end
+
     def k8s_hostname(n = node)
       n['kubernetes']['register_as'] == 'ip' ? k8s_ip(n) : n['hostname']
     end
@@ -67,14 +74,14 @@ module Kubernetes
       etcd_nodes = search(
         :node,
         "roles:#{node['etcd']['role']}"
-      ).map { |node| k8s_ip(node) }
+      ).map { |node| etcd_ip(node) }
 
       etcd_servers = etcd_nodes.map do |addr|
         "#{node['etcd']['proto']}://#{addr}:#{node['etcd']['client_port']}"
       end.join ','
 
       if etcd_nodes.empty?
-        etcd_servers = "#{node['etcd']['proto']}://#{k8s_ip(node)}:#{node['etcd']['client_port']}"
+        etcd_servers = "#{node['etcd']['proto']}://#{etcd_ip(node)}:#{node['etcd']['client_port']}"
       end
 
       options = Hash[node['kubernetes']['api'].map { |k, v| [k.tr('_', '-'), v] }]
