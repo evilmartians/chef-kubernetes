@@ -982,6 +982,12 @@ Google Kubernetes installer for Ubuntu
     <td><tt>2379</tt></td>
   </tr>
   <tr>
+    <td><tt>['etcd']['interface']</tt></td>
+    <td>String</td>
+    <td>eth1</td>
+    <td><tt>default etcd interface</tt></td>
+  </tr>
+  <tr>
     <td><tt>['etcd']['data_dir']</tt></td>
     <td>String</td>
     <td>data dir</td>

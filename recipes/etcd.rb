@@ -87,17 +87,17 @@ else
     default_service_name node['etcd']['default_service_name']
     install_method 'binary'
     service_manager service_type
-    advertise_client_urls "#{node['etcd']['proto']}://#{k8s_ip}:#{node['etcd']['client_port']}"
+    advertise_client_urls "#{node['etcd']['proto']}://#{etcd_ip}:#{node['etcd']['client_port']}"
     cert_file node['etcd']['cert_file']
     client_cert_auth node['etcd']['client_cert_auth']
     data_dir node['etcd']['data_dir']
-    initial_advertise_peer_urls "#{node['etcd']['proto']}://#{k8s_ip}:#{node['etcd']['server_port']}"
+    initial_advertise_peer_urls "#{node['etcd']['proto']}://#{etcd_ip}:#{node['etcd']['server_port']}"
     initial_cluster initial_cluster_string
     initial_cluster_state node['etcd']['initial_cluster_state']
     initial_cluster_token node['etcd']['initial_cluster_token']
     key_file node['etcd']['key_file']
-    listen_client_urls "#{node['etcd']['proto']}://#{k8s_ip}:#{node['etcd']['client_port']},http://127.0.0.1:2379"
-    listen_peer_urls "#{node['etcd']['proto']}://#{k8s_ip}:#{node['etcd']['server_port']},http://127.0.0.1:2380"
+    listen_client_urls "#{node['etcd']['proto']}://#{etcd_ip}:#{node['etcd']['client_port']},http://127.0.0.1:2379"
+    listen_peer_urls "#{node['etcd']['proto']}://#{etcd_ip}:#{node['etcd']['server_port']},http://127.0.0.1:2380"
     peer_cert_file node['etcd']['peer_cert_file']
     peer_client_cert_auth node['etcd']['peer_client_cert_auth']
     peer_key_file node['etcd']['peer_key_file']
@@ -115,7 +115,7 @@ end
 firewall_rule 'etcd' do
   port [2379, 2380]
   protocol :tcp
-  interface node['kubernetes']['interface']
+  interface node['etcd']['interface']
   command :allow
   only_if do
     node['kubernetes']['enable_firewall']

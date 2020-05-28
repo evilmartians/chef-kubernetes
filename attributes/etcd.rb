@@ -13,6 +13,7 @@ default['etcd']['client_cert_auth']      = true
 default['etcd']['auto_tls']              = true
 default['etcd']['server_port']           = 2380
 default['etcd']['client_port']           = 2379
+default['etcd']['interface']             = node['kubernetes']['interface']
 default['etcd']['data_dir']              = '/var/lib/etcd'
 default['etcd']['wal_dir']               = '/var/lib/etcd/member/wal'
 default['etcd']['proto']                 = 'https'
