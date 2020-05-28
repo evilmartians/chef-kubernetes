@@ -26,6 +26,16 @@ user node['etcd']['user'] do
   not_if { node['kubernetes']['install_via'] == 'static_pods' }
 end
 
+firewall_rule 'etcd' do
+  port [2379, 2380]
+  protocol :tcp
+  interface node['etcd']['interface']
+  command :allow
+  only_if do
+    node['kubernetes']['enable_firewall']
+  end
+end
+
 if install_via == 'static_pods'
   etcd_user = 'root'
   etcd_group = 'root'
@@ -109,15 +119,5 @@ else
     not_if do
       etcd_nodes.empty? or etcd_nodes.any?(&:empty?)
     end
-  end
-end
-
-firewall_rule 'etcd' do
-  port [2379, 2380]
-  protocol :tcp
-  interface node['etcd']['interface']
-  command :allow
-  only_if do
-    node['kubernetes']['enable_firewall']
   end
 end
