@@ -1109,7 +1109,7 @@ Google Kubernetes installer for Ubuntu
     <td><tt>['kubernetes']['weave']['version']</tt></td>
     <td>String</td>
     <td>version</td>
-    <td><tt>2.6.2</tt></td>
+    <td><tt>2.6.4</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['weave']['interface']</tt></td>

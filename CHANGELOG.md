@@ -1,4 +1,5 @@
 # UNRELEASED
+- [Weave Net: 2.6.4](https://github.com/weaveworks/weave/releases/tag/v2.6.4)
 - Added new variable: `default['etcd']['interface']`. This feature allows to separate k8s and etcd listen interfaces
 
 # 1.18.2 (06.05.2020)
