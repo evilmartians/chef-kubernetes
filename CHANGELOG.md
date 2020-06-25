@@ -1,4 +1,5 @@
 # UNRELEASED
+- Security: Bump rack from 2.1.2 to 2.2.3
 - [Kubernetes: addon_manager v9.1.1](https://github.com/kubernetes/kubernetes/blob/master/cluster/addons/addon-manager/CHANGELOG.md#version-911-wed-may-19-2020-antoni-zawodny-zawodnygooglecom)
 - [Node Problem Detector: 0.8.2](https://github.com/kubernetes/node-problem-detector/releases/tag/v0.8.2)
 - [Weave Net: 2.6.5](https://github.com/weaveworks/weave/releases/tag/v2.6.5)
