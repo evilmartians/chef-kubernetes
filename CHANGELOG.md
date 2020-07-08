@@ -1,4 +1,5 @@
 # UNRELEASED
+- [Weave Net: 2.6.5](https://github.com/weaveworks/weave/releases/tag/v2.6.5)
 - [CoreDNS: 1.7.0](https://coredns.io/2020/06/15/coredns-1.7.0-release/)
 
 # 1.18.3 (28.05.2020)
