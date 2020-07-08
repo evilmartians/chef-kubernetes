@@ -33,18 +33,23 @@ metadata:
     version: v<%= node['kubernetes']['addons']['npd']['version'] %>
     kubernetes.io/cluster-service: "true"
     addonmanager.kubernetes.io/mode: Reconcile
+    app: node-problem-detector
 spec:
   selector:
     matchLabels:
       k8s-app: node-problem-detector
-      version: v<%= node['kubernetes']['addons']['npd']['version'] %>
       kubernetes.io/cluster-service: "true"
+      app: node-problem-detector
   template:
     metadata:
+      annotations:
+        prometheus.io/port: "<%= node['kubernetes']['addons']['npd']['prometheus_port'] %>"
+        prometheus.io/scrape: "true"
       labels:
         k8s-app: node-problem-detector
         version: v<%= node['kubernetes']['addons']['npd']['version'] %>
         kubernetes.io/cluster-service: "true"
+        app: node-problem-detector
     spec:
       containers:
       - name: node-problem-detector
@@ -53,33 +58,21 @@ spec:
         - /node-problem-detector
         - --address=<%= node['kubernetes']['addons']['npd']['address'] %>
         - --port=<%= node['kubernetes']['addons']['npd']['port'] %>
+        - --prometheus-address=<%= node['kubernetes']['addons']['npd']['prometheus_address'] %>
+        - --prometheus-port=<%= node['kubernetes']['addons']['npd']['prometheus_port'] %>
         - --v=<%= node['kubernetes']['addons']['npd']['log_level'] %>
-        - --system-log-monitors=<%= node['kubernetes']['addons']['npd']['system_log_monitors'].sort.join(',') %>
-        securityContext:
-          privileged: true
+        - --logtostderr
+        - --config.system-log-monitor=<%= node['kubernetes']['addons']['npd']['system_log_monitors'].sort.join(',') %>
         resources:
           limits:
-            cpu: "200m"
-            memory: "100Mi"
+            cpu: 10m
+            memory: 80Mi
           requests:
-            cpu: "20m"
-            memory: "20Mi"
-        livenessProbe:
-          httpGet:
-            path: /healthz
-            port: <%= node['kubernetes']['addons']['npd']['port'] %>
-            scheme: HTTP
-          initialDelaySeconds: 10
-          timeoutSeconds: 2
-          successThreshold: 1
-          failureThreshold: 3
-        readinessProbe:
-          httpGet:
-            path: /healthz
-            port: <%= node['kubernetes']['addons']['npd']['port'] %>
-            scheme: HTTP
-          initialDelaySeconds: 5
-          timeoutSeconds: 1
+            cpu: 10m
+            memory: 80Mi
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          privileged: true
         env:
         - name: NODE_NAME
           valueFrom:
@@ -88,25 +81,176 @@ spec:
         volumeMounts:
         - name: log
           mountPath: /var/log
-        - name: journal
-          mountPath: /var/log/journal
+          readOnly: true
+        - name: kmsg
+          mountPath: /dev/kmsg
+          readOnly: true
+        # Make sure node problem detector is in the same timezone
+        # with the host.
         - name: localtime
           mountPath: /etc/localtime
           readOnly: true
-      volumes:
-      - name: log
-        hostPath:
-          path: /var/log/
-      - name: journal
-        hostPath:
-          path: /run/log/journal
-      - name: localtime
-        hostPath:
-          path: /etc/localtime
-          type: "FileOrCreate"
+        - name: config
+          mountPath: /config
+          readOnly: true
       serviceAccountName: node-problem-detector
       tolerations:
       - operator: "Exists"
         effect: "NoExecute"
       - key: "CriticalAddonsOnly"
         operator: "Exists"
+      volumes:
+      - name: log
+        # Config `log` to your system log directory
+        hostPath:
+          path: /var/log/
+      - name: kmsg
+        hostPath:
+          path: /dev/kmsg
+      - name: localtime
+        hostPath:
+          path: /etc/localtime
+      - name: config
+        configMap:
+          name: node-problem-detector-config
+          items:
+          <% node['kubernetes']['addons']['npd']['system_log_monitors'].sort.each do |i| %>
+          - key: <%= i.gsub('/config/', '') %>
+            path: <%= i.gsub('/config/', '') %>
+          <% end %>
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: node-problem-detector-config
+  namespace: kube-system
+  labels:
+    kubernetes.io/cluster-service: "true"
+    addonmanager.kubernetes.io/mode: Reconcile
+    app: node-problem-detector
+data:
+  kernel-monitor.json: |
+    {
+    	"plugin": "kmsg",
+    	"logPath": "/dev/kmsg",
+    	"lookback": "5m",
+    	"bufferSize": 10,
+    	"source": "kernel-monitor",
+    	"metricsReporting": true,
+    	"conditions": [
+    		{
+    			"type": "KernelDeadlock",
+    			"reason": "KernelHasNoDeadlock",
+    			"message": "kernel has no deadlock"
+    		},
+    		{
+    			"type": "ReadonlyFilesystem",
+    			"reason": "FilesystemIsNotReadOnly",
+    			"message": "Filesystem is not read-only"
+    		}
+    	],
+    	"rules": [
+    		{
+    			"type": "temporary",
+    			"reason": "OOMKilling",
+    			"pattern": "Kill process \\d+ (.+) score \\d+ or sacrifice child\\nKilled process \\d+ (.+) total-vm:\\d+kB, anon-rss:\\d+kB, file-rss:\\d+kB.*"
+    		},
+    		{
+    			"type": "temporary",
+    			"reason": "TaskHung",
+    			"pattern": "task \\S+:\\w+ blocked for more than \\w+ seconds\\."
+    		},
+    		{
+    			"type": "temporary",
+    			"reason": "UnregisterNetDevice",
+    			"pattern": "unregister_netdevice: waiting for \\w+ to become free. Usage count = \\d+"
+    		},
+    		{
+    			"type": "temporary",
+    			"reason": "KernelOops",
+    			"pattern": "BUG: unable to handle kernel NULL pointer dereference at .*"
+    		},
+    		{
+    			"type": "temporary",
+    			"reason": "KernelOops",
+    			"pattern": "divide error: 0000 \\[#\\d+\\] SMP"
+    		},
+    		{
+    			"type": "temporary",
+    			"reason": "Ext4Error",
+    			"pattern": "EXT4-fs error .*"
+    		},
+    		{
+    			"type": "temporary",
+    			"reason": "Ext4Warning",
+    			"pattern": "EXT4-fs warning .*"
+    		},
+    		{
+    			"type": "permanent",
+    			"condition": "KernelDeadlock",
+    			"reason": "AUFSUmountHung",
+    			"pattern": "task umount\\.aufs:\\w+ blocked for more than \\w+ seconds\\."
+    		},
+    		{
+    			"type": "permanent",
+    			"condition": "KernelDeadlock",
+    			"reason": "DockerHung",
+    			"pattern": "task docker:\\w+ blocked for more than \\w+ seconds\\."
+    		},
+    		{
+    			"type": "permanent",
+    			"condition": "ReadonlyFilesystem",
+    			"reason": "FilesystemIsReadOnly",
+    			"pattern": "Remounting filesystem read-only"
+    		}
+    	]
+    }
+  docker-monitor.json: |
+    {
+        "plugin": "journald",
+        "pluginConfig": {
+            "source": "dockerd"
+        },
+        "logPath": "/var/log/journal",
+        "lookback": "5m",
+        "bufferSize": 10,
+        "source": "docker-monitor",
+        "conditions": [],
+        "rules": [
+            {
+                "type": "temporary",
+                "reason": "CorruptDockerImage",
+                "pattern": "Error trying v2 registry: failed to register layer: rename /var/lib/docker/image/(.+) /var/lib/docker/image/(.+): directory not empty.*"
+            }
+        ]
+    }
+  systemd-monitor.json: |
+    {
+    	"plugin": "journald",
+    	"pluginConfig": {
+    		"source": "systemd"
+    	},
+    	"logPath": "/var/log/journal",
+    	"lookback": "5m",
+    	"bufferSize": 10,
+    	"source": "systemd-monitor",
+    	"metricsReporting": true,
+    	"conditions": [],
+    	"rules": [
+    		{
+    			"type": "temporary",
+    			"reason": "KubeletStart",
+    			"pattern": "Started Kubernetes kubelet."
+    		},
+    		{
+    			"type": "temporary",
+    			"reason": "DockerStart",
+    			"pattern": "Starting Docker Application Container Engine..."
+    		},
+    		{
+    			"type": "temporary",
+    			"reason": "ContainerdStart",
+    			"pattern": "Starting containerd container runtime..."
+    		}
+    	]
+    }

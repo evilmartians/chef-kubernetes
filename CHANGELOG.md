@@ -1,4 +1,5 @@
 # UNRELEASED
+- [Node Problem Detector: 0.8.2](https://github.com/kubernetes/node-problem-detector/releases/tag/v0.8.2)
 - [Weave Net: 2.6.5](https://github.com/weaveworks/weave/releases/tag/v2.6.5)
 - [CoreDNS: 1.7.0](https://coredns.io/2020/06/15/coredns-1.7.0-release/)
 

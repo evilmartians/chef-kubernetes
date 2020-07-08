@@ -16,13 +16,14 @@ default['kubernetes']['addons']['coredns']['log']                = false
 default['kubernetes']['addons']['coredns']['node_selector']      = false
 default['kubernetes']['addons']['coredns']['hosts']              = []
 default['kubernetes']['addons']['npd']['enabled']                = false
-default['kubernetes']['addons']['npd']['version']                = '0.5.0'
+default['kubernetes']['addons']['npd']['version']                = '0.8.2'
 default['kubernetes']['addons']['npd']['address']                = '0.0.0.0'
 default['kubernetes']['addons']['npd']['port']                   = 20256
 default['kubernetes']['addons']['npd']['log_level']              = 0
+default['kubernetes']['addons']['npd']['prometheus_address']     = '0.0.0.0'
+default['kubernetes']['addons']['npd']['prometheus_port']        = 20257
 default['kubernetes']['addons']['npd']['system_log_monitors']    = %w(
 /config/kernel-monitor.json
-/config/kernel-monitor-filelog.json
 /config/docker-monitor.json
-/config/docker-monitor-filelog.json
+/config/systemd-monitor.json
 )
