@@ -13,7 +13,6 @@ data:
         health
         kubernetes <%= node['kubernetes']['cluster_domain'] %> <%= node['kubernetes']['api']['service_cluster_ip_range'] %> {
           pods insecure
-          upstream
           fallthrough in-addr.arpa ip6.arpa
         }
         <%- unless node['kubernetes']['addons']['coredns']['hosts'].empty? %>
