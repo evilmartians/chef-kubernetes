@@ -1,4 +1,6 @@
 # UNRELEASED
+
+# 1.18.4 (08.07.2020)
 - [Kubernetes: 1.18.4](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.18.md#changelog-since-v1183)
 - Kubelet config: set default `cpuCFSQuotaPeriod` to 10ms. See [kubernetes#67577](https://github.com/kubernetes/kubernetes/issues/67577) for details
 - Security: Bump rack from 2.1.2 to 2.2.3
