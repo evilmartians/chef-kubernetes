@@ -26,3 +26,4 @@ default['kubernetes']['kubelet']['config']['cgroupDriver']                      
 default['kubernetes']['kubelet']['config']['readOnlyPort']                           = 10255
 default['kubernetes']['kubelet']['config']['serverTLSBootstrap']                     = true
 default['kubernetes']['kubelet']['config']['rotateCertificates']                     = true
+default['kubernetes']['kubelet']['config']['cpuCFSQuotaPeriod']                      = '10ms'
