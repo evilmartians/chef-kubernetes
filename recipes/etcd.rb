@@ -91,12 +91,16 @@ else
     end
   end
 
-  etcd_service 'etcd' do
-    action %i[create start]
+  etcd_installation_binary 'etcd' do
+    version node['etcd']['version'].tr('A-z', '')
+    checksum node['etcd']['checksum']
+    action :create
+  end
+
+  etcd_service_manager_systemd 'etcd' do
+    action :start
     node_name k8s_ip
     default_service_name node['etcd']['default_service_name']
-    install_method 'binary'
-    service_manager service_type
     advertise_client_urls "#{node['etcd']['proto']}://#{etcd_ip}:#{node['etcd']['client_port']}"
     cert_file node['etcd']['cert_file']
     client_cert_auth node['etcd']['client_cert_auth']
@@ -114,8 +118,6 @@ else
     peer_trusted_ca_file node['etcd']['peer_trusted_ca_file']
     trusted_ca_file node['etcd']['trusted_ca_file']
     wal_dir node['etcd']['wal_dir']
-    version node['etcd']['version'].tr('A-z', '')
-    checksum node['etcd']['checksum']
     not_if do
       etcd_nodes.empty? or etcd_nodes.any?(&:empty?)
     end

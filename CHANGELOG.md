@@ -1,4 +1,5 @@
 # UNRELEASED
+- Update etcd cookbook to 6.0.0 version
 
 # 1.18.5 (08.07.2020)
 - [Kubernetes: 1.18.5](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.18.md#changelog-since-v1184)
