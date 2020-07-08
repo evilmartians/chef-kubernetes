@@ -11,7 +11,7 @@ chef_version     '>= 12.14'
 supports         'ubuntu', '>= 16.04'
 
 depends          'apt'
-depends          'etcd', '~> 5.5'
+depends          'etcd', '~> 6.0'
 depends          'network_interfaces_v2'
 depends          'tar'
 depends          'firewall'
