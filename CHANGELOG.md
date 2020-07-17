@@ -1,4 +1,6 @@
 # UNRELEASED
+
+# 1.18.6 (17.07.2020)
 - [Kubernetes: 1.18.6](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.18.md#changelog-since-v1185)
 - [etcd: 3.4.10](https://github.com/etcd-io/etcd/releases/tag/v3.4.10)
 - Update etcd cookbook to 6.0.0 version
