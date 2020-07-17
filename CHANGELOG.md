@@ -1,4 +1,5 @@
 # UNRELEASED
+- [etcd: 3.4.10](https://github.com/etcd-io/etcd/releases/tag/v3.4.10)
 - Update etcd cookbook to 6.0.0 version
 
 # 1.18.5 (08.07.2020)
