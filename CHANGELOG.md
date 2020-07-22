@@ -1,4 +1,5 @@
 # UNRELEASED
+- BUG: Fix etcd initial_cluster_string
 - Weave: don't include `weave-npc` by default
 - Weave: define weave metrics port in DaemonSet to use it in Pod/ServiceMonitors
 - Weave: define npd metrics port in DaemonSet to use it in Pod/ServiceMonitors
