@@ -99,7 +99,7 @@ else
 
   etcd_service_manager_systemd 'etcd' do
     action :start
-    node_name k8s_ip
+    node_name etcd_ip
     default_service_name node['etcd']['default_service_name']
     advertise_client_urls "#{node['etcd']['proto']}://#{etcd_ip}:#{node['etcd']['client_port']}"
     cert_file node['etcd']['cert_file']
