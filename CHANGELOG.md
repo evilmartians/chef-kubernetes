@@ -1,4 +1,5 @@
 # UNRELEASED
+- BUG: Fix etcd initial_cluster_string 
 
 # 1.18.6 (17.07.2020)
 - [Kubernetes: 1.18.6](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.18.md#changelog-since-v1185)

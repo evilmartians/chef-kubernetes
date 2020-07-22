@@ -8,7 +8,7 @@
 etcd_nodes = search(
   :node,
   "roles:#{node['etcd']['role']}"
-).map { |n| k8s_ip(n) }.sort
+).map { |n| etcd_ip(n) }.sort
 
 initial_cluster_string =
   etcd_nodes.map do |addr|
