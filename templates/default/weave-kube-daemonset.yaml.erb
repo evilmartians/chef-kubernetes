@@ -76,6 +76,7 @@ spec:
             - name: xtables-lock
               mountPath: /run/xtables.lock
               readOnly: false
+        <%- if node['kubernetes']['weave']['npc_enabled'] %>
         - name: weave-npc
           args:
             - --metrics-addr=$(LISTEN_ON):6781
@@ -101,6 +102,7 @@ spec:
             - name: xtables-lock
               mountPath: /run/xtables.lock
               readOnly: false
+        <%- end %>
       hostNetwork: true
       hostPID: true
       restartPolicy: Always

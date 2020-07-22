@@ -1142,6 +1142,12 @@ Google Kubernetes installer for Ubuntu
     <td><tt>RollingUpdate</tt></td>
   </tr>
   <tr>
+    <td><tt>['kubernetes']['weave']['npc_enabled']</tt></td>
+    <td>Boolean</td>
+    <td>toggle weave-npc container</td>
+    <td><tt>false</tt></td>
+  </tr>
+  <tr>
     <td><tt>['kubernetes']['weavescope']['version']</tt></td>
     <td>String</td>
     <td>weavespoce version</td>
