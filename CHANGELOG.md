@@ -1,6 +1,7 @@
 # UNRELEASED
 - Weave: don't include `weave-npc` by default
 - Weave: define weave metrics port in DaemonSet to use it in Pod/ServiceMonitors
+- Weave: define npd metrics port in DaemonSet to use it in Pod/ServiceMonitors
 
 # 1.18.6 (17.07.2020)
 - [Kubernetes: 1.18.6](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.18.md#changelog-since-v1185)

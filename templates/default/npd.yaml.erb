@@ -78,6 +78,10 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
+        ports:
+        - containerPort: <%= node['kubernetes']['addons']['npd']['prometheus_port'] %>
+          name: metrics
+          protocol: TCP
         volumeMounts:
         - name: log
           mountPath: /var/log
