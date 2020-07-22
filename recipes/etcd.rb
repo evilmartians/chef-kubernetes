@@ -53,6 +53,7 @@ end
     recursive true
     owner etcd_user
     group etcd_group
+    mode '0700'
   end
 end
 
