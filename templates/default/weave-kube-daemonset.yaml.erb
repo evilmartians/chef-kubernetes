@@ -48,6 +48,10 @@ spec:
                   fieldPath: spec.nodeName
           image: weaveworks/weave-kube:<%= node['kubernetes']['weave']['version'] %>
           imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 6784
+              name: metrics
+              protocol: TCP
           readinessProbe:
             httpGet:
               host: 127.0.0.1
