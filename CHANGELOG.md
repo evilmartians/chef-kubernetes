@@ -1,4 +1,6 @@
 # UNRELEASED
+
+# 1.18.8 (20.08.2020)
 - [Kubernetes: 1.18.8](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.18.md#changelog-since-v1186)
 - kubelet: added `systemReserved` and `kubeReserved` configuration options (only for cpu and memory now)
 - [Weave Net: 2.7.0](https://github.com/weaveworks/weave/releases/tag/v2.7.0)
