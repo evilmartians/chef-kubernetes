@@ -59,7 +59,7 @@ spec:
               port: 6784
           resources:
             requests:
-              cpu: 10m
+              cpu: 50m
           securityContext:
             privileged: true
           volumeMounts:
@@ -99,7 +99,7 @@ spec:
           imagePullPolicy: IfNotPresent
           resources:
             requests:
-              cpu: 10m
+              cpu: 50m
           securityContext:
             privileged: true
           volumeMounts:
@@ -108,6 +108,7 @@ spec:
               readOnly: false
         <%- end %>
       hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
       hostPID: true
       restartPolicy: Always
       securityContext:
@@ -115,6 +116,8 @@ spec:
       serviceAccountName: weave-net
       tolerations:
         - effect: NoSchedule
+          operator: Exists
+        - effect: NoExecute
           operator: Exists
       volumes:
         - name: weavedb
@@ -141,5 +144,6 @@ spec:
           hostPath:
             path: /run/xtables.lock
             type: FileOrCreate
+      priorityClassName: system-node-critical
   updateStrategy:
     type: <%= node['kubernetes']['weave']['update_strategy']['type'] %>
