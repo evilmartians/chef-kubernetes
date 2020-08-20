@@ -1,4 +1,5 @@
 # UNRELEASED
+- kubelet: added `systemReserved` and `kubeReserved` configuration options (only for cpu and memory now)
 - [Weave Net: 2.7.0](https://github.com/weaveworks/weave/releases/tag/v2.7.0)
 - [etcd: 3.4.12](https://github.com/etcd-io/etcd/releases/tag/v3.4.12)
 - Weave: include `weave-npc` by default :shrug:

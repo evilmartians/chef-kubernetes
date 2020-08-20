@@ -27,3 +27,7 @@ default['kubernetes']['kubelet']['config']['readOnlyPort']                      
 default['kubernetes']['kubelet']['config']['serverTLSBootstrap']                     = true
 default['kubernetes']['kubelet']['config']['rotateCertificates']                     = true
 default['kubernetes']['kubelet']['config']['cpuCFSQuotaPeriod']                      = '10ms'
+default['kubernetes']['kubelet']['config']['systemReserved']['cpu']                  = '100m'
+default['kubernetes']['kubelet']['config']['systemReserved']['memory']               = '100Mi'
+default['kubernetes']['kubelet']['config']['kubeReserved']['cpu']                    = '100m'
+default['kubernetes']['kubelet']['config']['kubeReserved']['memory']                 = '100Mi'
