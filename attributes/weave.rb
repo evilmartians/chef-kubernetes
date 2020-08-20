@@ -6,6 +6,6 @@ default['kubernetes']['weave']['status_port']             = 6785
 default['kubernetes']['weave']['metrics_port']            = 6782
 default['kubernetes']['weave']['no_masq_local']           = true
 default['kubernetes']['weave']['update_strategy']['type'] = 'RollingUpdate'
-default['kubernetes']['weave']['npc_enabled']             = false
+default['kubernetes']['weave']['npc_enabled']             = true
 default['kubernetes']['weavescope']['version']            = '0.17.1'
 default['kubernetes']['weavescope']['port']               = '4040'

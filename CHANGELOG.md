@@ -1,4 +1,5 @@
 # UNRELEASED
+- Weave: include `weave-npc` by default :shrug:
 - BUG: Fix etcd initial_cluster_string
 - Weave: don't include `weave-npc` by default
 - Weave: define weave metrics port in DaemonSet to use it in Pod/ServiceMonitors
