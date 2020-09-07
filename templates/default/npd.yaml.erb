@@ -211,23 +211,28 @@ data:
     }
   docker-monitor.json: |
     {
-        "plugin": "journald",
-        "pluginConfig": {
-            "source": "dockerd"
+    "rules": [
+        {
+            "pattern": "Error trying v2 registry: failed to register layer: rename /var/lib/docker/image/(.+) /var/lib/docker/image/(.+): directory not empty.*",
+            "reason": "CorruptDockerImage",
+            "type": "temporary"
         },
-        "logPath": "/var/log/journal",
-        "lookback": "5m",
-        "bufferSize": 10,
-        "source": "docker-monitor",
-        "conditions": [],
-        "rules": [
-            {
-                "type": "temporary",
-                "reason": "CorruptDockerImage",
-                "pattern": "Error trying v2 registry: failed to register layer: rename /var/lib/docker/image/(.+) /var/lib/docker/image/(.+): directory not empty.*"
-            }
-        ]
-    }
+        {
+            "pattern": "OCI runtime start failed: container process is already dead: unknown",
+            "reason": "DockerContainerStartupFailure",
+            "type": "temporary"
+        }
+    ],
+    "conditions": [],
+    "source": "docker-monitor",
+    "bufferSize": 10,
+    "lookback": "5m",
+    "logPath": "/var/log/journal",
+    "pluginConfig": {
+        "source": "dockerd"
+    },
+    "plugin": "journald"
+}
   systemd-monitor.json: |
     {
     	"plugin": "journald",
