@@ -1,4 +1,5 @@
 # UNRELEASED
+- [CNI/plugins: 0.8.7](https://github.com/containernetworking/plugins/releases/tag/v0.8.7)
 - [etcd: 3.4.13](https://github.com/etcd-io/etcd/releases/tag/v3.4.13)
 
 # 1.18.8 (20.08.2020)
