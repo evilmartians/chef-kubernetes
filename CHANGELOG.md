@@ -1,4 +1,5 @@
 # UNRELEASED
+- Kubelet: check the underlying node for required components (binaries, etc.) before performing the mount
 - KubeProxy: add `--bind-address-hard-fail` flag to treat failure to bind to a port as fatal
 - KubeletConfig: Add support for disabling /logs endpoint in kubelet.
 - [Node Problem Detector: 0.8.4](https://github.com/kubernetes/node-problem-detector/releases/tag/v0.8.4)

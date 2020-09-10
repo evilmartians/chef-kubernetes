@@ -8,6 +8,7 @@ default['kubernetes']['kubelet']['daemon_flags']['register_node']               
 default['kubernetes']['kubelet']['daemon_flags']['cni_cache_dir']                = '/var/lib/cni/cache'
 # default['kubernetes']['kubelet']['daemon_flags']['authentication_token_webhook'] = nil # set nil if key doesn't have a parameters
 default['kubernetes']['kubelet']['daemon_flags']['container_runtime']            = node['kubernetes']['container_runtime'] == 'docker' ? 'docker' : 'remote'
+default['kubernetes']['kubelet']['daemon_flags']['experimental_check_node_capabilities_before_mount'] = true
 
 default['kubernetes']['kubelet']['config']['staticPodPath']                          = '/etc/kubernetes/manifests'
 default['kubernetes']['kubelet']['config']['authentication']['x509']['clientCAFile'] = node['kubernetes']['client_ca_file']
