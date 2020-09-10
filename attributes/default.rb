@@ -79,6 +79,7 @@ default['kubernetes']['feature_gates']                      = {
   'ConfigurableFSGroupPolicy' => true,
   'EphemeralContainers'       => true,
   'CSIStorageCapacity'        => true,
+  'GenericEphemeralVolume'    => true,
 }
 default['kubernetes']['packages']['storage_url']            = "https://storage.googleapis.com/kubernetes-release/release/#{node['kubernetes']['version']}/bin/linux/amd64/"
 default['kubernetes']['checksums']['apiserver']             = 'fcab24dd3e74438f3bb2badb8d9ddfaff0798eaae5fd6c7cbb709bf549535a1d'
