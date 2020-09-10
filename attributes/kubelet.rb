@@ -34,3 +34,4 @@ default['kubernetes']['kubelet']['config']['kubeReserved']['cpu']               
 default['kubernetes']['kubelet']['config']['kubeReserved']['memory']                 = '100Mi'
 default['kubernetes']['kubelet']['config']['enableSystemLogHandler']                 = true
 default['kubernetes']['kubelet']['config']['enableDebuggingHandlers']                = true
+default['kubernetes']['kubelet']['config']['kernelMemcgNotification']                = true

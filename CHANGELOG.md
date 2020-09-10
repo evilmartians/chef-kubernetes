@@ -1,4 +1,5 @@
 # UNRELEASED
+- Kubelet: integrate with the kernel memcg notification to determine if memory eviction thresholds are crossed rather than polling
 - Kubelet: check the underlying node for required components (binaries, etc.) before performing the mount
 - KubeProxy: add `--bind-address-hard-fail` flag to treat failure to bind to a port as fatal
 - KubeletConfig: Add support for disabling /logs endpoint in kubelet.
