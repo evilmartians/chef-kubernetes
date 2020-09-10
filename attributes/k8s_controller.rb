@@ -19,5 +19,8 @@ default['kubernetes']['controller_manager']['kubeconfig']                       
 default['kubernetes']['controller_manager']['authentication_kubeconfig']        = '/etc/kubernetes/controller-manager-config.yaml'
 default['kubernetes']['controller_manager']['authorization_kubeconfig']         = '/etc/kubernetes/controller-manager-config.yaml'
 
-default['kubernetes']['controller_manager']['horizontal_pod_autoscaler_sync_period']      = '30s'
-default['kubernetes']['controller_manager']['horizontal_pod_autoscaler_tolerance']        = 0.1
+default['kubernetes']['controller_manager']['horizontal_pod_autoscaler_sync_period']               = '15s'
+default['kubernetes']['controller_manager']['horizontal_pod_autoscaler_tolerance']                 = 0.1
+default['kubernetes']['controller_manager']['horizontal_pod_autoscaler_cpu_initialization_period'] = '5m0s'
+default['kubernetes']['controller_manager']['horizontal_pod_autoscaler_downscale_stabilization']   = '5m0s'
+default['kubernetes']['controller_manager']['horizontal_pod_autoscaler_initial_readiness_delay']   = '30s'
