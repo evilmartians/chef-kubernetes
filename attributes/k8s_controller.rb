@@ -3,8 +3,6 @@ default['kubernetes']['controller_manager']['leader_elect']                     
 default['kubernetes']['controller_manager']['cluster_cidr']                     = node['kubernetes']['cluster_cidr']
 default['kubernetes']['controller_manager']['cluster_name']                     = node['kubernetes']['cluster_name']
 default['kubernetes']['controller_manager']['service_account_private_key_file'] = node['kubernetes']['service_account_key_file']
-default['kubernetes']['controller_manager']['cluster_signing_cert_file']        = node['kubernetes']['cluster_signing_cert_file']
-default['kubernetes']['controller_manager']['cluster_signing_key_file']         = node['kubernetes']['cluster_signing_key_file']
 default['kubernetes']['controller_manager']['root_ca_file']                     = node['kubernetes']['client_ca_file']
 default['kubernetes']['controller_manager']['tls_cert_file']                    = node['kubernetes']['controller_manager_cert_file']
 default['kubernetes']['controller_manager']['tls_private_key_file']             = node['kubernetes']['controller_manager_key_file']
@@ -27,3 +25,12 @@ default['kubernetes']['controller_manager']['horizontal_pod_autoscaler_initial_r
 
 default['kubernetes']['controller_manager']['enable_garbage_collector'] = true
 default['kubernetes']['controller_manager']['concurrent_gc_syncs']      = 20
+
+default['kubernetes']['controller_manager']['cluster_signing_kube_apiserver_client_cert_file']  = node['kubernetes']['cluster_signing_kube_apiserver_client_cert_file']
+default['kubernetes']['controller_manager']['cluster_signing_kube_apiserver_client_key_file']   = node['kubernetes']['cluster_signing_kube_apiserver_client_key_file']
+default['kubernetes']['controller_manager']['cluster_signing_kubelet_client_cert_file']  = node['kubernetes']['cluster_signing_kubelet_client_cert_file']
+default['kubernetes']['controller_manager']['cluster_signing_kubelet_client_key_file']   = node['kubernetes']['cluster_signing_kubelet_client_key_file']
+default['kubernetes']['controller_manager']['cluster_signing_kubelet_serving_cert_file'] = node['kubernetes']['cluster_signing_kubelet_serving_cert_file']
+default['kubernetes']['controller_manager']['cluster_signing_kubelet_serving_key_file']  = node['kubernetes']['cluster_signing_kubelet_serving_key_file']
+default['kubernetes']['controller_manager']['cluster_signing_legacy_unknown_cert_file']  = node['kubernetes']['cluster_signing_legacy_unknown_cert_file']
+default['kubernetes']['controller_manager']['cluster_signing_legacy_unknown_key_file']   = node['kubernetes']['cluster_signing_legacy_unknown_key_file']

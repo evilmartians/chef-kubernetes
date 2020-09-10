@@ -1,4 +1,5 @@
 # UNRELEASED
+- ControllerManager: use separate flags for different CSR signers
 - ControllerManager: garbagecollector controller flags
 - ControllerManager: horizontalpodautoscaling controller flags
 - Kubelet: set the maximum number of images to report in `Node.Status.Images`
