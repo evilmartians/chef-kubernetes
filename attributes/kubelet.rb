@@ -31,3 +31,5 @@ default['kubernetes']['kubelet']['config']['systemReserved']['cpu']             
 default['kubernetes']['kubelet']['config']['systemReserved']['memory']               = '100Mi'
 default['kubernetes']['kubelet']['config']['kubeReserved']['cpu']                    = '100m'
 default['kubernetes']['kubelet']['config']['kubeReserved']['memory']                 = '100Mi'
+default['kubernetes']['kubelet']['config']['enableSystemLogHandler']                 = true
+default['kubernetes']['kubelet']['config']['enableDebuggingHandlers']                = true
