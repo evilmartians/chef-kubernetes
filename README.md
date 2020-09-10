@@ -238,7 +238,7 @@ Google Kubernetes installer for Ubuntu
     <td><tt>['kubernetes'][cgroupdriver']</tt></td>
     <td>String</td>
     <td>Driver that the kubelet uses to manipulate cgroups on the host.</td>
-    <td><tt>cgroupfs</tt></td>
+    <td><tt>systemd</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['feature_gates']</tt></td>

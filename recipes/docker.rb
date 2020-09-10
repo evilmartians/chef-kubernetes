@@ -15,6 +15,10 @@ if node['kubernetes']['docker']['built-in']
     key 'https://download.docker.com/linux/ubuntu/gpg'
   end
 
+  service 'docker' do
+    action :nothing
+  end
+
   directory '/etc/docker'
 
   file '/etc/docker/daemon.json' do
@@ -22,6 +26,7 @@ if node['kubernetes']['docker']['built-in']
     group 'root'
     mode '0644'
     content(node['kubernetes']['docker']['settings'].to_json)
+    notifies :restart, 'service[docker]'
   end
 
   version = "#{node['kubernetes']['docker']['version']}~#{node['lsb']['id'].downcase}-#{node['lsb']['codename']}"

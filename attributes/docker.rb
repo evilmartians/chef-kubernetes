@@ -5,3 +5,4 @@ default['kubernetes']['docker']['settings']['storage-driver'] = 'aufs'
 default['kubernetes']['docker']['settings']['live-restore']   = true
 default['kubernetes']['docker']['settings']['iptables']       = false
 default['kubernetes']['docker']['settings']['ip-masq']        = false
+default['kubernetes']['docker']['settings']['exec-opts']      = ["native.cgroupdriver=#{node['kubernetes']['cgroupdriver']}"]
