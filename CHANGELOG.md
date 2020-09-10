@@ -1,4 +1,5 @@
 # UNRELEASED
+- FeatureGates: add [EphemeralContainers](https://kubernetes.io/docs/concepts/workloads/pods/ephemeral-containers/)
 - ControllerManager: add `--cluster-signing-duration` flag
 - Cgroups: default cgroup driver set to `systemd`
 - Logging: add `logging_format` to all components
