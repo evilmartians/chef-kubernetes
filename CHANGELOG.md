@@ -1,4 +1,9 @@
 # UNRELEASED
+
+# 1.19.1 (10.09.2020)
+
+[Changelog from 1.18](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.19.md#changelog-since-v1180)
+
 - [Kubernetes: 1.19.1](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.19.md#changelog-since-v1190)
 - Docker: [19.03.12](https://docs.docker.com/engine/release-notes/#190312)
 - FeatureGates: add [GenericEphemeralVolume](https://kubernetes.io/docs/concepts/storage/ephemeral-volumes/#generic-ephemeral-volumes)
