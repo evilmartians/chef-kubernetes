@@ -44,3 +44,6 @@ default['kubernetes']['api']['enable_admission_plugins']                = %w(
   ServiceAccount
   TaintNodesByCondition
   ValidatingAdmissionWebhook).join(',')
+default['kubernetes']['api']['runtime_config']                          = %w(
+  storage.k8s.io/v1alpha1=true
+).join(',')
