@@ -1,4 +1,5 @@
 # UNRELEASED
+- ControllerManager: garbagecollector controller flags
 - ControllerManager: horizontalpodautoscaling controller flags
 - Kubelet: set the maximum number of images to report in `Node.Status.Images`
 - Kubelet: integrate with the kernel memcg notification to determine if memory eviction thresholds are crossed rather than polling

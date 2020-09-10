@@ -24,3 +24,6 @@ default['kubernetes']['controller_manager']['horizontal_pod_autoscaler_tolerance
 default['kubernetes']['controller_manager']['horizontal_pod_autoscaler_cpu_initialization_period'] = '5m0s'
 default['kubernetes']['controller_manager']['horizontal_pod_autoscaler_downscale_stabilization']   = '5m0s'
 default['kubernetes']['controller_manager']['horizontal_pod_autoscaler_initial_readiness_delay']   = '30s'
+
+default['kubernetes']['controller_manager']['enable_garbage_collector'] = true
+default['kubernetes']['controller_manager']['concurrent_gc_syncs']      = 20
