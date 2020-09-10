@@ -1,4 +1,5 @@
 # UNRELEASED
+- Logging: add `logging_format` to all components
 - ControllerManager: use separate flags for different CSR signers
 - ControllerManager: garbagecollector controller flags
 - ControllerManager: horizontalpodautoscaling controller flags

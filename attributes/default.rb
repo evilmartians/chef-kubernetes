@@ -58,6 +58,7 @@ default['kubernetes']['token_auth']                         = false
 default['kubernetes']['token_auth_file']                    = '/etc/kubernetes/known_tokens.csv'
 default['kubernetes']['docker']['endpoint']                 = 'unix:///var/run/docker.sock'
 default['kubernetes']['cgroupdriver']                       = 'cgroupfs'
+default['kubernetes']['logging_format']                     = 'text'
 default['kubernetes']['audit']['enabled']                   = true
 default['kubernetes']['audit']['log_path']                  = '/var/log/kubernetes/audit.log'
 default['kubernetes']['audit']['log_format']                = 'json' # Known formats are legacy,json.

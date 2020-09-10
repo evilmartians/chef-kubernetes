@@ -12,6 +12,7 @@ default['kubernetes']['proxy']['port_range']                      = ''
 default['kubernetes']['proxy']['show_hidden_metrics_for_version'] = ''
 default['kubernetes']['proxy']['udp_idle_timeout']                = '250ms'
 default['kubernetes']['proxy']['bind_address_hard_fail']          = true
+default['kubernetes']['proxy']['logging_format']                  = node['kubernetes']['logging_format']
 
 default['kubernetes']['proxy']['conntrack']['max_per_core']            = 32768
 default['kubernetes']['proxy']['conntrack']['min']                     = 131072

@@ -30,6 +30,7 @@ default['kubernetes']['api']['requestheader_username_headers']          = 'X-Rem
 default['kubernetes']['api']['log_dir']                                 = '/var/log/kubernetes'
 default['kubernetes']['api']['feature_gates']                           = node['kubernetes']['feature_gates']
 default['kubernetes']['api']['enable_garbage_collector']                = true
+default['kubernetes']['api']['logging_format']                          = node['kubernetes']['logging_format']
 default['kubernetes']['api']['enable_admission_plugins']                = %w(
   DefaultStorageClass
   DefaultTolerationSeconds
