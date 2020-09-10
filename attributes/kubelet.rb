@@ -35,3 +35,4 @@ default['kubernetes']['kubelet']['config']['kubeReserved']['memory']            
 default['kubernetes']['kubelet']['config']['enableSystemLogHandler']                 = true
 default['kubernetes']['kubelet']['config']['enableDebuggingHandlers']                = true
 default['kubernetes']['kubelet']['config']['kernelMemcgNotification']                = true
+default['kubernetes']['kubelet']['config']['nodeStatusMaxImages']                    = 50
