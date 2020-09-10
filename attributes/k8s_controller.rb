@@ -17,6 +17,7 @@ default['kubernetes']['controller_manager']['kubeconfig']                       
 default['kubernetes']['controller_manager']['authentication_kubeconfig']        = '/etc/kubernetes/controller-manager-config.yaml'
 default['kubernetes']['controller_manager']['authorization_kubeconfig']         = '/etc/kubernetes/controller-manager-config.yaml'
 default['kubernetes']['controller_manager']['logging_format']                   = node['kubernetes']['logging_format']
+default['kubernetes']['controller_manager']['cluster_signing_duration']         = '8760h0m0s'
 
 default['kubernetes']['controller_manager']['horizontal_pod_autoscaler_sync_period']               = '15s'
 default['kubernetes']['controller_manager']['horizontal_pod_autoscaler_tolerance']                 = 0.1

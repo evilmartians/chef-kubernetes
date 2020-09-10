@@ -1,4 +1,5 @@
 # UNRELEASED
+- ControllerManager: add `--cluster-signing-duration` flag
 - Cgroups: default cgroup driver set to `systemd`
 - Logging: add `logging_format` to all components
 - ControllerManager: use separate flags for different CSR signers
