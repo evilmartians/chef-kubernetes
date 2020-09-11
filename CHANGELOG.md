@@ -1,4 +1,5 @@
 # UNRELEASED
+- Docker: [19.03.12](https://docs.docker.com/engine/release-notes/#190312)
 - FeatureGates: add [GenericEphemeralVolume](https://kubernetes.io/docs/concepts/storage/ephemeral-volumes/#generic-ephemeral-volumes)
 - FeatureGates: add [CSIStorageCapacity](https://kubernetes.io/docs/concepts/storage/storage-capacity/)
 - FeatureGates: add [EphemeralContainers](https://kubernetes.io/docs/concepts/workloads/pods/ephemeral-containers/)
