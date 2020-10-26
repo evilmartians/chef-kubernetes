@@ -1,4 +1,5 @@
 # UNRELEASED
+- [Kubernetes: 1.19.3](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.19.md#changelog-since-v1192)
 - [CoreDNS: 1.8.0](https://coredns.io/2020/06/15/coredns-1.8.0-release/)
 
 # 1.19.1 (10.09.2020)
