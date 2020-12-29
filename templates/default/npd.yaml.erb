@@ -53,7 +53,7 @@ spec:
     spec:
       containers:
       - name: node-problem-detector
-        image: k8s.gcr.io/node-problem-detector:v<%= node['kubernetes']['addons']['npd']['version'] %>
+        image: k8s.gcr.io/node-problem-detector/node-problem-detector:v<%= node['kubernetes']['addons']['npd']['version'] %>
         command:
         - /node-problem-detector
         - --address=<%= node['kubernetes']['addons']['npd']['address'] %>
