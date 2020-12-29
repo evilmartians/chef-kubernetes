@@ -16,6 +16,7 @@ default['kubernetes']['addons']['coredns']['log']                = false
 default['kubernetes']['addons']['coredns']['node_selector']      = false
 default['kubernetes']['addons']['coredns']['hosts']              = []
 default['kubernetes']['addons']['npd']['enabled']                = false
+default['kubernetes']['addons']['npd']['repo_url']               ='k8s.gcr.io/node-problem-detector/node-problem-detector'
 default['kubernetes']['addons']['npd']['version']                = '0.8.4'
 default['kubernetes']['addons']['npd']['address']                = '0.0.0.0'
 default['kubernetes']['addons']['npd']['port']                   = 20256
