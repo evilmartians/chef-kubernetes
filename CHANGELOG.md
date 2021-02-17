@@ -1,4 +1,5 @@
 # UNRELEASED
+- [CNI/plugins: 0.9.1](https://github.com/containernetworking/plugins/releases/tag/v0.9.1)
 - Node-problem-detector: change docker image url
 
 # 1.19.3 (26.10.2020)
