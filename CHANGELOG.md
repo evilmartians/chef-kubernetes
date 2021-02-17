@@ -1,4 +1,5 @@
 # UNRELEASED
+- [Kubernetes: 1.19.7](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.19.md#changelog-since-v1196)
 - [Kubernetes: addon_manager v9.1.3](https://github.com/kubernetes/kubernetes/blob/master/cluster/addons/addon-manager/CHANGELOG.md#version-913-mon-november-30-2020-spencer-peterson-spencerjpgooglecom)
 - [Node Problem Detector: 0.8.6](https://github.com/kubernetes/node-problem-detector/releases/tag/v0.8.6)
 - [Weave Net: 2.8.1](https://github.com/weaveworks/weave/releases/tag/v2.8.1)
