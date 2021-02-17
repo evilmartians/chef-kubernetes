@@ -1,4 +1,5 @@
 # UNRELEASED
+- [etcd: 3.4.14](https://github.com/etcd-io/etcd/releases/tag/v3.4.14)
 - [CNI/plugins: 0.9.1](https://github.com/containernetworking/plugins/releases/tag/v0.9.1)
 - Node-problem-detector: change docker image url
 
