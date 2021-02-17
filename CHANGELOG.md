@@ -1,4 +1,5 @@
 # UNRELEASED
+- [CNI/plugins: 0.9.1](https://github.com/containernetworking/plugins/releases/tag/v0.9.1)
 - [CoreDNS: 1.8.1](https://github.com/coredns/coredns/releases/tag/v1.8.1)
 - Node-problem-detector: change docker image url
 
