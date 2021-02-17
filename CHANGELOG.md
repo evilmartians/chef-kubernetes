@@ -1,4 +1,5 @@
 # UNRELEASED
+- [Node Problem Detector: 0.8.6](https://github.com/kubernetes/node-problem-detector/releases/tag/v0.8.6)
 - [Weave Net: 2.8.1](https://github.com/weaveworks/weave/releases/tag/v2.8.1)
 - [etcd: 3.4.14](https://github.com/etcd-io/etcd/releases/tag/v3.4.14)
 - [CNI/plugins: 0.9.1](https://github.com/containernetworking/plugins/releases/tag/v0.9.1)
