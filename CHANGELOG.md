@@ -1,4 +1,5 @@
 # UNRELEASED
+- [CoreDNS: 1.8.1](https://github.com/coredns/coredns/releases/tag/v1.8.1)
 - Node-problem-detector: change docker image url
 
 # 1.19.3 (26.10.2020)
