@@ -793,7 +793,7 @@ Google Kubernetes installer for Ubuntu
     <td><tt>['kubernetes']['addons']['npd']['version']</tt></td>
     <td>String</td>
     <td>node problem detector version</td>
-    <td><tt>0.8.4</tt></td>
+    <td><tt>0.8.6</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['addons']['npd']['address']</tt></td>
