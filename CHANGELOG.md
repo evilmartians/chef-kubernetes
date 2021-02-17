@@ -1,4 +1,5 @@
 # UNRELEASED
+- [Kubernetes: 1.19.7](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.19.md#changelog-since-v1196)
 - [Node Problem Detector: 0.8.6](https://github.com/kubernetes/node-problem-detector/releases/tag/v0.8.6)
 - [Weave Net: 2.8.1](https://github.com/weaveworks/weave/releases/tag/v2.8.1)
 - [etcd: 3.4.14](https://github.com/etcd-io/etcd/releases/tag/v3.4.14)

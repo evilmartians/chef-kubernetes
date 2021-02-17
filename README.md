@@ -52,7 +52,7 @@ Google Kubernetes installer for Ubuntu
     <td><tt>['kubernetes']['version']</tt></td>
     <td>String</td>
     <td>kubernetes version</td>
-    <td><tt>v1.19.3</tt></td>
+    <td><tt>v1.19.7</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['keep_versions']</tt></td>
