@@ -1,5 +1,5 @@
-default['etcd']['version']               = 'v3.4.13'
-default['etcd']['checksum']              = '2ac029e47bab752dacdb7b30032f230f49e2f457cbc32e8f555c2210bb5ff107'
+default['etcd']['version']               = 'v3.4.14'
+default['etcd']['checksum']              = 'f57141d45ceb727a84e2f0bcd0b98934ea2ad2b59009be90d901710861601651'
 default['etcd']['image']                 = 'quay.io/coreos/etcd'
 default['etcd']['trusted_ca_file']       = node['kubernetes']['etcd_server_cafile']
 default['etcd']['peer_trusted_ca_file']  = node['kubernetes']['etcd_peer_cafile']

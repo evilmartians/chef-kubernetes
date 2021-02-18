@@ -52,7 +52,7 @@ Google Kubernetes installer for Ubuntu
     <td><tt>['kubernetes']['version']</tt></td>
     <td>String</td>
     <td>kubernetes version</td>
-    <td><tt>v1.19.3</tt></td>
+    <td><tt>v1.19.7</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['keep_versions']</tt></td>
@@ -407,7 +407,7 @@ Google Kubernetes installer for Ubuntu
     <td><tt>['kubernetes']['cni']['plugins_version']</tt></td>
     <td>String</td>
     <td>cni plugins version</td>
-    <td><tt>0.8.7</tt></td>
+    <td><tt>0.9.1</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['encryption']</tt></td>
@@ -793,7 +793,7 @@ Google Kubernetes installer for Ubuntu
     <td><tt>['kubernetes']['addons']['npd']['version']</tt></td>
     <td>String</td>
     <td>node problem detector version</td>
-    <td><tt>0.8.4</tt></td>
+    <td><tt>0.8.6</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['addons']['npd']['address']</tt></td>
@@ -913,7 +913,7 @@ Google Kubernetes installer for Ubuntu
     <td><tt>['etcd']['version']</tt></td>
     <td>String</td>
     <td>version</td>
-    <td><tt>v3.4.13</tt></td>
+    <td><tt>v3.4.14</tt></td>
   </tr>
   <tr>
     <td><tt>['etcd']['image']</tt></td>
@@ -1109,7 +1109,7 @@ Google Kubernetes installer for Ubuntu
     <td><tt>['kubernetes']['weave']['version']</tt></td>
     <td>String</td>
     <td>version</td>
-    <td><tt>2.7.0</tt></td>
+    <td><tt>2.8.1</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['weave']['interface']</tt></td>
