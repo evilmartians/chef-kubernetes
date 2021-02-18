@@ -3,7 +3,6 @@ default['kubernetes']['api']['secure_port']                             = 8443
 default['kubernetes']['api']['service_cluster_ip_range']                = '10.222.0.0/16'
 default['kubernetes']['api']['storage_backend']                         = 'etcd3'
 default['kubernetes']['api']['storage_media_type']                      = 'application/vnd.kubernetes.protobuf'
-default['kubernetes']['api']['kubelet_https']                           = true
 default['kubernetes']['api']['kubelet_certificate_authority']           = node['kubernetes']['client_ca_file']
 default['kubernetes']['api']['encryption_provider_config']              = '/etc/kubernetes/encryption-config.yaml'
 default['kubernetes']['api']['kubelet_client_certificate']              = node['kubernetes']['kubelet_client_cert_file']
@@ -31,6 +30,8 @@ default['kubernetes']['api']['log_dir']                                 = '/var/
 default['kubernetes']['api']['feature_gates']                           = node['kubernetes']['feature_gates']
 default['kubernetes']['api']['enable_garbage_collector']                = true
 default['kubernetes']['api']['logging_format']                          = node['kubernetes']['logging_format']
+default['kubernetes']['api']['service_account_signing_key_file']        = node['kubernetes']['cluster_signing_key_file']
+default['kubernetes']['api']['service_account_issuer']                  = 'api'
 default['kubernetes']['api']['enable_admission_plugins']                = %w(
   DefaultStorageClass
   DefaultTolerationSeconds
