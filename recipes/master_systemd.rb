@@ -86,11 +86,16 @@ template '/etc/kubernetes/kube-system-ns.yaml' do
   mode '0644'
 end
 
-template '/usr/local/bin/kube-addon-manager' do
-  source 'kube-addon-manager.sh.erb'
-  owner 'root'
-  group 'root'
-  mode '0755'
+[
+  'kube-addon-manager',
+  'kube-addon-manager-main'
+].each do |script|
+  template "/usr/local/bin/#{script}" do
+    source "#{script}.sh.erb"
+    owner 'root'
+    group 'root'
+    mode '0755'
+  end
 end
 
 systemd_unit 'kube-addon-manager.service' do
@@ -101,7 +106,7 @@ systemd_unit 'kube-addon-manager.service' do
     },
     Service: {
       Type: 'simple',
-      ExecStart: '/usr/local/bin/kube-addon-manager',
+      ExecStart: '/usr/local/bin/kube-addon-manager-main',
       ExecReload: '/bin/kill -HUP $MAINPID',
       WorkingDirectory: '/',
       Restart: 'on-failure',

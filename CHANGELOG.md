@@ -1,4 +1,5 @@
 # UNRELEASED
+- - [Kubernetes: addon_manager v9.1.2](https://github.com/kubernetes/kubernetes/blob/master/cluster/addons/addon-manager/CHANGELOG.md#version-912-thu-august-6-2020-spencer-peterson-spencerjpgooglecom)
 
 # 1.19.7 (17.02.2021)
 - [Kubernetes: 1.19.7](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.19.md#changelog-since-v1196)
