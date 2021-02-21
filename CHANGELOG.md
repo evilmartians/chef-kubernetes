@@ -1,4 +1,5 @@
 # UNRELEASED
+- FeatureGates: removed [EndpointSliceProxying](https://kubernetes.io/docs/tasks/administer-cluster/enabling-endpointslices/)
 
 # 1.19.8 (21.02.2021)
 - [Kubernetes: 1.19.8](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.19.md#changelog-since-v1197)
