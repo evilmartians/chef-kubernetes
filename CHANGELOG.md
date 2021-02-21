@@ -1,4 +1,5 @@
 # UNRELEASED
+- FeatureGates: added [CronJobControllerV2](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/#new-controller)
 - FeatureGates: added [GracefulNodeShutdown](https://kubernetes.io/docs/concepts/architecture/nodes/#graceful-node-shutdown)
 - FeatureGates: removed [ConfigurableFSGroupPolicy](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#configure-volume-permission-and-ownership-change-policy-for-pods)
 - FeatureGates: removed [EndpointSliceProxying](https://kubernetes.io/docs/tasks/administer-cluster/enabling-endpointslices/)
