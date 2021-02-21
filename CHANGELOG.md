@@ -1,4 +1,5 @@
 # UNRELEASED
+- [Kubernetes: 1.20.4](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.20.md#changelog-since-v1203)
 - Kubelet: moved deprecated `--logging-format` flag to kubeletconfig
 - Kubelet: removed deprecated `--experimental-check-node-capabilities-before-mount` flag
 - ApiServer: added support for compressing rotated audit log files with `--audit-log-compress`
