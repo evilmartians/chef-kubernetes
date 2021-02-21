@@ -1,4 +1,5 @@
 # UNRELEASED
+- [Node Problem Detector: 0.8.7](https://github.com/kubernetes/node-problem-detector/releases/tag/v0.8.7)
 - [Kubernetes: addon_manager v9.1.3](https://github.com/kubernetes/kubernetes/blob/master/cluster/addons/addon-manager/CHANGELOG.md#version-913-mon-november-30-2020-spencer-peterson-spencerjpgooglecom)
 
 # 1.19.7 (17.02.2021)
