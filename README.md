@@ -582,6 +582,12 @@ Google Kubernetes installer for Ubuntu
     <td>Auto rotate the kubelet client certificates by requesting new certificates from the kube-apiserver when the certificate expiration approaches</td>
     <td><tt>true</tt></td>
   </tr>
+  <tr>
+    <td><tt>['kubernetes']['kubelet']['config']['topologyManagerScope']</tt></td>
+    <td>String</td>
+    <td>Scope to which topology hints applied. Topology Manager collects hints from Hint Providers and applies them to defined scope to ensure the pod admission. Possible values: 'container', 'pod'.</td>
+    <td><tt>container</tt></td>
+  </tr>
 </table>
 
 ###### crio
