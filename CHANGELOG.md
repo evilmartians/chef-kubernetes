@@ -1,4 +1,5 @@
 # UNRELEASED
+- [Service Account Token Volume Projection](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#service-account-token-volume-projection)
 - FeatureGates: added CustomCPUCFSQuotaPeriod for `cpuCFSQuotaPeriod` to work
 - FeatureGates: added [APIServerIdentity](https://kubernetes.io/docs/tasks/administer-cluster/highly-available-master/#api-server-identity)
 - FeatureGates: added [CronJobControllerV2](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/#new-controller)

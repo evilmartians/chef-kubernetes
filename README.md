@@ -1303,6 +1303,30 @@ Google Kubernetes installer for Ubuntu
     <td><tt>node['kubernetes']['service_account_key_file']</tt></td>
   </tr>
   <tr>
+    <td><tt>['kubernetes']['api']['service_account_signing_key_file']</tt></td>
+	<td>String</td>
+	<td>Path to the file that contains the current private key of the service account token issuer. The issuer will sign issued ID tokens with this private key.</td>
+	<td><tt>node['kubernetes']['service_account_key_file']</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['api']['api_audiences']</tt></td>
+	<td>String</td>
+	<td>Identifiers of the API. The service account token authenticator will validate that tokens used against the API are bound to at least one of these audiences. If the --service-account-issuer flag is configured and this flag is not, this field defaults to a single element list containing the issuer URL.</td>
+	<td><tt>api</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['api']['service_account_extend_token_expiration']</tt></td>
+	<td>Boolean</td>
+	<td>Turns on projected service account expiration extension during token generation, which helps safe transition from legacy token to bound service account token feature. If this flag is enabled, admission injected tokens would be extended up to 1 year to prevent unexpected failure during transition, ignoring value of service-account-max-token-expiration.</td>
+	<td><tt>true</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['kubernetes']['api'][service_account_issuer]</tt></td>
+	<td>String</td>
+	<td>Identifier of the service account token issuer. The issuer will assert this identifier in "iss" claim of issued tokens. This value is a string or URI. If this option is not a valid URI per the OpenID Discovery 1.0 spec, the ServiceAccountIssuerDiscovery feature will remain disabled, even if the feature gate is set to true. It is highly recommended that this value comply with the OpenID spec: https://openid.net/specs/openid-connect-discovery-1_0.html. In practice, this means that service-account-issuer must be an https URL. It is also highly recommended that this URL be capable of serving OpenID discovery documents at {service-account-issuer}/.well-known/openid-configuration.</td>
+	<td><tt>kubernetes/serviceaccount</tt></td>
+  </tr>
+  <tr>
     <td><tt>['kubernetes']['api']['log_dir']</tt></td>
     <td>String</td>
     <td>log_dir</td>
