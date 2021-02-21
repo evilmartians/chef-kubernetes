@@ -1,4 +1,6 @@
 # UNRELEASED
+
+# 1.20.4 (22.02.2021)
 - [Kubernetes: 1.20.4](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.20.md#changelog-since-v1203)
 - Kubelet: moved deprecated `--logging-format` flag to kubeletconfig
 - Kubelet: removed deprecated `--experimental-check-node-capabilities-before-mount` flag
