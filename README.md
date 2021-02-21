@@ -1345,6 +1345,12 @@ Google Kubernetes installer for Ubuntu
     <td><tt>/var/log/kubernetes</tt></td>
   </tr>
   <tr>
+    <td><tt>['kubernetes']['api']['audit_log_compress']</tt></td>
+    <td>Boolean</td>
+    <td>If set, the rotated log files will be compressed using gzip.</td>
+    <td><tt>true</tt></td>
+  </tr>
+  <tr>
     <td><tt>['kubernetes']['api']['feature_gates']</tt></td>
     <td>String</td>
     <td>feature_gates</td>
