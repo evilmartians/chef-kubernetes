@@ -1,4 +1,5 @@
 # UNRELEASED
+- [Kubernetes: 1.19.8](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.19.md#changelog-since-v1197)
 - [Node Problem Detector: 0.8.7](https://github.com/kubernetes/node-problem-detector/releases/tag/v0.8.7)
 - [Kubernetes: addon_manager v9.1.3](https://github.com/kubernetes/kubernetes/blob/master/cluster/addons/addon-manager/CHANGELOG.md#version-913-mon-november-30-2020-spencer-peterson-spencerjpgooglecom)
 
