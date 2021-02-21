@@ -37,3 +37,7 @@ default['kubernetes']['kubelet']['config']['enableSystemLogHandler']            
 default['kubernetes']['kubelet']['config']['enableDebuggingHandlers']                = true
 default['kubernetes']['kubelet']['config']['kernelMemcgNotification']                = true
 default['kubernetes']['kubelet']['config']['nodeStatusMaxImages']                    = 50
+if node['kubernetes']['kubelet']['config']['featureGates']['GracefulNodeShutdown']
+  default['kubernetes']['kubelet']['config']['ShutdownGracePeriod']                  = '30s'
+  default['kubernetes']['kubelet']['config']['ShutdownGracePeriodCriticalPods']      = '10s'
+end

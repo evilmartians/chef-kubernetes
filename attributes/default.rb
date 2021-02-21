@@ -76,6 +76,7 @@ default['kubernetes']['feature_gates']                      = {
   'CSIStorageCapacity'        => true,
   'EphemeralContainers'       => true,
   'GenericEphemeralVolume'    => true,
+  'GracefulNodeShutdown'      => true,
   'ServiceTopology'           => true,
   'TTLAfterFinished'          => true,
 }
