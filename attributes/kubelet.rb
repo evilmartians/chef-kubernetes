@@ -6,7 +6,6 @@ default['kubernetes']['kubelet']['daemon_flags']['v']                           
 default['kubernetes']['kubelet']['daemon_flags']['network_plugin']               = 'cni'
 default['kubernetes']['kubelet']['daemon_flags']['register_node']                = true
 default['kubernetes']['kubelet']['daemon_flags']['cni_cache_dir']                = '/var/lib/cni/cache'
-default['kubernetes']['kubelet']['daemon_flags']['logging_format']               = node['kubernetes']['logging_format']
 # default['kubernetes']['kubelet']['daemon_flags']['authentication_token_webhook'] = nil # set nil if key doesn't have a parameters
 default['kubernetes']['kubelet']['daemon_flags']['container_runtime']            = node['kubernetes']['container_runtime'] == 'docker' ? 'docker' : 'remote'
 
@@ -37,6 +36,7 @@ default['kubernetes']['kubelet']['config']['enableDebuggingHandlers']           
 default['kubernetes']['kubelet']['config']['kernelMemcgNotification']                = true
 default['kubernetes']['kubelet']['config']['nodeStatusMaxImages']                    = 50
 default['kubernetes']['kubelet']['config']['topologyManagerScope']                   = 'container'
+default['kubernetes']['kubelet']['config']['loggingFormat']                          = node['kubernetes']['logging_format']
 if node['kubernetes']['kubelet']['config']['featureGates']['GracefulNodeShutdown']
   default['kubernetes']['kubelet']['config']['ShutdownGracePeriod']                  = '30s'
   default['kubernetes']['kubelet']['config']['ShutdownGracePeriodCriticalPods']      = '10s'

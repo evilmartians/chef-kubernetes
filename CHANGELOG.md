@@ -1,4 +1,5 @@
 # UNRELEASED
+- Kubelet: moved deprecated `--logging-format` flag to kubeletconfig
 - Kubelet: removed deprecated `--experimental-check-node-capabilities-before-mount` flag
 - ApiServer: added support for compressing rotated audit log files with `--audit-log-compress`
 - ApiServer: added `--etcd-healthcheck-timeout` flag
