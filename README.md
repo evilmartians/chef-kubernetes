@@ -244,7 +244,7 @@ Google Kubernetes installer for Ubuntu
     <td><tt>['kubernetes']['feature_gates']</tt></td>
     <td>Hash</td>
     <td>feature gates</td>
-    <td><tt>'TTLAfterFinished' => true, 'ServiceTopology' => true, ConfigurableFSGroupPolicy => true, EphemeralContainers => true, 'CSIStorageCapacity' => true, 'GenericEphemeralVolume' => true</tt></td>
+    <td><tt>'TTLAfterFinished' => true, 'ServiceTopology' => true, EphemeralContainers => true, 'CSIStorageCapacity' => true, 'GenericEphemeralVolume' => true</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['audit']['enabled']</tt></td>

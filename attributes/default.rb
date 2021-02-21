@@ -75,7 +75,6 @@ default['kubernetes']['audit_webhook_config']['server']     = ''
 default['kubernetes']['feature_gates']                      = {
   'TTLAfterFinished'          => true,
   'ServiceTopology'           => true,
-  'ConfigurableFSGroupPolicy' => true,
   'EphemeralContainers'       => true,
   'CSIStorageCapacity'        => true,
   'GenericEphemeralVolume'    => true,

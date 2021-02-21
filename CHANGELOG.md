@@ -1,4 +1,5 @@
 # UNRELEASED
+- FeatureGates: removed [ConfigurableFSGroupPolicy](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#configure-volume-permission-and-ownership-change-policy-for-pods)
 - FeatureGates: removed [EndpointSliceProxying](https://kubernetes.io/docs/tasks/administer-cluster/enabling-endpointslices/)
 
 # 1.19.8 (21.02.2021)
