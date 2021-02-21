@@ -76,6 +76,7 @@ default['kubernetes']['feature_gates']                      = {
   'APIServerIdentity'         => true,
   'CronJobControllerV2'       => true,
   'CSIStorageCapacity'        => true,
+  'CustomCPUCFSQuotaPeriod'   => true,
   'EphemeralContainers'       => true,
   'GenericEphemeralVolume'    => true,
   'GracefulNodeShutdown'      => true,

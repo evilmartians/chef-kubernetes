@@ -1,4 +1,5 @@
 # UNRELEASED
+- FeatureGates: added CustomCPUCFSQuotaPeriod for `cpuCFSQuotaPeriod` to work
 - FeatureGates: added [APIServerIdentity](https://kubernetes.io/docs/tasks/administer-cluster/highly-available-master/#api-server-identity)
 - FeatureGates: added [CronJobControllerV2](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/#new-controller)
 - FeatureGates: added [GracefulNodeShutdown](https://kubernetes.io/docs/concepts/architecture/nodes/#graceful-node-shutdown)

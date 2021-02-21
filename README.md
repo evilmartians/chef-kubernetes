@@ -244,7 +244,7 @@ Google Kubernetes installer for Ubuntu
     <td><tt>['kubernetes']['feature_gates']</tt></td>
     <td>Hash</td>
     <td>feature gates</td>
-    <td><tt>'APIServerIdentity' => true, 'CronJobControllerV2' => true, 'CSIStorageCapacity' => true, EphemeralContainers => true, 'GenericEphemeralVolume' => true, 'GracefulNodeShutdown' => true, 'ServiceTopology' => true, 'TTLAfterFinished' => true</tt></td>
+    <td><tt>'APIServerIdentity' => true, 'CronJobControllerV2' => true, 'CSIStorageCapacity' => true, 'CustomCPUCFSQuotaPeriod' => true, EphemeralContainers => true, 'GenericEphemeralVolume' => true, 'GracefulNodeShutdown' => true, 'ServiceTopology' => true, 'TTLAfterFinished' => true</tt></td>
   </tr>
   <tr>
     <td><tt>['kubernetes']['audit']['enabled']</tt></td>
