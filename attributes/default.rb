@@ -73,11 +73,11 @@ default['kubernetes']['audit_webhook']['version']           = 'audit.k8s.io/v1'
 default['kubernetes']['audit_webhook']['mode']              = 'batch' # Known modes are batch,blocking,blocking-strict.
 default['kubernetes']['audit_webhook_config']['server']     = ''
 default['kubernetes']['feature_gates']                      = {
-  'TTLAfterFinished'          => true,
-  'ServiceTopology'           => true,
-  'EphemeralContainers'       => true,
   'CSIStorageCapacity'        => true,
+  'EphemeralContainers'       => true,
   'GenericEphemeralVolume'    => true,
+  'ServiceTopology'           => true,
+  'TTLAfterFinished'          => true,
 }
 default['kubernetes']['packages']['storage_url']            = "https://storage.googleapis.com/kubernetes-release/release/#{node['kubernetes']['version']}/bin/linux/amd64/"
 default['kubernetes']['checksums']['apiserver']             = 'c75948a13379f700306f2a3cbf73d6c636f7bf6725d31dfab73086fa98407851'
