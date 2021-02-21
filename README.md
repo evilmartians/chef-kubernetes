@@ -1267,6 +1267,12 @@ Google Kubernetes installer for Ubuntu
     <td><tt>node['etcd']['trusted_ca_file']</tt></td>
   </tr>
   <tr>
+    <td><tt>['kubernetes']['api']['etcd_healthcheck_timeout']</tt></td>
+    <td>Duration</td>
+    <td>The timeout to use when checking etcd health.</td>
+    <td><tt>2s</tt></td>
+  </tr>
+  <tr>
     <td><tt>['kubernetes']['api']['allow_privileged']</tt></td>
     <td>Boolean</td>
     <td>allow privileged containers</td>

@@ -13,6 +13,7 @@ default['kubernetes']['api']['endpoint_reconciler_type']                = 'lease
 default['kubernetes']['api']['etcd_certfile']                           = node['kubernetes']['etcd_client_cert_file']
 default['kubernetes']['api']['etcd_keyfile']                            = node['kubernetes']['etcd_client_key_file']
 default['kubernetes']['api']['etcd_cafile']                             = node['kubernetes']['etcd_server_cafile']
+default['kubernetes']['api']['etcd_healthcheck_timeout']                = '2s'
 default['kubernetes']['api']['allow_privileged']                        = true
 default['kubernetes']['api']['authorization_mode']                      = node['kubernetes']['authorization']['mode']
 default['kubernetes']['api']['enable_bootstrap_token_auth']             = nil
