@@ -73,6 +73,7 @@ default['kubernetes']['audit_webhook']['version']           = 'audit.k8s.io/v1'
 default['kubernetes']['audit_webhook']['mode']              = 'batch' # Known modes are batch,blocking,blocking-strict.
 default['kubernetes']['audit_webhook_config']['server']     = ''
 default['kubernetes']['feature_gates']                      = {
+  'APIServerIdentity'         => true,
   'CronJobControllerV2'       => true,
   'CSIStorageCapacity'        => true,
   'EphemeralContainers'       => true,

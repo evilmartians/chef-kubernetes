@@ -47,3 +47,8 @@ default['kubernetes']['api']['enable_admission_plugins']                = %w(
 default['kubernetes']['api']['runtime_config']                          = %w(
   storage.k8s.io/v1alpha1=true
 ).join(',')
+
+if node['kubernetes']['api']['feature_gates']['APIServerIdentity']
+  default['kubernetes']['api']['identity_lease_duration_seconds']         = 3600
+  default['kubernetes']['api']['identity_lease_renew_interval_seconds']   = 10
+end
