@@ -123,11 +123,6 @@ module Kubernetes
       options['feature-gates'] = options['feature-gates'].map { |k, v| "#{k}=#{v}" }.join(',')
       options.store('bind-address', k8s_ip(node))
 
-      if node['kubernetes']['sdn'] == 'canal'
-        options.store('allocate-node-cidrs', nil)
-        options.store('node-cidr-mask-size', node['kubernetes']['node_cidr_mask_size'])
-      end
-
       options.sort_by { |k, v| k }.map { |k, v| v.nil? ? "--#{k}" : "--#{k}=#{v}" }
     end
 
