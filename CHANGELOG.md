@@ -1,4 +1,10 @@
 # UNRELEASED
+- Remove canal support from cookbook
+- Remove crio support from cookbook
+- Upgrade etcd to 3.4.16
+- [Kubernetes: 1.21.2](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.21.md#changelog-since-v1212)
+- [Node Problem Detector: 0.8.9](https://github.com/kubernetes/node-problem-detector/releases/tag/v0.8.9)
+- cpuCFSQuotaPeriod: default 100ms
 
 # 1.20.4 (22.02.2021)
 - [Kubernetes: 1.20.4](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.20.md#changelog-since-v1203)
